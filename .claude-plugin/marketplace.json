@@ -1,0 +1,13 @@
+{
+  "name": "meuos",
+  "owner": {
+    "name": "MeuOS / Aion (Fernando Lucio)"
+  },
+  "plugins": [
+    {
+      "name": "meuos-skills",
+      "source": "./plugins/meuos-skills",
+      "description": "Biblioteca de skills do MeuOS para alunos do Curso IA para Gestores (mini-teste, 3 skills)"
+    }
+  ]
+}
