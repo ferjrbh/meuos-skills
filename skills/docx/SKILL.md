@@ -206,3 +206,7 @@ pdftoppm -png document.pdf output_prefix
 - `docx` (npm) — criacao de documentos
 - `soffice` (LibreOffice) — conversoes e tracked changes
 - `defusedxml` (pip) — parse seguro de XML
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

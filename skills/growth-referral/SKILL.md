@@ -255,3 +255,7 @@ For implementation, see the [tools registry](../../tools/REGISTRY.md). Key tools
 - **market-emails**: For referral nurture campaigns
 - **marketing-psychology**: For understanding referral motivation
 - **analytics-tracking**: For tracking referral attribution
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

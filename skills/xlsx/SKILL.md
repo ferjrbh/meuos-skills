@@ -154,3 +154,7 @@ wb.save('modified.xlsx')
 - Especificar tipos: `pd.read_excel('file.xlsx', dtype={'id': str})`
 - Arquivos grandes: `pd.read_excel('file.xlsx', usecols=['A', 'C', 'E'])`
 - Datas: `pd.read_excel('file.xlsx', parse_dates=['date_column'])`
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

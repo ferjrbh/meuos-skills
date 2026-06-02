@@ -2,6 +2,9 @@
 name: market-landing
 description: "Análise CRO de landing page. Identifica gargalos de conversão e sugere melhorias em copy, layout e prova social."
 version: 1.0
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 # Landing Page CRO Analysis
@@ -332,3 +335,7 @@ Generate a file called `LANDING-CRO.md` in the project root or output directory 
 - Reference industry benchmarks so the client understands where they stand.
 - If you have access to the page via browser tools, take screenshots and reference specific elements.
 - If the user has run `/market audit` previously, incorporate those findings into the CRO analysis for a more complete picture.
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

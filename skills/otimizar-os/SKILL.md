@@ -430,3 +430,7 @@ Se ainda houver arquivos 🟡 ou 🔴 restantes (itens nao aprovados), indicar c
 - **Sempre ler o arquivo antes de alterar** — nada de editar sem entender o conteudo primeiro
 - **Sempre mostrar antes/depois** para alteracoes em arquivos existentes
 - **Nunca assumir que o OS e flat** — sempre escanear raiz + pastas + subpastas antes de declarar o relatorio completo
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

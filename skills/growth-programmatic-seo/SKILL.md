@@ -236,3 +236,7 @@ Watch for: Thin content warnings, Ranking drops, Manual actions, Crawl errors
 - **growth-schema**: For adding structured data
 - **growth-site-arch**: For page hierarchy, URL structure, and internal linking
 - **market-competitors**: For comparison page frameworks
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

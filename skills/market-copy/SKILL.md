@@ -2,6 +2,9 @@
 name: market-copy
 description: "Gera copy otimizada para qualquer página. Headline, CTA, bullet e social proof — seguindo frameworks validados de conversão."
 version: 1.0
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 # Copywriting Analysis & Generation
@@ -340,3 +343,7 @@ Write the full report to `COPY-SUGGESTIONS.md` with this structure:
 - If `MARKETING-AUDIT.md` exists, reference the Content & Messaging score
 - If `COMPETITOR-REPORT.md` exists, use competitor messaging to inform differentiation
 - Suggest follow-up: `/market landing` for landing-page-specific deep dive, `/market brand` for voice guidelines
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

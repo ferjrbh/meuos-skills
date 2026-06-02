@@ -452,3 +452,7 @@ Ideas to A/B test with expected outcomes
 - **growth-page-cro**: For the page context around popups
 - **market-emails**: For what happens after popup conversion
 - **ab-test-setup**: For testing popup variations
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

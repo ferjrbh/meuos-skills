@@ -60,3 +60,7 @@ Se voce disser "vai com a recomendada" ou "manda ver", executar sem mais pergunt
 > Pensar 2 minutos antes evita refazer 20 minutos depois.
 > Mas pensar 10 minutos quando bastava 30 segundos e desperdicio.
 > Calibrar pelo tamanho da tarefa.
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

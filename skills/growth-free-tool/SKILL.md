@@ -177,3 +177,7 @@ Rate each factor 1-5:
 - **growth-seo-audit**: For SEO-optimizing the tool
 - **analytics-tracking**: For measuring tool usage
 - **market-emails**: For nurturing leads from the tool
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

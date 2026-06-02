@@ -308,3 +308,7 @@ When creating a lead magnet strategy, provide:
 - **analytics-tracking**: For measuring lead magnet performance
 - **market-ads**: For paid promotion of lead magnets
 - **market-social**: For social media promotion
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

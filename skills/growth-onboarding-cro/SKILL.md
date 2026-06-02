@@ -218,3 +218,7 @@ When recommending experiments, consider tests for:
 - **market-emails**: For onboarding email series
 - **growth-paywall-cro**: For converting to paid during/after onboarding
 - **ab-test-setup**: For testing onboarding changes
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

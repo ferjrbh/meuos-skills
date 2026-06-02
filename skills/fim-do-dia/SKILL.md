@@ -351,3 +351,7 @@ Se houve uma analise longa, comparacao detalhada ou deep dive durante a sessao, 
 - **Nunca declarar concluido** sem ter atualizado pelo menos o aprendizados_do_dia.md e o *MESTRE.md
 - **Se o usuario nao responder uma das 3 perguntas**, prosseguir com o que foi respondido e deixar a secao em branco com nota "(nao registrado nesta sessao)"
 - **Nunca assumir que o OS e flat** — sempre verificar a estrutura real antes de agir
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

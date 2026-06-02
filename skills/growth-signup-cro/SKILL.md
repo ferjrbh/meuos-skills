@@ -357,3 +357,7 @@ Organized by:
 - **growth-form-cro**: For non-signup forms (lead capture, contact)
 - **growth-page-cro**: For the landing page leading to signup
 - **ab-test-setup**: For testing signup flow changes
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

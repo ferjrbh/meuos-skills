@@ -240,3 +240,7 @@ Para detalhes profundos de patterns, configuracao de nodes, code nodes JS/Python
 - Catalogo de nodes: https://n8n.io/integrations
 - Error handling: https://docs.n8n.io/flow-logic/error-handling/
 - Sub-workflows: https://docs.n8n.io/flow-logic/subworkflows/
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

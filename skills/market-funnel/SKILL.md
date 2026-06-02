@@ -2,6 +2,9 @@
 name: market-funnel
 description: "Analisa e otimiza funil de vendas. Mapeia estágios, identifica onde perde cliente e sugere correções por etapa."
 version: 1.0
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 # Sales Funnel Analysis & Optimization
@@ -447,3 +450,7 @@ Full analysis saved to: FUNNEL-ANALYSIS.md
 - If `EMAIL-SEQUENCES.md` exists, verify alignment with funnel stages
 - If `COMPETITOR-REPORT.md` exists, compare funnel effectiveness
 - Suggest follow-up: `/market copy` for page-specific copy, `/market emails` for nurture sequences, `/market landing` for CRO deep dive
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

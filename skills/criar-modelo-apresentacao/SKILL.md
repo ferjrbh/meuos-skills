@@ -1920,3 +1920,7 @@ LTDA" — voce NUNCA deve deixar esses textos no HTML final.
   `examples/modelo-empresa-teste/assets/` do bundle.
 
 ---
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
