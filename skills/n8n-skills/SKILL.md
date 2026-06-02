@@ -319,3 +319,7 @@ Responde com JSON literal customizado (use expressoes pra montar).
 2. Crie 1 workflow simples de cada pattern A-H — veja como n8n monta
 3. No erro: leia mensagem do n8n — quase sempre aponta o campo
 4. Doc oficial: https://docs.n8n.io
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

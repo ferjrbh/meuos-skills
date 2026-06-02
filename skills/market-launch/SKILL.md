@@ -2,6 +2,9 @@
 name: market-launch
 description: "Gera playbook completo de lançamento de produto. Timeline, canais, copy e métricas — do pre-launch ao pós-lançamento."
 version: 1.0
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 # Product/Service Launch Playbook Generator
@@ -460,3 +463,7 @@ Generate a file called `LAUNCH-PLAYBOOK.md` with:
 - Time the playbook to their stated launch date and work backwards.
 - Always include a "minimum viable launch" option for users with limited resources.
 - Emphasize that launching is an event, not a moment -- the buildup and follow-through matter more than day one.
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

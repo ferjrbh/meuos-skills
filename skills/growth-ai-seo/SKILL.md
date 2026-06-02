@@ -395,3 +395,7 @@ For implementation, see the [tools registry](../../tools/REGISTRY.md).
 - **growth-programmatic-seo**: For building SEO pages at scale
 - **market-copy**: For writing content that's both human-readable and AI-extractable
 - **market-competitors**: For building comparison pages that get cited
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

@@ -427,3 +427,7 @@ Ideas to A/B test with expected outcomes
 - **growth-popup-cro**: For forms inside popups/modals
 - **growth-page-cro**: For the page containing the form
 - **ab-test-setup**: For testing form changes
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

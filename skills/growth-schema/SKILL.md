@@ -177,3 +177,7 @@ You can combine multiple schema types on one page using `@graph`:
 - **growth-ai-seo**: For AI search optimization (schema helps AI understand content)
 - **growth-programmatic-seo**: For templated schema at scale
 - **growth-site-arch**: For breadcrumb structure and navigation schema planning
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

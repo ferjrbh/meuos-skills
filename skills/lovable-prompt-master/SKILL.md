@@ -46,3 +46,7 @@ Não modifique nenhuma outra parte do código."
 - Estados: hover [descrição], active [descrição], disabled [descrição]
 - Mobile: [comportamento responsivo]
 Use Tailwind CSS. Exporte como componente React reutilizável."
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

@@ -2,6 +2,9 @@
 name: market-brand
 description: "Define identidade da marca: posicionamento, tom de voz, personas e mensagens-chave. Gera brand book em markdown."
 version: 1.0
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 # Brand Voice Analysis and Guidelines Generation
@@ -475,3 +478,7 @@ Reserved                                  Bold
 - If the brand's voice is inconsistent across channels, frame it as an opportunity to strengthen their brand, not as a failure. Consistency issues are common and fixable.
 - If the user has run `/market competitors` previously, use that data for the competitor voice comparison section.
 - The voice dimensions should be plotted visually (text-based spectrum) so stakeholders can quickly understand the positioning at a glance.
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

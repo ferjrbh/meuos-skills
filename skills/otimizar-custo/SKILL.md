@@ -333,3 +333,7 @@ uma nota curta indicando a origem: "Promovido da memoria em DD/MM"
 As tres juntas cobrem: encerramento do dia, organizacao dos docs do OS e higiene
 da memoria do agente. Rodar cada uma no momento certo mantem seu sistema enxuto
 e barato de operar.
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

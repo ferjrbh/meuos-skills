@@ -75,3 +75,7 @@ TESTE: [como validar a hipotese sem alterar nada]
 - NAO Deletar e recriar do zero como primeiro recurso
 - NAO Ignorar warnings achando que "nao sao importantes"
 - NAO Chutar a causa sem ler o log/erro primeiro
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

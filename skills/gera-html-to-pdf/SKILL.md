@@ -351,3 +351,7 @@ Adapte detalhes (paleta, fonte, número de páginas) ao seu contexto.
 ## Resumo em uma frase
 
 > **Não confie no navegador pra paginar. Você (ou seu agente) decide ANTES quanto cabe em cada A4 e marca com `<div class="page">`. Pra gerar PDF, Ctrl+P funciona bem (com margem zero + cabeçalho desligado), ou rode Chrome headless `--print-to-pdf` se for automação.**
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

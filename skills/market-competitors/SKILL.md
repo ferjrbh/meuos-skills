@@ -2,6 +2,9 @@
 name: market-competitors
 description: "Análise competitiva automática. Lista concorrentes, compara copy/pricing/features e identifica gaps para você se diferenciar."
 version: 1.0
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 # Competitive Intelligence Analysis
@@ -541,3 +544,7 @@ Full report saved to: COMPETITOR-REPORT.md
 - If `FUNNEL-ANALYSIS.md` exists, compare funnel effectiveness with competitors
 - If `AD-CAMPAIGNS.md` exists, use competitor intelligence for ad angles
 - Suggest follow-up: `/market copy` for differentiated messaging, `/market ads` for competitive ad campaigns, `/market funnel` for conversion comparison
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

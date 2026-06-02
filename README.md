@@ -446,3 +446,6 @@ Instale a skill **n8n Skills (Patterns, Code, Expressões)** do MeuOS. Baixe `ht
 ```
 
 ---
+
+
+_Biblioteca oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)_

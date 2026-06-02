@@ -2,6 +2,9 @@
 name: market-emails
 description: "Gera sequência de emails (nurturing, lançamento, venda). Assunto, preview e corpo com frameworks de copywriting validados."
 version: 1.0
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 # Email Sequence Generation
@@ -418,3 +421,7 @@ Full sequences saved to: EMAIL-SEQUENCES.md
 - If `COPY-SUGGESTIONS.md` exists, reuse value propositions and CTA language
 - If `MARKETING-AUDIT.md` exists, reference conversion and content scores
 - Suggest follow-up: `/market copy` for website copy, `/market funnel` for conversion path analysis
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

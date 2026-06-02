@@ -355,3 +355,7 @@ Mermaid diagram showing page relationships and navigation zones. Use `graph TD` 
 - **growth-page-cro**: For optimizing individual pages for conversion
 - **growth-schema**: For implementing breadcrumb and site navigation structured data
 - **market-competitors**: For comparison page frameworks and URL patterns
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

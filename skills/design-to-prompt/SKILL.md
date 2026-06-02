@@ -25,3 +25,7 @@ Quando recebo uma referência visual, analiso e extraio:
 Gero DOIS entregáveis:
 1. **Prompt Lovable**: pronto para colar e executar
 2. **Spec técnica**: para documentar no normas.md do produto
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

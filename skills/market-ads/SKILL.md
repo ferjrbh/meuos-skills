@@ -2,6 +2,9 @@
 name: market-ads
 description: "Gera criativos e copy para ads (Meta, Google, LinkedIn). Headline, descrição, CTA e variantes A/B prontos para subir."
 version: 1.0
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 # Ad Creative & Copy Generation
@@ -462,3 +465,7 @@ Full campaigns saved to: AD-CAMPAIGNS.md
 - If `FUNNEL-ANALYSIS.md` exists, align ad funnel stages to conversion path
 - If `SOCIAL-CALENDAR.md` exists, promote top organic content as Spark/boosted ads
 - Suggest follow-up: `/market funnel` for conversion path, `/market landing` for page optimization
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

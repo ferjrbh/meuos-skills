@@ -92,3 +92,7 @@ Proximo passo sugerido: [se houver]
 - **Nunca declarar pronto sem evidencia** — mostrar o que foi verificado
 - **Nunca inventar verificacoes** — se nao verificou, nao marcar \[x\]
 - **Adaptar ao tipo de entrega** — nao aplicar checks de automacao numa decisao simples
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

@@ -532,3 +532,7 @@ slide especifico. Se o usuario pedir mudanca em 5+ slides, ai sim recomendar reg
 - **playwright** — usada para validacao visual automatica (opcional)
 - **pdf** — usada para exportar PDF se o usuario pedir (opcional)
 - **Fim do Dia** — captura o aprendizado de "criei a apresentacao X" se for relevante
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

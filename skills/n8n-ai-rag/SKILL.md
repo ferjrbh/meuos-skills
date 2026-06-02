@@ -227,3 +227,7 @@ Todos no repo `enescingoz/awesome-n8n-templates` (CC-BY 4.0):
 - Agent: https://docs.n8n.io/integrations/builtin/cluster-nodes/root-nodes/n8n-nodes-langchain.agent/
 - Vector stores: https://docs.n8n.io/advanced-ai/vector-stores/
 - Tool Workflow: https://docs.n8n.io/integrations/builtin/cluster-nodes/sub-nodes/n8n-nodes-langchain.toolworkflow/
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

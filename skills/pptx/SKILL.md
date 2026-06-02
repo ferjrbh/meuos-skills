@@ -216,3 +216,7 @@ pdftoppm -png presentation.pdf slide
 - `markitdown` (pip) — leitura de conteudo
 - `soffice` (LibreOffice) — conversoes
 - `pdftoppm` (poppler-utils) — PDF para imagens
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

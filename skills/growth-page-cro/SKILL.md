@@ -180,3 +180,7 @@ When recommending experiments, consider tests for:
 - **growth-popup-cro**: If considering popups as part of the strategy
 - **market-copy**: If the page needs a complete copy rewrite
 - **ab-test-setup**: To properly test recommended changes
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

@@ -232,3 +232,7 @@ for i, page in enumerate(reader.pages):
 - `reportlab` — criacao de PDFs novos
 - `pytesseract` + `pdf2image` — OCR
 - `pdftoppm` (poppler-utils) — conversao para imagens
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

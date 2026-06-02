@@ -2,6 +2,9 @@
 name: market
 description: "Suite completa de marketing com IA. Auditoria de site, geração de copy, emails, social, ads e proposta comercial — tudo em markdown."
 version: 1.2
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 # AI Marketing Suite — Main Orchestrator
@@ -118,3 +121,7 @@ Many skills work together:
 - `/market report` and `/market report-pdf` compile all available analysis data
 - `/market copy` benefits from `/market brand` voice guidelines if run first
 - `/market emails` uses insights from `/market funnel` analysis if available
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
