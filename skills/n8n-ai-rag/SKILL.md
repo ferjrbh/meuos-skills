@@ -15,6 +15,9 @@ triggers:
   - memory multi-turno
   - output parser n8n
   - mcp client n8n
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 # n8n AI Agents & RAG

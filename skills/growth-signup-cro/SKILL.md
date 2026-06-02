@@ -3,6 +3,9 @@ name: growth-signup-cro
 description: When the user wants to optimize signup, registration, account creation, or trial activation flows. Also use when the user mentions "signup conversions," "registration friction," "signup form optimization," "free trial signup," "reduce signup dropoff," "account creation flow," "people aren't signing up," "signup abandonment," "trial conversion rate," "nobody completes registration," "too many steps to sign up," or "simplify our signup." Use this whenever the user has a signup or registration flow that isn't performing. For post-signup onboarding, see growth-onboarding-cro. For lead capture forms (not account creation), see growth-form-cro. Also trigger on: "otimizar cadastro", "melhorar signup", "fluxo de registro", "ninguem se cadastra", "abandono no cadastro".
 metadata:
   version: 1.1.0
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 # Signup Flow CRO

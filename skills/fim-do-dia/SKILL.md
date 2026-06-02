@@ -9,6 +9,9 @@ description: |
 version: 3.2
 context: meuos
 user-invocable: true
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 # Revisao Diaria — Encerramento do Dia

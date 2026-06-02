@@ -3,6 +3,9 @@ name: growth-seo-audit
 description: When the user wants to audit, review, or diagnose SEO issues on their site. Also use when the user mentions "SEO audit," "technical SEO," "why am I not ranking," "SEO issues," "on-page SEO," "meta tags review," "SEO health check," "my traffic dropped," "lost rankings," "not showing up in Google," "site isn't ranking," "Google update hit me," "page speed," "core web vitals," "crawl errors," or "indexing issues." Use this even if the user just says something vague like "my SEO is bad" or "help with SEO" — start with an audit. For building pages at scale to target keywords, see growth-programmatic-seo. For adding structured data, see growth-schema. For AI search optimization, see growth-ai-seo. Tambem ativar com: "auditoria SEO", "SEO tecnico", "por que nao ranqueio", "meu trafego caiu", "problemas de SEO", "core web vitals", "indexacao".
 metadata:
   version: 1.1.0
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 # SEO Audit

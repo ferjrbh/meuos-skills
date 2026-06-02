@@ -3,6 +3,9 @@ name: growth-churn
 description: "When the user wants to reduce churn, build cancellation flows, set up save offers, recover failed payments, or implement retention strategies. Also use when the user mentions 'churn,' 'cancel flow,' 'offboarding,' 'save offer,' 'dunning,' 'failed payment recovery,' 'win-back,' 'retention,' 'exit survey,' 'pause subscription,' 'involuntary churn,' 'people keep canceling,' 'churn rate is too high,' 'how do I keep users,' or 'customers are leaving.' Use this whenever someone is losing subscribers or wants to build systems to prevent it. For post-cancel win-back email sequences, see market-emails. For in-app upgrade paywalls, see growth-paywall-cro. Also trigger on: 'reduzir churn', 'retencao', 'cancelamento', 'prevenir churn', 'fluxo de cancelamento', 'dunning', 'pagamento falhou', 'win-back'."
 metadata:
   version: 1.1.0
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 # Churn Prevention

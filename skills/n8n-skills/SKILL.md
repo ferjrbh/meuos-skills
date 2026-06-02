@@ -5,6 +5,9 @@ version: 3.0
 context: meuos
 category: n8n
 user-invocable: true
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 # n8n Skills

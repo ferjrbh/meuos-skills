@@ -8,6 +8,9 @@ description: |
   O entregavel deve ser um arquivo de planilha.
   NAO usar quando o entregavel for Word, HTML, PDF ou script Python.
   NAO ativar com 'DRE' sozinho (DRE pode ser uma tela de dashboard no seu app, nao necessariamente uma planilha).
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 # Manipulacao de Planilhas Excel/CSV

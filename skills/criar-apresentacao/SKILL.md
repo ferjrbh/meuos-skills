@@ -11,6 +11,9 @@ version: 1.0
 context: meuos
 user-invocable: true
 argument-hint: "<tema ou briefing da apresentacao — opcional>"
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 ---

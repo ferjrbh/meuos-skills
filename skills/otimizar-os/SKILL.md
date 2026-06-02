@@ -9,6 +9,9 @@ description: |
 version: 3.3
 context: meuos
 user-invocable: true
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 # Otimizar OS — Organizacao e Compactacao de Documentos

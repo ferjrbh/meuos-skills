@@ -3,6 +3,9 @@ name: growth-context
 description: "When the user wants to create or update their product marketing context document. Also use when the user mentions 'product context,' 'marketing context,' 'set up context,' 'positioning,' 'who is my target audience,' 'describe my product,' 'ICP,' 'ideal customer profile,' or wants to avoid repeating foundational information across marketing tasks. Use this at the start of any new project before using other marketing skills — it creates `.agents/product-marketing-context.md` that all other skills reference for product, audience, and positioning context. Also trigger on: 'contexto de marketing', 'brief do produto', 'posicionamento', 'ICP', 'perfil de cliente ideal', 'publico alvo', 'persona'."
 metadata:
   version: 1.1.0
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 # Product Marketing Context

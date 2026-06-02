@@ -5,6 +5,9 @@ description: |
   Trigger: 'powerpoint', 'pptx', 'arquivo pptx', 'editar pptx', 'ler pptx', 'abrir pptx'.
   DESAMBIGUACAO: Se voce disser 'slides', 'apresentacao', 'PPT', 'montar slides' sem especificar formato, PERGUNTAR:
   "Qual formato? 1) HTML navegavel (apresentacao interativa via navegador) 2) Arquivo .pptx real para download/envio (pptx)"
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 # Apresentacoes PowerPoint (.pptx) — Guia Completo

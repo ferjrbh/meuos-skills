@@ -5,6 +5,9 @@ description: |
   Invoque quando houver erro, falha, comportamento inesperado, ou quando
   voce disser "nao ta funcionando", "deu erro", "quebrou", "parou de funcionar".
   Tambem ativar quando uma correcao falhar — nunca tentar a mesma coisa duas vezes.
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 # Systematic Debugging

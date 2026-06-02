@@ -5,6 +5,9 @@ description: |
   Invoque quando voce pedir para criar algo novo (workflow, feature, integracao),
   quando houver decisao arquitetural, ou quando existir mais de um caminho possivel.
   NAO invoque para tarefas simples como consultas, ajustes pontuais ou perguntas diretas.
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 # Structured Thinking
