@@ -3,6 +3,9 @@ name: growth-schema
 description: When the user wants to add, fix, or optimize schema markup and structured data on their site. Also use when the user mentions "schema markup," "structured data," "JSON-LD," "rich snippets," "schema.org," "FAQ schema," "product schema," "review schema," "breadcrumb schema," "Google rich results," "knowledge panel," "star ratings in search," or "add structured data." Use this whenever someone wants their pages to show enhanced results in Google. For broader SEO issues, see growth-seo-audit. For AI search optimization, see growth-ai-seo. Tambem ativar com: "schema markup", "dados estruturados", "JSON-LD", "rich snippet", "estrelas no Google", "FAQ schema", "produto schema".
 metadata:
   version: 1.1.0
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 # Schema Markup

@@ -15,6 +15,9 @@ version: 1.0
 context: meuos
 user-invocable: true
 argument-hint: "(sem argumentos — a skill entrevista o tipo de documento e gera)"
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 # Gera HTML to PDF — Documentos longos que imprimem certo

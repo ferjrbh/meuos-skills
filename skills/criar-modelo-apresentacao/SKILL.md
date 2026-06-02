@@ -12,6 +12,9 @@ version: 1.1
 context: meuos
 user-invocable: true
 argument-hint: "(sem argumentos — a skill faz entrevista completa)"
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 ---

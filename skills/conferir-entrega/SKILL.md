@@ -8,6 +8,9 @@
 
 Esta skill e uma verificacao rapida que roda quando voce termina qualquer entrega — uma decisao, um workflow, um documento, um projeto. Ela garante que nada foi esquecido: o OS esta atualizado, os arquivos estao organizados e nenhuma informacao sensivel ficou exposta. Leva menos de 2 minutos.
 
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 ## Regra de ouro

@@ -10,6 +10,9 @@ name: Conectar n8n description: Permite ao seu Claude criar, editar, ativar e de
 - error workflow n8n
 - paginar execucoes n8n
 
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 # Conectar n8n

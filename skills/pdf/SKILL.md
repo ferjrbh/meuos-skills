@@ -1,6 +1,9 @@
 ---
 name: pdf
 description: "Manipular arquivos PDF. Usar quando voce pedir para ler, extrair texto/tabelas de PDF, combinar/mergear PDFs, dividir PDFs, rotacionar paginas, adicionar marca dagua, criar novos PDFs, preencher formularios PDF, criptografar/descriptografar, extrair imagens, ou fazer OCR em PDFs escaneados. Trigger: 'pdf', 'extrair pdf', 'mergear pdf', 'dividir pdf', 'marca dagua', 'formulario pdf', 'OCR'. Se o usuario mencionar .pdf ou pedir para produzir um, usar esta skill."
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 # Processamento de PDF — Guia Completo

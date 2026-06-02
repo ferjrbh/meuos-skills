@@ -3,6 +3,9 @@ name: growth-lead-magnets
 description: When the user wants to create, plan, or optimize a lead magnet for email capture or lead generation. Also use when the user mentions "lead magnet," "gated content," "content upgrade," "downloadable," "ebook," "cheat sheet," "checklist," "template download," "opt-in," "freebie," "PDF download," "resource library," "content offer," "email capture content," "Notion template," "spreadsheet template," or "what should I give away for emails." Use this for planning what to create and how to distribute it. For interactive tools as lead magnets, see growth-free-tool. For writing the actual content, see market-copy. For the email sequence after capture, see market-emails. Also trigger on: "lead magnet", "material rico", "ebook", "isca digital", "checklist download", "conteudo rico", "captura de email".
 metadata:
   version: 1.0.0
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
 ---
 
 # Lead Magnets
