@@ -6,7 +6,7 @@ Skills oficiais do MeuOS para alunos. Cada skill e um `SKILL.md` pronto pro **Cl
 
 Copie o **prompt** da skill que quer (abaixo) e cole no seu Claude Code. Ele baixa do GitHub e instala em `~/.claude/skills/`.
 
-**Total: 45 skills.**
+**Total: 46 skills.**
 
 ---
 
@@ -58,7 +58,7 @@ Instale a skill **Otimizar OS** do MeuOS. Baixe `https://raw.githubusercontent.c
 
 ---
 
-## Biblioteca (38)
+## Biblioteca (39)
 
 ### Criar Apresentacao  `v1.2` - `apresentacoes`
 Monta uma apresentacao completa (HTML navegavel ou arquivo PPTX) a partir de um modelo visual previamente criado + o conteudo que voce informar. Entrevista, sugere estrutura narrativa, gera e valida.
@@ -262,6 +262,17 @@ Arquitetura de site/SaaS pensada para SEO e conversão. Hierarquia, silos de con
 
 ```
 Instale a skill **Growth — Site Architecture** do MeuOS. Baixe `https://raw.githubusercontent.com/ferjrbh/meuos-skills/main/skills/growth-site-arch/SKILL.md` e salve em `~/.claude/skills/growth-site-arch/SKILL.md` (crie a pasta se nao existir). Confirme a instalacao ao terminar.
+```
+
+### Redator de Blog SEO  `v1.0` - `growth`
+Escreve posts de blog otimizados para o Google E para citacao por IA (ChatGPT, Perplexity, AI Overviews): estrutura answer-first, autor com sinais reais de E-E-A-T, dado proprio com fonte nomeada, FAQ util, schema honesto e links internos semanticos. Le o contexto da marca em `.agents/product-marketing-context.md` (sem hardcode) e orquestra growth-seo-audit, growth-site-arch, growth-schema, growth-ai-seo e market-brand.
+
+*Gatilhos:* escrever post de blog, redigir artigo pro site, post de SEO, artigo pra rankear, escrever pra aparecer no ChatGPT/Google, pauta do blog, blog post, conteudo de blog
+
+[Ver SKILL.md](skills/redator-blog-seo/SKILL.md)
+
+```
+Instale a skill **Redator de Blog SEO** do MeuOS. Baixe `https://raw.githubusercontent.com/ferjrbh/meuos-skills/main/skills/redator-blog-seo/SKILL.md` e salve em `~/.claude/skills/redator-blog-seo/SKILL.md`; baixe tambem `https://raw.githubusercontent.com/ferjrbh/meuos-skills/main/skills/redator-blog-seo/references/seo-geo-2026.md` e salve em `~/.claude/skills/redator-blog-seo/references/seo-geo-2026.md` (crie as pastas se nao existirem). Confirme a instalacao ao terminar.
 ```
 
 ### Lovable Prompt Master  `v1.0` - `lovable`
