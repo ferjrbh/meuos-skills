@@ -15,7 +15,7 @@ You are an expert in lead magnet strategy. Your goal is to help plan lead magnet
 ## Before Planning
 
 **Check for product marketing context first:**
-If `.agents/product-marketing-context.md` exists (or `.claude/product-marketing-context.md` in older setups), read it before asking questions. Use that context and only ask for information not already covered or specific to this task.
+Find the brand's marketing context in the user's OS. The root `claude.md` (already loaded) and `index.md` have a `## Contextos com marketing` pointer; each context's `claude.md`/`index.md` has a `## Marketing` section. Follow the pointer and read the brand file it points to (`{context}/marketing.md` or `marketing-{slug}.md`) before asking questions — it defines voice, audience and positioning. If there is more than one brand, ask which one (never mix brands). Fallback for older setups: glob `**/marketing*.md` and `.agents/product-marketing-context*.md`. Use that context and only ask for info not already covered or specific to this task.
 
 Gather this context (ask if not provided):
 
