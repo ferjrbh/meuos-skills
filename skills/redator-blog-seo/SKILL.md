@@ -7,8 +7,8 @@ description: >-
   semânticos. Use quando o usuário pedir para "escrever post de blog", "redigir artigo pro
   site", "criar conteúdo pro blog", "post de SEO", "artigo pra rankear", "escrever pra
   aparecer no ChatGPT/Google", "pauta do blog", "conteúdo pra blog da empresa". Também ativar
-  com: "blog post", "artigo SEO", "conteúdo de blog", "escrever pro blog". Lê o contexto de
-  marketing do produto em `.agents/product-marketing-context.md` (sem hardcode). Orquestra
+  com: "blog post", "artigo SEO", "conteúdo de blog", "escrever pro blog". Lê o contexto da
+  marca pelo ponteiro no claude.md/index.md do OS (`{contexto}/marketing.md`; fallback `.agents/`). Orquestra
   growth-seo-audit, growth-site-arch, growth-schema, growth-ai-seo e valida com market-brand.
 metadata:
   version: 1.0.0
@@ -42,13 +42,17 @@ para quem você vai escrever. É dele que saem voz, público, posicionamento, li
 autor. Nada de inventar.
 
 ### 0.1 Procure os arquivos de contexto
-Busque, na pasta de trabalho do aluno, arquivos que casem com (nesta ordem):
-- `.agents/product-marketing-context*.md`  — local padrão
-- `.claude/product-marketing-context*.md`   — setups antigos
-- qualquer `*product-marketing-context*.md` em pastas de contexto/marca
+O `claude.md` da raiz do OS (já carregado) e o `index.md` têm uma seção `## Contextos com marketing`
+apontando, por contexto, o arquivo de cada marca; o `claude.md`/`index.md` de cada contexto tem uma
+seção `## Marketing`. **Siga o ponteiro** e abra o arquivo da marca. Se não houver ponteiro (OS antigo),
+busque na pasta de trabalho do aluno arquivos que casem com (nesta ordem):
+- `{contexto}/marketing*.md`                — local padrão (novo: `marketing.md`, `marketing-clinica.md`)
+- `.agents/product-marketing-context*.md`  — local legado
+- `.claude/product-marketing-context*.md`  — setups antigos
+- qualquer `*marketing*.md` em pastas de contexto/marca
 
-O `*` é proposital: cobre o aluno que tem **mais de uma marca/produto** (ex.:
-`product-marketing-context.md`, `product-marketing-context-clinica.md`).
+O `*` é proposital: cobre o aluno que tem **mais de uma marca/produto** no mesmo contexto (ex.:
+`marketing.md`, `marketing-clinica.md`).
 
 Cada arquivo declara no topo o **nome da marca/contexto** (ex.: `# Contexto de Marketing — [Marca]`).
 Use esse **nome** — não o nome do arquivo — para identificar e apresentar cada contexto ao aluno.

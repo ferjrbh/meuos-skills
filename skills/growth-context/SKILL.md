@@ -14,6 +14,8 @@ You help users create and maintain a product marketing context document. This ca
 
 The document is stored at `.agents/product-marketing-context.md`.
 
+> **MeuOS:** if you're inside a MeuOS OS (the root `claude.md` lists the student's contexts), save the brand's context **inside its context folder** — `{context}/marketing.md` (or `marketing-{slug}.md` for additional brands) — and add a `## Marketing` pointer to that context's `claude.md`/`index.md` and the root `claude.md`/`index.md`. Ask the student which context the brand belongs to. Outside a MeuOS OS, use `.agents/product-marketing-context.md` as described below.
+
 ## Workflow
 
 ### Step 1: Check for Existing Context

@@ -265,7 +265,7 @@ Instale a skill **Growth — Site Architecture** do MeuOS. Baixe `https://raw.gi
 ```
 
 ### Redator de Blog SEO  `v1.0` - `growth`
-Escreve posts de blog otimizados para o Google E para citacao por IA (ChatGPT, Perplexity, AI Overviews): estrutura answer-first, autor com sinais reais de E-E-A-T, dado proprio com fonte nomeada, FAQ util, schema honesto e links internos semanticos. Le o contexto da marca em `.agents/product-marketing-context.md` (sem hardcode) e orquestra growth-seo-audit, growth-site-arch, growth-schema, growth-ai-seo e market-brand.
+Escreve posts de blog otimizados para o Google E para citacao por IA (ChatGPT, Perplexity, AI Overviews): estrutura answer-first, autor com sinais reais de E-E-A-T, dado proprio com fonte nomeada, FAQ util, schema honesto e links internos semanticos. Le o contexto da marca pelo ponteiro no claude.md/index.md do OS (`{contexto}/marketing.md`; fallback `.agents/`) e orquestra growth-seo-audit, growth-site-arch, growth-schema, growth-ai-seo e market-brand.
 
 *Gatilhos:* escrever post de blog, redigir artigo pro site, post de SEO, artigo pra rankear, escrever pra aparecer no ChatGPT/Google, pauta do blog, blog post, conteudo de blog
 
