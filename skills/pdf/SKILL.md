@@ -77,7 +77,7 @@ writer.write("watermarked.pdf")
 # Criptografar
 writer = PdfWriter()
 writer.append_pages_from_reader(PdfReader("document.pdf"))
-writer.encrypt(user_password="leitura", owner_password="admin123")
+writer.encrypt(user_password="SENHA_DE_LEITURA", owner_password="SENHA_DO_DONO")
 writer.write("encrypted.pdf")
 
 # Descriptografar
