@@ -169,10 +169,10 @@ Salve em `~/.claude/skills/minha-skill/SKILL.md` e pronto — o Claude já a rec
 Para dominar o modelo MeuOS, entrar na comunidade e manter suas skills sempre atualizadas, faça o
 curso em **[www.meuos.com.br](https://www.meuos.com.br)**.
 
-## Uso
+## Licença
 
-Conteúdo proprietário do **MeuOS**, disponibilizado gratuitamente aos alunos para uso pessoal.
-Não redistribua nem revenda. Dúvidas e acesso: [www.meuos.com.br](https://www.meuos.com.br).
+Conteúdo **proprietário do MeuOS** — uso livre para alunos, proibida a redistribuição ou revenda.
+Veja **[LICENSE](LICENSE.md)**. Dúvidas e acesso: [www.meuos.com.br](https://www.meuos.com.br).
 
 ---
 
