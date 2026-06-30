@@ -1,15 +1,13 @@
 ---
-
-name: Conectar n8n description: Permite ao seu Claude criar, editar, ativar e debugar workflows direto na sua instancia n8n via API REST. Sem MCP, sem npx — so curl. Funciona em qualquer Claude. version: 2.0 context: meuos category: n8n user-invocable: true triggers:
-
-- liste meus workflows n8n
-- crie um workflow no n8n
-- ative o workflow X
-- leia os logs do workflow X
-- debug do meu workflow
-- error workflow n8n
-- paginar execucoes n8n
-
+name: Conectar n8n
+description: |
+  Permite ao seu Claude criar, editar, ativar e debugar workflows direto na sua instancia n8n via
+  API REST. Sem MCP, sem npx — so curl. Funciona em qualquer Claude (CLI, VSCode, Cursor, Desktop).
+  Ativa quando o usuario diz "conectar n8n", "liste meus workflows n8n", "crie um workflow no n8n",
+  "ative o workflow X", "leia os logs do workflow X", "debug do meu workflow", "paginar execucoes n8n".
+version: 2.0
+context: meuos
+user-invocable: true
 author: Fernando Lúcio — Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
