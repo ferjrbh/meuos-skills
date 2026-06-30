@@ -6,7 +6,7 @@ description: |
   "pode fechar", "encerra ai", "wrap-up", "encerrar sessao".
   Guia 3 perguntas rapidas, salva aprendizados, migra tarefas concluidas
   e atualiza pendencias no documento mestre do contexto ativo.
-version: 3.2
+version: 3.3
 context: meuos
 user-invocable: true
 author: Fernando Lúcio — Aion Group
@@ -228,8 +228,12 @@ Verificar o tamanho dos arquivos do contexto ativo e apresentar um relatorio rap
 | `aprendizados_do_dia.md` | menos de 200 linhas | 200 a 250 | mais de 250 |
 | `changelog.md` | menos de 30KB | 30 a 50KB | mais de 50KB |
 
-Se houver qualquer arquivo 🔴, sugerir:
-> `"Identifiquei arquivos crescendo demais. Recomendo rodar a skill Otimizar OS para organizar. Quer fazer isso agora?"`
+**Antes de sugerir o Otimizar OS, distinguir se o arquivo 🔴 e REDUTIVEL ou esta no PISO:**
+- Tamanho vem de **temporal velho, cemiterio de tarefas ou secao densa extraivel** → ha o que reduzir:
+  > `"Identifiquei arquivos crescendo demais com conteudo compactavel. Recomendo rodar o Otimizar OS. Quer agora?"`
+- O `aprendizados_do_dia.md` esta grande **por excesso de regra perene** (muitos "nunca/sempre/regra") → alerta ESPECIFICO:
+  > `"Seu aprendizados esta grande porque virou deposito de regras perenes. O Otimizar OS pode extrair essas regras para um satelite (lido so quando o tema surge) e deixar o aprendizados como log curto. Quer rodar?"`
+- Tamanho e **conteudo perene necessario ja curado (piso)** → NAO sugerir nada. Repetir alerta sem acao possivel e ruido.
 
 ---
 
@@ -272,10 +276,14 @@ Este passo so se aplica a quem usa **Claude Code** como agente. Se o usuario usa
 | Arquivos de topico | mais de 15 |
 | Algum topico sem modificacao ha mais de 90 dias | 1 ou mais |
 
-5. **Se houver alerta,** sugerir:
-> `"Sua memoria do Claude Code esta com X linhas / Y arquivos. Isso aumenta o custo em cada conversa. Recomendo rodar a skill Otimizar Memoria para limpar. Quer fazer agora?"`
+5. **Antes de alertar, checar se ha item REDUTIVEL** (linha gorda que vira 1 linha, arquivo >90d sem mod, duplicata, topicos irmaos fundiveis):
+   - **Se houver item redutivel concreto:** sugerir UMA vez, citando o item:
+     > `"Sua memoria do Claude Code tem X linhas / Y arquivos e detectei [item concreto — ex: 3 topicos do mesmo tema fundiveis]. Rodar a skill Otimizar Custo reduziria isso. Quer fazer agora?"`
+   - **Se esta acima do limiar mas e tudo conteudo perene/necessario ja curado (no piso):** NAO alertar. No maximo uma nota passiva: `"memoria acima do limiar nominal, mas e conteudo necessario — no piso, sem acao."`
 
-**Nao executar aqui** — so alertar. A limpeza e feita pela skill `Otimizar Memoria`.
+> **REGRA — nao reclamar a toa:** nunca sugerir rodar uma skill que nao tem o que reduzir. Limiar passado sem item redutivel concreto = silenciar, nao repetir o mesmo alerta toda sessao. Alerta recorrente sem acao possivel e ruido (e o "auto-criticar" que incomoda o usuario).
+
+**Nao executar aqui** — so alertar quando ha o que reduzir. A limpeza e feita pela skill `Otimizar Custo`.
 
 ---
 
@@ -354,6 +362,7 @@ Se houve uma analise longa, comparacao detalhada ou deep dive durante a sessao, 
 - **Nunca declarar concluido** sem ter atualizado pelo menos o aprendizados_do_dia.md e o *MESTRE.md
 - **Se o usuario nao responder uma das 3 perguntas**, prosseguir com o que foi respondido e deixar a secao em branco com nota "(nao registrado nesta sessao)"
 - **Nunca assumir que o OS e flat** — sempre verificar a estrutura real antes de agir
+- **🔒 NUNCA mexer no `soul.md` nem promover regras para ele.** O soul trata SO de carater, comportamento e perfil do agente — deve ser leve e objetivo. Regrinhas operacionais (taxas, fluxos, "sempre fazer X no produto") NAO sao comportamento: vao para claude.md / mestre / satelite. Se algo parecer de soul, perguntar ao usuario antes — nunca escrever no soul por conta propria.
 
 ---
 

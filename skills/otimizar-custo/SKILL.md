@@ -14,6 +14,7 @@ description: |
 context: meuos
 user-invocable: true
 argument-hint: "(sem argumentos — roda na pasta do seu Claude Code atual)"
+version: 1.1
 author: Fernando Lúcio — Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
@@ -110,9 +111,12 @@ Total: 8 arquivos, 54KB, ultima otimizacao: nunca
 | Metrica | 🟢 OK | 🟡 Atencao | 🔴 Acao |
 |---------|-------|-----------|---------|
 | `MEMORY.md` linhas | menos de 100 | 100 a 150 | mais de 150 |
+| `MEMORY.md` **chars** (pega linha gorda) | menos de 6KB | 6 a 10KB | mais de 10KB |
 | Numero de arquivos de topico | menos de 15 | 15 a 20 | mais de 20 |
 | Idade sem modificar | menos de 60 dias | 60 a 90 dias | mais de 90 dias |
 | Tamanho arquivo de topico | menos de 5KB | 5 a 10KB | mais de 10KB |
+
+> **Medir os DOIS (linhas E chars).** Uma memoria de 34 linhas com 7,7KB (cada linha virou paragrafo) passa no teste de linhas mas reprova no de chars — e cara do mesmo jeito. O custo e cobrado por token (≈ char), nao por linha.
 
 ### Verificacao extra: CLAUDE.md tambem entra no custo
 
@@ -216,11 +220,13 @@ Para cada acao aprovada:
 5. Excluir o arquivo original da memoria do Claude Code
 6. Remover a linha correspondente no `MEMORY.md`
 
-**4c. Limpar linhas do MEMORY.md**
+**4c. Limpar e enxugar o MEMORY.md**
 1. Ler o `MEMORY.md` inteiro antes de alterar (nao perder nada)
-2. Remover apenas as linhas aprovadas, mantendo a estrutura do indice
-3. Atualizar o cabecalho: "> Ultima otimizacao: DD/MM (skill Otimizar Memoria)"
-4. Salvar
+2. Remover as linhas aprovadas, mantendo a estrutura do indice
+3. **Reescrever cada item do indice para UMA linha** (gancho curto + link). Se um item virou paragrafo, condensar para um gancho de uma linha — o detalhe mora no arquivo de topico, nao no indice. (Esta e a maior fonte de chars inflados.)
+4. **Fundir arquivos de topico irmaos** sobre o mesmo assunto, com aprovacao (ex: varios `feedback_*` do mesmo tema viram um so) — reduz o numero de arquivos e o tamanho do indice
+5. Atualizar o cabecalho: "> Ultima otimizacao: DD/MM (skill Otimizar Custo)"
+6. Salvar
 
 **Antes de qualquer alteracao, mostrar antes/depois de cada arquivo tocado** —
 o usuario confirma antes de salvar.
@@ -277,6 +283,9 @@ Higiene de custo concluida ✓
 | MEMORY.md | 263 linhas | 94 linhas | -64% |
 | Arquivos de topico | 8 | 3 ativos + 2 arquivados | -38% |
 | Tamanho total | 54KB | 19KB | -65% |
+
+💰 Custo fixo da sessao (o que carrega em TODA mensagem):
+- MEMORY.md + CLAUDE.md raiz + CLAUDE.md contexto: antes ~Xk -> depois ~Yk tokens
 
 💰 Economia estimada (input tokens cobrados em toda mensagem):
 - ~2.535 tokens/mensagem economizados

@@ -6,7 +6,7 @@ description: |
   "compactar docs", "higienizar", "limpar documentos", "doc-compactor", "reduzir arquivos",
   "arquivos crescendo", "limpar terreno", "organizar contexto".
   Analisa, propoe um plano e executa somente com aprovacao do usuario.
-version: 3.3
+version: 3.4
 context: meuos
 user-invocable: true
 author: Fernando Lúcio — Aion Group
@@ -161,6 +161,20 @@ CONSULTORIA/CLIENTEB
 | `index.md` | menos de 100 linhas | 100 a 150 | mais de 150 |
 | Outros arquivos `.md` | menos de 20KB | 20 a 35KB | mais de 35KB |
 
+**Custo fixo da sessao (numero unico):** alem do tamanho por arquivo, somar os arquivos que carregam em TODA sessao deste contexto — `claude.md` raiz + `claude.md` do contexto + `*MESTRE.md` + `aprendizados_do_dia.md` + (se houver) `MEMORY.md` do Claude Code. Reportar o total estimado em tokens (~1 linha = 15 tokens) e a meta de reducao:
+> `Custo fixo atual: ~18k tokens/sessao (mestre 7k + aprendizados 6k + claude.md 3k + MEMORY 2k). Meta apos organizacao: ~9k.`
+
+Esse e o numero que importa — e o que voce paga em TODA mensagem, nao o tamanho de um arquivo isolado.
+
+---
+
+### PASSO 1.5 — Gate "no piso, sem acao"
+
+Antes de montar qualquer plano, verificar se ha mesmo o que reduzir. Se todos os arquivos do contexto estao 🟢, OU o que esta acima do limite e majoritariamente **conteudo perene ja curado** (sem temporal velho >60d, sem duplicata, sem cemiterio de tarefas, sem secao densa extraivel), entao parar aqui:
+> `"Este contexto ja esta no piso — o que carrega e conteudo perene necessario, nao ha compactacao util a fazer. Rodar de novo so deterioraria os arquivos. Sem acao."`
+
+**Nunca inventar plano quando nao ha ganho real.** Compactar conteudo perene irredutivel piora o OS — e o oposto do objetivo da skill.
+
 ---
 
 ### PASSO 2 — Analise profunda
@@ -210,22 +224,38 @@ Identificar:
 - Secoes sobre decisoes que foram substituidas por decisoes mais recentes
 - Status desatualizados (ex: "aguardando X" sendo que X ja aconteceu)
 
-**2d. Regras que merecem subir para o documento mestre**
+**2d. Regras perenes — promover para o mestre OU extrair para satelite**
 
-Algumas regras nos seus aprendizados sao tao importantes que deveriam estar no documento mestre (o documento vivo que o agente le antes de trabalhar). Exemplos:
-- "Nunca compartilhar dados deste cliente com outros contextos"
-- "Sempre pedir aprovacao antes de alterar o produto"
-- "Brevo so para campanhas, nunca para alertas internos"
+Algumas entradas nos aprendizados sao regras perenes (nao aprendizados datados). Elas nao deveriam ficar no aprendizados_do_dia (arquivo rolante). O destino certo depende de COM QUE FREQUENCIA o agente precisa da regra:
 
-O agente identifica essas regras e pergunta:
-> `"Encontrei X regras nos aprendizados que parecem permanentes. Quer que eu promova para o documento mestre?"`
+| A regra e consultada... | Destino | Por que |
+|---|---|---|
+| em TODA sessao (ex: "nunca cruzar dados deste cliente") | **documento_mestre** (secao de regras) | o mestre ja carrega toda sessao — custo zero adicional |
+| so quando UM tema aparece (ex: taxas por perfil, regra de um modulo, sensibilidade por ameaca) | **satelite read-on-demand** + ponteiro de 1 linha no mestre | tira o peso da sessao; o agente abre o satelite so quando o assunto surge |
 
-Se voce aprovar, a regra:
-1. E adicionada no documento_mestre.md do contexto (na secao de regras)
-2. E removida dos aprendizados (para nao ficar duplicada)
+> Analogia: o mestre e a **mesa** (so o que pego toda hora). O satelite e a **gaveta** (guardo e abro quando o tema surge). Promover regra de tema especifico pra mesa nao reduz o imposto fixo — so muda de bolso. Mover pra gaveta reduz.
+
+**Quando criar satelite (as DUAS condicoes precisam ser verdade):**
+1. O documento_mestre esta **grande** — 🟡 acima de 300 linhas (prioridade se 🔴 acima de 500). Mestre pequeno nao justifica satelite.
+2. Ha **massa suficiente** sobre aquele tema (~40+ linhas sobre UM assunto, no mestre e/ou aprendizados). Nao criar satelite para 10 linhas — fragmenta sem ganho.
+
+**Nome do satelite:** livre e descritivo, padrao `CONTEXTO_nome-que-faca-sentido.md` (ex: `LIGE_taxas-por-perfil.md`, `CLIENTEA_regras-fiscais.md`). Nao precisa ser travado em REGRAS_TEMA.
+
+O agente identifica e pergunta:
+> `"Encontrei X regras perenes nos aprendizados. Y vao pro mestre (uso toda sessao) e Z viram o satelite CONTEXTO_nome.md (tema especifico). Aprova?"`
+
+Se aprovar, para cada regra:
+1. Vai para o destino certo (mestre OU satelite)
+2. E removida dos aprendizados (para nao duplicar)
 3. E registrada no changelog (historico da mudanca)
 
-> Por que o mestre e nao o claude.md? Porque o claude.md tem regras que quase nunca mudam (instrucoes basicas do agente). O mestre e o documento vivo que o agente le antes de trabalhar — regras operacionais ficam melhor la.
+> ⚠️ **NUNCA promover regra operacional para o `soul.md`.** O soul trata so de carater, comportamento e perfil do agente — deve ser leve. Regrinhas operacionais (taxas, fluxos, "sempre fazer X no produto") vao para claude.md / mestre / satelite, nunca para o soul.
+
+**2e. Cemiterio de tarefas concluidas no mestre**
+
+O `fim-do-dia` cria linhas de referencia ao migrar tarefas (`~~[x] tarefa~~ -> ver changelog [data]`). Elas se acumulam no mestre, que carrega em TODA sessao. A partir de ~15 dessas linhas-fantasma, propor colapsar todas em UM unico ponteiro:
+> `**Tarefas concluidas:** historico completo no changelog.`
+Assim o mestre para de carregar dezenas de linhas mortas em toda sessao.
 
 ---
 
@@ -320,7 +350,7 @@ Isso mantem a navegacao clara nos dois sentidos.
 **4c. Arquivar conteudo obsoleto**
 1. Criar pasta `historico/` dentro do mesmo contexto se nao existir
 2. Mover arquivo para `[path]/historico/nome_original.md`
-3. Se for o changelog, mover apenas as entradas antigas — manter o arquivo com as entradas recentes e o cabecalho
+3. Se for o changelog: quando passar do limite (50KB), **quebrar por data** — mover as entradas antigas para arquivos datados em `historico/` (ex: `historico/CHANGELOG_2026_Q1.md` por trimestre, ou `historico/changelog_2026-06.md` por mes se muito ativo), mantendo no changelog vivo so as entradas recentes + o cabecalho. Cada arquivo datado e um pedaco fechado daquele periodo.
 
 **4d. Caca de MDs orfaos (SEMPRE executar)**
 
