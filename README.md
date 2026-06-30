@@ -6,11 +6,22 @@ Skills oficiais do MeuOS para alunos. Cada skill e um `SKILL.md` pronto pro **Cl
 
 Copie o **prompt** da skill que quer (abaixo) e cole no seu Claude Code. Ele baixa do GitHub e instala em `~/.claude/skills/`.
 
-**Total: 46 skills.**
+**Total: 47 skills.**
 
 ---
 
-## Core (obrigatorias) (4)
+## Core (obrigatorias) (5)
+
+### MeuOS do Zero  `v1.0`
+Monta, conserta e organiza seu OS do ZERO — pra quem esta chegando ao modelo MeuOS ou instalou algo errado. Roda na pasta atual (confirma se e a certa), escaneia o que existe, infere seus contextos e confirma com voce, e cria/repara a estrutura canonica (claude.md, soul.md, guia_do_os.md + contextos com documento_mestre/aprendizados/changelog/index) com os templates oficiais. Nao-destrutiva. E a primeira skill a rodar.
+
+*Gatilhos:* meuos do zero, configurar meu os, comecar meu os, montar meu os, instalei errado, meu os ta baguncado, nao tenho os ainda, organizar meu os do zero, consertar minha instalacao, setup do os, arrumar meu os
+
+[Ver SKILL.md](skills/meuos-do-zero/SKILL.md)
+
+```
+Instale a skill **MeuOS do Zero** do MeuOS. Baixe `https://raw.githubusercontent.com/ferjrbh/meuos-skills/main/skills/meuos-do-zero/SKILL.md` e salve em `~/.claude/skills/meuos-do-zero/SKILL.md` (crie a pasta se nao existir). Confirme a instalacao ao terminar.
+```
 
 ### Conferir Entrega  `v1.0`
 Verificacao rapida antes de declarar qualquer tarefa concluida. O agente ativa automaticamente ao perceber que algo foi concluido. Garante que nada foi esquecido, o OS esta atualizado e dados sensiveis estao protegidos.
