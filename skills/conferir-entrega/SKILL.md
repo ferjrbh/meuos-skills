@@ -1,17 +1,24 @@
 ---
-
-## name: Conferir Entrega description: | Verificacao rapida antes de declarar qualquer tarefa concluida. O agente ativa automaticamente ao perceber que algo foi concluido. Tambem pode ser chamada manualmente: "conferir entrega", "verificar entrega", "pronto", "terminei", "conclui", "feito", "pode fechar", "entregue", "finalizado". Garante que nada foi esquecido, o OS esta atualizado e dados sensiveis estao protegidos. version: 1.0 context: meuos user-invocable: true argument-hint: "\[tipo da entrega\] (opcional)"
+name: Conferir Entrega
+description: |
+  Verificacao rapida antes de declarar qualquer tarefa concluida. O agente ativa automaticamente
+  ao perceber que algo foi concluido. Tambem roda quando o usuario diz "conferir entrega",
+  "verificar entrega", "pronto", "terminei", "conclui", "feito", "pode fechar", "entregue", "finalizado".
+  Garante que nada foi esquecido, o OS esta atualizado e dados sensiveis estao protegidos.
+version: 1.0
+context: meuos
+user-invocable: true
+argument-hint: "[tipo da entrega] (opcional)"
+author: Fernando Lúcio — Aion Group
+homepage: https://www.meuos.com.br
+instagram: https://instagram.com/fernandolucio.ia
+---
 
 # Conferir Entrega
 
 ## O que esta skill faz
 
 Esta skill e uma verificacao rapida que roda quando voce termina qualquer entrega — uma decisao, um workflow, um documento, um projeto. Ela garante que nada foi esquecido: o OS esta atualizado, os arquivos estao organizados e nenhuma informacao sensivel ficou exposta. Leva menos de 2 minutos.
-
-author: Fernando Lúcio — Aion Group
-homepage: https://www.meuos.com.br
-instagram: https://instagram.com/fernandolucio.ia
----
 
 ## Regra de ouro
 
