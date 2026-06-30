@@ -5,7 +5,7 @@ description: |
   ao perceber que algo foi concluido. Tambem roda quando o usuario diz "conferir entrega",
   "verificar entrega", "pronto", "terminei", "conclui", "feito", "pode fechar", "entregue", "finalizado".
   Garante que nada foi esquecido, o OS esta atualizado e dados sensiveis estao protegidos.
-version: 1.0
+version: 1.1
 context: meuos
 user-invocable: true
 argument-hint: "[tipo da entrega] (opcional)"

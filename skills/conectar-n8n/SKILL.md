@@ -5,7 +5,7 @@ description: |
   API REST. Sem MCP, sem npx — so curl. Funciona em qualquer Claude (CLI, VSCode, Cursor, Desktop).
   Ativa quando o usuario diz "conectar n8n", "liste meus workflows n8n", "crie um workflow no n8n",
   "ative o workflow X", "leia os logs do workflow X", "debug do meu workflow", "paginar execucoes n8n".
-version: 2.0
+version: 2.1
 context: meuos
 user-invocable: true
 author: Fernando Lúcio — Aion Group
