@@ -404,17 +404,33 @@ O jeito de manter os documentos SEMPRE em dia nao e rodar esta skill inteira na 
   ```
   ULTIMA_EXECUCAO=AAAA-MM-DDTHH:MM
   CONTAGENS=tabelas:24,edge_functions:30,policies:52
+  FRESCOR=AAAA-MM-DD        (data do ultimo "Verificado ao vivo")
   AJUSTES_CONTEUDO=N
   ITENS_ESTRUTURA=M
   FONTES=github,supabase,n8n,fs
+  LAST_SUGGESTED=AAAA-MM-DD  (gravado pelo fim-do-dia quando ele sugere rodar esta skill)
   ```
-- Na rotina de **fim-do-dia**, o agente le esse carimbo e roda um **ping de drift** bem barato (poucas
-  contagens via a fonte do contexto), comparando com o que estava salvo. **So se houver diferenca** (ou o
-  carimbo de frescor estiver com mais de 45 dias, ou o changelog cresceu 5+ entradas), ele sugere:
+- Na rotina de **fim-do-dia**, sugerir rodar esta skill **no maximo 1x por semana** e **so se houver volume**:
+  ele reconfere 2-4 contagens vivas vs `CONTAGENS` (ping de drift barato) — se mudou, OU ha arquivo 🔴 redutivel,
+  OU `FRESCOR` tem mais de 45 dias, OU o changelog cresceu 5+ entradas — **E** `hoje - max(ULTIMA_EXECUCAO,
+  LAST_SUGGESTED)` for de 7 dias ou mais. Sem volume → nao sugere (mesmo passada a semana). Ao sugerir, grava
+  `LAST_SUGGESTED=<hoje>`.
   > `"Detectei drift de numeros / doc velha — quer rodar o otimizar-os (fase confere)?"`
 - O fim-do-dia **apenas sugere** — **NUNCA roda a skill sozinho.**
 
-Assim voce so paga o custo de rodar a skill inteira quando ha mesmo o que corrigir.
+Assim voce so paga o custo de rodar a skill inteira quando ha mesmo o que corrigir — e no maximo uma vez por semana.
+
+## Ao terminar — lembrete do Otimizar Custo (no maximo 1x por mes) ⭐
+
+Ao concluir uma execucao, considerar lembrar a skill **Otimizar Custo** (higiene da memoria GLOBAL do agente,
+que reduz o custo de tokens de TODA sessao). Detalhe importante: essa memoria e **global — uma so para o OS
+inteiro**, nao e por contexto. Entao a "trava do 1x/mes" mora em **um arquivo unico na raiz do seu OS**
+(ex: `.last-otimizar-custo`), **nunca** dentro do `historico/` de um contexto — senao rodar o otimizar-os em
+varios contextos na mesma semana dispararia varios lembretes de custo.
+
+- Sugerir SO se `hoje - (data no .last-otimizar-custo) for de 30 dias ou mais`. Ao sugerir, gravar a data de hoje nesse arquivo.
+- Frase: `"Ja faz uns [N] dias desde a ultima limpeza de memoria. Quer rodar o Otimizar Custo pra manter o custo de tokens baixo?"`
+- Se faz menos de 30 dias, ficar quieto. Esse e o UNICO canal do lembrete de custo — o fim-do-dia nao lembra disso direto.
 
 ---
 

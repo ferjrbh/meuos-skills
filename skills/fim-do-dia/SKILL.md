@@ -228,12 +228,21 @@ Verificar o tamanho dos arquivos do contexto ativo e apresentar um relatorio rap
 | `aprendizados_do_dia.md` | menos de 200 linhas | 200 a 250 | mais de 250 |
 | `changelog.md` | menos de 30KB | 30 a 50KB | mais de 50KB |
 
-**Antes de sugerir o Otimizar OS, distinguir se o arquivo 🔴 e REDUTIVEL ou esta no PISO:**
-- Tamanho vem de **temporal velho, cemiterio de tarefas ou secao densa extraivel** → ha o que reduzir:
-  > `"Identifiquei arquivos crescendo demais com conteudo compactavel. Recomendo rodar o Otimizar OS. Quer agora?"`
-- O `aprendizados_do_dia.md` esta grande **por excesso de regra perene** (muitos "nunca/sempre/regra") → alerta ESPECIFICO:
-  > `"Seu aprendizados esta grande porque virou deposito de regras perenes. O Otimizar OS pode extrair essas regras para um satelite (lido so quando o tema surge) e deixar o aprendizados como log curto. Quer rodar?"`
-- Tamanho e **conteudo perene necessario ja curado (piso)** → NAO sugerir nada. Repetir alerta sem acao possivel e ruido.
+**Sugerir o Otimizar OS no MAXIMO 1x por semana, e so se houver volume.** Antes de sugerir, ler
+`{contexto}/historico/.last-otimizar-os` (guarda `ULTIMA_EXECUCAO`, `LAST_SUGGESTED`, `CONTAGENS`, `FRESCOR`).
+So sugerir se as DUAS condicoes forem verdade:
+
+1. **Porta de volume** (ha motivo real — senao, silencio, mesmo passada a semana):
+   - arquivo 🔴 REDUTIVEL (temporal velho / cemiterio de tarefas / secao densa extraivel); OU
+   - `aprendizados_do_dia.md` grande por excesso de regra perene (extraivel para satelite); OU
+   - **drift de numeros**: reconferir 2-4 contagens vivas (tabelas/rotas/etc. na fonte-da-verdade do contexto) vs `CONTAGENS` salvas — se mudou, ha volume; OU
+   - carimbo `Verificado ao vivo` com mais de 45 dias; OU o `changelog.md` cresceu 5+ entradas desde a ultima execucao.
+2. **Teto de cadencia**: `hoje - max(ULTIMA_EXECUCAO, LAST_SUGGESTED)` for de **7 dias ou mais**.
+
+Ao sugerir, gravar `LAST_SUGGESTED=<hoje>` no `.last-otimizar-os` (segura o lembrete na semana, mesmo se voce recusar).
+- Sugestao geral: `"Identifiquei [numeros defasados / arquivos compactaveis]. Recomendo rodar o Otimizar OS. Quer agora? (ultima vez: [data])"`
+- Se for o `aprendizados_do_dia.md` inchado de regra perene: `"Seu aprendizados virou deposito de regras. O Otimizar OS extrai pra satelite e deixa o log curto. Quer rodar?"`
+- Conteudo perene ja curado (piso) e sem drift → **NAO sugerir nada**. Repetir alerta sem acao possivel e ruido.
 
 ---
 
@@ -276,14 +285,16 @@ Este passo so se aplica a quem usa **Claude Code** como agente. Se o usuario usa
 | Arquivos de topico | mais de 15 |
 | Algum topico sem modificacao ha mais de 90 dias | 1 ou mais |
 
-5. **Antes de alertar, checar se ha item REDUTIVEL** (linha gorda que vira 1 linha, arquivo >90d sem mod, duplicata, topicos irmaos fundiveis):
-   - **Se houver item redutivel concreto:** sugerir UMA vez, citando o item:
-     > `"Sua memoria do Claude Code tem X linhas / Y arquivos e detectei [item concreto — ex: 3 topicos do mesmo tema fundiveis]. Rodar a skill Otimizar Custo reduziria isso. Quer fazer agora?"`
-   - **Se esta acima do limiar mas e tudo conteudo perene/necessario ja curado (no piso):** NAO alertar. No maximo uma nota passiva: `"memoria acima do limiar nominal, mas e conteudo necessario — no piso, sem acao."`
+5. **Apenas OBSERVAR — NAO sugerir o Otimizar Custo aqui.** Se a memoria estiver acima do limiar com item
+   redutivel, no maximo registrar uma nota passiva de 1 linha (`"memoria do agente acima do limiar nominal"`).
+   **O lembrete de rodar o Otimizar Custo passou a ser responsabilidade do Otimizar OS (teto de 1x por mes),
+   justamente para nao pulverizar lembrete de custo em toda sessao de fim-do-dia.** A memoria do agente e
+   GLOBAL (uma so para o OS todo); pedir para limpa-la em todo fim-do-dia de todo contexto vira ruido.
 
-> **REGRA — nao reclamar a toa:** nunca sugerir rodar uma skill que nao tem o que reduzir. Limiar passado sem item redutivel concreto = silenciar, nao repetir o mesmo alerta toda sessao. Alerta recorrente sem acao possivel e ruido (e o "auto-criticar" que incomoda o usuario).
+> **REGRA — nao reclamar a toa:** nunca sugerir rodar uma skill que nao tem o que reduzir, e nunca repetir o
+> mesmo alerta toda sessao. Alerta recorrente sem acao possivel e ruido (e o "auto-criticar" que incomoda).
 
-**Nao executar aqui** — so alertar quando ha o que reduzir. A limpeza e feita pela skill `Otimizar Custo`.
+**Nao executar nem sugerir limpeza de memoria aqui** — quem lembra do `Otimizar Custo` (no maximo 1x/mes) e o `Otimizar OS`.
 
 ---
 
