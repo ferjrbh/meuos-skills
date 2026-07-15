@@ -52,15 +52,14 @@ se não existir e confirme ao terminar.
 
 ## Catálogo
 
-### 🧩 Core — rode primeiro (6)
+### 🧩 Core — rode primeiro (5)
 Os ritos essenciais do MeuOS. Comece pela **MeuOS do Zero**.
 
 | Skill | O que faz | Gatilhos |
 |---|---|---|
 | **[MeuOS do Zero](skills/meuos-do-zero/SKILL.md)** | Monta, conserta e organiza seu OS do zero | *"meuos do zero"*, *"configurar meu os"* |
 | **[Fim do Dia](skills/fim-do-dia/SKILL.md)** | Fecha a sessão: sintetiza, captura aprendizados e atualiza os docs | *"fim do dia"*, *"vamos fechar"* |
-| **[Otimizar OS](skills/otimizar-os/SKILL.md)** | Compacta e organiza os arquivos de um contexto | *"otimizar os"*, *"limpar terreno"* |
-| **[Confere MDs](skills/confere-mds/SKILL.md)** | Audita seus docs contra a realidade (código, banco, automações) e corrige o drift | *"confere mds"*, *"docs batem com a realidade?"* |
+| **[Otimizar OS](skills/otimizar-os/SKILL.md)** | Confere seus docs contra a realidade (código/banco/automações) **e** compacta/organiza — num fluxo só | *"otimizar os"*, *"confere mds"*, *"docs batem com a realidade?"*, *"limpar terreno"* |
 | **[Otimizar Custo](skills/otimizar-custo/SKILL.md)** | Reduz o custo de tokens higienizando a memória do agente | *"otimizar custo"*, *"otimizar memória"* |
 | **[Conferir Entrega](skills/conferir-entrega/SKILL.md)** | Checa tudo antes de declarar uma tarefa concluída | *"conferir entrega"*, *"terminei"* |
 
