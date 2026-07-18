@@ -8,13 +8,16 @@ description: |
   em OK, velhas, duplicadas ou que deveriam estar no OS, alerta se CLAUDE.md tambem esta
   gordo (ele tambem entra em toda sessao) e propoe um plano de limpeza — sempre com
   aprovacao antes de executar. Calcula economia estimada em R$/mes no relatorio final.
+  ESPECIFICA DO CLAUDE CODE: o mecanismo otimizado (MEMORY.md cobrado em toda mensagem) so
+  existe la — rodando no ChatGPT/Codex, a skill explica isso e se encerra sem mexer em nada,
+  apontando a otimizar-os para a higiene dos arquivos do OS (que vale nos dois agentes).
   Executa quando o usuario diz "otimizar custo", "reduzir custo", "economizar tokens",
   "otimizar memoria", "limpar memoria", "higienizar memoria", "memoria do claude",
   "revisar memoria", "auditar memoria".
 context: meuos
 user-invocable: true
 argument-hint: "(sem argumentos — roda na pasta do seu Claude Code atual)"
-version: 1.1
+version: 2.2
 author: Fernando Lúcio — Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
@@ -61,6 +64,19 @@ de **~64%** no custo fixo de cada sessao.
 ---
 
 ## Passo a passo (instrucoes para o agente de IA)
+
+### PASSO -1 — Em qual agente estou? (guard dual-agent)
+
+Esta skill otimiza a **memoria persistente do Claude Code** (`MEMORY.md` + arquivos de topico em
+`~/.claude/projects/.../memory/`) — um mecanismo que **so existe no Claude Code**.
+
+- Rodando no **Claude Code** → siga para o PASSO 0.
+- Rodando no **ChatGPT/Codex** (ou outro agente) → explique e encerre, sem mexer em nada:
+
+> `"Esta skill higieniza a memoria especifica do Claude Code (MEMORY.md, cobrada em toda mensagem
+> de la). Aqui no Codex esse mecanismo nao existe — entao nao ha custo desse tipo pra otimizar.
+> Se o objetivo e enxugar os ARQUIVOS do seu OS (documento_mestre, aprendizados, claude.md gordos),
+> a skill certa e a 'otimizar OS' — ela funciona igual nos dois agentes. Quer que eu rode ela?"`
 
 ### PASSO 0 — Confirmar o working directory
 

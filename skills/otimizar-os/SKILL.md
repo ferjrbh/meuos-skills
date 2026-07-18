@@ -121,7 +121,7 @@ Data: [DATA]
 
 Alem do tamanho de cada arquivo, somar os arquivos que carregam em TODA sessao do contexto —
 `claude.md` raiz + `claude.md` do contexto + `*MESTRE.md` + `aprendizados_do_dia.md` + (se houver)
-o `MEMORY.md` do agente. Reportar o total estimado em tokens (~1 linha ≈ 15 tokens) e a meta:
+o `MEMORY.md` do agente (quando existir — e mecanismo do Claude Code; no Codex nao ha). Reportar o total estimado em tokens (~1 linha ≈ 15 tokens) e a meta:
 
 > `Custo fixo atual: ~18k tokens/sessao (mestre 7k + aprendizados 6k + claude.md 3k + memory 2k). Meta apos organizacao: ~9k.`
 
