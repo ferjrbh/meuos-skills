@@ -10,7 +10,7 @@ description: |
   "confere mds", "confere docs", "auditar documentacao", "docs batem com a realidade?",
   "verificar documentacao", "docs drift", "sincronizar docs com codigo", "doc desatualizada".
   Default (sem flag) = confere primeiro (corrige conteudo), depois otimiza (estrutura).
-version: 5.0
+version: 5.1
 context: meuos
 user-invocable: true
 argument-hint: "[contexto] [--so-confere | --so-otimiza] (sem args = pergunta o contexto e roda as 2 fases)"
@@ -155,6 +155,25 @@ numeros contra uma fonte externa. Voce pode ter so 1-2 fontes; a skill adapta o 
 Proposta padrao: adicionar o ponteiro (no `index.md`, e no MESTRE se for relevante) OU, se o conteudo
 estiver obsoleto, arquivar em `historico/`. **NUNCA decidir sozinho** se um arquivo e relevante ou lixo —
 apresentar a tabela e perguntar.
+
+## N3.5 — Guia do OS desatualizado (check de versao — SEMPRE, custa 1 leitura)
+
+O `guia_do_os.md` da raiz e o manual de operacao que o agente le pra "entender" o OS — e ele
+evolui junto com o metodo MeuOS. Cheque a versao pelo marcador:
+
+- O guia **TEM** a secao `## AGENTE: leia esta seção e opere assim` → esta na versao atual (v2+). Nada a fazer.
+- O guia **NAO TEM** essa secao (ou nao existe) → e a versao antiga. Propor a atualizacao:
+
+1. Baixar o guia atual de
+   `https://raw.githubusercontent.com/ferjrbh/meuos-skills/main/skills/meuos-do-zero/templates/guia_do_os.md`
+2. Substituir `{{DATA}}` pela data de hoje.
+3. **Preservar a secao `## Como abrir seus arquivos` do guia ATUAL do usuario** (ela e personalizada
+   com a ferramenta dele) — colar por cima da versao generica do template, se existir.
+4. Mostrar o resumo do que muda e **so gravar com aprovacao** (regra de ouro: nunca sobrescrever sem mostrar).
+
+> Por que importa: o guia v2 e "agent-first" — ensina QUALQUER agente (Claude ou ChatGPT) a operar o
+> OS sozinho: ordem de leitura, o que pode editar, as 8 skills, situacoes comuns. Guia antigo = agente
+> operando com manual defasado.
 
 ## N4 — Copias multiplas: espelho vs repo (cravar a fonte ANTES de editar) ⭐
 
