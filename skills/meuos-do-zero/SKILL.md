@@ -74,7 +74,7 @@ mas as REGRAS moram num lugar so — as entradas sao finas e nunca divergem.
 
 **Sinais auxiliares** (podem existir — nunca sao problema):
 - `.meuos/skills/` — skills instaladas pelo caminho ChatGPT/Codex (ficam DENTRO da pasta do OS)
-- `MEMORY.md` — memoria persistente do agente (gerada pelo wizard do MeuOS)
+- `MEMORY.md` — memoria persistente que o proprio agente cria com o tempo (nao vem do wizard)
 
 > O OS pode ser **flat** (tudo na raiz), **com pastas** (raiz + contextos) ou **com subpastas**
 > (raiz + pastas + subpastas). A skill se adapta ao que existir — nunca assume que e flat.
