@@ -272,7 +272,7 @@ Ao sugerir, gravar `LAST_SUGGESTED=<hoje>` no `.last-otimizar-os` (segura o lemb
 
 ### PASSO 5.7 — Scan da memoria do Claude Code (condicional)
 
-Este passo so se aplica a quem usa **Claude Code** como agente. Se o usuario usa Cursor, CoWork ou outra ferramenta, pular.
+Este passo so se aplica a quem usa **Claude Code** como agente. Se o usuario usa ChatGPT/Codex, Cursor, CoWork ou outra ferramenta, pular (nesses agentes nao existe a pasta de memoria do Claude Code).
 
 1. Verificar se existe a pasta `~/.claude/projects/{working-dir-encoded}/memory/` — esta e a memoria do Claude Code para o diretorio atual.
 2. Se nao existir: pular silenciosamente, sem mencionar.

@@ -1,8 +1,9 @@
 ---
 name: Conectar n8n
 description: |
-  Permite ao seu Claude criar, editar, ativar e debugar workflows direto na sua instancia n8n via
-  API REST. Sem MCP, sem npx — so curl. Funciona em qualquer Claude (CLI, VSCode, Cursor, Desktop).
+  Permite ao seu agente (Claude ou ChatGPT) criar, editar, ativar e debugar workflows direto na sua
+  instancia n8n via API REST. Sem MCP, sem npx — so curl. Funciona em qualquer ambiente com terminal
+  (Claude Code CLI/Desktop, VSCode, Cursor, app ChatGPT em modo Codex).
   Ativa quando o usuario diz "conectar n8n", "liste meus workflows n8n", "crie um workflow no n8n",
   "ative o workflow X", "leia os logs do workflow X", "debug do meu workflow", "paginar execucoes n8n".
 version: 2.1
@@ -15,7 +16,7 @@ instagram: https://instagram.com/fernandolucio.ia
 
 # Conectar n8n
 
-Esta skill ensina o agente a usar a API REST do seu n8n self-hospedado direto, sem precisar de MCP. Funciona em qualquer ambiente que tenha curl/fetch (CLI, VSCode extension, Cursor, Claude Desktop).
+Esta skill ensina o agente a usar a API REST do seu n8n self-hospedado direto, sem precisar de MCP. Funciona em qualquer ambiente que tenha curl/fetch (Claude Code CLI/Desktop, VSCode extension, Cursor, app ChatGPT em modo Codex).
 
 ## Quando ativar
 
