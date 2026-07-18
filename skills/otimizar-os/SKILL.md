@@ -467,3 +467,6 @@ varios contextos na mesma semana dispararia varios lembretes de custo.
 > fazia agora vive aqui na **Fase A (Conferir)**.
 
 > Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+
+## Regra dual-agent (obrigatória)
+Este OS tem DOIS arquivos de entrada equivalentes: `claude.md` (Claude) e `AGENTS.md` (ChatGPT/Codex) — na raiz e em cada contexto. **Se esta skill editar um arquivo de entrada, espelhe a mesma mudança na entrada irmã da mesma pasta** (se ela existir). Nunca deixe as duas divergirem. Conteúdo-regra vivo pertence ao `soul.md`/`documento_mestre.md` — as entradas são finas.

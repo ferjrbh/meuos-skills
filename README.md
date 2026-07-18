@@ -25,10 +25,24 @@ Quando você instala uma skill na pasta de skills do seu agente (`~/.claude/skil
 o Claude lê a descrição dela e a **ativa sozinho** assim que você pede algo relacionado — você não
 precisa "chamar" a skill, só descrever a tarefa em linguagem natural.
 
+## Agentes suportados
+
+As skills são markdown puro — funcionam com os **dois cérebros** que o MeuOS suporta:
+
+| Agente | Onde a skill é instalada | Como ativa |
+|---|---|---|
+| **Claude** (Claude Code/Desktop, VSCode, Cursor…) | `~/.claude/skills/{slug}/SKILL.md` | automático — o Claude lê a descrição e ativa quando o tema surge |
+| **ChatGPT** (app Codex, CLI, OpenClaw) | `.meuos/skills/{slug}/SKILL.md` na pasta do OS + linha de referência na seção "## Skills instaladas" do `AGENTS.md` | o agente lê a skill quando o AGENTS.md aponta pra ela |
+
+A aba **Skills** do MeuOS gera o prompt de instalação certo pros dois — é só copiar e colar no seu agente.
+
+> ⚠️ Exceções: `otimizar-custo` depende da memória do Claude Code (`MEMORY.md`) e **não se aplica ao ChatGPT**.
+> Skills que editam o arquivo de entrada do OS (`fim-do-dia`, `otimizar-os`) **espelham a mudança na entrada irmã** (claude.md ↔ AGENTS.md) — regra dual-agent.
+
 ## Requisitos
 
-- **Claude Code** (app Desktop) — recomendado.
-- Funciona também em VSCode, Cursor e outros agentes que leiam `~/.claude/skills/`.
+- **Claude Code** (app Desktop) ou **app ChatGPT** (modo Codex) — qualquer um dos dois.
+- Funciona também em VSCode, Cursor, OpenClaw e outros agentes que leiam as pastas acima.
 
 ## Como instalar
 
