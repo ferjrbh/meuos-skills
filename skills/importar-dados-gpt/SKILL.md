@@ -14,7 +14,7 @@ description: |
   Executa quando o usuario diz "importar dados do gpt", "importar do chatgpt", "migrar do gpt",
   "trazer meus dados do gpt", "importar minhas conversas", "migrar do chatgpt pro claude",
   "importar do gemini", "trazer historico do gpt".
-version: 1.0
+version: 1.1
 context: meuos
 user-invocable: true
 author: Fernando Lúcio — Aion Group
@@ -114,9 +114,15 @@ conversas → inventário → triagem → destilação.
 
 3. Regras da triagem:
    - Smalltalk, testes e curiosidades → **descartar** (propor "não" por padrão).
-   - Conversa que não casa com nenhum contexto existente → perguntar se cria contexto novo
-     ou vai pra um satélite geral.
-   - O usuário pode aprovar a tabela em bloco ou ajustar linha a linha. **Nada segue sem OK.**
+   - **Tema recorrente SEM contexto correspondente → propor ATIVAMENTE criar o contexto novo.**
+     Se 3+ conversas orbitam o mesmo assunto (um cliente, um projeto, uma área da vida) e o OS
+     não tem pasta pra ele, a proposta padrão é criar — com nome sugerido e os 6 arquivos
+     canônicos (claude.md, AGENTS.md, documento_mestre.md, aprendizados_do_dia.md,
+     changelog.md, index.md), usando os templates oficiais da skill meuos-do-zero. Incluir a
+     sugestão na própria tabela de triagem: `Contexto proposto: "Cliente Y" (NOVO)`.
+   - Conversa avulsa que não casa com nada e não justifica contexto → satélite geral ou descarte.
+   - O usuário pode aprovar a tabela em bloco ou ajustar linha a linha. **Nada segue sem OK**
+     — inclusive a criação de contextos novos.
 
 ### PASSO 4 — Destilação (o coração da skill)
 
@@ -157,8 +163,9 @@ Regras da destilação:
 
 ### PASSO 5 — Plano, aprovação e gravação
 
-1. Apresentar o **plano numerado**: quais `importado_do_gpt.md` serão criados, o que será
-   proposto pro soul/mestre, o que foi descartado.
+1. Apresentar o **plano numerado**: quais contextos NOVOS serão criados (com os 6 arquivos
+   canônicos), quais `importado_do_gpt.md` serão criados, o que será proposto pro soul/mestre,
+   o que foi descartado.
 2. Com aprovação: gravar os arquivos, **adicionar ponteiro no `index.md`** de cada contexto
    (e no MESTRE quando relevante) e registrar no `changelog.md`:
    `[DATA] Importação do histórico do GPT — {N} conversas destiladas em {contextos}`.
