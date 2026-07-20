@@ -8,7 +8,7 @@ description: |
   "criar template de slides", "meu modelo visual", "padrao visual para apresentacoes",
   "template de apresentacao", "design system de slides", "modelo de ppt", "modelo para slides".
   O modelo gerado vira fonte-de-verdade da skill "Criar Apresentacao".
-version: 1.1
+version: 1.5
 context: meuos
 user-invocable: true
 argument-hint: "(sem argumentos — a skill faz entrevista completa)"
