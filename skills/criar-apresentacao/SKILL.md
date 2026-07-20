@@ -7,7 +7,7 @@ description: |
   Executa quando o usuario diz "criar apresentacao", "montar slides", "fazer uma apresentacao",
   "criar slides", "novo deck", "montar deck", "montar ppt", "criar ppt", "precisa de slides",
   "apresentacao sobre X", "slides sobre X".
-version: 1.0
+version: 1.3
 context: meuos
 user-invocable: true
 argument-hint: "<tema ou briefing da apresentacao — opcional>"

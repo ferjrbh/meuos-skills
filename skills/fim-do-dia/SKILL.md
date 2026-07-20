@@ -6,7 +6,7 @@ description: |
   "pode fechar", "encerra ai", "wrap-up", "encerrar sessao".
   Guia 3 perguntas rapidas, salva aprendizados, migra tarefas concluidas
   e atualiza pendencias no documento mestre do contexto ativo.
-version: 3.3
+version: 4.2
 context: meuos
 user-invocable: true
 author: Fernando Lúcio — Aion Group
