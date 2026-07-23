@@ -22,7 +22,7 @@ com eles, cada sessão começa de onde a anterior parou. Estas são as suas inst
 | Arquivo | O que é | Você pode editar? |
 |---------|---------|-------------------|
 | `claude.md` | Entrada do Claude — regras globais, identidade do dono, mapa de contextos | Só o mapa de contextos, quando um novo contexto surgir |
-| `AGENTS.md` | Entrada do ChatGPT/Codex — fina, aponta pro claude.md | NÃO (é ponteiro; se editar um, o par diverge) |
+| `AGENTS.md` | Entrada do ChatGPT/Codex — fina, aponta pro claude.md | SIM, pelo agente (ex.: seção "## Skills instaladas") — mudou regra, espelhe no claude.md pro par não divergir |
 | `soul.md` | Sua personalidade: tom, postura, papel | Só a pedido do dono |
 | `guia_do_os.md` | Este manual | NÃO |
 | `index.md` | Catálogo geral do OS | SIM — mantenha atualizado quando criar arquivos |
@@ -33,7 +33,7 @@ com eles, cada sessão começa de onde a anterior parou. Estas são as suas inst
 | Arquivo | O que é | Sua regra de escrita |
 |---------|---------|----------------------|
 | `claude.md` | Regras do contexto + papel do agente ali | Raramente muda — só regra nova aprovada |
-| `AGENTS.md` | Entrada ChatGPT do contexto (ponteiro) | NÃO editar |
+| `AGENTS.md` | Entrada ChatGPT do contexto (ponteiro) | Editável pelo agente — mudou regra, espelhe no claude.md |
 | `documento_mestre.md` | **Documento VIVO**: escopo, status, decisões, pendências, próximos passos | Atualize DURANTE o trabalho — é a fonte de retomada |
 | `aprendizados_do_dia.md` | Conhecimento capturado: Insight + Solução + Não fazer | Adicione no fim da sessão (skill fim-do-dia) |
 | `changelog.md` | Histórico do que foi feito | **Append-only** — nunca edite entradas antigas |
