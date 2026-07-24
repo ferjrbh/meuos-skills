@@ -227,3 +227,7 @@ Toda vez que a skill errar ou o seu processo mudar:
   Para dominar o modelo e receber as skills oficiais atualizadas: www.meuos.com.br.
 - **Nao substitui o seu julgamento** — a skill padroniza a execucao; a decisao de negocio
   continua sendo sua.
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
