@@ -10,7 +10,7 @@ description: |
   "confere mds", "confere docs", "auditar documentacao", "docs batem com a realidade?",
   "verificar documentacao", "docs drift", "sincronizar docs com codigo", "doc desatualizada".
   Default (sem flag) = confere primeiro (corrige conteudo), depois otimiza (estrutura).
-version: 5.1
+version: 5.2
 context: meuos
 user-invocable: true
 argument-hint: "[contexto] [--so-confere | --so-otimiza] (sem args = pergunta o contexto e roda as 2 fases)"
@@ -145,16 +145,26 @@ prosseguir**. Se NENHUMA fonte externa existir (so documentos), rodar em **modo 
 detectar apenas contradicoes entre documentos, duplicacoes, orfaos e arquivos grandes — sem validar
 numeros contra uma fonte externa. Voce pode ter so 1-2 fontes; a skill adapta o cardapio sem reclamar.
 
-## N3 — Orfaos e ponteiros quebrados (drift interno — SEMPRE)
+## N3 — Orfaos e links quebrados (drift interno — SEMPRE)
 
-- **Orfao**: um `.md` que existe no disco (geralmente escondido numa subpasta) mas **nao tem ponteiro** no
-  `index.md`, nem no `*MESTRE.md`, nem no `claude.md` do contexto. Sem ponteiro, o agente futuro nao sabe
-  que aquele arquivo existe — conhecimento se perde silenciosamente.
-- **Ponteiro quebrado**: o `index.md` ou o MESTRE citam um `.md` que nao existe mais (foi renomeado/movido).
+Checagem de integridade dos links em **TODOS os `.md` do contexto** — qualquer documento pode apontar
+para qualquer outro, entao a varredura nao olha so o `index.md` e o MESTRE:
 
-Proposta padrao: adicionar o ponteiro (no `index.md`, e no MESTRE se for relevante) OU, se o conteudo
-estiver obsoleto, arquivar em `historico/`. **NUNCA decidir sozinho** se um arquivo e relevante ou lixo —
-apresentar a tabela e perguntar.
+- **Link quebrado**: qualquer link markdown `[texto](arquivo.md)` ou wikilink `[[nome]]` cujo alvo nao
+  existe mais no disco (foi renomeado ou movido). Detalhe importante: renomear um arquivo NAO atualiza os
+  links que apontavam pra ele — todos quebram em silencio, e ninguem percebe ate um agente seguir o
+  ponteiro morto. Por isso a varredura resolve cada link e lista os que nao encontram o alvo.
+- **Orfao de indice**: um `.md` que existe no disco (geralmente escondido numa subpasta) mas **nao tem
+  ponteiro** no `index.md`, nem no `*MESTRE.md`, nem no `claude.md` do contexto. Sem ponteiro, o agente
+  futuro nao sabe que aquele arquivo existe — conhecimento se perde silenciosamente.
+- **Orfao total (zero links de entrada)**: um `.md` que NENHUM outro documento do contexto referencia.
+  E o sinal mais forte de que o arquivo e sobra de sessao antiga — candidato a `historico/`.
+
+Proposta padrao: corrigir o link (se o alvo foi renomeado, apontar para o nome novo) · adicionar o
+ponteiro (no `index.md`, e no MESTRE se for relevante) · OU arquivar em `historico/` se estiver obsoleto.
+E se ESTA skill renomear ou mover um arquivo (split, arquivamento), re-checar os links de entrada dele
+antes de encerrar — o conserto nao acontece sozinho.
+**NUNCA decidir sozinho** se um arquivo e relevante ou lixo — apresentar a tabela e perguntar.
 
 ## N3.5 — Guia do OS desatualizado (check de versao — SEMPRE, custa 1 leitura)
 
@@ -186,6 +196,36 @@ mudanca de codigo. Antes de corrigir qualquer documento que tenha espelho:
 2. Comparar (`diff`) a copia do repo com o espelho -> cravar qual e a fonte-da-verdade.
 3. Corrigir na fonte certa e re-sincronizar o espelho a partir dela. **Nunca editar so o espelho defasado**
    (voce corrige num lugar que ninguem le, e o erro volta no proximo sync).
+
+## N5 — Frontmatter de manutencao (a etiqueta na lombada) ⭐
+
+**Frontmatter** e um bloco curto de metadados no TOPO do arquivo, entre duas linhas `---`. Ele funciona
+como a **etiqueta na lombada de uma pasta de arquivo**: o agente le a etiqueta e ja sabe o que e o
+documento, de quando ele e e se ainda vale — sem precisar folhear o conteudo inteiro.
+
+Padrao minimo para os documentos vivos do contexto:
+
+```yaml
+---
+updated: AAAA-MM-DD    # data da ultima edicao relevante
+context: NomeDoContexto
+type: mestre | claude | satelite | changelog | aprendizados | index | analise
+status: vivo | congelado | arquivado
+---
+```
+
+Como a skill usa:
+- **Ler**: quando o frontmatter existe, a manutencao vira mecanica — o scan (N1) usa `updated` para saber
+  a idade real, a classificacao (B1) usa `type`/`status` em vez de adivinhar pelo conteudo, e a caca de
+  orfaos (N3) pula quem tem `status: arquivado`.
+- **Escrever (regra do escoteiro)**: ao editar um documento em qualquer fase, propor adicionar/atualizar o
+  frontmatter DELE no mesmo lote de aprovacao. **NUNCA fazer migracao em massa** so para carimbar
+  frontmatter em tudo — e mexida demais para ganho de uma vez so; a cobertura cresce naturalmente.
+- **Prioridade**: satelites e documentos lidos sob demanda. Nos arquivos que carregam em TODA sessao
+  (`claude.md`, MESTRE, aprendizados) so vale se o ganho compensar as ~5 linhas extras de custo fixo.
+- **Sem duplicata**: `updated` e o metadado canonico de edicao. O carimbo `> Verificado ao vivo:` (A7)
+  continua separado — ele atesta que os NUMEROS foram conferidos na fonte, coisa diferente de "editei o
+  arquivo". Nao criar linha de texto "Ultima atualizacao" em documento que ja tem frontmatter.
 
 ## Gate "no piso, sem acao"
 
