@@ -3,7 +3,7 @@
 > Skills oficiais do **MeuOS** para o seu Claude Code: organize seu OS pessoal, crie conteúdo,
 > faça growth, automação e produtividade — cada uma pronta para instalar em segundos.
 
-[![skills](https://img.shields.io/badge/skills-48-D95C1A?style=flat-square)](https://www.meuos.com.br)
+[![skills](https://img.shields.io/badge/skills-49-D95C1A?style=flat-square)](https://www.meuos.com.br)
 [![feito para](https://img.shields.io/badge/feito_para-Claude_Code-1A2B4A?style=flat-square)](https://claude.com/claude-code)
 [![MeuOS](https://img.shields.io/badge/MeuOS-meuos.com.br-D95C1A?style=flat-square)](https://www.meuos.com.br)
 
@@ -66,12 +66,13 @@ se não existir e confirme ao terminar.
 
 ## Catálogo
 
-### 🧩 Core — rode primeiro (5)
+### 🧩 Core — rode primeiro (6)
 Os ritos essenciais do MeuOS. Comece pela **MeuOS do Zero**.
 
 | Skill | O que faz | Gatilhos |
 |---|---|---|
 | **[MeuOS do Zero](skills/meuos-do-zero/SKILL.md)** | Monta, conserta e organiza seu OS do zero | *"meuos do zero"*, *"configurar meu os"* |
+| **[Importar dados do GPT](skills/importar-dados-gpt/SKILL.md)** | Migra o conhecimento das suas conversas do ChatGPT/Gemini pro OS, destilando por contexto | *"importar do chatgpt"*, *"migrar do gpt"* |
 | **[Fim do Dia](skills/fim-do-dia/SKILL.md)** | Fecha a sessão: sintetiza, captura aprendizados e atualiza os docs | *"fim do dia"*, *"vamos fechar"* |
 | **[Otimizar OS](skills/otimizar-os/SKILL.md)** | Confere seus docs contra a realidade (código/banco/automações) **e** compacta/organiza — num fluxo só | *"otimizar os"*, *"confere mds"*, *"docs batem com a realidade?"*, *"limpar terreno"* |
 | **[Otimizar Custo](skills/otimizar-custo/SKILL.md)** | Reduz o custo de tokens higienizando a memória do agente | *"otimizar custo"*, *"otimizar memória"* |
@@ -153,6 +154,12 @@ Os ritos essenciais do MeuOS. Comece pela **MeuOS do Zero**.
 | **[Conectar n8n](skills/conectar-n8n/SKILL.md)** | Claude cria, edita e debuga workflows n8n via API REST | *"conectar n8n"* |
 | **[n8n AI Agents & RAG](skills/n8n-ai-rag/SKILL.md)** | Agentes de IA e workflows RAG no n8n | *"rag no n8n"*, *"agente n8n"* |
 | **[n8n Skills (Patterns & Code)](skills/n8n-skills/SKILL.md)** | Patterns canônicos, Code node e expressões do n8n | *"n8n skills"*, *"patterns n8n"* |
+
+### 🚀 Avançado — exclusiva dos tiers Presencial e Corp (1)
+
+| Skill | O que faz | Gatilhos |
+|---|---|---|
+| **[Criar Skill](skills/criar-skill/SKILL.md)** | Transforma uma tarefa sua num procedimento reutilizável do agente — o POP do seu agente, com entrevista, template, teste e instalação dual | *"criar skill"*, *"transformar isso em skill"* |
 
 ---
 
