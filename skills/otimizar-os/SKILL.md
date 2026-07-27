@@ -10,7 +10,7 @@ description: |
   "confere mds", "confere docs", "auditar documentacao", "docs batem com a realidade?",
   "verificar documentacao", "docs drift", "sincronizar docs com codigo", "doc desatualizada".
   Default (sem flag) = confere primeiro (corrige conteudo), depois otimiza (estrutura).
-version: 5.2
+version: 5.3
 context: meuos
 user-invocable: true
 argument-hint: "[contexto] [--so-confere | --so-otimiza] (sem args = pergunta o contexto e roda as 2 fases)"
@@ -113,7 +113,7 @@ Data: [DATA]
 | `*MESTRE.md` (qualquer nivel) | menos de 300 linhas | 300-500 | mais de 500 -> extrair secoes densas |
 | Satelite tematico (ex: `CLIENTE_tech_api.md`) | menos de 25KB | 25-40KB | mais de 40KB -> split por tema |
 | `changelog.md` | menos de 30KB | 30-50KB | mais de 50KB -> arquivar antigos em `historico/` |
-| `aprendizados_do_dia.md` | menos de 200 linhas | 200-250 | mais de 250 -> migrar antigos p/ changelog/mestre |
+| `aprendizados_do_dia.md` | menos de 200 linhas E de 15KB | 200-250 linhas ou 15KB | mais de 250 linhas OU 15KB -> evento->changelog · decisao->mestre · regra tecnica->satelite |
 | `index.md` | menos de 100 linhas | 100-150 | mais de 150 |
 | Outros `.md` | menos de 20KB | 20-35KB | mais de 35KB |
 
@@ -370,7 +370,7 @@ Antes de olhar quantos dias tem o conteudo, classificar cada bloco pelo seu TIPO
 | Tipo | O que e | O que acontece |
 |---|---|---|
 | **Permanente** | Regras do negocio, padroes, convencoes, "nunca fazer X", config ativa | **Fica onde esta** — nao importa a idade, nunca compactar |
-| **Promovivel** | Regra perene que voce usa em TODA sessao e devia estar no MESTRE | **Promover** (ver B4, com aprovacao) |
+| **Promovivel** | Perene que merece subir: decisao de negocio -> MESTRE · regra rigida de operacao -> claude.md (raro) · regra tecnica de tema -> satelite | **Promover** (ver B4, com aprovacao) |
 | **Temporario** | Entregas concluidas, bugs corrigidos, decisoes pontuais, status datados | Compacta conforme a idade (ver B2) |
 | **Ultrapassado** | Status que nao vale mais, pesquisa ja usada, decisao substituida | **Arquivar** (`historico/` ou changelog) |
 
@@ -398,16 +398,17 @@ Antes de olhar quantos dias tem o conteudo, classificar cada bloco pelo seu TIPO
   so as entradas recentes + o cabecalho.
 - **Obsoletos**: pesquisa/analise pontual ja concluida, status vencido -> mover para `historico/`.
 
-## B4 — Promocao para o MESTRE (a "mielinizacao") + a regra da mesa e da gaveta
+## B4 — Promocao de conteudo perene (a "mielinizacao") + a regra da mesa e da gaveta
 
-Algumas entradas nos aprendizados sao regras perenes (nao aprendizados datados). Elas nao deveriam ficar no
-`aprendizados_do_dia.md` (que e um arquivo rolante). Mas o destino certo depende de COM QUE FREQUENCIA a
-regra e usada:
+Algumas entradas nos aprendizados sao regras/decisoes perenes (nao aprendizados datados). Elas nao deveriam
+ficar no `aprendizados_do_dia.md` (que e um arquivo rolante). O destino certo depende da NATUREZA e da
+FREQUENCIA de uso:
 
-| A regra e consultada... | Destino | Por que |
+| O item e... | Destino | Por que |
 |---|---|---|
-| em TODA sessao (ex: "nunca cruzar dados deste cliente") | **MESTRE** (secao de regras) | o mestre ja carrega toda sessao — custo zero adicional |
-| so quando UM tema aparece (ex: taxas por perfil, regra de um modulo) | **satelite read-on-demand** + ponteiro de 1 linha no mestre | tira o peso da sessao; o agente abre o satelite so quando o assunto surge |
+| decisao de negocio/estrategica/plano consultado sempre (ex: modelo de preco, posicionamento) | **MESTRE** (documento vivo) | o mestre ja carrega toda sessao e e onde decisao mora — mexe quase sempre |
+| regra RIGIDA de operacao do contexto (limite inviolavel, ex: "nunca cruzar dados deste cliente") | **claude.md do contexto** | e a lei de COMO trabalhar ali; mexer nele e excecao da excecao — quase nunca |
+| regra de UM tema especifico (ex: taxas por perfil, regra de um modulo) | **satelite read-on-demand** + ponteiro de 1 linha no mestre | tira o peso da sessao; o agente abre o satelite so quando o assunto surge |
 
 > Analogia: o MESTRE e a **mesa** (so o que pego toda hora). O satelite e a **gaveta** (guardo e abro quando
 > o tema surge). Promover regra de tema especifico pra mesa nao reduz o imposto fixo — so muda de bolso.
