@@ -4,9 +4,10 @@ description: |
   Rotina de encerramento do dia de trabalho. Executa quando o usuario diz
   "revisao diaria", "fechar o dia", "encerrar", "fim do dia", "vamos fechar",
   "pode fechar", "encerra ai", "wrap-up", "encerrar sessao".
-  Guia 3 perguntas rapidas, salva aprendizados, migra tarefas concluidas
+  Guia 3 perguntas rapidas, AVALIA os arquivos antes de escrever (gate anti-duplicacao
+  e anti-verborragia), salva aprendizados no lugar certo, migra tarefas concluidas
   e atualiza pendencias no documento mestre do contexto ativo.
-version: 4.2
+version: 5.0
 context: meuos
 user-invocable: true
 author: Fernando Lúcio — Aion Group
@@ -19,6 +20,23 @@ instagram: https://instagram.com/fernandolucio.ia
 ## O que esta skill faz
 
 Esta skill guia voce por uma rotina rapida de fechamento do dia de trabalho — menos de 10 minutos. Ela faz tres perguntas simples sobre o que aconteceu hoje, salva os aprendizados no lugar certo, move tarefas concluidas para o historico e deixa suas pendencias atualizadas para o proximo dia. Ao final, avisa se algum arquivo esta crescendo demais e precisa de organizacao.
+
+---
+
+## 📜 CONTRATO POR ARQUIVO (decide ONDE cada informacao entra)
+
+| Arquivo | O que entra | O que NUNCA entra |
+|---|---|---|
+| `claude.md` (contexto) | SO regra **RIGIDA de operacao** do contexto (config, limites inviolaveis). Mexer aqui = **excecao da excecao** | Caso do dia, status, decisao de negocio, historico |
+| `aprendizados_do_dia.md` | Regra/padrao/anti-pattern reutilizavel — objetivo, pouco texto (max 6 linhas/~700 caracteres por entrada) | Narrativa, historia da investigacao, evento pontual |
+| `changelog.md` | **O LAR do caso pontual**: o que foi feito, incidentes, narrativas com data (append-only) | Regra viva (essa mora nos arquivos acima) |
+| `*MESTRE.md` | O documento **VIVO** — mexe quase toda sessao: descricao do contexto, objetivos, **decisoes estrategicas/taticas, planos**, status, pendencias, ponteiros pros satelites | Spec densa (→ satelite), historico (→ changelog), caso do dia |
+| `index.md` | Catalogo **100% completo** dos .md do contexto — todo satelite listado, sem excecao | Conteudo (so link + 1 linha de descricao) |
+| `soul.md` (raiz) | SO personalidade/comportamento do agente, de altissima necessidade | Regra operacional; qualquer coisa que caiba em outro lugar |
+
+**⚡ Escrever e excecao, nao obrigacao.** A rotina AVALIA todos os arquivos, mas so ESCREVE onde
+ha item que sobreviveu ao gate (PASSO 1.5). Sessao sem material pra um arquivo = arquivo INTOCADO.
+Nunca escrever "pra constar" — escrita desnecessaria e o que incha os arquivos.
 
 ---
 
@@ -109,9 +127,9 @@ Sintese da sessao de hoje no contexto [CONTEXTO]:
    - "Nao teve aprendizado novo hoje, segue so com o que fizemos"
    - "Sessao foi de leitura/discussao, nao tem nada pra registrar — pula"
 
-4. **Aplicar a decisao**:
+4. **Aplicar a decisao** (⚠️ TODO item confirmado passa ANTES pelo GATE DE ESCRITA — PASSO 1.5):
    - Se houver "o que fizemos" confirmado → vai pro changelog (PASSO 3)
-   - Se houver "o que aprendemos" confirmado → vai pro `aprendizados_do_dia.md` (formato Insight/Solucao/Nao fazer)
+   - Se houver "o que aprendemos" confirmado → vai pro `aprendizados_do_dia.md` SE sobreviver ao gate; caso pontual vira changelog
    - Se houver "o que fica pra amanha" confirmado → atualiza pendencias no `*MESTRE.md` (PASSO 4)
    - Se o usuario disse "pula" ou "nao tem nada" → nao gravar nada e seguir para PASSO 5 (saude dos arquivos)
 
@@ -120,6 +138,40 @@ Sintese da sessao de hoje no contexto [CONTEXTO]:
 - Sessao pode ter zero aprendizados novos → "O QUE APRENDEMOS" fica vazio e nada vai pro aprendizados
 - Sessao pode nao gerar pendencias novas → "O QUE FICA PRA AMANHA" so lista pendencias antigas
 - **NUNCA inventar** aprendizados ou pendencias para "preencher" os 3 blocos. Se esta vazio, esta vazio. Forcar registro polui os arquivos.
+
+---
+
+### PASSO 1.5 — GATE DE ESCRITA — avaliar ANTES de gravar (OBRIGATORIO)
+
+Nenhum item confirmado vai direto pros arquivos. Cada item passa por este gate ANTES de qualquer
+edicao em `claude.md`, `aprendizados_do_dia.md` ou `*MESTRE.md`. Motivo: os arquivos crescem por
+escrita redundante e verbosa na ENTRADA — a limpeza depois nao compensa.
+
+**1 — Ler o alvo INTEIRO.** Antes de escrever num arquivo, ler o arquivo completo (nao so o comeco).
+Sem saber o que ja existe, toda escrita e duplicata em potencial.
+
+**2 — Anti-duplicacao (busca obrigatoria).** Extrair 2-3 palavras-chave do item e buscar em
+claude.md + `*MESTRE.md` + aprendizados + satelites do contexto.
+- Tema JA coberto → **EDITAR a entrada/regra existente** (incorporar o novo, atualizar a data). NUNCA criar segunda entrada do mesmo tema.
+- E **reincidencia** de regra ja escrita (o problema aconteceu de novo)? → NAO e aprendizado novo: 1 linha no changelog + no maximo 1 frase de reforco na regra existente.
+
+**3 — Teste de relevancia (filtro caso-pontual).** Perguntar: *"daqui a 3 meses, isso muda como
+eu trabalho neste contexto?"*
+- **NAO** (incidente resolvido, bug corrigido, evento datado, historia da investigacao) → **changelog** (1-2 bullets). Nada no aprendizados.
+- **SIM** → extrair SO a regra generalizavel; a narrativa do caso vai pro changelog, nunca dentro da entrada.
+
+**4 — Orcamento de escrita (anti-verborragia).**
+- Entrada nova: **max 6 linhas e ~700 caracteres**. Insight = a regra. Solucao = o procedimento. Nao fazer = 1 frase.
+- Proibido na entrada: historia da investigacao, "caso real: ...", justificativa da regra.
+- **Max 3 entradas novas por sessao** — o excedente e quase sempre caso pontual → changelog.
+
+**5 — Teto duro (entra um, sai um).** Arquivo-alvo JA estourado (aprendizados com mais de 250
+linhas OU 15KB · claude.md mais de 300 linhas · MESTRE mais de 500) → escrita nova SO entra se
+sair volume equivalente na MESMA rodada (condensar/migrar antes, com aprovacao).
+
+**6 — claude.md e excecao da excecao; MESTRE e o destino vivo.** O claude.md do contexto so recebe
+escrita se for regra RIGIDA de operacao — quase nunca acontece. Decisao de negocio/estrategia/
+tatica/plano → **MESTRE** (documento vivo, mexe quase toda sessao).
 
 ---
 
@@ -155,7 +207,9 @@ Com base na resposta da Pergunta 2, escrever no arquivo `aprendizados_do_dia.md`
 | Metrica | Limite | Acao se exceder |
 |---------|--------|-----------------|
 | Linhas do `aprendizados_do_dia.md` | mais de 250 | Propor migracao de entradas antigas para `changelog.md` |
+| Tamanho do arquivo | mais de 15KB | Propor migracao (medir linhas E KB — linha longa passa no check de linhas e estoura o de KB) |
 | Numero de entradas `## ` | mais de 25 | Propor migracao/agrupamento |
+| Por entrada | mais de 8 linhas OU ~700 caracteres | Condensar (regra sem narrativa) |
 | Items `[x]` no `*MESTRE.md` | mais de 0 | Migrar para `changelog.md` (ver PASSO 3) |
 
 Se algum limite for ultrapassado, apresentar tabela numerada ao usuario com os candidatos a migracao:
@@ -205,7 +259,9 @@ Identificar todos os itens marcados como concluidos (formato `[x]`).
 
 Com base na resposta da Pergunta 3, atualizar a lista de pendencias no `*MESTRE.md` do contexto ativo:
 
-- Adicionar novas pendencias informadas pelo usuario (formato `[ ] [descricao]`)
+- Adicionar novas pendencias informadas pelo usuario (formato `[ ] [descricao]`) — **ANTES, buscar
+  nas pendencias existentes**: se o tema ja esta la, atualizar a linha existente, nunca duplicar
+- Pendencia nova = 1-2 linhas (o que + o que destrava) — spec e historico nao moram aqui
 - Manter as pendencias antigas que continuam abertas
 - Atualizar a data de "Ultima atualizacao" no cabecalho do documento mestre
 
@@ -300,10 +356,13 @@ Este passo so se aplica a quem usa **Claude Code** como agente. Se o usuario usa
 
 ### PASSO 6 — Atualizar index.md (raiz + contexto ativo)
 
+**Meta: 100% dos .md do contexto listados — sem excecao.** Satelite fora do index = documento
+invisivel que vira duplicata no futuro. A correcao e imediata (index e catalogo, nao conteudo).
+
 **Index do contexto ativo:**
 Se o arquivo `index.md` existir na pasta do contexto que esta sendo fechado:
 1. Listar todos os arquivos `.md` nessa pasta
-2. Comparar com o `index.md` atual
+2. Comparar com o `index.md` atual — **cross-check: TODO satelite da pasta tem entrada no index?** Faltando → adicionar na hora
 3. Para arquivos novos (satelites criados durante o dia): adicionar entrada com link
 4. Para arquivos removidos ou renomeados: atualizar
 5. Atualizar a data no cabecalho

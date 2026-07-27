@@ -17,7 +17,7 @@ description: |
 context: meuos
 user-invocable: true
 argument-hint: "(sem argumentos — roda na pasta do seu Claude Code atual)"
-version: 2.2
+version: 2.3
 author: Fernando Lúcio — Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
@@ -56,8 +56,10 @@ de **~64%** no custo fixo de cada sessao.
 
 ## Quando usar
 
-- Quando a Revisao Diaria (skill `fim-do-dia`) alertar que a memoria esta grande
-- Uma vez por mes como higiene preventiva
+- Quando o **Otimizar OS** sugerir ao concluir uma execucao — e o canal unico do lembrete
+  (no maximo 1x por mes). A Revisao Diaria (`fim-do-dia`) apenas observa, nao sugere esta skill.
+- Cadencia na pratica: lembrete mensal → o gate de "nada a fazer" decide se ha mesmo trabalho;
+  memoria saudavel → proxima execucao real fica pra ~90 dias
 - Quando sentir que o Claude Code esta lento ou confuso com coisas antigas
 - Quando o usuario disser "otimizar memoria", "limpar memoria do claude", "auditar memoria"
 
@@ -352,11 +354,14 @@ uma nota curta indicando a origem: "Promovido da memoria em DD/MM"
 
 ---
 
-## Integracao com outras skills
+## Integracao com outras skills (cadeia: fim-do-dia → otimizar-os → esta skill)
 
-- **Revisao Diaria (`fim-do-dia`)** — detecta quando a memoria esta grande e sugere rodar esta skill
-- **Otimizar OS** — foca nos arquivos do Drive (seu OS), nao toca na memoria do Claude Code
-- **Esta skill (`otimizar-memoria`)** — foca exclusivamente na memoria do Claude Code
+- **Revisao Diaria (`fim-do-dia`)** — diaria: captura com gate de escrita e higiene leve; apenas
+  OBSERVA a memoria (1 linha se estiver pesada), NAO sugere esta skill
+- **Otimizar OS** — semanal sob volume: organiza os arquivos do OS; ao concluir, e quem lembra
+  desta skill (no maximo 1x por mes)
+- **Esta skill (`otimizar-custo`)** — mensal sob lembrete (~90 dias se saudavel): exclusivamente
+  a memoria do Claude Code
 
 As tres juntas cobrem: encerramento do dia, organizacao dos docs do OS e higiene
 da memoria do agente. Rodar cada uma no momento certo mantem seu sistema enxuto
