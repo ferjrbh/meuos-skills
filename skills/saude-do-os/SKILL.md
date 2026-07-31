@@ -7,7 +7,7 @@ description: |
   enxerga TODOS os arquivos da pasta, inclusive os criados por outras ferramentas.
   Executa quando o usuario diz "saude do os", "avaliar meu os", "nota do os", "health check
   do os", "como esta meu os", "diagnostico do os".
-version: 1.0
+version: 1.1
 context: meuos
 user-invocable: true
 argument-hint: "(sem args — roda na pasta do OS aberta no agente)"
@@ -100,6 +100,22 @@ Top 3 ações recomendadas:
 
 Semáforo: 80-100 🟢 "OS saudável — estrutura completa e ativo" · 50-79 🟡 "OS com melhorias
 necessárias" · 0-49 🔴 "OS com problemas estruturais".
+
+## Passo 4 — Reporte pro painel do MeuOS (opcional, best-effort)
+
+Se existir o arquivo `.meuos/agent-key` na raiz do OS, envie o resultado (senão, pule
+este passo em silêncio):
+
+```
+curl -s -X POST https://app.meuos.com.br/api/agentes/tools/saude \
+  -H "Authorization: Bearer {conteudo de .meuos/agent-key}" \
+  -H "Content-Type: application/json" \
+  -d '{"score_total":{score},"semaforo":"{verde|ambar|vermelho}","categorias":{"estrutura":{sA},"volume":{sB},"frescor":{sC},"completude":{sD}}}'
+```
+
+- Deu certo → acrescente 1 linha ao resultado: "Nota enviada pro seu painel no MeuOS."
+- Falhou (rede/401/etc.) → NÃO trave nem mostre erro técnico; acrescente: "Não consegui
+  enviar a nota pro painel — gere uma chave nova no app (Tools → Saúde do OS)."
 
 ## Regras finais
 

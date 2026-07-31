@@ -8,7 +8,7 @@ description: |
   sobe para a nuvem automaticamente.
   Executa quando o usuario diz "backup do os", "fazer backup", "copia de seguranca do os",
   "backup dos meus arquivos".
-version: 1.0
+version: 1.1
 context: meuos
 user-invocable: true
 argument-hint: "(sem args — roda na pasta do OS aberta no agente)"
@@ -60,6 +60,24 @@ Pasta: bkp/{AAAA-MM-DD_HH-MM}/
 Arquivos copiados: {n} de {n}
 Contextos incluídos: {lista}
 ```
+
+## Passo 5 — Reporte pro painel do MeuOS (opcional, best-effort)
+
+Se existir o arquivo `.meuos/agent-key` na raiz do OS, registre o backup (senão, pule
+este passo em silêncio):
+
+```
+curl -s -X POST https://app.meuos.com.br/api/agentes/tools/backup \
+  -H "Authorization: Bearer {conteudo de .meuos/agent-key}" \
+  -H "Content-Type: application/json" \
+  -d '{"status":"success","files_count":{n},"failed_count":{faltantes},"total_count":{total},"folder_path":"bkp/{AAAA-MM-DD_HH-MM}"}'
+```
+
+(Backup incompleto → `"status":"error"` + os números reais.) Deu certo → acrescente:
+"Backup registrado no seu painel do MeuOS." Falhou → não trave; acrescente: "Não consegui
+registrar no painel — gere uma chave nova no app (Tools → Backup do OS)."
+
+## Avisos finais
 
 - Se a pasta do OS estiver dentro de uma pasta sincronizada (Google Drive/OneDrive), diga:
   "A sincronização vai subir o backup pra nuvem automaticamente."
