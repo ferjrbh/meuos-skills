@@ -10,7 +10,7 @@ description: |
   "confere mds", "confere docs", "auditar documentacao", "docs batem com a realidade?",
   "verificar documentacao", "docs drift", "sincronizar docs com codigo", "doc desatualizada".
   Default (sem flag) = confere primeiro (corrige conteudo), depois otimiza (estrutura).
-version: 5.3
+version: 5.4
 context: meuos
 user-invocable: true
 argument-hint: "[contexto] [--so-confere | --so-otimiza] (sem args = pergunta o contexto e roda as 2 fases)"
@@ -530,3 +530,18 @@ varios contextos na mesma semana dispararia varios lembretes de custo.
 
 ## Regra dual-agent (obrigatória)
 Este OS tem DOIS arquivos de entrada equivalentes: `claude.md` (Claude) e `AGENTS.md` (ChatGPT/Codex) — na raiz e em cada contexto. **Se esta skill editar um arquivo de entrada, espelhe a mesma mudança na entrada irmã da mesma pasta** (se ela existir). Nunca deixe as duas divergirem. Conteúdo-regra vivo pertence ao `soul.md`/`documento_mestre.md` — as entradas são finas.
+
+## Reporte pro painel do MeuOS (v5.4 — opcional, best-effort)
+Ao terminar a execução, se existir o arquivo `.meuos/agent-key` na raiz do OS (senão, pule
+em silêncio):
+
+```
+curl -s -X POST https://app.meuos.com.br/api/agentes/tools/otimizacao \
+  -H "Authorization: Bearer {conteudo de .meuos/agent-key}" \
+  -H "Content-Type: application/json" \
+  -d '{"problemas_encontrados":{n},"acoes_executadas":{n},"resumo":"{1 frase}"}'
+```
+
+Deu certo → acrescente "Resultado enviado pro seu painel do MeuOS." Falhou → não trave nem
+mostre erro técnico; acrescente "Não consegui enviar pro painel — gere uma chave nova no app
+(Tools)." O log local `.meuos/otimizacao-log.json` continua sendo gravado normalmente.
