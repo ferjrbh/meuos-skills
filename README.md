@@ -3,7 +3,7 @@
 > Skills oficiais do **MeuOS** para o seu Claude Code: organize seu OS pessoal, crie conteúdo,
 > faça growth, automação e produtividade — cada uma pronta para instalar em segundos.
 
-[![skills](https://img.shields.io/badge/skills-49-D95C1A?style=flat-square)](https://www.meuos.com.br)
+[![skills](https://img.shields.io/badge/skills-56-D95C1A?style=flat-square)](https://www.meuos.com.br)
 [![feito para](https://img.shields.io/badge/feito_para-Claude_Code-1A2B4A?style=flat-square)](https://claude.com/claude-code)
 [![MeuOS](https://img.shields.io/badge/MeuOS-meuos.com.br-D95C1A?style=flat-square)](https://www.meuos.com.br)
 
@@ -66,7 +66,7 @@ se não existir e confirme ao terminar.
 
 ## Catálogo
 
-### 🧩 Core — rode primeiro (6)
+### 🧩 Core — rode primeiro (7)
 Os ritos essenciais do MeuOS. Comece pela **MeuOS do Zero**.
 
 | Skill | O que faz | Gatilhos |
@@ -77,6 +77,7 @@ Os ritos essenciais do MeuOS. Comece pela **MeuOS do Zero**.
 | **[Otimizar OS](skills/otimizar-os/SKILL.md)** | Confere seus docs contra a realidade (código/banco/automações) **e** compacta/organiza — num fluxo só | *"otimizar os"*, *"confere mds"*, *"docs batem com a realidade?"*, *"limpar terreno"* |
 | **[Otimizar Custo](skills/otimizar-custo/SKILL.md)** | Reduz o custo de tokens higienizando a memória do agente | *"otimizar custo"*, *"otimizar memória"* |
 | **[Conferir Entrega](skills/conferir-entrega/SKILL.md)** | Checa tudo antes de declarar uma tarefa concluída | *"conferir entrega"*, *"terminei"* |
+| **[Criar Skill](skills/criar-skill/SKILL.md)** | Transforma uma tarefa sua num procedimento reutilizável do agente: entrevista, template, teste e instalação | *"criar skill"*, *"transformar isso em skill"* |
 
 ### 📊 Apresentações (3)
 
@@ -118,7 +119,7 @@ Os ritos essenciais do MeuOS. Comece pela **MeuOS do Zero**.
 | **[Growth — Lead Magnets](skills/growth-lead-magnets/SKILL.md)** | Iscas de captura (ebook, checklist) + nurturing | *"lead magnet"*, *"isca"* |
 | **[Growth — Free Tool](skills/growth-free-tool/SKILL.md)** | Ferramenta grátis como isca de captação | *"ferramenta gratuita isca"* |
 
-### 🎯 Marketing (10)
+### 🎯 Marketing (13)
 
 | Skill | O que faz | Gatilhos |
 |---|---|---|
@@ -132,6 +133,9 @@ Os ritos essenciais do MeuOS. Comece pela **MeuOS do Zero**.
 | **[Market Landing](skills/market-landing/SKILL.md)** | Análise CRO de landing page | *"analisar landing"* |
 | **[Market Launch](skills/market-launch/SKILL.md)** | Playbook completo de lançamento de produto | *"lançamento de produto"* |
 | **[Market Competitors](skills/market-competitors/SKILL.md)** | Análise competitiva e identificação de gaps | *"análise de concorrentes"* |
+| **[Market Audit](skills/market-audit/SKILL.md)** | Auditoria completa do marketing a partir da URL, com nota e plano priorizado | *"auditoria de marketing"*, *"analisar meu site"* |
+| **[Market Report](skills/market-report/SKILL.md)** | Compila as análises num relatório único, apresentável ao cliente ou à diretoria | *"relatório de marketing"*, *"compilar relatório"* |
+| **[Market Proposal](skills/market-proposal/SKILL.md)** | Proposta comercial de marketing com escopo, preço em três níveis e projeção de retorno | *"proposta de marketing"*, *"proposta pro cliente"* |
 
 ### 🛠️ Lovable (2)
 
@@ -155,10 +159,7 @@ Os ritos essenciais do MeuOS. Comece pela **MeuOS do Zero**.
 | **[n8n AI Agents & RAG](skills/n8n-ai-rag/SKILL.md)** | Agentes de IA e workflows RAG no n8n | *"rag no n8n"*, *"agente n8n"* |
 | **[n8n Skills (Patterns & Code)](skills/n8n-skills/SKILL.md)** | Patterns canônicos, Code node e expressões do n8n | *"n8n skills"*, *"patterns n8n"* |
 
-### 🚀 Avançado — exclusiva dos tiers Presencial e Corp (1)
-
-| Skill | O que faz | Gatilhos |
-|---|---|---|
+---|---|---|
 | **[Criar Skill](skills/criar-skill/SKILL.md)** | Transforma uma tarefa sua num procedimento reutilizável do agente — o POP do seu agente, com entrevista, template, teste e instalação dual | *"criar skill"*, *"transformar isso em skill"* |
 
 ---
