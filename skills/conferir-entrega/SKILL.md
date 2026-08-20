@@ -5,7 +5,7 @@ description: |
   ao perceber que algo foi concluido. Tambem roda quando o usuario diz "conferir entrega",
   "verificar entrega", "pronto", "terminei", "conclui", "feito", "pode fechar", "entregue", "finalizado".
   Garante que nada foi esquecido, o OS esta atualizado e dados sensiveis estao protegidos.
-version: 1.1
+version: 1.2
 context: meuos
 user-invocable: true
 argument-hint: "[tipo da entrega] (opcional)"
@@ -62,6 +62,12 @@ Esta skill e uma verificacao rapida que roda quando voce termina qualquer entreg
 - \[ \] Itens concluidos estao marcados \[x\] ou migrados para changelog?
 - \[ \] Aprendizados capturados? (o que funcionou, o que nao fazer)
 
+### Conteudo (aplicar em TODA entrega com afirmacao de fato)
+
+- \[ \] Cada afirmacao de fato tem fonte apontavel? (documento, dado, log ou codigo que voce consegue mostrar; "eu acho" nao e fonte)
+- \[ \] As partes da peca concordam entre si? (o texto nao nega uma tabela, um numero ou uma secao que esta na propria peca)
+- \[ \] O que foi verificado foi LIDO de verdade, ou so varrido por busca automatica? (varredura valida forma, nunca verdade)
+
 ### Seguranca (aplicar em TODA entrega)
 
 - \[ \] Nenhuma senha, token ou chave exposta em texto visivel?
@@ -86,6 +92,8 @@ Verificacoes:
 Proximo passo sugerido: [se houver]
 ```
 
+> No item de Conteudo, a evidencia e citar a afirmacao mais arriscada da peca e onde esta a fonte dela. Sem exemplo citado, o check nao conta.
+
 ---
 
 ## Quando NAO usar
@@ -101,6 +109,7 @@ Proximo passo sugerido: [se houver]
 - **Nunca pular o check de seguranca** — ele se aplica a TODA entrega, sem excecao
 - **Nunca declarar pronto sem evidencia** — mostrar o que foi verificado
 - **Nunca inventar verificacoes** — se nao verificou, nao marcar \[x\]
+- **Varredura automatica valida forma, nunca verdade**: grep/busca confirma que um termo existe, nao que uma afirmacao e verdadeira. Verdade exige releitura.
 - **Adaptar ao tipo de entrega** — nao aplicar checks de automacao numa decisao simples
 
 ---
