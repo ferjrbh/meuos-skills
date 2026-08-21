@@ -3,7 +3,7 @@
 > Skills oficiais do **MeuOS** para o seu Claude Code: organize seu OS pessoal, crie conteúdo,
 > faça growth, automação e produtividade — cada uma pronta para instalar em segundos.
 
-[![skills](https://img.shields.io/badge/skills-55-D95C1A?style=flat-square)](https://www.meuos.com.br)
+[![skills](https://img.shields.io/badge/skills-56-D95C1A?style=flat-square)](https://www.meuos.com.br)
 [![feito para](https://img.shields.io/badge/feito_para-Claude_Code-1A2B4A?style=flat-square)](https://claude.com/claude-code)
 [![MeuOS](https://img.shields.io/badge/MeuOS-meuos.com.br-D95C1A?style=flat-square)](https://www.meuos.com.br)
 
@@ -159,8 +159,12 @@ Os ritos essenciais do MeuOS. Comece pela **MeuOS do Zero**.
 | **[n8n AI Agents & RAG](skills/n8n-ai-rag/SKILL.md)** | Agentes de IA e workflows RAG no n8n | *"rag no n8n"*, *"agente n8n"* |
 | **[n8n Skills (Patterns & Code)](skills/n8n-skills/SKILL.md)** | Patterns canônicos, Code node e expressões do n8n | *"n8n skills"*, *"patterns n8n"* |
 
----|---|---|
+### 🔒 Avançado — exclusiva dos tiers Presencial e Corp (2)
+
+| Skill | O que faz | Gatilhos |
+|---|---|---|
 | **[Criar Skill](skills/criar-skill/SKILL.md)** | Transforma uma tarefa sua num procedimento reutilizável do agente — o POP do seu agente, com entrevista, template, teste e instalação dual | *"criar skill"*, *"transformar isso em skill"* |
+| **[Avaliar Skill](skills/avaliar-skill/SKILL.md)** | Audita a qualidade e os riscos de uma skill (sua ou de terceiro) antes de instalar ou publicar: veredito APROVADA / USAR COM ATENÇÃO / REPROVADA, com os consertos priorizados | *"avalia essa skill"*, *"essa skill é segura?"*, *"posso instalar essa skill?"* |
 
 ---
 
