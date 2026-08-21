@@ -66,7 +66,7 @@ se não existir e confirme ao terminar.
 
 ## Catálogo
 
-### 🧩 Core — rode primeiro (7)
+### 🧩 Core — rode primeiro (8)
 Os ritos essenciais do MeuOS. Comece pela **MeuOS do Zero**.
 
 | Skill | O que faz | Gatilhos |
@@ -78,6 +78,7 @@ Os ritos essenciais do MeuOS. Comece pela **MeuOS do Zero**.
 | **[Otimizar Custo](skills/otimizar-custo/SKILL.md)** | Reduz o custo de tokens higienizando a memória do agente | *"otimizar custo"*, *"otimizar memória"* |
 | **[Conferir Entrega](skills/conferir-entrega/SKILL.md)** | Checa tudo antes de declarar uma tarefa concluída | *"conferir entrega"*, *"terminei"* |
 | **[Criar Skill](skills/criar-skill/SKILL.md)** | Transforma uma tarefa sua num procedimento reutilizável do agente: entrevista, template, teste e instalação | *"criar skill"*, *"transformar isso em skill"* |
+| **[Avaliar Skill](skills/avaliar-skill/SKILL.md)** | Audita a qualidade e os riscos de uma skill (sua ou de terceiro) antes de instalar ou publicar: veredito APROVADA / USAR COM ATENÇÃO / REPROVADA, com os consertos priorizados | *"avalia essa skill"*, *"essa skill é segura?"*, *"posso instalar essa skill?"* |
 
 ### 📊 Apresentações (3)
 
@@ -158,13 +159,6 @@ Os ritos essenciais do MeuOS. Comece pela **MeuOS do Zero**.
 | **[Conectar n8n](skills/conectar-n8n/SKILL.md)** | Claude cria, edita e debuga workflows n8n via API REST | *"conectar n8n"* |
 | **[n8n AI Agents & RAG](skills/n8n-ai-rag/SKILL.md)** | Agentes de IA e workflows RAG no n8n | *"rag no n8n"*, *"agente n8n"* |
 | **[n8n Skills (Patterns & Code)](skills/n8n-skills/SKILL.md)** | Patterns canônicos, Code node e expressões do n8n | *"n8n skills"*, *"patterns n8n"* |
-
-### 🔒 Avançado — exclusiva dos tiers Presencial e Corp (2)
-
-| Skill | O que faz | Gatilhos |
-|---|---|---|
-| **[Criar Skill](skills/criar-skill/SKILL.md)** | Transforma uma tarefa sua num procedimento reutilizável do agente — o POP do seu agente, com entrevista, template, teste e instalação dual | *"criar skill"*, *"transformar isso em skill"* |
-| **[Avaliar Skill](skills/avaliar-skill/SKILL.md)** | Audita a qualidade e os riscos de uma skill (sua ou de terceiro) antes de instalar ou publicar: veredito APROVADA / USAR COM ATENÇÃO / REPROVADA, com os consertos priorizados | *"avalia essa skill"*, *"essa skill é segura?"*, *"posso instalar essa skill?"* |
 
 ---
 
