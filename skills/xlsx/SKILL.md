@@ -161,3 +161,16 @@ wb.save('modified.xlsx')
 ---
 
 > Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+
+---
+
+## Checklist final: a execucao foi bem feita? (conferir ANTES de declarar concluido)
+
+- [ ] Entregavel e arquivo de planilha (.xlsx/.csv) no formato pedido
+- [ ] Formula onde ha calculo, NUNCA valor hardcoded de calculo
+- [ ] Planilha abre sem erro; abas, cabecalhos e totais conferidos
+- [ ] Dados de entrada preservados; limpeza so a aprovada
+- [ ] Numeros criticos validados por amostra contra a fonte
+- [ ] Caminho do arquivo entregue ao usuario
+
+Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.

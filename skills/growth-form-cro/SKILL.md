@@ -2,7 +2,7 @@
 name: growth-form-cro
 description: When the user wants to optimize any form that is NOT signup/registration — including lead capture forms, contact forms, demo request forms, application forms, survey forms, or checkout forms. Also use when the user mentions "form optimization," "lead form conversions," "form friction," "form fields," "form completion rate," "contact form," "nobody fills out our form," "form abandonment," "too many fields," "demo request form," or "lead form isn't converting." Use this for any non-signup form that captures information. For signup/registration forms, see growth-signup-cro. For popups containing forms, see growth-popup-cro. Also trigger on: "otimizar formulario", "melhorar form", "formulario de contato", "ninguem preenche o form", "form nao converte".
 metadata:
-  version: 1.1.0
+  version: 1.2.0
 author: Fernando Lúcio — Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
@@ -434,3 +434,17 @@ Ideas to A/B test with expected outcomes
 ---
 
 > Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+
+---
+
+## Final checklist: was the run done right? (verify BEFORE declaring done)
+
+- [ ] Product context loaded from `.agents/product-marketing-context.md` (or gathered first); no invented product facts
+- [ ] Analysis grounded in what was actually read (URL, page or data fetched), not generic best practice alone
+- [ ] Output follows this skill's Output Format section, prioritized by impact vs effort
+- [ ] Benchmarks labeled as benchmarks and kept separate from the user's real data
+- [ ] Experiments / next steps include how success will be measured
+- [ ] Every field kept or removed has a stated reason
+- [ ] No live site or user file was changed without explicit approval
+
+If any item failed: fix it BEFORE declaring done. Never report "done" while an item is pending.

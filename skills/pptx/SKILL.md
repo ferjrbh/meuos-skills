@@ -223,3 +223,16 @@ pdftoppm -png presentation.pdf slide
 ---
 
 > Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+
+---
+
+## Checklist final: a execucao foi bem feita? (conferir ANTES de declarar concluido)
+
+- [ ] Formato confirmado (arquivo .pptx real, e nao HTML navegavel) antes de gerar
+- [ ] Arquivo abre sem erro e todos os slides pedidos existem
+- [ ] QA da propria skill rodado: texto sem overflow, imagens no lugar
+- [ ] Paleta e fonte do contexto aplicadas, nada inventado
+- [ ] Edicao preservou os slides que nao foram pedidos
+- [ ] Caminho do arquivo entregue ao usuario
+
+Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.

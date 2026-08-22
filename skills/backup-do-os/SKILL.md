@@ -8,7 +8,7 @@ description: |
   sobe para a nuvem automaticamente.
   Executa quando o usuario diz "backup do os", "fazer backup", "copia de seguranca do os",
   "backup dos meus arquivos".
-version: 1.1
+version: 1.2
 context: meuos
 user-invocable: true
 argument-hint: "(sem args — roda na pasta do OS aberta no agente)"
@@ -85,3 +85,16 @@ registrar no painel — gere uma chave nova no app (Tools → Backup do OS)."
   a pasta do OS dentro do Drive/OneDrive pra ter cópia na nuvem."
 - Nunca proponha apagar backups antigos. Se o usuário pedir pra apagar, confirme antes e
   apague SOMENTE a pasta de backup que ele nomear.
+
+---
+
+## Checklist final: a execucao foi bem feita? (conferir ANTES de declarar concluido)
+
+- [ ] Raiz do OS confirmada antes de copiar (Passo 0)
+- [ ] Backup criado em `bkp/AAAA-MM-DD_HH-MM/`, na convencao do app
+- [ ] Conferencia arquivo por arquivo feita: contagem e tamanhos batem entre origem e copia
+- [ ] Resumo apresentado no formato fixo do Passo 4
+- [ ] Nada foi apagado ou movido da pasta original
+- [ ] Reporte pro painel enviado, ou pulado em silencio se nao ha `.meuos/agent-key`
+
+Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.

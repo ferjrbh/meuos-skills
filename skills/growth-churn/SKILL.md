@@ -2,7 +2,7 @@
 name: growth-churn
 description: "When the user wants to reduce churn, build cancellation flows, set up save offers, recover failed payments, or implement retention strategies. Also use when the user mentions 'churn,' 'cancel flow,' 'offboarding,' 'save offer,' 'dunning,' 'failed payment recovery,' 'win-back,' 'retention,' 'exit survey,' 'pause subscription,' 'involuntary churn,' 'people keep canceling,' 'churn rate is too high,' 'how do I keep users,' or 'customers are leaving.' Use this whenever someone is losing subscribers or wants to build systems to prevent it. For post-cancel win-back email sequences, see market-emails. For in-app upgrade paywalls, see growth-paywall-cro. Also trigger on: 'reduzir churn', 'retencao', 'cancelamento', 'prevenir churn', 'fluxo de cancelamento', 'dunning', 'pagamento falhou', 'win-back'."
 metadata:
-  version: 1.1.0
+  version: 1.2.0
 author: Fernando Lúcio — Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
@@ -429,3 +429,17 @@ For implementation, see the [tools registry](../../tools/REGISTRY.md).
 ---
 
 > Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+
+---
+
+## Final checklist: was the run done right? (verify BEFORE declaring done)
+
+- [ ] Product context loaded from `.agents/product-marketing-context.md` (or gathered first); no invented product facts
+- [ ] Analysis grounded in what was actually read (URL, page or data fetched), not generic best practice alone
+- [ ] Output follows this skill's Output Format section, prioritized by impact vs effort
+- [ ] Benchmarks labeled as benchmarks and kept separate from the user's real data
+- [ ] Experiments / next steps include how success will be measured
+- [ ] Each churn cause is tied to data or the user's answers, and each retention play maps to a cause
+- [ ] No live site or user file was changed without explicit approval
+
+If any item failed: fix it BEFORE declaring done. Never report "done" while an item is pending.

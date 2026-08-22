@@ -32,3 +32,15 @@ Gero DOIS entregáveis:
 ---
 
 > Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+
+---
+
+## Checklist final: a execucao foi bem feita? (conferir ANTES de declarar concluido)
+
+- [ ] Referencia visual analisada de verdade (imagem ou URL lida), nunca descrita de memoria
+- [ ] Prompt segue o Output padrao da skill, completo
+- [ ] Prompt instrui preservar o que ja existe no projeto alvo
+- [ ] Cores, tipografia e espacamento extraidos da referencia com valores concretos
+- [ ] Entregue pronto pra colar, autocontido (nao depende desta conversa)
+
+Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.

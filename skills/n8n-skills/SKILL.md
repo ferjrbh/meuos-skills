@@ -1,7 +1,7 @@
 ---
 name: n8n Skills (Patterns, Code, Expressões)
 description: Compendio profundo pra desenhar workflows n8n. 8 patterns canonicos (incluindo sub-workflow, error workflow, batch+retry), node configuration, Code JS/Python, expressoes, respondToWebhook 3 modos.
-version: 3.0
+version: 3.1
 context: meuos
 category: n8n
 user-invocable: true
@@ -326,3 +326,15 @@ Responde com JSON literal customizado (use expressoes pra montar).
 ---
 
 > Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+
+---
+
+## Checklist final: a execucao foi bem feita? (conferir ANTES de declarar concluido)
+
+- [ ] Pattern canonico escolhido e nomeado (um dos 8), nao topologia improvisada
+- [ ] Configuracao de nodes respeita as regras de dependencia da skill
+- [ ] Expressoes `{{ }}` validadas na sintaxe correta
+- [ ] Error handling presente (error workflow / retry) onde o fluxo e critico
+- [ ] Workflow executado com payload real antes de declarar pronto
+
+Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.

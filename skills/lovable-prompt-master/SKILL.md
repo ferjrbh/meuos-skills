@@ -53,3 +53,15 @@ Use Tailwind CSS. Exporte como componente React reutilizável."
 ---
 
 > Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+
+---
+
+## Checklist final: a execucao foi bem feita? (conferir ANTES de declarar concluido)
+
+- [ ] Prompt cobre UMA coisa por vez (Regra 1)
+- [ ] Contexto vem antes da instrucao; referencia visual incluida quando existe
+- [ ] Prompt manda preservar o que ja existe no projeto
+- [ ] Template certo usado (feature / bug / design)
+- [ ] Entregue pronto pra colar, autocontido
+
+Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.

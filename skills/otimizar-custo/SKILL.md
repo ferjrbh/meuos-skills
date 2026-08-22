@@ -17,7 +17,7 @@ description: |
 context: meuos
 user-invocable: true
 argument-hint: "(sem argumentos — roda na pasta do seu Claude Code atual)"
-version: 2.3
+version: 2.4
 author: Fernando Lúcio — Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
@@ -373,3 +373,15 @@ e barato de operar.
 
 ## Regra dual-agent (obrigatória)
 Esta skill é EXCLUSIVA do Claude Code (depende do `MEMORY.md`, que não existe no ChatGPT/Codex) — se o agente atual não for Claude Code, avise e pare. Exceção espelhável: se a skill enxugar o `claude.md` do OS, **espelhe a mesma mudança no `AGENTS.md` da mesma pasta** (se existir).
+
+---
+
+## Checklist final: a execucao foi bem feita? (conferir ANTES de declarar concluido)
+
+- [ ] MEMORY.md + arquivos de topico escaneados e cada entrada classificada (OK / velha / duplicada / pertence ao OS)
+- [ ] Plano apresentado e SO o aprovado foi aplicado
+- [ ] O que pertence ao OS foi MOVIDO pro contexto certo, nao apagado
+- [ ] Nada removido sem registro do que saiu
+- [ ] Resultado no formato de saida oficial, com antes/depois de linhas
+
+Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.

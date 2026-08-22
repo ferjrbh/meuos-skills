@@ -2,7 +2,7 @@
 name: growth-context
 description: "When the user wants to create or update their product marketing context document. Also use when the user mentions 'product context,' 'marketing context,' 'set up context,' 'positioning,' 'who is my target audience,' 'describe my product,' 'ICP,' 'ideal customer profile,' or wants to avoid repeating foundational information across marketing tasks. Use this at the start of any new project before using other marketing skills — it creates `.agents/product-marketing-context.md` that all other skills reference for product, audience, and positioning context. Also trigger on: 'contexto de marketing', 'brief do produto', 'posicionamento', 'ICP', 'perfil de cliente ideal', 'publico alvo', 'persona'."
 metadata:
-  version: 1.1.0
+  version: 1.2.0
 author: Fernando Lúcio — Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
@@ -248,3 +248,15 @@ After gathering information, create `.agents/product-marketing-context.md` with 
 ---
 
 > Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+
+---
+
+## Final checklist: was the run done right? (verify BEFORE declaring done)
+
+- [ ] All sections of the context document captured, or explicitly marked as unknown
+- [ ] Every fact confirmed by the user or sourced from their site/materials; nothing invented
+- [ ] Document saved to `.agents/product-marketing-context.md`
+- [ ] Customer language captured verbatim where available, not paraphrased into marketing-speak
+- [ ] User told this document feeds the other marketing skills and how to update it
+
+If any item failed: fix it BEFORE declaring done. Never report "done" while an item is pending.

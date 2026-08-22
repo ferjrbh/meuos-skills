@@ -8,7 +8,7 @@ description: |
   "criar template de slides", "meu modelo visual", "padrao visual para apresentacoes",
   "template de apresentacao", "design system de slides", "modelo de ppt", "modelo para slides".
   O modelo gerado vira fonte-de-verdade da skill "Criar Apresentacao".
-version: 1.5
+version: 1.6
 context: meuos
 user-invocable: true
 argument-hint: "(sem argumentos — a skill faz entrevista completa)"
@@ -1927,3 +1927,16 @@ LTDA" — voce NUNCA deve deixar esses textos no HTML final.
 ---
 
 > Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+
+---
+
+## Checklist final: a execucao foi bem feita? (conferir ANTES de declarar concluido)
+
+- [ ] Cores, fonte e logo do usuario coletados e aplicados (nenhuma paleta inventada)
+- [ ] Todos os layouts do blueprint gerados, nenhum pulado
+- [ ] Regra de ouro HTML->PDF respeitada: cada slide e uma pagina fechada, sem estouro
+- [ ] Arquivos salvos no lugar combinado e caminho entregue ao usuario
+- [ ] Preview validado visualmente antes de declarar pronto
+- [ ] Nada sobrescrito sem aprovacao
+
+Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.

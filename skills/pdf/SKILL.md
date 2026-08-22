@@ -239,3 +239,16 @@ for i, page in enumerate(reader.pages):
 ---
 
 > Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+
+---
+
+## Checklist final: a execucao foi bem feita? (conferir ANTES de declarar concluido)
+
+- [ ] Operacao executada e a pedida (extrair / merge / dividir / OCR / criar / formulario)
+- [ ] PDF resultante abre e tem o numero de paginas esperado
+- [ ] Texto extraido conferido por amostra contra o original; resultado de OCR marcado como OCR
+- [ ] Formulario preenchido validado campo a campo
+- [ ] Original NUNCA sobrescrito: resultado vai em arquivo novo
+- [ ] Caminho do arquivo entregue ao usuario
+
+Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.

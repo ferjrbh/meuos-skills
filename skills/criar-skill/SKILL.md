@@ -11,7 +11,7 @@ description: |
   "transformar isso em skill", "virar skill", "ensinar meu agente a fazer X sempre assim",
   "padronizar essa tarefa", "toda vez que eu pedir X, faca Y", "salvar esse processo",
   "melhorar minha skill", "minha skill nao dispara", "skill do zero", "documentar meu jeito de fazer".
-version: 1.0
+version: 1.1
 context: meuos
 user-invocable: true
 argument-hint: "[tarefa ou nome da skill] (sem args = entrevista do zero)"
@@ -231,3 +231,16 @@ Toda vez que a skill errar ou o seu processo mudar:
 ---
 
 > Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+
+---
+
+## Checklist final: a execucao foi bem feita? (conferir ANTES de declarar concluido)
+
+- [ ] Entrevista das 4 perguntas feita ANTES de escrever
+- [ ] Rascunho segue o template oficial (frontmatter valido: name, description com gatilhos, version)
+- [ ] Teste de disparo feito: 2-3 pedidos reais disparam, e pedido fora do escopo NAO dispara
+- [ ] Instalada na pasta do agente correto (Claude: `~/.claude/skills/` · Codex: `.meuos/skills/` + AGENTS.md)
+- [ ] A skill nova declara o que NUNCA faz (regras de seguranca)
+- [ ] Nenhuma skill existente sobrescrita sem mostrar antes
+
+Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.

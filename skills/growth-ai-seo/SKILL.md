@@ -2,7 +2,7 @@
 name: growth-ai-seo
 description: "When the user wants to optimize content for AI search engines, get cited by LLMs, or appear in AI-generated answers. Also use when the user mentions 'AI SEO,' 'AEO,' 'GEO,' 'LLMO,' 'answer engine optimization,' 'generative engine optimization,' 'LLM optimization,' 'AI Overviews,' 'optimize for ChatGPT,' 'optimize for Perplexity,' 'AI citations,' 'AI visibility,' 'zero-click search,' 'how do I show up in AI answers,' 'LLM mentions,' or 'optimize for Claude/Gemini.' Use this whenever someone wants their content to be cited or surfaced by AI assistants and AI search engines. For traditional technical and on-page SEO audits, see growth-seo-audit. For structured data implementation, see growth-schema. Tambem ativar com: 'SEO pra IA', 'aparecer no ChatGPT', 'AI overview', 'GEO', 'otimizar pra Perplexity', 'citacao em IA', 'busca por IA'."
 metadata:
-  version: 1.1.0
+  version: 1.2.0
 author: Fernando Lúcio — Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
@@ -402,3 +402,17 @@ For implementation, see the [tools registry](../../tools/REGISTRY.md).
 ---
 
 > Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+
+---
+
+## Final checklist: was the run done right? (verify BEFORE declaring done)
+
+- [ ] Product context loaded from `.agents/product-marketing-context.md` (or gathered first); no invented product facts
+- [ ] Analysis grounded in what was actually read (URL, page or data fetched), not generic best practice alone
+- [ ] Output follows this skill's Output Format section, prioritized by impact vs effort
+- [ ] Benchmarks labeled as benchmarks and kept separate from the user's real data
+- [ ] Experiments / next steps include how success will be measured
+- [ ] Recommendations distinguish classic SEO from AI-citation optimization (they are graded separately)
+- [ ] No live site or user file was changed without explicit approval
+
+If any item failed: fix it BEFORE declaring done. Never report "done" while an item is pending.

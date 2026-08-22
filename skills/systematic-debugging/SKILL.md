@@ -82,3 +82,15 @@ TESTE: [como validar a hipotese sem alterar nada]
 ---
 
 > Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+
+---
+
+## Checklist final: a execucao foi bem feita? (conferir ANTES de declarar concluido)
+
+- [ ] Evidencias coletadas ANTES de mexer (log, erro exato, quando comecou)
+- [ ] Causa diagnosticada e nomeada antes do conserto
+- [ ] Uma correcao por vez; a mesma tentativa nunca repetida
+- [ ] Correcao confirmada pelo caminho real (rodou de novo e leu o resultado)
+- [ ] Prevencao registrada (aprendizado ou regra) quando o erro pode voltar
+
+Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.
