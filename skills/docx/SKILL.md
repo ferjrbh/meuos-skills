@@ -8,6 +8,7 @@ description: |
   NAO usar quando o entregavel for PDF (usar pdf), HTML, planilha (usar xlsx) ou apresentacao (usar pptx).
   DESAMBIGUACAO: Se voce disser 'documento' ou 'criar documento' sem formato, PERGUNTAR:
   "Qual formato? 1) Word .docx (docx) 2) PDF (pdf) 3) Planilha Excel (xlsx)"
+version: 1.2
 author: Fernando Lúcio — Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia

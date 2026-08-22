@@ -1,6 +1,7 @@
 ---
 name: Lovable Prompt Master
 description: Cria prompts otimizados para o Lovable baseados nas melhores práticas oficiais. Invoque ela sempre que eu pedir para "criar prompt pro Lovable", "como pedir pro Lovable fazer X", ou quando for construir/modificar qualquer feature nos projetos via lovable
+version: 1.1
 author: Fernando Lúcio — Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
