@@ -14,7 +14,7 @@ description: |
   Executa quando o usuario diz "meuos do zero", "configurar meu os", "comecar meu os", "montar meu os",
   "instalei errado", "meu os ta baguncado", "nao tenho os ainda", "organizar meu os do zero",
   "consertar minha instalacao", "setup do os", "arrumar meu os", "organizar esta pasta no padrao".
-version: 1.1
+version: 1.2
 context: meuos
 user-invocable: true
 author: Fernando Lúcio — Aion Group
@@ -71,6 +71,13 @@ mas as REGRAS moram num lugar so — as entradas sao finas e nunca divergem.
 | `aprendizados_do_dia.md` | Captura de conhecimento: Insight + Solucao + Nao fazer |
 | `changelog.md` | Historico do que foi feito (append-only) |
 | `index.md` | Catalogo da pasta |
+
+**Satelites** (`CONTEXTO_TEMA.md`): o setimo cidadao de cada contexto, criado **sob demanda**.
+Detalhe duravel de UM tema (spec, inventario, medicao com data, evidencia) mora num satelite, nunca
+dentro do `documento_mestre.md`. Todo satelite abre com `> Documento pai:` apontando pro mestre, e o
+mestre + `index.md` apontam de volta (ponteiro dos dois lados). **Esta skill NAO cria satelite no
+setup**: satelite nasce durante o trabalho, quando um tema ganha detalhe duravel; arquivo vazio
+"pra constar" so entope o index.
 
 **Sinais auxiliares** (podem existir — nunca sao problema):
 - `.meuos/skills/` — skills instaladas pelo caminho ChatGPT/Codex (ficam DENTRO da pasta do OS)
@@ -290,6 +297,21 @@ fundo — isso e o curso):
 - **Nunca fazer questionario longo** — so o essencial; o resto e o curso
 - **Nunca colocar regra operacional no soul.md** — soul e so personalidade/comportamento, leve
 - Usar **sempre os templates oficiais** do repo (nao improvisar estrutura)
+
+---
+
+## Checklist final: a execucao foi bem feita? (conferir ANTES de declarar concluido)
+
+- [ ] Pasta de trabalho confirmada pelo usuario (PASSO 0) e agente detectado (PASSO 0.5)
+- [ ] Diagnostico e plano apresentados; NADA foi executado sem aprovacao
+- [ ] Arquivos criados a partir dos templates oficiais, marcadores substituidos (nenhum `{{...}}` sobrando)
+- [ ] Nenhum arquivo do usuario apagado ou sobrescrito (mover/fundir = original preservado em `historico/`)
+- [ ] `claude.md` e `AGENTS.md` finos e espelhados (regra viva so no soul/mestre)
+- [ ] `index.md` (raiz e contextos) lista TODOS os .md, satelites incluidos
+- [ ] Skills core presentes e validas no caminho do agente detectado
+- [ ] Fechamento apresentado com os proximos passos (PASSO 7)
+
+Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.
 
 ---
 

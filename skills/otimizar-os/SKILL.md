@@ -10,7 +10,7 @@ description: |
   "confere mds", "confere docs", "auditar documentacao", "docs batem com a realidade?",
   "verificar documentacao", "docs drift", "sincronizar docs com codigo", "doc desatualizada".
   Default (sem flag) = confere primeiro (corrige conteudo), depois otimiza (estrutura).
-version: 5.4
+version: 5.5
 context: meuos
 user-invocable: true
 argument-hint: "[contexto] [--so-confere | --so-otimiza] (sem args = pergunta o contexto e roda as 2 fases)"
@@ -110,7 +110,7 @@ Data: [DATA]
 | Tipo de arquivo | 🟢 OK | 🟡 Atencao | 🔴 Precisa de acao |
 |---|---|---|---|
 | `claude.md` | menos de 200 linhas | 200-300 | mais de 300 -> split em satelite |
-| `*MESTRE.md` (qualquer nivel) | menos de 300 linhas | 300-500 | mais de 500 -> extrair secoes densas |
+| `*MESTRE.md` (qualquer nivel) | menos de 300 linhas E menos de 25KB | 300-500 linhas ou 25-40KB | mais de 500 linhas OU mais de 40KB -> extrair secoes densas |
 | Satelite tematico (ex: `CLIENTE_tech_api.md`) | menos de 25KB | 25-40KB | mais de 40KB -> split por tema |
 | `changelog.md` | menos de 30KB | 30-50KB | mais de 50KB -> arquivar antigos em `historico/` |
 | `aprendizados_do_dia.md` | menos de 200 linhas E de 15KB | 200-250 linhas ou 15KB | mais de 250 linhas OU 15KB -> evento->changelog · decisao->mestre · regra tecnica->satelite |
@@ -414,9 +414,16 @@ FREQUENCIA de uso:
 > o tema surge). Promover regra de tema especifico pra mesa nao reduz o imposto fixo — so muda de bolso.
 > Mover pra gaveta reduz.
 
-**Quando criar um satelite (as DUAS condicoes precisam ser verdade):**
-1. O MESTRE ja esta **grande** (🟡 acima de 300 linhas; prioridade se 🔴 acima de 500). Mestre pequeno nao justifica satelite.
-2. Ha **massa suficiente** sobre aquele tema (~40+ linhas sobre UM assunto). Nao criar satelite para 10 linhas — fragmenta sem ganho.
+**Quando um satelite nasce: dois criterios DIFERENTES, nao confundir.**
+
+- **Na ESCRITA (vale sempre, mesmo com o MESTRE pequeno):** a casa do conteudo se decide pela
+  NATUREZA do fato, nunca pelo tamanho do arquivo. Medicao, inventario, spec e evidencia NASCEM
+  em satelite do tema (com data), e o MESTRE recebe so o ponteiro de 1 linha. Estado atual, bola
+  e proximo passo NASCEM no MESTRE. E isso que impede o mestre de engordar; esperar ele ficar
+  grande pra separar e enxugar gelo.
+- **No SPLIT RETROATIVO (faxina do que JA esta dentro do MESTRE), as DUAS condicoes precisam ser verdade:**
+  1. O MESTRE ja esta **grande** (🟡 acima de 300 linhas ou 25KB; prioridade se 🔴). Mestre pequeno nao justifica split.
+  2. Ha **massa suficiente** sobre aquele tema (~40+ linhas sobre UM assunto). Nao splittar 10 linhas: fragmenta sem ganho.
 
 Candidatos a promocao: regra que vale pra TODA sessao + referenciada com frequencia + do tipo "NUNCA/SEMPRE"
 + mais de 30 dias sem contestacao. Apresentar a tabela `# | regra | origem | sugestao` e perguntar. **NUNCA
@@ -427,12 +434,17 @@ aprendizados (para nao duplicar); (3) e registrada no changelog.
 > personalidade do agente — deve ser leve. Regra operacional (taxas, fluxos, "sempre fazer X no produto") vai
 > para claude.md / mestre / satelite, nunca para o soul.
 
-## B5 — Cemiterio de tarefas concluidas no MESTRE
+## B5 — Cemiterio de tarefas concluidas no MESTRE (migracao de legado + detector de versao velha)
 
-A rotina de fim-do-dia cria linhas de referencia ao migrar tarefas (`~~[x] tarefa~~ -> ver changelog [data]`).
-Elas se acumulam no MESTRE, que carrega em TODA sessao. A partir de ~15 dessas linhas-fantasma, colapsar todas
-em UM unico ponteiro:
-> `**Tarefas concluidas:** historico completo no changelog.`
+**Versoes antigas** da rotina de fim-do-dia (ate a v5.0) criavam uma linha riscada no MESTRE ao migrar
+cada tarefa (`~~[x] tarefa~~ -> ver changelog [data]`). Da **v5.1 em diante** a linha concluida SAI do
+mestre (o changelog ja e o registro). Este bloco entao vira **migracao de legado**: se o scan encontrar
+linhas riscadas (qualquer quantidade), colapsar TODAS em UM unico ponteiro, com preview e aprovacao como
+toda acao da Fase B:
+> `**Tarefas concluidas nao ficam listadas aqui.** Historico completo, com data, no changelog.`
+
+**Detector de drift:** se depois de uma limpeza aparecerem linhas riscadas NOVAS, o fim-do-dia em uso
+esta em versao antiga: sugerir ao usuario atualizar a skill pela pagina Skills do app.meuos.com.br.
 
 ## Plano + Execucao + Verificacao (Fase B)
 
@@ -519,6 +531,22 @@ varios contextos na mesma semana dispararia varios lembretes de custo.
 - **NAO altera codigo, banco ou automacoes** — so documentacao (a Fase A LE as fontes, nao as muda).
 - **NAO faz auditoria de seguranca.**
 - **NAO gera documento novo do zero** — so confere e organiza o que ja existe.
+
+---
+
+## Checklist final: a execucao foi bem feita? (conferir ANTES de declarar concluido)
+
+- [ ] Rodou SO no contexto aprovado (nenhum arquivo de outro contexto foi tocado)
+- [ ] Todo ajuste executado foi aprovado pelo usuario (nenhuma acao sem OK explicito)
+- [ ] Nada foi apagado, so movido (`historico/` ou changelog), com antes/depois mostrado
+- [ ] Todo split deixou ponteiro dos dois lados + entrada no `index.md`, na mesma rodada
+- [ ] Nenhum link quebrou (links de entrada de todo arquivo renomeado/movido foram re-checados)
+- [ ] Documentos com numeros conferidos foram re-carimbados (`> Verificado ao vivo: DATA`)
+- [ ] Status atual e "bola" continuam no MESTRE; nenhum satelite virou dono de status
+- [ ] Carimbo `.last-otimizar-os` gravado com contagens e datas
+- [ ] Tabela de verificacao `arquivo | antes | depois | reducao` apresentada
+
+Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.
 
 ---
 
