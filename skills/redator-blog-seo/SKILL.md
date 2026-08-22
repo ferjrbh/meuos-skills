@@ -10,8 +10,7 @@ description: >-
   com: "blog post", "artigo SEO", "conteúdo de blog", "escrever pro blog". Lê o contexto da
   marca pelo ponteiro no claude.md/index.md do OS (`{contexto}/marketing.md`; fallback `.agents/`). Orquestra
   growth-seo-audit, growth-site-arch, growth-schema, growth-ai-seo e valida com market-brand.
-metadata:
-  version: 1.0.0
+version: 1.0
 author: Fernando Lúcio — Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
