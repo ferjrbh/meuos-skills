@@ -7,7 +7,7 @@ description: |
   arquivos que faltam: nunca edita, nunca apaga, e rodar duas vezes nao muda nada.
   Executa quando o usuario diz "preparar meu os para o chatgpt", "preparar os para gpt",
   "criar agents.md", "meu os no codex", "deixar meu os pronto pro chatgpt".
-version: 1.0
+version: 1.1
 context: meuos
 user-invocable: true
 argument-hint: "(sem args — roda na pasta do OS aberta no agente)"
@@ -91,3 +91,15 @@ Já existiam (não tocados): {n}
 
 Se algum arquivo falhar na criação, diga quais foram criados e quais faltaram — e que
 rodar de novo continua de onde parou (os já criados são pulados).
+
+---
+
+## Checklist final: a execucao foi bem feita? (conferir ANTES de declarar concluido)
+
+- [ ] Raiz do OS localizada e plano mostrado ANTES de criar
+- [ ] SO criou AGENTS.md que faltavam: nenhum arquivo existente editado ou apagado
+- [ ] AGENTS.md criados sao ponteiros finos pro claude.md ao lado, nunca copia
+- [ ] Idempotencia conferida: rodar de novo nao muda nada
+- [ ] Resultado apresentado no formato fixo do Passo 3
+
+Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.

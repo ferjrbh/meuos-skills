@@ -1,7 +1,7 @@
 ---
 name: market-landing
 description: "Análise CRO de landing page. Identifica gargalos de conversão e sugere melhorias em copy, layout e prova social."
-version: 1.0
+version: 1.1
 author: Fernando Lúcio — Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
@@ -339,3 +339,16 @@ Generate a file called `LANDING-CRO.md` in the project root or output directory 
 ---
 
 > Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+
+---
+
+## Final checklist: was the run done right? (verify BEFORE declaring done)
+
+- [ ] Phase flow completed in order; no phase skipped silently
+- [ ] Output file created at the mandated destination with this skill's exact structure (no empty section, no placeholder)
+- [ ] Every claim about the user's product or market comes from provided context or fetched pages; features, prices, metrics and testimonials are never invented
+- [ ] Recommendations prioritized by impact vs effort and actionable
+- [ ] Analysis tied to the actual fetched page, section by section
+- [ ] Nothing was published or changed on live properties; the deliverable is the report/copy only
+
+If any item failed: fix it BEFORE declaring done. Never report "done" while an item is pending.

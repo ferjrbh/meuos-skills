@@ -2,7 +2,7 @@
 name: growth-referral
 description: "When the user wants to create, optimize, or analyze a referral program, affiliate program, or word-of-mouth strategy. Also use when the user mentions 'referral,' 'affiliate,' 'ambassador,' 'word of mouth,' 'viral loop,' 'refer a friend,' 'partner program,' 'referral incentive,' 'how to get referrals,' 'customers referring customers,' or 'affiliate payout.' Use this whenever someone wants existing users or partners to bring in new customers. For launch-specific virality, see market-launch. Also trigger on: 'programa de indicacao', 'referral', 'member get member', 'afiliados', 'indicacao de clientes', 'viral loop'."
 metadata:
-  version: 1.1.0
+  version: 1.2.0
 author: Fernando Lúcio — Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
@@ -262,3 +262,17 @@ For implementation, see the [tools registry](../../tools/REGISTRY.md). Key tools
 ---
 
 > Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+
+---
+
+## Final checklist: was the run done right? (verify BEFORE declaring done)
+
+- [ ] Product context loaded from `.agents/product-marketing-context.md` (or gathered first); no invented product facts
+- [ ] Analysis grounded in what was actually read (URL, page or data fetched), not generic best practice alone
+- [ ] Output follows this skill's Output Format section, prioritized by impact vs effort
+- [ ] Benchmarks labeled as benchmarks and kept separate from the user's real data
+- [ ] Experiments / next steps include how success will be measured
+- [ ] Incentives defined for both sides and fraud guardrails noted
+- [ ] No live site or user file was changed without explicit approval
+
+If any item failed: fix it BEFORE declaring done. Never report "done" while an item is pending.

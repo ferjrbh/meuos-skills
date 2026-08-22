@@ -2,7 +2,7 @@
 name: growth-schema
 description: When the user wants to add, fix, or optimize schema markup and structured data on their site. Also use when the user mentions "schema markup," "structured data," "JSON-LD," "rich snippets," "schema.org," "FAQ schema," "product schema," "review schema," "breadcrumb schema," "Google rich results," "knowledge panel," "star ratings in search," or "add structured data." Use this whenever someone wants their pages to show enhanced results in Google. For broader SEO issues, see growth-seo-audit. For AI search optimization, see growth-ai-seo. Tambem ativar com: "schema markup", "dados estruturados", "JSON-LD", "rich snippet", "estrelas no Google", "FAQ schema", "produto schema".
 metadata:
-  version: 1.1.0
+  version: 1.2.0
 author: Fernando Lúcio — Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
@@ -184,3 +184,17 @@ You can combine multiple schema types on one page using `@graph`:
 ---
 
 > Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+
+---
+
+## Final checklist: was the run done right? (verify BEFORE declaring done)
+
+- [ ] Product context loaded from `.agents/product-marketing-context.md` (or gathered first); no invented product facts
+- [ ] Analysis grounded in what was actually read (URL, page or data fetched), not generic best practice alone
+- [ ] Output follows this skill's Output Format section, prioritized by impact vs effort
+- [ ] Benchmarks labeled as benchmarks and kept separate from the user's real data
+- [ ] Experiments / next steps include how success will be measured
+- [ ] Schema types honestly match the page content, and a validation step (Rich Results test) is indicated
+- [ ] No live site or user file was changed without explicit approval
+
+If any item failed: fix it BEFORE declaring done. Never report "done" while an item is pending.

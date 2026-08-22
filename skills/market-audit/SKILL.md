@@ -1,7 +1,7 @@
 ---
 name: market-audit
 description: "Auditoria completa de marketing a partir de uma URL. Roda cinco analises em paralelo (site, copy, SEO, funil e concorrencia), consolida tudo num relatorio unico com nota por area e plano de acao priorizado por impacto em receita."
-version: 1.0
+version: 1.1
 author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
@@ -377,3 +377,16 @@ Full report saved to: MARKETING-AUDIT.md
 - If `BRAND-VOICE.md` exists, use it to contextualize content analysis
 - Reference other available analyses in the executive summary
 - Suggest follow-up commands: `/market copy`, `/market funnel`, `/market competitors` for deeper dives
+
+---
+
+## Final checklist: was the run done right? (verify BEFORE declaring done)
+
+- [ ] Phase flow completed in order; no phase skipped silently
+- [ ] Output file created at the mandated destination with this skill's exact structure (no empty section, no placeholder)
+- [ ] Every claim about the user's product or market comes from provided context or fetched pages; features, prices, metrics and testimonials are never invented
+- [ ] Recommendations prioritized by impact vs effort and actionable
+- [ ] All five analyses (site, copy, SEO, funnel, competition) ran, or were explicitly marked skipped with a reason; scores are justified
+- [ ] Nothing was published or changed on live properties; the deliverable is the report/copy only
+
+If any item failed: fix it BEFORE declaring done. Never report "done" while an item is pending.

@@ -67,3 +67,15 @@ Se voce disser "vai com a recomendada" ou "manda ver", executar sem mais pergunt
 ---
 
 > Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+
+---
+
+## Checklist final: a execucao foi bem feita? (conferir ANTES de declarar concluido)
+
+- [ ] Os 4 passos do protocolo rodaram ANTES de executar qualquer coisa
+- [ ] 2-3 caminhos comparados com trade-offs explicitos
+- [ ] Escolha justificada (menor risco, maior reversibilidade) e registrada
+- [ ] Duvida genuina virou pergunta ao usuario, nao suposicao
+- [ ] Execucao so comecou depois da aprovacao
+
+Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.

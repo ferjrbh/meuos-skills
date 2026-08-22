@@ -1,7 +1,7 @@
 ---
 name: market-report
 description: "Compila os resultados das analises num relatorio de marketing unico e apresentavel: notas por area, principais achados, plano de acao priorizado e estimativa de impacto em receita."
-version: 1.0
+version: 1.1
 author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
@@ -378,3 +378,16 @@ Generate a file called `MARKETING-REPORT.md` with:
 - Use professional formatting: consistent headers, tables for data, checkboxes for action items, clear visual hierarchy.
 - If data from previous skills is available, reference specific findings. If not, be transparent about what's based on analysis vs estimation.
 - The report should tell a story: Here's where you are, here's where you could be, here's how to get there, and here's what it's worth.
+
+---
+
+## Final checklist: was the run done right? (verify BEFORE declaring done)
+
+- [ ] Phase flow completed in order; no phase skipped silently
+- [ ] Output file created at the mandated destination with this skill's exact structure (no empty section, no placeholder)
+- [ ] Every claim about the user's product or market comes from provided context or fetched pages; features, prices, metrics and testimonials are never invented
+- [ ] Recommendations prioritized by impact vs effort and actionable
+- [ ] Every number traced to its source and the reporting period stated
+- [ ] Nothing was published or changed on live properties; the deliverable is the report/copy only
+
+If any item failed: fix it BEFORE declaring done. Never report "done" while an item is pending.

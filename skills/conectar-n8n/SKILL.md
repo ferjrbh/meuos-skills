@@ -6,7 +6,7 @@ description: |
   (Claude Code CLI/Desktop, VSCode, Cursor, app ChatGPT em modo Codex).
   Ativa quando o usuario diz "conectar n8n", "liste meus workflows n8n", "crie um workflow no n8n",
   "ative o workflow X", "leia os logs do workflow X", "debug do meu workflow", "paginar execucoes n8n".
-version: 2.1
+version: 2.2
 context: meuos
 user-invocable: true
 author: Fernando Lúcio — Aion Group
@@ -246,3 +246,16 @@ Para detalhes profundos de patterns, configuracao de nodes, code nodes JS/Python
 ---
 
 > Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+
+---
+
+## Checklist final: a execucao foi bem feita? (conferir ANTES de declarar concluido)
+
+- [ ] Credencial da instancia lida do lugar certo e NUNCA impressa no chat
+- [ ] Workflow criado/alterado relido via GET depois da escrita (estado real confirmado)
+- [ ] Update feito com PUT completo (nunca PATCH); ativar/desativar pelos endpoints dedicados
+- [ ] Execucao de teste rodada e o resultado lido dos logs, nao presumido
+- [ ] Nenhum secret de credencial exposto (API so devolve metadata)
+- [ ] Acao destrutiva (delete, desativar producao) so com aprovacao explicita
+
+Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.

@@ -11,7 +11,7 @@ description: |
   "skill de terceiro", "confere essa skill antes de eu instalar", "minha skill esta boa?",
   "analisa a qualidade dessa skill". NAO usar para criar skill nova nem para consertar skill
   (isso e a skill criar-skill): aqui e diagnostico e veredito.
-version: 1.0
+version: 1.1
 context: meuos
 user-invocable: true
 argument-hint: "[caminho da pasta da skill, ou cole o SKILL.md na conversa]"
@@ -212,3 +212,15 @@ do placar, da lista de consertos e do detalhe por criterio.
 ---
 
 > Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+
+---
+
+## Checklist final: a execucao foi bem feita? (conferir ANTES de declarar concluido)
+
+- [ ] A skill auditada foi LIDA inteira (SKILL.md + arquivos anexos) e NUNCA executada
+- [ ] Blocos A (qualidade), B (risco) e C (disparo) rodaram todos; nenhum criterio pulado sem justificativa
+- [ ] Cada apontamento carrega a evidencia (trecho citado), nunca opiniao solta
+- [ ] Veredito e um dos 3 oficiais (APROVADA / USAR COM ATENCAO / REPROVADA), com placar
+- [ ] Consertos listados do mais urgente ao menos, acionaveis
+
+Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.

@@ -1,7 +1,7 @@
 ---
 name: market-proposal
 description: "Gera proposta comercial de servicos de marketing pronta para o cliente: diagnostico, escopo, entregaveis, cronograma, opcoes de preco ancoradas em tres niveis e projecao de retorno."
-version: 1.0
+version: 1.1
 author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
@@ -388,3 +388,16 @@ Generate a file called `CLIENT-PROPOSAL.md` with:
 - If audit data is available from previous skills, use it extensively -- data-backed proposals close at 2-3x the rate of generic proposals.
 - Keep it concise. Executives skim. Use bold, headers, and tables to make key information scannable.
 - Always include a specific, time-bound next step. Ambiguity kills deals.
+
+---
+
+## Final checklist: was the run done right? (verify BEFORE declaring done)
+
+- [ ] Phase flow completed in order; no phase skipped silently
+- [ ] Output file created at the mandated destination with this skill's exact structure (no empty section, no placeholder)
+- [ ] Every claim about the user's product or market comes from provided context or fetched pages; features, prices, metrics and testimonials are never invented
+- [ ] Recommendations prioritized by impact vs effort and actionable
+- [ ] Three price tiers anchored; scope, deliverables and timeline consistent with the diagnosis; no invented client data
+- [ ] Nothing was published or changed on live properties; the deliverable is the report/copy only
+
+If any item failed: fix it BEFORE declaring done. Never report "done" while an item is pending.

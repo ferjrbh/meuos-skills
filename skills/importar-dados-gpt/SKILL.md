@@ -14,7 +14,7 @@ description: |
   Executa quando o usuario diz "importar dados do gpt", "importar do chatgpt", "migrar do gpt",
   "trazer meus dados do gpt", "importar minhas conversas", "migrar do chatgpt pro claude",
   "importar do gemini", "trazer historico do gpt".
-version: 1.1
+version: 1.2
 context: meuos
 user-invocable: true
 author: Fernando Lúcio — Aion Group
@@ -194,3 +194,16 @@ Regras da destilação:
 ---
 
 > Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+
+---
+
+## Checklist final: a execucao foi bem feita? (conferir ANTES de declarar concluido)
+
+- [ ] Pasta do OS e localizacao do export confirmadas antes de comecar
+- [ ] Inventario do zip apresentado e triagem aprovada pelo usuario
+- [ ] Conteudo DESTILADO (decisoes, fatos, processos, preferencias), nunca transcript cru despejado
+- [ ] Cada arquivo gravado no contexto certo, com o plano aprovado antes
+- [ ] Fontes (titulo + data) registradas no que foi importado
+- [ ] Nada do OS existente sobrescrito; duplicata fundida com aviso
+
+Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.

@@ -1,7 +1,7 @@
 ---
 name: n8n AI Agents & RAG
 description: Skill especializada pra construir agentes IA e workflows RAG no n8n.
-version: 1.1
+version: 1.2
 context: meuos
 category: n8n
 user-invocable: true
@@ -234,3 +234,16 @@ Todos no repo `enescingoz/awesome-n8n-templates` (CC-BY 4.0):
 ---
 
 > Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+
+---
+
+## Checklist final: a execucao foi bem feita? (conferir ANTES de declarar concluido)
+
+- [ ] Connection types `ai_*` corretos pro padrao escolhido (topologia canonica seguida)
+- [ ] Memory com sessionId configurada quando ha conversa multi-turno
+- [ ] Output parser com JSON schema quando o fluxo depende de estrutura
+- [ ] Workflow testado com execucao real e resultado lido dos logs
+- [ ] Credenciais referenciadas por id, nunca expostas no chat
+- [ ] Gotchas de AI da skill checados antes de declarar pronto
+
+Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.

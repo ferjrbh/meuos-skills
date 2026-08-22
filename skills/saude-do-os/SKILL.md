@@ -7,7 +7,7 @@ description: |
   enxerga TODOS os arquivos da pasta, inclusive os criados por outras ferramentas.
   Executa quando o usuario diz "saude do os", "avaliar meu os", "nota do os", "health check
   do os", "como esta meu os", "diagnostico do os".
-version: 1.1
+version: 1.2
 context: meuos
 user-invocable: true
 argument-hint: "(sem args — roda na pasta do OS aberta no agente)"
@@ -122,3 +122,16 @@ curl -s -X POST https://app.meuos.com.br/api/agentes/tools/saude \
 - Ao terminar, ofereça: "Quer que eu corrija algum desses pontos? A skill **otimizar-os**
   faz a manutenção completa." NÃO corrija nada sem o usuário pedir.
 - Não mostre o passo a passo do cálculo — só o resultado no formato acima.
+
+---
+
+## Checklist final: a execucao foi bem feita? (conferir ANTES de declarar concluido)
+
+- [ ] Inventario cobriu TODOS os .md da pasta (subpastas incluidas, exclusoes respeitadas)
+- [ ] Rubrica oficial aplicada como esta, sem inventar desconto novo
+- [ ] Cada problema listado com o caminho do arquivo
+- [ ] Resultado no formato fixo: score 0-100 + semaforo
+- [ ] Nenhum arquivo editado (a skill e read-only)
+- [ ] Reporte pro painel enviado, ou pulado em silencio
+
+Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.

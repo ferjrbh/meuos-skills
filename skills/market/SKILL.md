@@ -1,7 +1,7 @@
 ---
 name: market
 description: "Suite completa de marketing com IA. Auditoria de site, geração de copy, emails, social, ads e proposta comercial — tudo em markdown."
-version: 1.2
+version: 1.3
 author: Fernando Lúcio — Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
@@ -125,3 +125,15 @@ Many skills work together:
 ---
 
 > Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+
+---
+
+## Checklist final: a execucao foi bem feita? (conferir ANTES de declarar concluido)
+
+- [ ] Rota certa escolhida pela routing logic; em ambiguidade, perguntou antes
+- [ ] Contexto de negocio detectado/carregado antes de despachar a sub-skill
+- [ ] Output salvo no destino da regra de File Output obrigatoria
+- [ ] Padrao visual dos relatorios aplicado
+- [ ] So sub-skills do Command Reference foram invocadas
+
+Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.

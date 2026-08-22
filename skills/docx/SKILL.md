@@ -213,3 +213,16 @@ pdftoppm -png document.pdf output_prefix
 ---
 
 > Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+
+---
+
+## Checklist final: a execucao foi bem feita? (conferir ANTES de declarar concluido)
+
+- [ ] Formato confirmado (docx, e nao pdf/xlsx/pptx) antes de gerar
+- [ ] Arquivo .docx gerado abre sem erro (validado depois de gerar)
+- [ ] Conteudo completo: nenhum placeholder ou secao vazia esquecida
+- [ ] Edicao de documento existente preservou o resto (workflow de 3 passos seguido)
+- [ ] Tracked changes e comentarios tratados conforme o pedido, nunca aceitos por conta propria
+- [ ] Arquivo salvo no destino do contexto e caminho entregue ao usuario
+
+Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.

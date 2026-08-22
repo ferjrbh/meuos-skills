@@ -5,7 +5,7 @@ description: |
   ao perceber que algo foi concluido. Tambem roda quando o usuario diz "conferir entrega",
   "verificar entrega", "pronto", "terminei", "conclui", "feito", "pode fechar", "entregue", "finalizado".
   Garante que nada foi esquecido, o OS esta atualizado e dados sensiveis estao protegidos.
-version: 1.2
+version: 1.3
 context: meuos
 user-invocable: true
 argument-hint: "[tipo da entrega] (opcional)"
@@ -115,3 +115,15 @@ Proximo passo sugerido: [se houver]
 ---
 
 > Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+
+---
+
+## Checklist final: a execucao foi bem feita? (conferir ANTES de declarar concluido)
+
+- [ ] O checklist do TIPO certo de entrega foi aplicado (decisao / workflow / documento / projeto)
+- [ ] Blocos Conteudo e Seguranca rodaram em TODA entrega, sem excecao
+- [ ] Cada afirmacao de fato tem fonte apontavel citada
+- [ ] Conclusao apresentada no formato oficial da skill
+- [ ] Nenhum item falho foi mascarado: falha aparece como falha
+
+Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.
