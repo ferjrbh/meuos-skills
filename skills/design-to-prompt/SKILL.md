@@ -6,6 +6,7 @@ description: |
   um site de referencia, ou pedir para "replicar esse visual", "fazer parecido com X", "criar esse componente".
   DESAMBIGUACAO: Se voce disser apenas "design" sem contexto, PERGUNTAR:
   "Qual tipo de design? 1) Converter referencia visual em prompt Lovable (design-to-prompt) 2) Interface/tela (interface-design) 3) Visual estatico/poster/certificado (canvas-design)"
+version: 1.1
 author: Fernando Lúcio — Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
