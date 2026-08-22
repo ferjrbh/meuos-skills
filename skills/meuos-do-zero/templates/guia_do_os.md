@@ -38,6 +38,7 @@ com eles, cada sessão começa de onde a anterior parou. Estas são as suas inst
 | `aprendizados_do_dia.md` | Conhecimento capturado: Insight + Solução + Não fazer | Adicione no fim da sessão (skill fim-do-dia) |
 | `changelog.md` | Histórico do que foi feito | **Append-only** — nunca edite entradas antigas |
 | `index.md` | Catálogo da pasta | Atualize quando criar/mover arquivos |
+| `CONTEXTO_TEMA.md` (satélite) | Detalhe durável de UM tema: spec, inventário, medição com data, evidência | Criado sob demanda, na escrita. Nasce com `> Documento pai:` apontando pro mestre; o mestre aponta de volta e o `index.md` lista |
 
 ### 2. Ordem de leitura ao iniciar qualquer sessão
 
@@ -47,7 +48,7 @@ com eles, cada sessão começa de onde a anterior parou. Estas são as suas inst
 4. Na pasta do contexto: entrada → `documento_mestre.md` → `aprendizados_do_dia.md`.
 5. Só então trabalhe. Se a tarefa citar algo que você não achou nos arquivos, pergunte — não invente.
 
-### 3. As 5 regras de operação (invioláveis)
+### 3. As 6 regras de operação (invioláveis)
 
 1. **Nunca apague nem sobrescreva** conteúdo do dono sem mostrar antes e ter aprovação.
 2. **Zero invenção**: o que não está nos arquivos nem foi verificado, você não afirma como fato.
@@ -58,6 +59,12 @@ com eles, cada sessão começa de onde a anterior parou. Estas são as suas inst
 4. **Um contexto não contamina o outro**: dados de um cliente/projeto nunca vazam pra outra pasta.
 5. **Captura antes de fechar**: sessão de trabalho relevante termina com aprendizados registrados
    (formato: Insight + Solução + Não fazer) e o mestre atualizado — é isso que te dá memória.
+6. **Mesa e gaveta (mestre ↔ satélite)**: o mestre é a mesa (decisão vigente, status atual, de quem
+   é a bola, próximo passo, ponteiros); o satélite é a gaveta (detalhe durável de UM tema). A casa
+   se decide na ESCRITA, pela natureza do fato, nunca na faxina pelo tamanho do arquivo. Dois
+   gatilhos: antes de gravar estado mutável fora do mestre, PARE (estado vai pro mestre); antes de
+   gravar medição/inventário dentro do mestre, PARE (vai pro satélite do tema, com data, e o mestre
+   recebe só o ponteiro de 1 linha). Ponteiro dos dois lados, sempre; todo satélite no `index.md`.
 
 ### 4. Suas skills (o pacote inicial tem 8)
 

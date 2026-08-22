@@ -7,7 +7,7 @@ description: |
   Guia 3 perguntas rapidas, AVALIA os arquivos antes de escrever (gate anti-duplicacao
   e anti-verborragia), salva aprendizados no lugar certo, migra tarefas concluidas
   e atualiza pendencias no documento mestre do contexto ativo.
-version: 5.0
+version: 5.1
 context: meuos
 user-invocable: true
 author: Fernando Lúcio — Aion Group
@@ -30,9 +30,18 @@ Esta skill guia voce por uma rotina rapida de fechamento do dia de trabalho — 
 | `claude.md` (contexto) | SO regra **RIGIDA de operacao** do contexto (config, limites inviolaveis). Mexer aqui = **excecao da excecao** | Caso do dia, status, decisao de negocio, historico |
 | `aprendizados_do_dia.md` | Regra/padrao/anti-pattern reutilizavel — objetivo, pouco texto (max 6 linhas/~700 caracteres por entrada) | Narrativa, historia da investigacao, evento pontual |
 | `changelog.md` | **O LAR do caso pontual**: o que foi feito, incidentes, narrativas com data (append-only) | Regra viva (essa mora nos arquivos acima) |
-| `*MESTRE.md` | O documento **VIVO** — mexe quase toda sessao: descricao do contexto, objetivos, **decisoes estrategicas/taticas, planos**, status, pendencias, ponteiros pros satelites | Spec densa (→ satelite), historico (→ changelog), caso do dia |
+| `*MESTRE.md` | O documento **VIVO** — mexe quase toda sessao: descricao do contexto, objetivos, **decisoes estrategicas/taticas, planos**, status, pendencias, ponteiros pros satelites | Spec densa (→ satelite), medicao/inventario (→ satelite), historico (→ changelog), caso do dia |
+| **SATELITE** (`CONTEXTO_TEMA.md`) | Detalhe DURAVEL de UM tema: spec, inventario, medicao com data, evidencia, historico analitico. Criado sob demanda (nunca vazio "pra constar"), lido so quando o tema surge | Status atual e "com quem esta a bola" (isso e do MESTRE; o satelite nunca reconta status) |
 | `index.md` | Catalogo **100% completo** dos .md do contexto — todo satelite listado, sem excecao | Conteudo (so link + 1 linha de descricao) |
 | `soul.md` (raiz) | SO personalidade/comportamento do agente, de altissima necessidade | Regra operacional; qualquer coisa que caiba em outro lugar |
+
+**Os 2 gatilhos de roteamento (valem em TODA escrita, mesmo com o MESTRE pequeno):**
+- Antes de gravar **estado mutavel** (status, fase, proximo passo, pendencia, "onde paramos") fora do
+  MESTRE → PARAR: estado vai pro MESTRE.
+- Antes de gravar **medicao/inventario** (contagem, tamanho, percentual, "medido em", lista densa)
+  dentro do MESTRE → PARAR: vai pro satelite do tema, com data; o MESTRE recebe so um ponteiro de
+  1 linha, sem repetir o numero. A casa se decide na ESCRITA, pela natureza do fato, nunca na faxina
+  pelo tamanho do arquivo.
 
 **⚡ Escrever e excecao, nao obrigacao.** A rotina AVALIA todos os arquivos, mas so ESCREVE onde
 ha item que sobreviveu ao gate (PASSO 1.5). Sessao sem material pra um arquivo = arquivo INTOCADO.
@@ -244,14 +253,25 @@ Identificar todos os itens marcados como concluidos (formato `[x]`).
 - [Decisao tomada, se houver]
 ```
 
-2. No `*MESTRE.md`, substituir o item `[x]` por uma linha de referencia:
+2. No `*MESTRE.md`, **REMOVER a linha do item `[x]`**: o changelog acabou de receber a entrada
+   com a data, ele JA e o registro. **NAO deixar linha riscada** (`~~[x] tarefa~~`): linha riscada
+   e custo fixo que o mestre paga em toda sessao so pra dizer "isto ja foi feito". Garantir que o
+   bloco de pendencias tenha (criada UMA unica vez, na primeira execucao) a nota estatica:
 
 ```markdown
-- ~~[x] [Descricao da tarefa]~~ → ver changelog [DATA]
+> **Tarefas concluidas nao ficam listadas aqui.** Historico completo, com data, no `changelog.md`.
 ```
 
-**IMPORTANTE:** Nunca apagar conteudo do documento mestre sem mostrar ao usuario o que sera movido e pedir confirmacao. Mostrar lista resumida e perguntar:
-> `"Encontrei X itens concluidos. Posso migrá-los para o changelog?"`
+3. **EXCECAO (conclusao que REVERTE uma regra/decisao vigente)**: ex, o mestre dizia "NAO fazer X"
+   e a tarefa concluida liberou X): so remover a linha deixaria o mestre afirmando a regra velha,
+   e o agente seguinte obedeceria a instrucao morta. Neste caso:
+   - Atualizar a regra **no ponto do mestre onde ela vive**, em linguagem afirmativa (o que vale HOJE)
+   - Registrar a transicao (regra antiga → nova, com data e motivo) no `changelog.md`
+   - O mestre expressa o estado ATUAL; a historia da mudanca mora no changelog. Nunca manter linha
+     riscada como "correcao historica" dentro do mestre.
+
+**IMPORTANTE:** Nunca remover conteudo do documento mestre sem mostrar ao usuario o que sera migrado e pedir confirmacao. Mostrar lista resumida e perguntar:
+> `"Encontrei X itens concluidos. Posso migrá-los para o changelog (eles saem do mestre)?"`
 
 ---
 
@@ -262,6 +282,9 @@ Com base na resposta da Pergunta 3, atualizar a lista de pendencias no `*MESTRE.
 - Adicionar novas pendencias informadas pelo usuario (formato `[ ] [descricao]`) — **ANTES, buscar
   nas pendencias existentes**: se o tema ja esta la, atualizar a linha existente, nunca duplicar
 - Pendencia nova = 1-2 linhas (o que + o que destrava) — spec e historico nao moram aqui
+- **Gatilho do satelite**: se a atualizacao carrega medicao, inventario ou spec (numeros/listas densas),
+  isso NAO entra no mestre: vai pro satelite do tema (com data), e o mestre recebe so o ponteiro de
+  1 linha. Vale mesmo com o mestre pequeno (ver os 2 gatilhos no CONTRATO POR ARQUIVO).
 - Manter as pendencias antigas que continuam abertas
 - Atualizar a data de "Ultima atualizacao" no cabecalho do documento mestre
 
@@ -280,9 +303,12 @@ Verificar o tamanho dos arquivos do contexto ativo e apresentar um relatorio rap
 **Regras de semaforo:**
 | Arquivo | 🟢 OK | 🟡 Atencao | 🔴 Grande |
 |---------|-------|-----------|---------|
-| `*MESTRE.md` | menos de 300 linhas | 300 a 500 | mais de 500 |
+| `*MESTRE.md` | menos de 300 linhas E menos de 25KB | 300-500 linhas ou 25-40KB | mais de 500 linhas OU mais de 40KB |
 | `aprendizados_do_dia.md` | menos de 200 linhas | 200 a 250 | mais de 250 |
 | `changelog.md` | menos de 30KB | 30 a 50KB | mais de 50KB |
+
+> O `*MESTRE.md` mede **linhas E KB, e vale o PIOR dos dois**. Linha e metrica fraca sozinha: um mestre
+> de 199 "linhas" que sao paragrafos inteiros pode pesar 60KB e passar batido no check de linhas.
 
 **Sugerir o Otimizar OS no MAXIMO 1x por semana, e so se houver volume.** Antes de sugerir, ler
 `{contexto}/historico/.last-otimizar-os` (guarda `ULTIMA_EXECUCAO`, `LAST_SUGGESTED`, `CONTAGENS`, `FRESCOR`).
@@ -418,14 +444,17 @@ Se houve uma analise longa, comparacao detalhada ou deep dive durante a sessao, 
 
 **`*MESTRE.md`** — atualizacao pontual:
 - Cabecalho com nova data de "Ultima atualizacao"
-- Itens `[x]` substituidos por referencias ao changelog
+- Itens `[x]` migrados pro changelog e REMOVIDOS da lista (sem linha riscada; a nota estatica
+  "Tarefas concluidas nao ficam listadas aqui" cobre o historico)
+- Conclusao que reverteu regra: regra atualizada no proprio mestre em linguagem afirmativa
 - Novas pendencias `[ ]` adicionadas
 
 ---
 
 ## Regras de seguranca
 
-- **Nunca apagar conteudo** — apenas mover para o changelog com referencia
+- **Nunca apagar conteudo que nao foi preservado**: item concluido so sai do mestre DEPOIS de
+  registrado no changelog, e com aprovacao. Remover sem registrar antes e perda de historico
 - **Nunca migrar itens concluidos sem confirmacao** do usuario
 - **Nunca inventar aprendizados** — registrar apenas o que o usuario informou
 - **Nunca acessar arquivos de outro contexto** sem permissao explicita
@@ -433,6 +462,21 @@ Se houve uma analise longa, comparacao detalhada ou deep dive durante a sessao, 
 - **Se o usuario nao responder uma das 3 perguntas**, prosseguir com o que foi respondido e deixar a secao em branco com nota "(nao registrado nesta sessao)"
 - **Nunca assumir que o OS e flat** — sempre verificar a estrutura real antes de agir
 - **🔒 NUNCA mexer no `soul.md` nem promover regras para ele.** O soul trata SO de carater, comportamento e perfil do agente — deve ser leve e objetivo. Regrinhas operacionais (taxas, fluxos, "sempre fazer X no produto") NAO sao comportamento: vao para claude.md / mestre / satelite. Se algo parecer de soul, perguntar ao usuario antes — nunca escrever no soul por conta propria.
+
+---
+
+## Checklist final: a execucao foi bem feita? (conferir ANTES de declarar concluido)
+
+- [ ] Todo item confirmado passou pelo GATE DE ESCRITA (PASSO 1.5) antes de ser gravado
+- [ ] Itens `[x]` estao no changelog com a data de hoje e SAIRAM do mestre (zero linhas riscadas novas)
+- [ ] Conclusao que reverteu regra: mestre atualizado em linguagem afirmativa + transicao no changelog
+- [ ] Nenhuma medicao/inventario denso entrou no mestre (foi pro satelite, com ponteiro de 1 linha)
+- [ ] Pendencias atualizadas sem duplicar tema existente + data de "Ultima atualizacao" no cabecalho
+- [ ] index.md do contexto cobre 100% dos .md (satelites criados hoje incluidos)
+- [ ] Nada foi migrado ou removido sem aprovacao do usuario
+- [ ] Resumo final apresentado (PASSO 7)
+
+Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.
 
 ---
 

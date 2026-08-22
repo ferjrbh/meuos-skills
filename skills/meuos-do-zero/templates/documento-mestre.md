@@ -12,5 +12,11 @@
 ## Pendencias
 - [ ] (proxima coisa a fazer)
 
+> **Tarefas concluidas nao ficam listadas aqui.** Historico completo, com data, no [changelog.md](changelog.md).
+
 ## Decisoes
 - (decisoes importantes ficam registradas aqui)
+
+## Satelites deste contexto
+- (nenhum ainda. Satelite nasce quando um tema ganha detalhe duravel: spec, inventario, medicao.
+  O ponteiro do satelite entra aqui e no index.md; status e bola continuam SEMPRE neste mestre)
