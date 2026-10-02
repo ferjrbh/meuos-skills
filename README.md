@@ -164,8 +164,16 @@ Os ritos essenciais do MeuOS. Comece pela **MeuOS do Zero**.
 
 ## Como atualizar
 
-As skills evoluem. Para pegar a versão nova, rode o mesmo prompt de instalação — ele sobrescreve com
+As skills evoluem. Para pegar a versão nova de UMA skill, rode o mesmo prompt de instalação — ele sobrescreve com
 a última versão do GitHub. No app, a aba **Skills** mostra quando há atualização disponível.
+
+**Para atualizar todas de uma vez**, cole este prompt no seu Claude Code (ou Codex) aberto na pasta do seu OS.
+O endereço traz `fim-do-dia` só como exemplo: o agente troca pelo nome de cada pasta. Skill que você mesmo
+criou (não existe no GitHub) e skill que já está na versão atual ficam como estão.
+
+```
+Atualize todas as minhas skills do MeuOS. Faça assim: 1) liste as pastas da minha pasta de skills (você sabe onde elas ficam) que têm um arquivo SKILL.md e leia a linha "version" do frontmatter de cada uma; 2) para cada pasta, baixe o SKILL.md da pasta de mesmo nome no GitHub do MeuOS, que fica em https://raw.githubusercontent.com/ferjrbh/meuos-skills/main/skills/fim-do-dia/SKILL.md trocando "fim-do-dia" pelo nome de cada pasta; se a versão baixada for maior que a local, substitua o SKILL.md local pelo baixado; se a versão for igual ou o arquivo não existir no GitHub (erro 404), não mexa; 3) não altere nenhum outro arquivo do meu OS; 4) ao final, mostre uma tabela com skill, versão antes e versão depois. Não me pergunte nada no meio, só mostre a tabela.
+```
 
 ## Crie a sua própria skill
 
