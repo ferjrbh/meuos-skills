@@ -17,7 +17,7 @@ description: |
 context: meuos
 user-invocable: true
 argument-hint: "(sem argumentos — roda na pasta do seu Claude Code atual)"
-version: 2.4
+version: 2.5
 author: Fernando Lúcio — Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
@@ -163,7 +163,7 @@ classificar em 3 categorias:
 |-----------|----------|-------------|
 | **Manter** | Preferencia pessoal ativa, regra de estilo, convencao do agente — usada nas ultimas semanas | Deixar como esta |
 | **Arquivar** | Mais de 90 dias sem modificacao, conteudo sobre projeto/decisao que ja passou | Mover para `memory/historico/` |
-| **Promover** | Informacao que deveria estar no seu OS (regra de negocio, decisao de produto, credencial, stack ativa) | Copiar para o OS e remover daqui |
+| **Promover** | Informacao que deveria estar no seu OS (regra de negocio, decisao de produto, credencial, stack ativa) | Copiar para o OS — destino padrao e o SATELITE do tema — e remover daqui |
 
 **Como identificar:**
 
@@ -176,8 +176,11 @@ ou simplesmente nao foi tocada em 90+ dias.
 
 **Promover:** Regra de negocio do seu cliente/produto, configuracao de stack
 (URL de API, modelo usado), decisao estrategica, credencial — tudo isso cabe
-melhor no seu OS (nos arquivos CLAUDE.md / DOCUMENTO_MESTRE / aprendizados)
-porque outros agentes que voce usar no futuro tambem vao precisar dessa info.
+melhor no seu OS, no SATELITE do tema (`CONTEXTO_tema.md`), que o agente abre so
+quando o assunto surge. MESTRE so para decisao vigente que vale em TODA sessao;
+`claude.md` so para regra rigida de operacao; aprendizados NUNCA (e caixa de
+entrada — promover para la e adiar a arrumacao). Outros agentes que voce usar
+no futuro tambem vao precisar dessa info.
 
 ---
 
@@ -230,12 +233,22 @@ Para cada acao aprovada:
 **4b. Promover para o OS**
 1. Ler o arquivo de topico original
 2. Identificar o destino certo no OS (perguntar ao usuario se nao for obvio):
-   - Regra de negocio → `CLAUDE.md` ou `*MESTRE.md` do contexto
-   - Aprendizado tecnico → `aprendizados_do_dia.md` do contexto
-   - Configuracao de stack → secao de stack no `*MESTRE.md`
-3. Copiar o conteudo para o destino, adaptando o formato
+   - Procurar no `index.md` do contexto um satelite do tema: existe → entra nele (a regra em 1 linha em "Regras
+     vigentes"; o corpo do topico, sem reescrever, em "Historico" com a data; satelite existente mantem o nome e
+     ganha o modelo ao ser tocado — frontmatter com `abrir_quando` + Regras vigentes no topo — sem reorganizar o
+     resto; se ainda nao tem linha no `*MESTRE.md`, ganha a linha tambem); nao existe → satelite novo pelo modelo
+     `satelite.md` (frontmatter `updated/context/type: satelite/status: vivo/abrir_quando` · `> Documento pai:` ·
+     `## Regras vigentes` · `## Detalhe` · `## Historico`), nome `CONTEXTO_tema.md` (prefixo em maiusculas, tema em
+     minusculas; ex: `CLIENTEA_honorario.md`), mesmo que os satelites vizinhos usem outro padrao de nome, + linha
+     unica no `*MESTRE.md` (secao "Satelites deste contexto", criada no primeiro ponteiro) e no `index.md`:
+     `- [CONTEXTO_tema.md](CONTEXTO_tema.md) — abrir quando: tema A, tema B` (o trecho depois de "abrir quando:"
+     tem ate 80 caracteres)
+   - Excecoes: decisao vigente que vale em TODA sessao → `*MESTRE.md` · regra rigida de operacao → `claude.md`
+   - Nunca `aprendizados_do_dia.md`
+3. Copiar o conteudo para o destino SEM reescrever (adaptar so o formato); conferir item a item — regra,
+   numero, data, nome, link — e mostrar a lista
 4. Adicionar uma nota no destino: "Promovido da memoria em DD/MM pelo usuario"
-5. Excluir o arquivo original da memoria do Claude Code
+5. So entao excluir o arquivo original da memoria do Claude Code
 6. Remover a linha correspondente no `MEMORY.md`
 
 **4c. Limpar e enxugar o MEMORY.md**
@@ -303,7 +316,8 @@ Higiene de custo concluida ✓
 | Tamanho total | 54KB | 19KB | -65% |
 
 💰 Custo fixo da sessao (o que carrega em TODA mensagem):
-- MEMORY.md + CLAUDE.md raiz + CLAUDE.md contexto: antes ~Xk -> depois ~Yk tokens
+- MEMORY.md + CLAUDE.md raiz + CLAUDE.md contexto + *MESTRE.md + aprendizados_do_dia.md (do contexto ativo): antes ~Xk -> depois ~Yk tokens (~1 linha ≈ 15 tokens, a mesma regra desta skill)
+- Promovido para arquivo fixo (mestre/claude.md): ~Zk tokens — "so mudou de bolso", nao conta como economia
 
 💰 Economia estimada (input tokens cobrados em toda mensagem):
 - ~2.535 tokens/mensagem economizados
@@ -380,8 +394,9 @@ Esta skill é EXCLUSIVA do Claude Code (depende do `MEMORY.md`, que não existe 
 
 - [ ] MEMORY.md + arquivos de topico escaneados e cada entrada classificada (OK / velha / duplicada / pertence ao OS)
 - [ ] Plano apresentado e SO o aprovado foi aplicado
-- [ ] O que pertence ao OS foi MOVIDO pro contexto certo, nao apagado
+- [ ] O que pertence ao OS foi MOVIDO pro contexto certo, nao apagado — destino padrao foi o satelite do tema; MESTRE/claude.md so com o teste "vale em TODA sessao?"
+- [ ] Conferencia item a item mostrada ANTES de excluir o topico da memoria
 - [ ] Nada removido sem registro do que saiu
-- [ ] Resultado no formato de saida oficial, com antes/depois de linhas
+- [ ] Resultado no formato de saida oficial, com antes/depois de linhas e o custo fixo dos 5 arquivos
 
 Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.

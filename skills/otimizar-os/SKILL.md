@@ -10,7 +10,7 @@ description: |
   "confere mds", "confere docs", "auditar documentacao", "docs batem com a realidade?",
   "verificar documentacao", "docs drift", "sincronizar docs com codigo", "doc desatualizada".
   Default (sem flag) = confere primeiro (corrige conteudo), depois otimiza (estrutura).
-version: 5.5
+version: 5.6
 context: meuos
 user-invocable: true
 argument-hint: "[contexto] [--so-confere | --so-otimiza] (sem args = pergunta o contexto e roda as 2 fases)"
@@ -117,15 +117,25 @@ Data: [DATA]
 | `index.md` | menos de 100 linhas | 100-150 | mais de 150 |
 | Outros `.md` | menos de 20KB | 20-35KB | mais de 35KB |
 
-### Custo fixo da sessao (o numero que REALMENTE importa)
+### Orcamento de custo fixo da sessao (o numero que REALMENTE importa)
 
 Alem do tamanho de cada arquivo, somar os arquivos que carregam em TODA sessao do contexto —
 `claude.md` raiz + `claude.md` do contexto + `*MESTRE.md` + `aprendizados_do_dia.md` + (se houver)
-o `MEMORY.md` do agente (quando existir — e mecanismo do Claude Code; no Codex nao ha). Reportar o total estimado em tokens (~1 linha ≈ 15 tokens) e a meta:
+o `MEMORY.md` do agente (quando existir — e mecanismo do Claude Code; no Codex nao ha). Reportar o total estimado em tokens (~1 linha ≈ 15 tokens) e a meta. **Meta = soma dos orcamentos por arquivo:**
+claude.md raiz 120 linhas + claude.md do contexto 120 + MESTRE 180 (ou 15KB) + aprendizados 120 (ou 9KB) + MEMORY.md 60
+(so quando existir) = ~600 linhas ≈ 9k tokens. Cada orcamento e 60% do limite 🟢 do arquivo; vale o pior entre linhas e KB:
 
-> `Custo fixo atual: ~18k tokens/sessao (mestre 7k + aprendizados 6k + claude.md 3k + memory 2k). Meta apos organizacao: ~9k.`
+> `Custo fixo atual: ~14k tokens/sessao (mestre 6k + aprendizados 4k + claude.md raiz 1,5k + claude.md contexto 1,5k + memory 1k). Meta: ~9k. Custo apos o plano: ~Xk.`
 
 Esse e o numero que importa — e o que voce "paga" em TODA mensagem, nao o tamanho de um arquivo isolado.
+Esta skill so MEDE o `MEMORY.md`; quem edita a memoria e o Otimizar Custo.
+
+**Regra de ouro do orcamento:** mover texto de um arquivo fixo para OUTRO arquivo fixo (aprendizados → MESTRE,
+memoria → MESTRE, MESTRE → claude.md) reduz ZERO. No plano, esse item recebe a etiqueta **"so muda de bolso"**
+e nao entra na conta. Reducao real = o que sai do conjunto fixo (satelite, changelog, `historico/`) ou e cortado.
+
+No scan, informar tambem `Satelites fora do modelo: N` (sem frontmatter `type: satelite` ou sem `abrir_quando`).
+E dado, nunca item do plano: satelite existente entra no modelo quando alguem o toca (ver "Split / mudanca de casa").
 
 ## N2 — Descobrir as fontes-da-verdade disponiveis (para a Fase A)
 
@@ -229,9 +239,12 @@ Como a skill usa:
 
 ## Gate "no piso, sem acao"
 
-Antes de montar qualquer plano, verificar se ha mesmo o que fazer. Se depois do scan tudo esta 🟢, OU o
+Antes de montar qualquer plano, verificar se ha mesmo o que fazer. Se depois do scan todo arquivo FIXO esta 🟢 E o custo fixo esta dentro do orcamento, OU o
 que passa do limite e majoritariamente **conteudo perene ja curado** (sem numeros errados, sem temporal
-velho de mais de 60 dias, sem duplicata, sem secao densa extraivel), entao **parar aqui**:
+velho de mais de 60 dias, sem duplicata, sem bloco de 15+ linhas sobre UM tema que caiba em satelite), entao **parar aqui**:
+Arquivo fixo acima do orcamento (mesmo 🟢 no semaforo, ex: mestre de 24KB) com bloco de 15+ linhas sobre um
+tema NAO e "piso": e trabalho de gaveta (B4), mesmo que o conteudo seja perene — perene nao quer dizer
+"precisa carregar em toda sessao".
 
 > `"Este contexto ja esta no piso — o que carrega e conteudo perene necessario e os numeros batem. Rodar de novo so deterioraria os arquivos. Sem acao."`
 
@@ -397,6 +410,14 @@ Antes de olhar quantos dias tem o conteudo, classificar cada bloco pelo seu TIPO
   datados em `historico/` (ex: `historico/CHANGELOG_2026_Q1.md` por trimestre), mantendo no changelog vivo
   so as entradas recentes + o cabecalho.
 - **Obsoletos**: pesquisa/analise pontual ja concluida, status vencido -> mover para `historico/`.
+- **Pendencias paradas**: pendencia do MESTRE sem movimento ha 60+ dias vai para o satelite
+  `CONTEXTO_backlog.md` (modelo `satelite.md`; `abrir_quando: planejar, priorizar, "o que ficou para depois"`),
+  com a data em que parou. Idade: pela data na propria linha ou pela ultima mencao no changelog; sem
+  nenhuma das duas, a tabela do plano pergunta. Pendencia com prazo marcado ("vence em", "ate DD/MM") fica no
+  MESTRE mesmo parada. O MESTRE fica com as pendencias ativas; a linha do backlog entra na secao "Satelites deste
+  contexto", como qualquer satelite. Backlog e gaveta, nao lixeira: nunca apagar pendencia; a que volta a andar sai do backlog
+  e volta ao MESTRE (o fim-do-dia busca la antes de criar pendencia nova). O `CONTEXTO_backlog.md` NAO conta
+  no limite de 3 satelites novos por execucao.
 
 ## B4 — Promocao de conteudo perene (a "mielinizacao") + a regra da mesa e da gaveta
 
@@ -406,7 +427,7 @@ FREQUENCIA de uso:
 
 | O item e... | Destino | Por que |
 |---|---|---|
-| decisao de negocio/estrategica/plano consultado sempre (ex: modelo de preco, posicionamento) | **MESTRE** (documento vivo) | o mestre ja carrega toda sessao e e onde decisao mora — mexe quase sempre |
+| decisao de negocio VIGENTE que o agente precisa em TODA sessao, mesmo quando o tema nao aparece (ex: modelo de preco em 1 linha, posicionamento) | **MESTRE** (documento vivo) | o mestre ja carrega toda sessao e e onde decisao mora — mexe quase sempre. Teste antes de escolher o mestre: "sem isso, o agente erra numa sessao sobre OUTRO tema?" Nao → satelite |
 | regra RIGIDA de operacao do contexto (limite inviolavel, ex: "nunca cruzar dados deste cliente") | **claude.md do contexto** | e a lei de COMO trabalhar ali; mexer nele e excecao da excecao — quase nunca |
 | regra de UM tema especifico (ex: taxas por perfil, regra de um modulo) | **satelite read-on-demand** + ponteiro de 1 linha no mestre | tira o peso da sessao; o agente abre o satelite so quando o assunto surge |
 
@@ -422,13 +443,15 @@ FREQUENCIA de uso:
   e proximo passo NASCEM no MESTRE. E isso que impede o mestre de engordar; esperar ele ficar
   grande pra separar e enxugar gelo.
 - **No SPLIT RETROATIVO (faxina do que JA esta dentro do MESTRE), as DUAS condicoes precisam ser verdade:**
-  1. O MESTRE ja esta **grande** (🟡 acima de 300 linhas ou 25KB; prioridade se 🔴). Mestre pequeno nao justifica split.
-  2. Ha **massa suficiente** sobre aquele tema (~40+ linhas sobre UM assunto). Nao splittar 10 linhas: fragmenta sem ganho.
+  1. O MESTRE (ou o aprendizados) ja esta **acima do orcamento** (MESTRE >180 linhas ou >15KB · aprendizados >120 linhas ou >9KB, vale o pior; prioridade se 🟡/🔴). Arquivo dentro do orcamento nao justifica split.
+  2. Ha **massa suficiente** sobre aquele tema (15+ linhas sobre UM assunto quando o arquivo esta acima do orcamento; se o satelite do tema JA existe, qualquer volume entra nele). Nao splittar 5 linhas em satelite NOVO: fragmenta sem ganho.
 
-Candidatos a promocao: regra que vale pra TODA sessao + referenciada com frequencia + do tipo "NUNCA/SEMPRE"
-+ mais de 30 dias sem contestacao. Apresentar a tabela `# | regra | origem | sugestao` e perguntar. **NUNCA
-promover sem aprovacao.** Depois de aprovar, para cada regra: (1) vai para o destino certo; (2) e removida dos
-aprendizados (para nao duplicar); (3) e registrada no changelog.
+Candidatos a promocao para o MESTRE/claude.md: regra que vale pra TODA sessao + referenciada com frequencia + do tipo
+"NUNCA/SEMPRE" + mais de 30 dias sem contestacao. Para a rota do SATELITE basta: regra de UM tema + 30 dias sem
+contestacao (nenhuma entrada ou decisao posterior a contradiz). Apresentar a tabela `# | regra | origem | sugestao` e
+perguntar. **NUNCA promover sem aprovacao.** Depois de aprovar, para cada regra: (1) vai para o destino certo (no
+satelite: a regra em 1 linha em "Regras vigentes"; a entrada completa, sem reescrever, em "Historico" com a data);
+(2) e removida dos aprendizados (para nao duplicar), so depois de conferida no destino; (3) e registrada no changelog.
 
 > ⚠️ **NUNCA promover regra operacional para o `soul.md`.** O soul trata SO de carater, comportamento e
 > personalidade do agente — deve ser leve. Regra operacional (taxas, fluxos, "sempre fazer X no produto") vai
@@ -453,17 +476,36 @@ esta em versao antiga: sugerir ao usuario atualizar a skill pela pagina Skills d
    **NUNCA executar sem resposta.**
 2. **Execucao** (so os itens aprovados):
    - **Resumir**: ler a secao original ANTES (nao perder nada) -> reescrever compacto -> conferir que nenhum link quebrou.
-   - **Split**: criar o satelite com um cabecalho apontando pra cima (`> Documento pai: NOME_MESTRE.md`) e, no
-     MESTRE, deixar um ponteiro apontando pra baixo (`> **[TEMA]:** resumo. Documento completo: [arquivo.md]`).
-     Isso e o **ponteiro dos dois lados** — mantem a navegacao clara nos dois sentidos.
+   - **Split / mudanca de casa**: (1) procurar no `index.md` satelite do mesmo tema — existe, o conteudo entra
+     nele (satelite existente mantem o nome; ao acrescentar, aplicar o modelo NELE — frontmatter com `abrir_quando`
+     + secao "Regras vigentes" no topo — sem reorganizar o que ja estava dentro); (2) satelite novo nasce pelo
+     modelo `satelite.md` (frontmatter `updated/context/type: satelite/status: vivo/abrir_quando` · `> Documento pai:` ·
+     `## Regras vigentes` · `## Detalhe` · `## Historico`), nome `CONTEXTO_tema.md` mesmo que os satelites vizinhos
+     usem outro padrao de nome; (3) copiar SEM reescrever — vale para conteudo perene (regra, spec, inventario,
+     evidencia); bloco temporal datado (reunioes, incidentes) segue B2 (condensar, changelog), nao vira satelite
+     inteiro; dentro do satelite, regra de 1 linha em "Regras vigentes", spec/inventario em "Detalhe", o datado em
+     "Historico"; resumir e outro item do plano, com aprovacao propria; (4) conferir item a item que toda regra,
+     numero, data, nome e link da origem esta no destino, e mostrar a lista; (5) so entao remover da origem, gravar
+     1 linha no changelog ("movido X de A para B") e a linha unica nos dois lados — no MESTRE ela vive em UM lugar,
+     a secao "Satelites deste contexto" (criada no primeiro ponteiro se nao existir; no lugar da secao extraida nao
+     fica nada), e no `index.md`: `- [CONTEXTO_tema.md](CONTEXTO_tema.md) — abrir quando: tema A, tema B` (o trecho
+     depois de "abrir quando:" tem ate 80 caracteres).
+     Isso e o **ponteiro dos dois lados** — mantem a navegacao clara nos dois sentidos, no mesmo formato.
    - **Arquivar**: mover para `historico/` (criar a pasta se nao existir). **Nunca apagar.**
    - **Antes/depois**: para toda alteracao em arquivo existente, mostrar o trecho antes e depois e confirmar.
-3. **Verificacao**: tabela `| arquivo | antes | depois | reducao |`.
+3. **Verificacao**: tabela `| arquivo | antes | depois | reducao |` + a linha final **`custo fixo da sessao | antes | depois | meta`**.
+   Se o custo fixo nao caiu, o relatorio diz com todas as letras: "arrumei a estrutura, mas a sessao continua
+   custando o mesmo" — nunca apresentar movimento entre arquivos fixos como reducao.
 4. **Atualizar o `index.md`** JUNTO com cada acao (nao esperar o final): adicionar entrada do satelite novo,
    remover entrada do que foi arquivado, atualizar data e contadores. Cada contexto tem seu `index.md`; a raiz
    tem o index geral que aponta pros contextos.
+   **Passada unica do index (1 item do plano, 1 aprovacao).** Toda entrada fora do formato unico (sem "abrir
+   quando" ou com o trecho depois de "abrir quando:" acima de 80 caracteres) e reescrita de uma vez — e catalogo, nao conteudo. Para escrever o
+   "abrir quando", o agente le o arquivo apontado: o `abrir_quando` do frontmatter, se existir; senao, as
+   primeiras linhas. Mostrar as entradas antes/depois e gravar so com OK. Satelite apontado NAO e
+   reestruturado nem renomeado nessa passada (regra do escoteiro: entra no modelo quando alguem o toca).
 
-**Limite:** no maximo **3 satelites novos** por execucao — para nao fragmentar demais.
+**Limite:** no maximo **3 satelites novos** por execucao — para nao fragmentar demais (o `CONTEXTO_backlog.md` nao conta).
 
 ---
 
@@ -500,7 +542,7 @@ inteiro**, nao e por contexto. Entao a "trava do 1x/mes" mora em **um arquivo un
 (ex: `.last-otimizar-custo`), **nunca** dentro do `historico/` de um contexto — senao rodar o otimizar-os em
 varios contextos na mesma semana dispararia varios lembretes de custo.
 
-- Sugerir SO se `hoje - (data no .last-otimizar-custo) for de 30 dias ou mais`. Ao sugerir, gravar a data de hoje nesse arquivo.
+- Sugerir SO se `hoje - (data no .last-otimizar-custo) for de 30 dias ou mais`. Ao sugerir, gravar a data de hoje nesse arquivo. Sem o arquivo, tratar como "nunca rodou" e sugerir. No Codex (sem `MEMORY.md`), pular este lembrete.
 - Frase: `"Ja faz uns [N] dias desde a ultima limpeza de memoria. Quer rodar o Otimizar Custo pra manter o custo de tokens baixo?"`
 - Se faz menos de 30 dias, ficar quieto. Esse e o UNICO canal do lembrete de custo — o fim-do-dia nao lembra disso direto.
 
@@ -521,8 +563,9 @@ varios contextos na mesma semana dispararia varios lembretes de custo.
 
 ## Convencao de nomes
 
-- Satelite: `CONTEXTO_AREA_NOME.md` (AREA comum: TECH, COMERCIAL, PRODUTO, MKT, BI, DECISOES, CX, ANALISE) —
-  ou simplesmente `CONTEXTO_nome-descritivo.md`. O importante e o nome dizer do que se trata.
+- Satelite: `CONTEXTO_tema.md` (prefixo do contexto em maiusculas, tema em minusculas com `_`; ex: `CLIENTEA_asaas.md`).
+  Uma convencao so — a mesma do modelo `satelite.md`, do `guia_do_os.md` e do `fim-do-dia`. Satelite antigo com
+  outro nome NAO e renomeado (renomear quebra link em silencio).
 - Arquivo do changelog: `historico/CHANGELOG_AAAA_Q[1-4].md`. Obsoleto: `historico/NOME_ORIGINAL.md`.
 
 ## O que esta skill NAO faz
@@ -539,12 +582,14 @@ varios contextos na mesma semana dispararia varios lembretes de custo.
 - [ ] Rodou SO no contexto aprovado (nenhum arquivo de outro contexto foi tocado)
 - [ ] Todo ajuste executado foi aprovado pelo usuario (nenhuma acao sem OK explicito)
 - [ ] Nada foi apagado, so movido (`historico/` ou changelog), com antes/depois mostrado
-- [ ] Todo split deixou ponteiro dos dois lados + entrada no `index.md`, na mesma rodada
+- [ ] Todo split deixou ponteiro dos dois lados + entrada no `index.md`, na mesma rodada, no formato unico ("abrir quando" com ate 80 caracteres)
+- [ ] Satelite novo pelo modelo (`abrir_quando`, Regras vigentes no topo), nome `CONTEXTO_tema.md`; conferencia item a item mostrada ANTES de remover da origem
+- [ ] Custo fixo da sessao reportado antes/depois/meta; movimento entre arquivos fixos NAO foi contado como reducao
 - [ ] Nenhum link quebrou (links de entrada de todo arquivo renomeado/movido foram re-checados)
 - [ ] Documentos com numeros conferidos foram re-carimbados (`> Verificado ao vivo: DATA`)
 - [ ] Status atual e "bola" continuam no MESTRE; nenhum satelite virou dono de status
 - [ ] Carimbo `.last-otimizar-os` gravado com contagens e datas
-- [ ] Tabela de verificacao `arquivo | antes | depois | reducao` apresentada
+- [ ] Tabela de verificacao `arquivo | antes | depois | reducao` apresentada com a linha de custo fixo
 
 Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.
 

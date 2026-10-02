@@ -7,7 +7,7 @@ description: |
   Guia 3 perguntas rapidas, AVALIA os arquivos antes de escrever (gate anti-duplicacao
   e anti-verborragia), salva aprendizados no lugar certo, migra tarefas concluidas
   e atualiza pendencias no documento mestre do contexto ativo.
-version: 5.1
+version: 5.2
 context: meuos
 user-invocable: true
 author: Fernando Lúcio — Aion Group
@@ -28,11 +28,11 @@ Esta skill guia voce por uma rotina rapida de fechamento do dia de trabalho — 
 | Arquivo | O que entra | O que NUNCA entra |
 |---|---|---|
 | `claude.md` (contexto) | SO regra **RIGIDA de operacao** do contexto (config, limites inviolaveis). Mexer aqui = **excecao da excecao** | Caso do dia, status, decisao de negocio, historico |
-| `aprendizados_do_dia.md` | Regra/padrao/anti-pattern reutilizavel — objetivo, pouco texto (max 6 linhas/~700 caracteres por entrada) | Narrativa, historia da investigacao, evento pontual |
+| `aprendizados_do_dia.md` | **Caixa de entrada** de regra/padrao/anti-pattern reutilizavel que AINDA NAO tem satelite do tema — objetivo, pouco texto (max 6 linhas/~700 caracteres por entrada). Tema que ja tem satelite: a regra (1 linha) entra direto em "Regras vigentes" dele e a entrada completa, sem reescrever, em "Historico" com a data (aplicando o modelo no satelite, se ainda nao tiver) | Narrativa, historia da investigacao, evento pontual, regra de tema que ja tem satelite |
 | `changelog.md` | **O LAR do caso pontual**: o que foi feito, incidentes, narrativas com data (append-only) | Regra viva (essa mora nos arquivos acima) |
 | `*MESTRE.md` | O documento **VIVO** — mexe quase toda sessao: descricao do contexto, objetivos, **decisoes estrategicas/taticas, planos**, status, pendencias, ponteiros pros satelites | Spec densa (→ satelite), medicao/inventario (→ satelite), historico (→ changelog), caso do dia |
-| **SATELITE** (`CONTEXTO_TEMA.md`) | Detalhe DURAVEL de UM tema: spec, inventario, medicao com data, evidencia, historico analitico. Criado sob demanda (nunca vazio "pra constar"), lido so quando o tema surge | Status atual e "com quem esta a bola" (isso e do MESTRE; o satelite nunca reconta status) |
-| `index.md` | Catalogo **100% completo** dos .md do contexto — todo satelite listado, sem excecao | Conteudo (so link + 1 linha de descricao) |
+| **SATELITE** (`CONTEXTO_tema.md`, modelo `satelite.md`) | Detalhe DURAVEL de UM tema: spec, inventario, medicao com data, evidencia, historico analitico. Criado sob demanda (nunca vazio "pra constar"), pelo modelo: frontmatter com `abrir_quando` · `> Documento pai` · Regras vigentes no topo · Detalhe · Historico no fim. Lido quando o "abrir quando" bate | Status atual e "com quem esta a bola" (isso e do MESTRE; o satelite nunca reconta status) |
+| `index.md` | Catalogo **100% completo** dos .md do contexto — todo satelite listado, sem excecao. Entrada no formato unico: `- [arquivo](arquivo) — abrir quando: tema A, tema B` (1 linha; o trecho depois de "abrir quando:" tem ate 80 caracteres) | Conteudo; descricao longa (o que o arquivo E cabe no nome; a entrada diz QUANDO abrir) |
 | `soul.md` (raiz) | SO personalidade/comportamento do agente, de altissima necessidade | Regra operacional; qualquer coisa que caiba em outro lugar |
 
 **Os 2 gatilhos de roteamento (valem em TODA escrita, mesmo com o MESTRE pequeno):**
@@ -174,9 +174,13 @@ eu trabalho neste contexto?"*
 - Proibido na entrada: historia da investigacao, "caso real: ...", justificativa da regra.
 - **Max 3 entradas novas por sessao** — o excedente e quase sempre caso pontual → changelog.
 
-**5 — Teto duro (entra um, sai um).** Arquivo-alvo JA estourado (aprendizados com mais de 250
+**5 — Teto duro (entra um, sai um; a saida mira a folga).** Arquivo-alvo JA estourado (aprendizados com mais de 250
 linhas OU 15KB · claude.md mais de 300 linhas · MESTRE mais de 500) → escrita nova SO entra se
-sair volume equivalente na MESMA rodada (condensar/migrar antes, com aprovacao).
+sair volume equivalente na MESMA rodada (condensar/migrar antes, com aprovacao). Ao migrar, levar
+o arquivo para ~60% do limite (aprendizados ~9KB/120 linhas · MESTRE ~15KB/180 linhas · claude.md
+~120 linhas), nao para 1 byte abaixo do corte: tirar so o equivalente ao que entra deixa o arquivo
+grudado no teto e o alerta volta na sessao seguinte. Destino: satelite do tema (protocolo de mudanca
+de casa do PASSO 5.5, passo 4).
 
 **6 — claude.md e excecao da excecao; MESTRE e o destino vivo.** O claude.md do contexto so recebe
 escrita se for regra RIGIDA de operacao — quase nunca acontece. Decisao de negocio/estrategia/
@@ -227,12 +231,14 @@ Se algum limite for ultrapassado, apresentar tabela numerada ao usuario com os c
 | # | Entrada | Sugestao | Destino |
 |---|---------|----------|---------|
 | 1 | Incidente Fraude CNPJ (03/04) | Migrar | changelog.md |
-| 2 | API Asaas = so GET (regra permanente) | Promover | *MESTRE.md secao Regras |
+| 2 | API Asaas = so GET (regra permanente de UM tema) | Promover | satelite `CLIENTEA_asaas.md`, secao Regras vigentes (o mestre recebe so o ponteiro de 1 linha) |
 | 3 | Bug no envio de email (31/03) | Migrar | changelog.md |
 | 4 | Padrao de prompt OpenAI (ativo) | Manter | aprendizados_do_dia.md |
 ```
 
 O usuario responde quais aprovar (ex: "1 e 3 sim") e so o aprovado e movido. **NUNCA migrar sem aprovacao.**
+Promover entrada para satelite = a regra (1 linha, o "Solucao"/"Nao fazer") entra em "Regras vigentes"; a entrada
+completa, sem reescrever, entra em "Historico" com a data; conferir que os dois estao la e so entao remover do aprendizados.
 
 ---
 
@@ -280,7 +286,8 @@ Identificar todos os itens marcados como concluidos (formato `[x]`).
 Com base na resposta da Pergunta 3, atualizar a lista de pendencias no `*MESTRE.md` do contexto ativo:
 
 - Adicionar novas pendencias informadas pelo usuario (formato `[ ] [descricao]`) — **ANTES, buscar
-  nas pendencias existentes**: se o tema ja esta la, atualizar a linha existente, nunca duplicar
+  nas pendencias existentes E no `CONTEXTO_backlog.md`, se existir**: se o tema ja esta la, atualizar a linha existente
+  (pendencia que volta a andar SAI do backlog e volta ao MESTRE), nunca duplicar
 - Pendencia nova = 1-2 linhas (o que + o que destrava) — spec e historico nao moram aqui
 - **Gatilho do satelite**: se a atualizacao carrega medicao, inventario ou spec (numeros/listas densas),
   isso NAO entra no mestre: vai pro satelite do tema (com data), e o mestre recebe so o ponteiro de
@@ -330,25 +337,22 @@ Ao sugerir, gravar `LAST_SUGGESTED=<hoje>` no `.last-otimizar-os` (segura o lemb
 
 ### PASSO 5.5 — Descompressao do documento mestre (condicional)
 
-**Executar SOMENTE se o `*MESTRE.md` do contexto ativo tiver mais de 300 linhas**, OU se houve entregas significativas na sessao (modulo inteiro, integracao completa, decisao arquitetural grande). Em sessoes curtas ou de manutencao, pular.
+**Executar SOMENTE se o `*MESTRE.md` do contexto ativo estiver 🟡 ou 🔴 (300+ linhas OU 25KB+, vale o pior dos dois) OU tiver uma secao com 30+ linhas sobre UM tema**, OU se houve entregas significativas na sessao (modulo inteiro, integracao completa, decisao arquitetural grande). Em sessoes curtas ou de manutencao, pular.
 
 **Objetivo:** manter o documento mestre legivel em menos de 5 minutos. Escopo, status, pendencias e ponteiros ficam la. Detalhes densos saem para arquivos separados.
 
 **Fluxo (com aprovacao do usuario em cada passo):**
 
-1. **Contar as linhas do mestre.** Se menos de 300, pular.
+1. **Medir linhas E KB do mestre.** Abaixo de 300 linhas E de 25KB, sem secao de 30+ linhas de um tema: pular.
 2. **Identificar secoes densas** — qualquer secao com mais de 30 linhas de conteudo detalhado sobre UM tema especifico (decisoes por data, especificacoes de modulo, mapeamentos, etc.).
-3. **Propor extracao ao usuario** listando as secoes candidatas e o nome do arquivo separado sugerido, usando a convencao `CONTEXTO_AREA_TEMA.md`.
-4. **Se aprovado:** criar o arquivo separado na mesma pasta do mestre.
-5. **Substituir no mestre** por um ponteiro de 2 a 3 linhas: resumo curto + `ver CONTEXTO_AREA_TEMA.md`.
+3. **Propor extracao ao usuario** listando as secoes candidatas. Para cada uma, procurar no `index.md` um satelite do mesmo tema: existe → propor ACRESCENTAR nele (satelite existente mantem o nome; ao acrescentar, aplicar o modelo NELE — frontmatter com `abrir_quando` + secao "Regras vigentes" no topo — sem reorganizar o que ja estava dentro); nao existe → propor satelite novo pelo modelo `satelite.md` (frontmatter `updated/context/type: satelite/status: vivo/abrir_quando` · `> Documento pai:` · `## Regras vigentes` · `## Detalhe` · `## Historico`), nome `CONTEXTO_tema.md` (mesmo que os satelites vizinhos usem outro padrao de nome), com o "abrir quando" preenchido.
+4. **Se aprovado:** seguir o protocolo de mudanca de casa: copiar SEM reescrever (resumir e outro passo, com aprovacao propria) → conferir item a item que toda regra, numero, data, nome e link da origem esta no destino, e mostrar a lista → so entao remover do mestre → 1 linha no changelog ("movido X de A para B"). Dentro do satelite, a secao extraida vai para "Detalhe" (spec, inventario, processo) ou "Historico" (bloco datado); em "Regras vigentes" entra so regra de 1 linha.
+5. **Substituir no mestre** por UMA linha no formato unico: `- [CONTEXTO_tema.md](CONTEXTO_tema.md) — abrir quando: tema A, tema B` (o trecho depois de "abrir quando:" tem ate 80 caracteres). Essa linha vive em UM lugar do mestre, a secao "Satelites deste contexto" (criar a secao no primeiro ponteiro, se o mestre nao tiver); no lugar da secao extraida nao fica nada. A mesma linha entra no `index.md`.
 6. **Limite:** maximo 3 arquivos separados novos por execucao (evita fragmentacao).
 
-**Convencao de nomes:**
-- `CONTEXTO` = prefixo do projeto (CLIENTEA, CLIENTEC, MINHA_EMPRESA, etc.)
-- `AREA` = area tematica (TECH, PRODUTO, COMERCIAL, MKT, DECISOES, etc.)
-- `TEMA` = assunto especifico (DECISOES_ABRIL, INTEGRACAO_API_X, etc.)
+**Convencao de nomes:** `CONTEXTO_tema.md` — prefixo do contexto em maiusculas, tema em minusculas com `_`. Uma convencao so, a mesma do modelo `satelite.md` e do `otimizar-os`. Satelite antigo com outro nome NAO e renomeado (renomear quebra link em silencio).
 
-**Exemplos:** `CLIENTEA_TECH_DECISOES.md`, `MINHA_EMPRESA_PRODUTO_ROADMAP.md`.
+**Exemplos:** `CLIENTEA_asaas.md`, `MINHA_EMPRESA_roadmap_produto.md`.
 
 ---
 
@@ -389,7 +393,8 @@ invisivel que vira duplicata no futuro. A correcao e imediata (index e catalogo,
 Se o arquivo `index.md` existir na pasta do contexto que esta sendo fechado:
 1. Listar todos os arquivos `.md` nessa pasta
 2. Comparar com o `index.md` atual — **cross-check: TODO satelite da pasta tem entrada no index?** Faltando → adicionar na hora
-3. Para arquivos novos (satelites criados durante o dia): adicionar entrada com link
+3. Para arquivos novos (satelites criados durante o dia): adicionar entrada no formato unico: `- [arquivo](arquivo) — abrir quando: tema A, tema B` (1 linha; o trecho depois de "abrir quando:" tem ate 80 caracteres)
+3b. Entrada existente fora do formato unico (sem "abrir quando" ou com o trecho acima de 80 caracteres): propor encurtar (com aprovacao). Descricao longa no index e custo fixo que nao diz ao agente QUANDO abrir o arquivo.
 4. Para arquivos removidos ou renomeados: atualizar
 5. Atualizar a data no cabecalho
 
@@ -471,8 +476,10 @@ Se houve uma analise longa, comparacao detalhada ou deep dive durante a sessao, 
 - [ ] Itens `[x]` estao no changelog com a data de hoje e SAIRAM do mestre (zero linhas riscadas novas)
 - [ ] Conclusao que reverteu regra: mestre atualizado em linguagem afirmativa + transicao no changelog
 - [ ] Nenhuma medicao/inventario denso entrou no mestre (foi pro satelite, com ponteiro de 1 linha)
-- [ ] Pendencias atualizadas sem duplicar tema existente + data de "Ultima atualizacao" no cabecalho
-- [ ] index.md do contexto cobre 100% dos .md (satelites criados hoje incluidos)
+- [ ] Toda mudanca de casa (mestre → satelite) seguiu o protocolo: copiar, conferir item a item com a lista mostrada, so entao remover
+- [ ] Satelite novo nasceu pelo modelo (`abrir_quando` + Regras vigentes no topo) e tem a linha unica no mestre e no index
+- [ ] Pendencias atualizadas sem duplicar tema existente (nem no backlog) + data de "Ultima atualizacao" no cabecalho
+- [ ] index.md do contexto cobre 100% dos .md (satelites criados hoje incluidos), toda entrada no formato unico ("abrir quando" com ate 80 caracteres)
 - [ ] Nada foi migrado ou removido sem aprovacao do usuario
 - [ ] Resumo final apresentado (PASSO 7)
 

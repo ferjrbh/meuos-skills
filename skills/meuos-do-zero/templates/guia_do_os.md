@@ -65,6 +65,23 @@ com eles, cada sessão começa de onde a anterior parou. Estas são as suas inst
    gatilhos: antes de gravar estado mutável fora do mestre, PARE (estado vai pro mestre); antes de
    gravar medição/inventário dentro do mestre, PARE (vai pro satélite do tema, com data, e o mestre
    recebe só o ponteiro de 1 linha). Ponteiro dos dois lados, sempre; todo satélite no `index.md`.
+   **Satélite tem forma e mudança de casa tem protocolo.** Satélite nasce pelo modelo
+   `satelite.md` (nome `CONTEXTO_tema.md`; frontmatter com `abrir_quando`; Regras vigentes no
+   topo, Detalhe, Histórico no fim). O ponteiro é UMA linha, igual no mestre e no `index.md`:
+   `- [CONTEXTO_tema.md](CONTEXTO_tema.md) — abrir quando: tema A, tema B` (o trecho depois de
+   "abrir quando:" tem até 80 caracteres); no mestre ela vive em um lugar só, a seção "Satélites deste
+   contexto". Mover conteúdo de um arquivo para outro segue 5 passos: (1) procurar satélite do mesmo
+   tema no index, existe → entra nele; (2) copiar SEM reescrever (regra de 1 linha em Regras vigentes;
+   spec e inventário em Detalhe; o datado em Histórico; resumir é outro passo, com aprovação própria);
+   (3) conferir item a item que toda regra, número, data, nome e link da origem está no destino, e
+   mostrar a lista; (4) só então remover da origem e gravar o ponteiro nos dois lados; (5) 1 linha no
+   changelog: "movido X de A para B".
+   **Convivência com o que já existe (regra do escoteiro).** OS antigo não se reorganiza em massa.
+   Satélite existente mantém o nome para sempre (renomear quebra link em silêncio). Ao tocar nele para
+   acrescentar ou mover algo, aplicar o modelo NELE: frontmatter com `abrir_quando` + seção "Regras
+   vigentes" no topo, sem reorganizar o que já estava dentro. Mestre sem a seção "Satélites deste
+   contexto" ganha a seção no primeiro ponteiro, com aprovação. Satélite que ninguém toca fica como
+   está. Única exceção: o `index.md`, que é catálogo e se arruma inteiro numa passada (otimizar-os).
 
 ### 4. Suas skills (o pacote inicial tem 8)
 
