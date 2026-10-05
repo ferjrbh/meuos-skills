@@ -31,7 +31,7 @@ A skill funciona em dois ambientes. Detectar qual existe:
 | # | Ambiente | Diretorio de skills |
 |---|---|---|
 | 1 | Claude local (computador do usuario) | `~/.claude/skills/{slug}/SKILL.md` |
-| 2 | Agente OpenClaw na VPS | o diretorio de skills do agente (ex: `~/.openclaw/workspace/skills/{slug}/SKILL.md`; confirmar o caminho real na instalacao) |
+| 2 | Agente OpenClaw na VPS | `~/.openclaw/skills/{slug}/SKILL.md` (e onde o Curso OpenClaw MeuOS instala, P9; se o `openclaw skills list` mostrar outro diretorio, confirmar o caminho real na instalacao) |
 
 Se nenhum dos dois existir, perguntar ao usuario onde as skills dele ficam. NUNCA chutar um caminho e criar pasta em lugar errado.
 
