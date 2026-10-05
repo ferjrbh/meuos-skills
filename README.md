@@ -3,7 +3,7 @@
 > Skills oficiais do **MeuOS** para o seu Claude Code: organize seu OS pessoal, crie conteúdo,
 > faça growth, automação e produtividade — cada uma pronta para instalar em segundos.
 
-[![skills](https://img.shields.io/badge/skills-56-D95C1A?style=flat-square)](https://www.meuos.com.br)
+[![skills](https://img.shields.io/badge/skills-58-D95C1A?style=flat-square)](https://www.meuos.com.br)
 [![feito para](https://img.shields.io/badge/feito_para-Claude_Code-1A2B4A?style=flat-square)](https://claude.com/claude-code)
 [![MeuOS](https://img.shields.io/badge/MeuOS-meuos.com.br-D95C1A?style=flat-square)](https://www.meuos.com.br)
 
@@ -37,6 +37,7 @@ As skills são markdown puro — funcionam com os **dois cérebros** que o MeuOS
 A aba **Skills** do MeuOS gera o prompt de instalação certo pros dois — é só copiar e colar no seu agente.
 
 > ⚠️ Exceções: `otimizar-custo` depende da memória do Claude Code (`MEMORY.md`) e **não se aplica ao ChatGPT**.
+> `copiloto` roda isolado no Claude Code (sem ver a conversa de quem fez a conta); no ChatGPT ele roda na mesma conversa e pede para você abrir uma conversa nova.
 > Skills que editam o arquivo de entrada do OS (`fim-do-dia`, `otimizar-os`) **espelham a mudança na entrada irmã** (claude.md ↔ AGENTS.md) — regra dual-agent.
 
 ## Requisitos
@@ -151,6 +152,15 @@ Os ritos essenciais do MeuOS. Comece pela **MeuOS do Zero**.
 |---|---|---|
 | **[Structured Thinking](skills/structured-thinking/SKILL.md)** | Exploração estruturada antes de tarefas complexas | *"pensar estruturado"* |
 | **[Systematic Debugging](skills/systematic-debugging/SKILL.md)** | Método sistemático pra debugar problemas | *"debugar"*, *"systematic debugging"* |
+
+### 🔎 Análise (2)
+
+| Skill | O que faz | Gatilhos |
+|---|---|---|
+| **[Comandante](skills/comandante/SKILL.md)** | Rotina de análise com evidência: contexto da empresa, plano de voo, base contada, conta por código, referência pública e cada número com endereço | *"comandante"*, *"plano de voo"* |
+| **[Copiloto](skills/copiloto/SKILL.md)** | Confere um número do zero, sem ver a conta anterior, e revisa a peça inteira antes de ela sair: não sai, sai com correção ou pode sair | *"copiloto"*, *"confere esse número"*, *"posso mandar isso?"* |
+
+> O **Copiloto** tem 6 arquivos (instruções, catálogo, modelo de laudo e 3 scripts). Se você instalar só o `SKILL.md`, ele baixa o resto sozinho na primeira vez que rodar. Precisa de Python instalado.
 
 ### 🔌 n8n (3)
 
