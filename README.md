@@ -160,7 +160,7 @@ Os ritos essenciais do MeuOS. Comece pela **MeuOS do Zero**.
 | **[Comandante](skills/comandante/SKILL.md)** | Rotina de análise com evidência: contexto da empresa, plano de voo, base contada, conta por código, referência pública e cada número com endereço | *"comandante"*, *"plano de voo"* |
 | **[Copiloto](skills/copiloto/SKILL.md)** | Confere um número do zero, sem ver a conta anterior, e revisa a peça inteira antes de ela sair: não sai, sai com correção ou pode sair | *"copiloto"*, *"confere esse número"*, *"posso mandar isso?"* |
 
-> O **Copiloto** tem 6 arquivos (instruções, catálogo, modelo de laudo e 3 scripts). Se você instalar só o `SKILL.md`, ele baixa o resto sozinho na primeira vez que rodar. Precisa de Python instalado.
+> O **Copiloto** tem 6 arquivos (instruções, catálogo, modelo de laudo e 3 scripts). Se você instalar só o `SKILL.md`, ele baixa o resto sozinho na primeira vez que rodar. Funciona sem Python: no Windows, faz as contas no PowerShell.
 
 ### 🔌 n8n (3)
 
