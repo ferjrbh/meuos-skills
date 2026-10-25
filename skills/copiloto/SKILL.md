@@ -7,7 +7,7 @@ description: |
   página) antes de ela sair e dá o laudo: não sai, sai com correção ou pode sair. Use quando o usuário disser
   "copiloto", "cross check", "confere esse número", "revisa os números", "acha os erros", "audita essa análise",
   "posso mandar isso?", ou antes de uma peça com números ir para diretoria, conselho ou cliente.
-version: 1.1
+version: 1.2
 context: fork
 agent: general-purpose
 user-invocable: true
@@ -23,7 +23,7 @@ Na cabine, quem pilota não confere a própria conta. O copiloto confere, em voz
 
 Pedido: o que o usuário escreveu ao chamar a skill (no Claude Code, ele chega aqui: **$ARGUMENTS**).
 
-Antes de começar: os arquivos de apoio ficam na pasta desta skill (no Claude Code, `${CLAUDE_SKILL_DIR}`; em outro agente, a pasta onde este SKILL.md está). Se faltar algum deles, baixe de `https://raw.githubusercontent.com/ferjrbh/meuos-skills/main/skills/copiloto/` mais o nome do arquivo (`CATALOGO.md`, `LAUDO-MODELO.md`, `scripts/perfil_base.py`, `scripts/extrai_numeros.py`, `scripts/confere_somas.py`) e salve na mesma pasta, no mesmo caminho. Se você não estiver rodando isolado e enxergar a conversa em que o número foi feito, avise o usuário: o cross-check vale mais numa conversa nova, sem a conta anterior à vista.
+Antes de começar: os arquivos de apoio ficam na pasta desta skill (no Claude Code, `${CLAUDE_SKILL_DIR}`; em outro agente, a pasta onde este SKILL.md está). Se faltar algum deles, baixe de `https://raw.githubusercontent.com/ferjrbh/meuos-skills/main/skills/copiloto/` mais o nome do arquivo (`CATALOGO.md`, `LAUDO-MODELO.md`, `scripts/perfil_base.py`, `scripts/extrai_numeros.py`, `scripts/confere_somas.py`) e salve na mesma pasta, no mesmo caminho. Se não der para baixar, siga sem ele. Se você não estiver rodando isolado e enxergar a conversa em que o número foi feito, avise o usuário: o cross-check vale mais numa conversa nova, sem a conta anterior à vista.
 
 Material desta skill (leia quando a etapa mandar):
 - `${CLAUDE_SKILL_DIR}/CATALOGO.md`: as checagens, em quatro famílias, e a régua de gravidade.
@@ -40,7 +40,7 @@ Se o pedido começa com "revisar", é o **modo peça**: o resto do pedido é o a
 ## Regras de cabine, nos dois modos
 
 1. **Todo número tem endereço:** arquivo, coluna, filtro e conta, ou fonte pública e data em que foi baixada. Sem endereço, o número fica fora do laudo.
-2. **Conta por código**, em Python. Prefira a biblioteca padrão; o `perfil_base.py` já lê Excel. Se precisar instalar qualquer coisa, peça o ok do usuário antes. Os comandos abaixo usam `python3`; se ele não existir (comum no Windows), use `python`. Sem Python instalado, avise o usuário e pare.
+2. **Conta por código**, em Python. Prefira a biblioteca padrão; o `perfil_base.py` já lê Excel. Não instale nada. Se o Python não estiver no computador (no Windows, `python3` pode abrir a Microsoft Store ou responder que não foi encontrado), não peça para instalar: faça as mesmas contas no PowerShell, com `Import-Csv`, `Group-Object` e `Measure-Object`, e mostre o comando. Sem Python, os scripts desta skill ficam de fora: faça à mão o que eles fazem (contar linhas, procurar chave repetida, conferir se as parcelas fecham o total).
 3. **Defina antes de olhar.** Escreva a definição do que vai medir, a partir do contexto, antes de ver o número da peça ou do comandante.
 4. **Só é erro o que você reproduz.** Mostre a conta que gera o número da peça e a que gera o número certo. O que você não consegue reproduzir entra como dúvida.
 5. **Diferença é diferença.** Números que diferem na primeira casa decimal de uma porcentagem são números diferentes: mostre a ponte.
@@ -55,7 +55,7 @@ Antes de qualquer conta, procure na pasta o arquivo de contexto da empresa: um .
 
 1. Leia o contexto.
 2. Escreva a definição: o que conta como um, numerador, denominador, período e perímetro.
-3. Rode `python3 ${CLAUDE_SKILL_DIR}/scripts/perfil_base.py <pasta>` e leia o resultado: linhas, chaves repetidas, datas, registros que não cruzam entre arquivos.
+3. Rode `python3 ${CLAUDE_SKILL_DIR}/scripts/perfil_base.py <pasta>` (sem Python, regra 2) e leia o resultado: linhas, chaves repetidas, datas, registros que não cruzam entre arquivos.
 4. Calcule por código e mostre a conta.
 5. Calcule as variantes das seis perguntas abaixo que mudam o resultado.
 6. Monte o mapa das variantes com no máximo 8 linhas: as que mudam a resposta e as que alguém escolheria por engano.
