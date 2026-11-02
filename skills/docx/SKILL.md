@@ -204,7 +204,7 @@ pdftoppm -png document.pdf output_prefix
 - **Namespaces**: Manter TODOS os namespaces do XML original
 - **IDs unicos**: Cada elemento precisa de ID unico no documento
 - **Validacao**: Sempre abrir o .docx resultante para verificar
-- **Backup**: SEMPRE fazer backup antes de editar (REGRA #6 do OS)
+- **Backup**: SEMPRE fazer backup antes de editar
 
 ## Dependencias
 - `pandoc` — leitura de conteudo
