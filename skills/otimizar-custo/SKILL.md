@@ -157,13 +157,14 @@ Se algum estiver 🟡 ou 🔴, sugerir ao usuario:
 ### PASSO 2 — Classificar cada entrada
 
 Para cada arquivo (e para as linhas do `MEMORY.md` que apontam para topicos),
-classificar em 3 categorias:
+classificar em 4 categorias:
 
 | Categoria | Criterio | O que fazer |
 |-----------|----------|-------------|
 | **Manter** | Preferencia pessoal ativa, regra de estilo, convencao do agente — usada nas ultimas semanas | Deixar como esta |
 | **Arquivar** | Mais de 90 dias sem modificacao, conteudo sobre projeto/decisao que ja passou | Mover para `memory/historico/` |
-| **Promover** | Informacao que deveria estar no seu OS (regra de negocio, decisao de produto, credencial, stack ativa) | Copiar para o OS — destino padrao e o SATELITE do tema — e remover daqui |
+| **Promover** | Informacao que deveria estar no seu OS (regra de negocio, decisao de produto, stack ativa) | Copiar para o OS — destino padrao e o SATELITE do tema — e remover daqui |
+| **Credencial** | Senha, token, chave de API, CPF ou qualquer segredo | NUNCA copiar para o OS (ele sincroniza na nuvem e entra em todo backup). Avisar o usuario, sugerir guardar num gerenciador de senhas e remover daqui so com o OK dele |
 
 **Como identificar:**
 
@@ -175,12 +176,16 @@ sentido so aqui.
 ou simplesmente nao foi tocada em 90+ dias.
 
 **Promover:** Regra de negocio do seu cliente/produto, configuracao de stack
-(URL de API, modelo usado), decisao estrategica, credencial — tudo isso cabe
+(URL de API, modelo usado), decisao estrategica — tudo isso cabe
 melhor no seu OS, no SATELITE do tema (`CONTEXTO_tema.md`), que o agente abre so
 quando o assunto surge. MESTRE so para decisao vigente que vale em TODA sessao;
 `claude.md` so para regra rigida de operacao; aprendizados NUNCA (e caixa de
 entrada — promover para la e adiar a arrumacao). Outros agentes que voce usar
 no futuro tambem vao precisar dessa info.
+
+**Credencial:** senha, token, chave de API, CPF. Nunca vai para o OS nem para o
+plano em texto (mostrar so o nome do arquivo e "contem credencial"). Na duvida
+se e segredo, tratar como segredo.
 
 ---
 
