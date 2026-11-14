@@ -1,7 +1,7 @@
 ---
 name: organiza-pra-mim
 description: "Recebe qualquer arquivo ou anotacao solta que o usuario mandar (PDF, foto, print, planilha, contrato, nota, texto avulso), le de verdade o conteudo, guarda na pasta certa do OS do usuario com nome padronizado e indexa nos catalogos. Usar quando o usuario disser 'organiza pra mim', 'guarda isso', 'arquiva isso', 'salva no meu OS', 'onde eu guardei', 'acha o arquivo de X', ou quando enviar um arquivo sem dizer o que fazer com ele."
-version: 1.0
+version: 1.1
 author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
@@ -24,7 +24,7 @@ O usuario manda material solto (um contrato em PDF, a foto de um recibo, o print
 Todo OS tem contextos separados (ex: `pessoal/`, `empresa/`, um por cliente ou projeto). Regra de ouro:
 
 - Se o usuario disse onde vai ("guarda isso no contexto da empresa"), seguir.
-- Se ficou obvio pelo conteudo (um contrato da empresa X vai no contexto da empresa X), propor e confirmar em 1 linha.
+- Se ficou obvio pelo conteudo (um contrato da empresa X vai no contexto da empresa X), propor em 1 linha e esperar o usuario confirmar.
 - Em duvida, **perguntar antes de gravar**. NUNCA misturar material de um contexto em outro.
 
 ### PASSO 2: Ler o arquivo de verdade
@@ -38,6 +38,8 @@ Abrir o conteudo, nao adivinhar pelo nome do arquivo:
 | 3 | Imagem / print | Olhar e descrever o que mostra (comprovante, quadro de reuniao, recibo) |
 | 4 | Audio | Transcrever antes de arquivar (se o agente tiver capacidade de transcricao) |
 | 5 | Texto avulso | Ler inteiro e identificar o assunto |
+
+**Material colado no chat sem arquivo** (foto, print ou texto colado direto na conversa): pedir ao usuario o arquivo original. Se ele nao tiver ou nao quiser mandar, gravar so a versao `.md` e avisar: "o original nao foi guardado, so a versao em texto".
 
 ### PASSO 3: Ler o OS ANTES de escrever
 
@@ -60,7 +62,9 @@ Regras de gravacao:
 
 1. Copiar o original para dentro do contexto certo do OS.
 2. Criar um `.md` estruturado ao lado (mesmo nome, extensao `.md`) com: o que e o material, fonte, data de importacao, resumo do conteudo e a nota de que **o arquivo original manda** (o `.md` e a versao que da pra procurar, nao a fonte de verdade).
-3. Subpasta tematica nova SO quando o material for recorrente (ex: uma pasta `orcamentos/` nasce no terceiro orcamento, nao no primeiro). Material avulso vai na raiz do contexto.
+   - **Dado sensivel entra mascarado no `.md`:** CPF, conta bancaria e cartao aparecem so com os 4 ultimos digitos (ex.: `CPF ***.***.*12-34`, `cartao final 5678`). Senha, token ou chave NUNCA entram no `.md`, nem em parte: escrever so `[senha omitida]` e avisar o usuario que o original contem segredo. O dado completo fica so no original.
+3. **ChatGPT sem acesso a arquivos:** entregar o `.md` num bloco de codigo, com o nome sugerido, para o usuario salvar na pasta do contexto.
+4. Subpasta tematica nova SO quando o material for recorrente (ex: uma pasta `orcamentos/` nasce no terceiro orcamento, nao no primeiro). Material avulso vai na raiz do contexto.
 
 ### PASSO 5: Se o material virar tarefa
 
@@ -71,6 +75,8 @@ Se o material tem itens acionaveis (um contrato com prazo de renovacao, uma ata 
 1. `index.md` do contexto: acrescentar o arquivo com 1 linha de descricao e atualizar a data.
 2. Documento mestre do contexto: ponteiro de 1 linha, SO se o material for relevante para o status do contexto.
 3. `changelog.md` do contexto: registrar a entrada com a data (append-only, nunca editar linha antiga).
+
+Se o `index.md` ou o `changelog.md` nao existir no contexto: perguntar ao usuario se cria. Se ele nao quiser, seguir sem e avisar no reporte que o catalogo nao existe.
 
 ### PASSO 7: Reportar curto, com o caminho
 
@@ -103,13 +109,14 @@ Quando o usuario perguntar "onde esta o arquivo de X" ou "acha o orcamento do fo
 
 ## Checklist final: a execucao foi bem feita? (conferir ANTES de declarar concluido)
 
-- [ ] Contexto de destino confirmado com o usuario (ou obvio e anunciado em 1 linha)
+- [ ] Contexto de destino confirmado com o usuario
 - [ ] Conteudo do arquivo foi LIDO de verdade (nao adivinhado pelo nome)
 - [ ] Nome segue a convencao (minusculo, sem acento, hifen, data quando datado)
-- [ ] Original guardado + `.md` pesquisavel criado ao lado
+- [ ] Original guardado + `.md` pesquisavel criado ao lado (ou, sem original, so o `.md` com o aviso ao usuario)
+- [ ] Dado sensivel (CPF, conta, cartao, senha) mascarado no `.md`
 - [ ] Nada foi sobrescrito nem apagado
 - [ ] Itens acionaveis viraram tarefas com dono e prazo (ou marcados "sem dono", visiveis)
-- [ ] `index.md` e `changelog.md` do contexto atualizados
+- [ ] `index.md` e `changelog.md` do contexto atualizados OU ausencia informada ao usuario
 - [ ] Usuario recebeu o caminho completo do que foi guardado
 
 Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.

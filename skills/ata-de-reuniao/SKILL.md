@@ -1,7 +1,7 @@
 ---
 name: ata-de-reuniao
 description: "Transforma transcricao, audio ou anotacoes soltas de reuniao em ata pronta: participantes, pauta, decisoes, acoes com dono e prazo, pendencias e proxima reuniao. Usar quando o usuario disser 'faz a ata', 'ata da reuniao', 'transforma essa transcricao em ata', 'registra a reuniao', 'minutas da reuniao', ou enviar uma gravacao/transcricao pedindo organizacao."
-version: 1.0
+version: 1.1
 author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
@@ -16,6 +16,20 @@ Pega o material bruto de uma reuniao (transcricao automatica, audio, anotacoes r
 ---
 
 ## Passo a passo (instrucoes para o agente de IA)
+
+### PASSO 0: Perguntar o contexto ANTES de ler a fonte
+
+Uma ata so fica certa quando o agente sabe de que mundo ela e. Antes de qualquer coisa, perguntar em 1 mensagem curta (pular o que o usuario ja disse):
+
+> "Antes de montar a ata: (1) essa reuniao e de qual contexto do seu OS (empresa, cliente, projeto ou pessoal)? (2) qual foi o objetivo dela? (3) a ata vai para quem: so para voce, para a equipe ou para o cliente?"
+
+| # | Resposta | O que muda na ata |
+|---|---|---|
+| 1 | Contexto | Ler o documento mestre ou o `index.md` daquele contexto (se existirem) para acertar nomes de pessoas, projetos e siglas, e para saber onde guardar no fim |
+| 2 | Objetivo | Vira o titulo e organiza a pauta: decisao do objetivo vem primeiro |
+| 3 | Destinatario | So para o usuario: pode ter observacoes internas. Para equipe ou cliente: tom neutro, sem comentario interno, e conferir com o usuario o que e confidencial antes de entregar |
+
+Se o usuario tem um OS com contextos separados, NUNCA guardar a ata nem citar informacao de um contexto diferente do que ele indicou. Se nao tem OS, seguir so com objetivo e destinatario.
 
 ### PASSO 1: Receber e preparar a fonte
 
@@ -87,7 +101,7 @@ Antes de entregar, reler a ata comparando com a fonte:
 ### PASSO 6: Entregar e guardar
 
 1. Entregar a ata no chat.
-2. Se o usuario tiver um OS organizado, oferecer guardar no contexto certo com o nome `AAAA-MM-DD-ata-[tema].md` e indexar (padrao da skill `organiza-pra-mim`).
+2. Se o usuario tiver um OS organizado, oferecer guardar no contexto informado no PASSO 0 com o nome `AAAA-MM-DD-ata-[tema].md` e indexar (padrao da skill `organiza-pra-mim`).
 
 ---
 
@@ -109,6 +123,7 @@ Antes de entregar, reler a ata comparando com a fonte:
 - [ ] Pendencias listadas separadas das decisoes
 - [ ] Nomes proprios conferidos (transcricao automatica erra nome)
 - [ ] Ata cabe em ~1 pagina
+- [ ] Contexto, objetivo e destinatario perguntados no PASSO 0 (ou ja informados)
 - [ ] Usuario confirmou itens sensiveis antes do registro
 - [ ] Se foi guardada no OS: nome padronizado + index atualizado
 

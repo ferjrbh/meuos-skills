@@ -3,7 +3,7 @@
 > Skills oficiais do **MeuOS** para o seu Claude Code: organize seu OS pessoal, crie conteúdo,
 > faça growth, automação e produtividade — cada uma pronta para instalar em segundos.
 
-[![skills](https://img.shields.io/badge/skills-58-D95C1A?style=flat-square)](https://www.meuos.com.br)
+[![skills](https://img.shields.io/badge/skills-72-D95C1A?style=flat-square)](https://www.meuos.com.br)
 [![feito para](https://img.shields.io/badge/feito_para-Claude_Code-1A2B4A?style=flat-square)](https://claude.com/claude-code)
 [![MeuOS](https://img.shields.io/badge/MeuOS-meuos.com.br-D95C1A?style=flat-square)](https://www.meuos.com.br)
 
@@ -67,7 +67,7 @@ se não existir e confirme ao terminar.
 
 ## Catálogo
 
-### 🧩 Core — rode primeiro (8)
+### 🧩 Core — rode primeiro (9)
 Os ritos essenciais do MeuOS. Comece pela **MeuOS do Zero**.
 
 | Skill | O que faz | Gatilhos |
@@ -80,6 +80,7 @@ Os ritos essenciais do MeuOS. Comece pela **MeuOS do Zero**.
 | **[Conferir Entrega](skills/conferir-entrega/SKILL.md)** | Checa tudo antes de declarar uma tarefa concluída | *"conferir entrega"*, *"terminei"* |
 | **[Criar Skill](skills/criar-skill/SKILL.md)** | Transforma uma tarefa sua num procedimento reutilizável do agente: entrevista, template, teste e instalação | *"criar skill"*, *"transformar isso em skill"* |
 | **[Avaliar Skill](skills/avaliar-skill/SKILL.md)** | Audita a qualidade e os riscos de uma skill (sua ou de terceiro) antes de instalar ou publicar: veredito APROVADA / USAR COM ATENÇÃO / REPROVADA, com os consertos priorizados | *"avalia essa skill"*, *"essa skill é segura?"*, *"posso instalar essa skill?"* |
+| **[Buscar Skills Novas](skills/buscar-skills-novas/SKILL.md)** | Compara o catálogo do MeuOS com o que você tem instalado, confere a segurança de cada skill e instala só o que você aprovar | *"busca skills novas"*, *"tem skill nova?"*, *"atualiza minhas skills"* |
 
 ### 📊 Apresentações (3)
 
@@ -121,7 +122,7 @@ Os ritos essenciais do MeuOS. Comece pela **MeuOS do Zero**.
 | **[Growth — Lead Magnets](skills/growth-lead-magnets/SKILL.md)** | Iscas de captura (ebook, checklist) + nurturing | *"lead magnet"*, *"isca"* |
 | **[Growth — Free Tool](skills/growth-free-tool/SKILL.md)** | Ferramenta grátis como isca de captação | *"ferramenta gratuita isca"* |
 
-### 🎯 Marketing (13)
+### 🎯 Marketing (14)
 
 | Skill | O que faz | Gatilhos |
 |---|---|---|
@@ -138,27 +139,40 @@ Os ritos essenciais do MeuOS. Comece pela **MeuOS do Zero**.
 | **[Market Audit](skills/market-audit/SKILL.md)** | Auditoria completa do marketing a partir da URL, com nota e plano priorizado | *"auditoria de marketing"*, *"analisar meu site"* |
 | **[Market Report](skills/market-report/SKILL.md)** | Compila as análises num relatório único, apresentável ao cliente ou à diretoria | *"relatório de marketing"*, *"compilar relatório"* |
 | **[Market Proposal](skills/market-proposal/SKILL.md)** | Proposta comercial de marketing com escopo, preço em três níveis e projeção de retorno | *"proposta de marketing"*, *"proposta pro cliente"* |
+| **[Multiplicador de Conteúdo](skills/multiplicador-de-conteudo/SKILL.md)** | Uma ideia vira post, carrossel, LinkedIn, blog, e-mail, roteiro de Reels e WhatsApp, entregues numa página HTML pronta pra copiar | *"multiplica esse conteúdo"*, *"transforma em vários formatos"* |
 
-### 🛠️ Lovable (2)
+### 🛠️ Lovable e construção de apps (5)
 
 | Skill | O que faz | Gatilhos |
 |---|---|---|
 | **[Lovable Prompt Master](skills/lovable-prompt-master/SKILL.md)** | Prompts prontos pro Lovable construir apps web | *"prompt pro lovable"* |
 | **[Design to Prompt](skills/design-to-prompt/SKILL.md)** | Transforma um design (Figma/print) em prompt de tela | *"design to prompt"* |
+| **[Especificar Antes de Construir](skills/especificar-antes-de-construir/SKILL.md)** | Ideia vira especificação completa antes de construir, com caminho mais simples, riscos e prompt pronto; fecha com crítico de segurança e crítico de UX | *"especificar antes de construir"*, *"montar a spec"* |
+| **[Testar Meu App](skills/testar-meu-app/SKILL.md)** | Testa o seu app pelo navegador como um usuário faria e devolve o que quebrou, com prompt de correção | *"testa meu app"*, *"valida esse fluxo"* |
+| **[Criador de Wireframe](skills/criador-wireframe/SKILL.md)** | Esboço de tela em HTML (computador e celular) antes de construir, com a sua marca | *"cria um wireframe"*, *"esboço da tela"* |
 
-### 🧠 Produtividade (2)
+### 🧠 Produtividade e gestão (7)
 
 | Skill | O que faz | Gatilhos |
 |---|---|---|
 | **[Structured Thinking](skills/structured-thinking/SKILL.md)** | Exploração estruturada antes de tarefas complexas | *"pensar estruturado"* |
 | **[Systematic Debugging](skills/systematic-debugging/SKILL.md)** | Método sistemático pra debugar problemas | *"debugar"*, *"systematic debugging"* |
+| **[Ata de Reunião](skills/ata-de-reuniao/SKILL.md)** | Transcrição ou anotação vira ata: decisões, ações com dono e prazo, pendências | *"faz a ata"*, *"ata da reunião"* |
+| **[Resumo Executivo](skills/resumo-executivo/SKILL.md)** | Documento longo vira uma página de decisão: contexto, opções, recomendação e próximos passos | *"resumo executivo"*, *"resume pra decisão"* |
+| **[Organiza Pra Mim](skills/organiza-pra-mim/SKILL.md)** | Arquivo ou anotação solta vai para a pasta certa do OS, com nome padrão e índice | *"organiza pra mim"*, *"guarda isso"* |
+| **[Cartilha](skills/cartilha/SKILL.md)** | Tira o processo da sua cabeça e vira manual passo a passo que a equipe segue | *"cria uma cartilha"*, *"transforma em manual"* |
+| **[Conversa Difícil](skills/conversa-dificil/SKILL.md)** | Roteiro para feedback, cobrança ou negociação, com ensaio | *"conversa difícil"*, *"como falo isso"* |
 
-### 🔎 Análise (2)
+### 🔎 Análise e decisão (6)
 
 | Skill | O que faz | Gatilhos |
 |---|---|---|
 | **[Comandante](skills/comandante/SKILL.md)** | Rotina de análise com evidência: contexto da empresa, plano de voo, base contada, conta por código, referência pública e cada número com endereço | *"comandante"*, *"plano de voo"* |
 | **[Copiloto](skills/copiloto/SKILL.md)** | Confere um número do zero, sem ver a conta anterior, e revisa a peça inteira antes de ela sair: não sai, sai com correção ou pode sair | *"copiloto"*, *"confere esse número"*, *"posso mandar isso?"* |
+| **[Raio-X de Processo](skills/raio-x-de-processo/SKILL.md)** | Mapeia um processo, conta as horas gastas por mês e mostra por onde começar a automatizar | *"raio-x do processo"*, *"o que automatizar primeiro"* |
+| **[Ler Contrato](skills/ler-contrato/SKILL.md)** | Lê o contrato antes de assinar: prazos, multas e cláusulas de risco com o trecho exato (não substitui advogado) | *"lê esse contrato"*, *"posso assinar?"* |
+| **[Decisão Difícil](skills/decisao-dificil/SKILL.md)** | Organiza opções, números e riscos de uma decisão e fecha com recomendação em 1 página | *"decisão difícil"*, *"me ajuda a decidir"* |
+| **[Painel de Indicadores](skills/painel-de-indicadores/SKILL.md)** | Planilha vira painel visual com a sua marca, cada número com a conta mostrada | *"monta um painel"*, *"dashboard da planilha"* |
 
 > O **Copiloto** tem 6 arquivos (instruções, catálogo, modelo de laudo e 3 scripts). Se você instalar só o `SKILL.md`, ele baixa o resto sozinho na primeira vez que rodar. Funciona sem Python: no Windows, faz as contas no PowerShell.
 

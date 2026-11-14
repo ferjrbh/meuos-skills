@@ -1,7 +1,7 @@
 ---
 name: resumo-executivo
 description: "Resume documentos, relatorios ou threads longas no formato de decisao: contexto em 3 linhas, opcoes com pros e contras, recomendacao unica e proximos passos. Usar quando o usuario disser 'resumo executivo', 'resume pra decisao', 'me da o essencial disso', 'nao tenho tempo de ler, resume', 'prepara um brief', ou enviar material longo pedindo sintese para decidir."
-version: 1.0
+version: 1.1
 author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
@@ -49,7 +49,7 @@ Perguntar-se: "quem pediu este resumo vai fazer O QUE com ele?". Se o material n
 ## Proximos passos
 | # | Acao | Dono | Prazo |
 |---|---|---|---|
-| 1 | ... | ... | ... |
+| 1 | ... | [nome, ou "a definir" se a fonte nao trouxer] | ... |
 
 ## Fonte
 [Documento/thread de origem, com caminho ou link, e data]
@@ -71,7 +71,8 @@ Perguntar-se: "quem pediu este resumo vai fazer O QUE com ele?". Se o material n
 2. **Numero citado = numero conferido.** Todo valor, percentual e data do resumo tem que existir na fonte. Zero invencao: na duvida, nao cita.
 3. **Jargao traduzido.** O leitor pode nao ser da area. Termo tecnico entra com 1 explicacao entre parenteses ou fica de fora.
 4. **Riscos da recomendacao aparecem.** Recomendar sem dizer o risco e vender, nao assessorar.
-5. **A fonte fica apontada.** Quem quiser o detalhe sabe onde esta. O resumo nunca substitui a fonte, ele economiza a leitura dela.
+5. **Dono nao se inventa.** Na coluna "Dono" dos proximos passos, se a fonte nao trouxer quem faz, escrever "a definir". Nunca atribuir a acao a alguem por suposicao.
+6. **A fonte fica apontada.** Quem quiser o detalhe sabe onde esta. O resumo nunca substitui a fonte, ele economiza a leitura dela.
 
 ### PASSO 5: Entregar e guardar
 
