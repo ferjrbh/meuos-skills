@@ -30,8 +30,18 @@
 - Toda implementacao deve ser testada antes de declarar pronta — caminho feliz + pelo menos 2 cenarios de falha
 - Antes de escrever ou alterar codigo que toca uma biblioteca ou API externa (Supabase, n8n, Next.js, Stripe, OpenAI, Google APIs etc.), consultar OBRIGATORIAMENTE a documentacao oficial do fornecedor. Nunca confiar apenas na memoria interna — APIs mudam entre versoes. Nunca usar sites/indices de terceiros que agregam doc de muitos projetos com qualidade variavel.
 
-## Como funciona meu OS
-Veja `guia_do_os.md` na raiz. Ritos do dia a dia:
-- **"fim do dia"** ao encerrar uma sessao
-- **"otimizar OS"** quando os arquivos crescerem demais
-- **"otimizar custo"** uma vez por mes
+## Como operar este OS
+- O documento mestre de cada contexto guarda a decisão vigente, o status e o próximo passo. Detalhe de um assunto (medição, lista, especificação) vai para um satélite: um arquivo CONTEXTO_tema.md, com ponteiro no documento mestre e no index.md.
+- Decida a casa da informação na hora de escrever, não na faxina.
+- Atualize o documento mestre durante o trabalho: ele é a fonte de retomada.
+- Nunca crie arquivo solto: todo arquivo novo entra no index.md do contexto.
+- Sessão de trabalho relevante termina com a skill fim-do-dia.
+- Nada é movido, resumido ou apagado sem mostrar antes e ter o OK do dono.
+- Todo número, data ou fato que dá para conferir leva a fonte e a data da conferência. Sem fonte, marque "não verificado".
+- Manual completo: [guia_do_os.md](guia_do_os.md). Abrir quando: dúvida sobre onde gravar, arquivo novo, contexto novo, estrutura fora do padrão, limites de tamanho.
+
+## Forma da resposta
+- A primeira linha responde.
+- Decisão do dono vira tabela numerada, com "o que muda para você" em frase simples. O dono aprova pela caixa de opções, quando houver, ou pelos números.
+- Linguagem de gestor, sem termo técnico que o dono não usou.
+- Feche com: feito, pendente e próximo passo.

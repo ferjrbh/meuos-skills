@@ -2,8 +2,8 @@
 > Entrada do Codex/ChatGPT deste OS (par do claude.md — gerado pela skill MeuOS do Zero).
 > Este arquivo é seu: seu agente pode editá-lo (ex.: registrar skills na seção
 > "## Skills instaladas"). Ao mudar uma regra, espelhe a mudança no claude.md — as duas
-> entradas devem dizer o mesmo. Regras vivas preferem o [soul.md](soul.md) e os documentos
-> de cada contexto.
+> entradas devem dizer o mesmo. Cada regra mora em um lugar só (regra 3 do guia_do_os.md);
+> regra operacional nunca vai para o soul.md.
 
 ## Leia antes de qualquer coisa, nesta ordem
 1. [claude.md](claude.md) — as regras globais deste OS. Elas valem INTEGRALMENTE para você.

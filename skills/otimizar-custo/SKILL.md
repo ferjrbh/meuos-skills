@@ -1,13 +1,13 @@
 ---
 name: otimizar-custo
 description: |
-  Reduz o custo de tokens das suas sessoes com Claude Code higienizando a memoria do agente.
-  Voce paga tokens do MEMORY.md em toda conversa — cada linha e cobrada. Uma memoria de
-  263 linhas pode virar 95 (-64%) depois da higiene. Esta skill transforma essa reducao em
-  economia direta todo dia. Escaneia o MEMORY.md e arquivos de topico, classifica entradas
-  em OK, velhas, duplicadas ou que deveriam estar no OS, alerta se CLAUDE.md tambem esta
-  gordo (ele tambem entra em toda sessao) e propoe um plano de limpeza — sempre com
-  aprovacao antes de executar. Calcula economia estimada em R$/mes no relatorio final.
+  Deixa as suas sessoes com Claude Code mais leves higienizando a memoria do agente.
+  O MEMORY.md e carregado em toda conversa — cada linha ocupa espaco de contexto. Uma memoria
+  de 263 linhas pode virar 95 (64% mais leve) depois da higiene. Escaneia o MEMORY.md e os
+  arquivos de topico, classifica entradas em manter, arquivar, levar para o OS ou credencial,
+  alerta se o claude.md tambem esta pesado (ele tambem entra em toda sessao) e propoe UM plano
+  numerado — sempre com aprovacao antes de executar. O resultado sai em leve/pesado, com
+  previsao de tokens; nunca em dinheiro.
   ESPECIFICA DO CLAUDE CODE: o mecanismo otimizado (MEMORY.md cobrado em toda mensagem) so
   existe la — rodando no ChatGPT/Codex, a skill explica isso e se encerra sem mexer em nada,
   apontando a otimizar-os para a higiene dos arquivos do OS (que vale nos dois agentes).
@@ -17,7 +17,7 @@ description: |
 context: meuos
 user-invocable: true
 argument-hint: "(sem argumentos — roda na pasta do seu Claude Code atual)"
-version: 2.5
+version: 2.6
 author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
@@ -43,23 +43,39 @@ com sua aprovacao. Reducao tipica: 60% a 80% do tamanho.
 
 ---
 
-## Por que isso reduz seu custo
+## Por que isso deixa a sessao mais leve
 
 Cada conversa com o Claude Code carrega o conteudo do arquivo `MEMORY.md` como
-contexto inicial. Se ele tem 300 linhas, voce paga tokens dessas 300 linhas **em
-toda mensagem**. Mantendo enxuto (sub-100 linhas), voce economiza todo dia.
+contexto inicial. Se ele tem 300 linhas, essas 300 linhas ocupam espaco **em toda
+mensagem**: sobra menos contexto para o trabalho e o limite do seu plano chega mais
+cedo. Mantendo enxuto (🟢 leve pela tabela do guia), toda sessao fica mais leve.
 
-Exemplo real: um `MEMORY.md` de 263 linhas vira ~95 linhas apos higiene — reducao
-de **~64%** no custo fixo de cada sessao.
+Exemplo: um `MEMORY.md` de 263 linhas vira ~95 linhas apos a higiene — **64% mais leve**.
+
+---
+
+## 🖥️ COMO FALAR COM O USUARIO (padrao visual, vale para a execucao inteira)
+
+1. **Duas etapas, cada uma com cabecalho de 1 linha:** `**Otimizar custo · memoria do agente · etapa 1 de 2**`.
+2. **Uma frase de resumo em negrito ANTES da tabela**, com o peso e a barra: `**A memoria do seu agente esta pesada: 🔴 ▰▰▰▰▰▰▰▰▰▰ 263 linhas de 150.**` A barra tem 10 blocos e mede o tamanho contra o limite de "pesado" do guia (os numeros dos exemplos desta skill sao ilustrativos; o limite vem sempre do guia).
+3. **UMA tabela numerada** para aprovar: `# | O que faco | O que muda para voce`. Sem nome de arquivo nem numero de linha na tabela (mostrar se o usuario pedir).
+4. **UMA aprovacao:** se o agente tiver caixa de opcoes clicaveis (no Claude Code, a ferramenta de pergunta ao usuario), abrir com "Aprovar tudo", "Escolher itens", "Nao mexer em nada". Em "Escolher itens", ou sem a caixa, o usuario responde "tudo" ou os numeros.
+5. **Leve, atencao e pesado** (🟢 🟡 🔴). Tokens so como previsao. **Nunca valor em dinheiro** (nem R$, nem US$).
+6. **So os termos do treinamento:** documento mestre, satelite, aprendizados, changelog, index, ponteiro, contexto, memoria do agente. Nao usar com o usuario: auto-memory, custo fixo, encoded, frontmatter.
+7. **Fecho fixo:** cartao de 4 linhas: Feito, Peso, Previsao, Proxima (PASSO 5).
+
+## 📏 ONDE ESTAO OS LIMITES DE TAMANHO
+
+Os limites da memoria (`MEMORY.md`, numero de arquivos de topico) e do `claude.md` moram em UM lugar: a secao **"Limites de tamanho"** do `guia_do_os.md` da raiz do OS. Ler a tabela de la ao iniciar. Guia sem essa secao (anterior a versao 4): avisar em 1 linha, sugerir a skill `otimizar-os` (ela atualiza o guia) e, nesta execucao, ler a tabela direto do catalogo (so leitura): `https://raw.githubusercontent.com/ferjrbh/meuos-skills/main/skills/meuos-do-zero/templates/guia_do_os.md`. Os limites de IDADE (60 e 90 dias) sao desta skill e estao no PASSO 1.
 
 ---
 
 ## Quando usar
 
 - Quando o **Otimizar OS** sugerir ao concluir uma execucao — e o canal unico do lembrete
-  (no maximo 1x por mes). A Revisao Diaria (`fim-do-dia`) apenas observa, nao sugere esta skill.
-- Cadencia na pratica: lembrete mensal → o gate de "nada a fazer" decide se ha mesmo trabalho;
-  memoria saudavel → proxima execucao real fica pra ~90 dias
+  (no maximo 1x por mes). O Fim do Dia (`fim-do-dia`) apenas observa, nao sugere esta skill.
+- Cadencia: lembrete no maximo 1 vez por mes → o PASSO 1.5 decide se ha mesmo trabalho;
+  memoria 🟢 leve → a skill encerra sem mexer em nada
 - Quando sentir que o Claude Code esta lento ou confuso com coisas antigas
 - Quando o usuario disser "otimizar memoria", "limpar memoria do claude", "auditar memoria"
 
@@ -75,16 +91,18 @@ Esta skill otimiza a **memoria persistente do Claude Code** (`MEMORY.md` + arqui
 - Rodando no **Claude Code** → siga para o PASSO 0.
 - Rodando no **ChatGPT/Codex** (ou outro agente) → explique e encerre, sem mexer em nada:
 
-> `"Esta skill higieniza a memoria especifica do Claude Code (MEMORY.md, cobrada em toda mensagem
+> `"Esta skill higieniza a memoria especifica do Claude Code (MEMORY.md, carregada em toda mensagem
 > de la). Aqui no Codex esse mecanismo nao existe — entao nao ha custo desse tipo pra otimizar.
 > Se o objetivo e enxugar os ARQUIVOS do seu OS (documento_mestre, aprendizados, claude.md gordos),
 > a skill certa e a 'otimizar OS' — ela funciona igual nos dois agentes. Quer que eu rode ela?"`
 
 ### PASSO 0 — Confirmar o working directory
 
-Antes de escanear, mostrar ao usuario o diretorio atual e pedir confirmacao:
+Antes de escanear, identificar o diretorio atual. Ele e o do OS aberto na sessao → seguir sem perguntar
+(a aprovacao unica e a do plano). SO perguntar se houver duvida real de qual pasta e (ex.: a sessao
+foi aberta fora da pasta do OS):
 
-> `"Vou escanear a memoria do Claude Code para este diretorio: [caminho]. Confirma?"`
+> `"A sessao esta aberta em [pasta]. E a memoria desta pasta que voce quer enxugar?"`
 
 A memoria vive em `~/.claude/projects/{working-dir-encoded}/memory/`, onde
 `{working-dir-encoded}` e o caminho do diretorio atual com `/` e `\` trocados
@@ -109,48 +127,46 @@ Para cada arquivo coletar:
 - Tamanho em KB
 - Data da ultima modificacao
 
-Apresentar tabela com semaforo:
+Este levantamento e do agente (nao mostrar a lista de arquivos ao usuario; ele ve so a frase de
+resumo e a tabela do plano). Classificar:
 
-```
-Memoria do Claude Code — [caminho]
+- **Tamanho** do `MEMORY.md` (linhas E KB) e **numero de arquivos de topico**: 🟢 🟡 🔴 pela tabela
+  "Limites de tamanho" do guia.
+- **Idade** de cada arquivo de topico (regra desta skill): 🟢 menos de 60 dias sem modificar ·
+  🟡 60 a 90 dias · 🔴 mais de 90 dias.
+- **Arquivo de topico bem maior que os outros**: merece olhar (provavel conteudo que pertence ao OS).
 
-| Arquivo | Linhas | Tamanho | Modificado | Status |
-|---------|--------|---------|------------|--------|
-| MEMORY.md | 263 | 26KB | hoje | 🔴 muito grande |
-| feedback_email_pattern.md | 45 | 2KB | 02-MAR | 🟡 velho |
-| stack-config.md | 28 | 1KB | 15-ABR | 🟢 ok |
-| project_old.md | 120 | 5KB | 10-JAN | 🔴 muito velho |
-
-Total: 8 arquivos, 54KB, ultima otimizacao: nunca
-```
-
-**Regras de semaforo:**
-
-| Metrica | 🟢 OK | 🟡 Atencao | 🔴 Acao |
-|---------|-------|-----------|---------|
-| `MEMORY.md` linhas | menos de 100 | 100 a 150 | mais de 150 |
-| `MEMORY.md` **chars** (pega linha gorda) | menos de 6KB | 6 a 10KB | mais de 10KB |
-| Numero de arquivos de topico | menos de 15 | 15 a 20 | mais de 20 |
-| Idade sem modificar | menos de 60 dias | 60 a 90 dias | mais de 90 dias |
-| Tamanho arquivo de topico | menos de 5KB | 5 a 10KB | mais de 10KB |
-
-> **Medir os DOIS (linhas E chars).** Uma memoria de 34 linhas com 7,7KB (cada linha virou paragrafo) passa no teste de linhas mas reprova no de chars — e cara do mesmo jeito. O custo e cobrado por token (≈ char), nao por linha.
+> **Medir os DOIS (linhas E chars).** Uma memoria de poucas linhas em que cada linha virou paragrafo passa no teste de linhas e nao passa no de KB — pesa do mesmo jeito. O que ocupa contexto e o texto (token ≈ caractere), nao a linha.
 
 ### Verificacao extra: CLAUDE.md tambem entra no custo
 
 Alem do MEMORY.md, **o CLAUDE.md raiz do seu OS e o CLAUDE.md do contexto ativo** tambem sao carregados em toda mensagem (project instructions). Se eles estiverem grandes, somam tokens em toda sessao.
 
-Verificar e **alertar** (sem atuar — so apontar):
+Verificar pela tabela do guia e **alertar** (sem atuar — so apontar). Se algum estiver 🟡 ou 🔴,
+incluir 1 linha no fecho:
+> `"O claude.md [da raiz / do contexto X] esta 🟡 em atencao — ele tambem entra em toda sessao. Vale rodar o Otimizar OS depois."`
 
-| Arquivo | 🟢 OK | 🟡 Atencao | 🔴 Considerar slim |
-|---|---|---|---|
-| `claude.md` raiz | menos de 200 linhas | 200 a 300 | mais de 300 |
-| `claude.md` de contexto | menos de 150 linhas | 150 a 250 | mais de 250 |
+**So alertar — nao enxugar o claude.md aqui.** Esta skill cuida da memoria do agente; enxugar o claude.md e da skill `otimizar-os`. A unica escrita possivel nele e a excecao do PASSO 4b (regra rigida de operacao), como item aprovado do plano.
 
-Se algum estiver 🟡 ou 🔴, sugerir ao usuario:
-> `"Detectei que claude.md [raiz/contexto X] tem N linhas — tambem entra em toda sessao. Considerar rodar a skill 'Otimizar OS' para slim depois desta higiene de memoria. Esta skill aqui foca so na auto-memory."`
+---
 
-**So alertar — nao tocar no CLAUDE.md aqui.** Esta skill foca exclusivamente em auto-memory; o claude.md e responsabilidade da skill `otimizar-os`.
+### PASSO 1.5 — Ha mesmo o que otimizar? (rodar ANTES de classificar e de montar plano)
+
+**Antes de propor qualquer plano**, verificar se o estado atual realmente justifica higiene:
+
+| Sinal | O que fazer |
+|---|---|
+| MEMORY.md 🟢 leve (pela tabela do guia) + zero arquivos >90d sem mod + zero duplicatas | **Avisar que nao ha higiene a fazer** e encerrar (sem propor plano vazio) |
+| Ultima execucao foi ha menos de 30 dias (linha `ULTIMA_EXECUCAO=` do arquivo `.last-otimizar-custo` da raiz do OS; na falta dela, o cabecalho do `MEMORY.md`) E a memoria nao esta 🔴 pesada | Avisar que ainda e cedo (rodar de novo so forca compactacao artificial). A linha `LAST_SUGGESTED=` do mesmo arquivo e so o registro do lembrete: NAO conta como execucao |
+| Depois do PASSO 2, nao sobrou nenhum item a arquivar, levar para o OS ou repetido | Avisar que a memoria esta saudavel e encerrar (sem tabela vazia) |
+
+**Mensagem padrao quando nao ha nada a otimizar:**
+
+> `"A memoria do seu agente ja esta 🟢 leve: X linhas, Y anotacoes, nenhuma parada ha mais de 90 dias e nada repetido. Nao ha o que enxugar agora. Rodar com frequencia demais tira contexto que o agente precisa. O Otimizar OS lembra de novo daqui a um mes."`
+
+Mesmo sem nada a fazer, gravar `ULTIMA_EXECUCAO=<hoje>` no `.last-otimizar-custo` da raiz do OS (PASSO 5, item final), para o lembrete mensal nao voltar.
+
+**REGRA: nunca forcar plano de higiene quando nao ha ganho real.** Higiene excessiva remove conteudo util — o oposto do que a skill pretende.
 
 ---
 
@@ -191,38 +207,30 @@ se e segredo, tratar como segredo.
 
 ### PASSO 3 — Plano de acao (sempre mostrar antes de executar)
 
-Apresentar ao usuario uma lista NUMERADA agrupada por categoria:
+Apresentar no padrao visual: frase de resumo com o peso + UMA tabela numerada. Juntar itens
+parecidos numa linha so (ex.: os 2 arquivos a arquivar viram 1 linha). O que fica como esta
+nao entra na tabela.
 
 ```
-Plano de Higiene — Memoria do Claude Code
+**Otimizar custo · memoria do agente · etapa 1 de 2**
 
-ARQUIVAR (mover para historico — X acoes)
-1. [project_old.md] 120d sem mod, projeto ja concluido → memory/historico/
-2. [feedback_old_thing.md] 100d sem mod, feature descontinuada → memory/historico/
+**A memoria do seu agente esta pesada: 🔴 ▰▰▰▰▰▰▰▰▰▰ 263 linhas de 150.**
 
-PROMOVER PARA O SEU OS (X acoes)
-3. [meu-produto-linkedin-config.md] regra de produto → copiar para sua pasta do OS
-   (sugerido: CLAUDE.md do contexto relevante ou aprendizados_do_dia.md)
-4. [stack-config.md] configuracao de stack ativa → copiar para o OS e depois excluir daqui
+| # | O que faco | O que muda para voce |
+|---|---|---|
+| 1 | Guardar 2 anotacoes de projetos encerrados | Saem da memoria do dia a dia; ficam arquivadas |
+| 2 | Levar "configuracao do sistema" para o seu OS, no satelite do tema | Passa a valer para qualquer agente, nao so este |
+| 3 | Tirar 2 linhas repetidas | Nada; a informacao ja esta no seu OS |
+| 4 | 1 anotacao contem senha | Nao vai para o OS; recomendo um gerenciador de senhas |
 
-LIMPAR MEMORY.md (X linhas a remover)
-5. Linha 42 ("padrao visual da marca") — DUPLICADA do seu OS → remover linha
-6. Linha 87 ("projeto X concluido") — evento pontual antigo → remover linha
-
-MANTER (sem acao — X arquivos)
-- feedback_prompt_format.md (preferencia pessoal, fica aqui mesmo)
-- feedback_git_push.md (feedback de estilo, OK)
-
-Reducao esperada:
-- MEMORY.md: 263 → ~95 linhas (-64%)
-- Arquivos de topico: 8 → 3 ativos + 2 arquivados
+Depois do plano: 🟢 cerca de 95 linhas (64% mais leve).
 ```
 
-Perguntar:
-> `"Posso executar o plano completo, ou prefere aprovar item por item?"`
+Aprovacao unica: caixa de opcoes ("Aprovar tudo", "Escolher itens", "Nao mexer em nada") ou, sem
+a caixa, `Responda "tudo" ou os numeros que valem.`
 
-**NUNCA executar sem resposta do usuario.** Aceitar respostas como "tudo sim",
-"so 1, 3 e 5", "nao quero promover nada, so arquivar".
+**NUNCA executar sem resposta do usuario.** Aceitar respostas como "tudo",
+"so 1 e 3", "nao quero levar nada para o OS, so arquivar".
 
 ---
 
@@ -260,86 +268,42 @@ Para cada acao aprovada:
 1. Ler o `MEMORY.md` inteiro antes de alterar (nao perder nada)
 2. Remover as linhas aprovadas, mantendo a estrutura do indice
 3. **Reescrever cada item do indice para UMA linha** (gancho curto + link). Se um item virou paragrafo, condensar para um gancho de uma linha — o detalhe mora no arquivo de topico, nao no indice. (Esta e a maior fonte de chars inflados.)
-4. **Fundir arquivos de topico irmaos** sobre o mesmo assunto, com aprovacao (ex: varios `feedback_*` do mesmo tema viram um so) — reduz o numero de arquivos e o tamanho do indice
+4. **Fundir arquivos de topico irmaos** sobre o mesmo assunto, quando for item aprovado do plano (ex: varios `feedback_*` do mesmo tema viram um so) — reduz o numero de arquivos e o tamanho do indice
 5. Atualizar o cabecalho: "> Ultima otimizacao: DD/MM (skill Otimizar Custo)"
 6. Salvar
 
-**Antes de qualquer alteracao, mostrar antes/depois de cada arquivo tocado** —
-o usuario confirma antes de salvar.
+**Nada e salvo fora do que foi aprovado na tabela do plano.** O antes/depois de um item e mostrado
+quando o usuario pedir ou escolher item a item; nao pedir nova confirmacao durante a execucao.
 
 ---
 
-### PASSO 4.5 — Verificar se ha mesmo o que otimizar (gate de "nada a fazer")
+### PASSO 5 — Fecho (leve/pesado e previsao de tokens; nunca em dinheiro)
 
-**Antes de propor qualquer plano**, verificar se o estado atual realmente justifica higiene:
+**Previsao de tokens (unico calculo):** `linhas reduzidas × 15` = tokens a menos por mensagem
+(1 linha ≈ 15 tokens em media). E previsao, dizer "cerca de". **Nao converter em R$, US$ nem em
+economia por mes:** depende do plano e do uso de cada pessoa, e quem tem plano mensal nao paga
+por token.
 
-| Sinal | O que fazer |
-|---|---|
-| MEMORY.md ja abaixo de 100 linhas + zero arquivos >90d sem mod + zero duplicatas | **Avisar que nao ha higiene a fazer** e encerrar (sem propor plano vazio) |
-| Ultima execucao foi ha menos de 30 dias E metricas pioraram menos de 10% | Avisar que ainda e cedo (rodar antes de 30d so forca compactacao artificial) |
-| Nao detectou nenhum item PROMOVER nem ARQUIVAR nem duplicata | Avisar que a memoria esta saudavel |
-
-**Mensagem padrao quando nao ha nada a otimizar:**
-
-> `"Sua memoria ja esta enxuta — MEMORY.md com X linhas (limite seria 100), Y arquivos de topico (limite 15), nenhum >90d sem modificacao, zero duplicatas detectadas. Nao ha higiene util a fazer agora. **Rodar a skill com frequencia demais deteriora arquivos** (compactacao excessiva remove contexto necessario). Proxima execucao recomendada: ~90 dias."`
-
-**REGRA: nunca forcar plano de higiene quando nao ha ganho real.** Higiene excessiva remove conteudo util — o oposto do que a skill pretende.
-
----
-
-### PASSO 5 — Relatorio final com estimativa de economia em R$
-
-Apresentar ao usuario:
-
-**Calculo de economia em R$ (parametros simples):**
-- 1 linha do MEMORY.md = ~15 tokens em media
-- Custo Claude Sonnet (input): ~$3 / 1M tokens (~R$ 15 / 1M com USD a 5)
-- Custo Claude Opus (input): ~$15 / 1M tokens (~R$ 75 / 1M)
-- Sessoes por dia × 30 dias × tokens economizados por mensagem = economia mensal
-
-**Formula simples:**
-```
-linhas_reduzidas × 15 tokens × N_mensagens_dia × 30_dias / 1_000_000 × custo_modelo_USD × 5_BRL
-```
-
-**Exemplo (reducao 263 → 94 = -169 linhas, 50 msgs/dia):**
-- 169 × 15 = ~2.535 tokens/mensagem economizados
-- 50 msgs/dia × 30 = 1.500 msgs/mes
-- 2.535 × 1.500 = ~3,8M tokens/mes
-- Sonnet: ~R$ 55/mes | Opus: ~R$ 285/mes
-- Em 1 ano: R$ 660–3.420 (depende do modelo + uso)
-
-**Formato do relatorio:**
+**Cartao fixo:**
 
 ```
-Higiene de custo concluida ✓
+**Otimizar custo · memoria do agente · etapa 2 de 2**
 
-| Metrica | Antes | Depois | Reducao |
-|---------|-------|--------|---------|
-| MEMORY.md | 263 linhas | 94 linhas | -64% |
-| Arquivos de topico | 8 | 3 ativos + 2 arquivados | -38% |
-| Tamanho total | 54KB | 19KB | -65% |
-
-💰 Custo fixo da sessao (o que carrega em TODA mensagem):
-- MEMORY.md + CLAUDE.md raiz + CLAUDE.md contexto + *MESTRE.md + aprendizados_do_dia.md (do contexto ativo): antes ~Xk -> depois ~Yk tokens (~1 linha ≈ 15 tokens, a mesma regra desta skill)
-- Promovido para arquivo fixo (mestre/claude.md): ~Zk tokens — "so mudou de bolso", nao conta como economia
-
-💰 Economia estimada (input tokens cobrados em toda mensagem):
-- ~2.535 tokens/mensagem economizados
-- Em Sonnet (50 msgs/dia): ~R$ 55/mes
-- Em Opus (50 msgs/dia): ~R$ 285/mes
-
-Arquivados: X (em memory/historico/)
-Promovidos para o OS: X (com destinos)
-Linhas removidas do MEMORY.md: X
-
-⚠️ Alerta CLAUDE.md (se aplicavel):
-- claude.md raiz: N linhas (🟡 atencao / 🔴 considerar otimizar-os)
-- claude.md contexto X: N linhas
-
-Proxima higiene recomendada: DD/MM/AAAA (daqui a 90 dias)
-⚠️ Rodar antes de 90d so faz sentido se houve aumento abrupto da memoria — caso contrario, deteriora arquivos por compactacao excessiva.
+**Feito**     4 de 4 itens · nada apagado, so arquivado
+**Peso**      🔴 → 🟢 · memoria 64% mais leve (de 263 para 94 linhas)
+**Previsao**  cerca de 2.500 tokens a menos por mensagem
+**Proxima**   quando o Otimizar OS lembrar (no maximo 1 vez por mes)
 ```
+
+Se o `claude.md` da raiz ou do contexto estiver 🟡 ou 🔴, acrescentar a linha de alerta do PASSO 1.
+Algo foi levado para um arquivo que tambem carrega em toda sessao (documento mestre ou `claude.md`)?
+Dizer na linha "Peso": "X linhas so mudaram de lugar, nao contam como reducao".
+
+**Gravar a trava do lembrete mensal:** no arquivo `.last-otimizar-custo` da raiz do OS (criar se nao
+existir), gravar ou atualizar a linha `ULTIMA_EXECUCAO=AAAA-MM-DD` com a data de hoje, sem apagar a
+linha `LAST_SUGGESTED=` (ela e do `otimizar-os`). E esse arquivo que o `otimizar-os` le para so
+lembrar desta skill 1 vez por mes. Rodar de novo antes disso so faz sentido se a memoria cresceu de
+repente; caso contrario, tira contexto que o agente precisa.
 
 Se houver arquivos ou linhas nao aprovados nesta rodada, listar como pendencia:
 > `"Ficaram X itens que voce preferiu nao mexer agora. Posso revisar numa proxima vez."`
@@ -348,7 +312,7 @@ Se houver arquivos ou linhas nao aprovados nesta rodada, listar como pendencia:
 
 ## Regras de seguranca
 
-- **Sempre confirmar o diretorio** antes de escanear — evita mexer na memoria errada
+- **Sempre conferir o diretorio** antes de escanear, e perguntar se houver duvida — evita mexer na memoria errada
 - **Nunca executar sem aprovacao explicita** — plano primeiro, acao depois
 - **Nunca deletar arquivo sem arquivar antes** (arquivar em `memory/historico/`, nao apagar definitivo)
 - **Nunca promover para o OS sem identificar o destino exato** — se houver duvida, perguntar
@@ -375,11 +339,11 @@ uma nota curta indicando a origem: "Promovido da memoria em DD/MM"
 
 ## Integracao com outras skills (cadeia: fim-do-dia → otimizar-os → esta skill)
 
-- **Revisao Diaria (`fim-do-dia`)** — diaria: captura com gate de escrita e higiene leve; apenas
+- **Fim do Dia (`fim-do-dia`)** — diaria: captura com gate de escrita e higiene leve; apenas
   OBSERVA a memoria (1 linha se estiver pesada), NAO sugere esta skill
 - **Otimizar OS** — semanal sob volume: organiza os arquivos do OS; ao concluir, e quem lembra
   desta skill (no maximo 1x por mes)
-- **Esta skill (`otimizar-custo`)** — mensal sob lembrete (~90 dias se saudavel): exclusivamente
+- **Esta skill (`otimizar-custo`)** — no maximo 1 vez por mes, sob lembrete: exclusivamente
   a memoria do Claude Code
 
 As tres juntas cobrem: encerramento do dia, organizacao dos docs do OS e higiene
@@ -402,6 +366,10 @@ Esta skill é EXCLUSIVA do Claude Code (depende do `MEMORY.md`, que não existe 
 - [ ] O que pertence ao OS foi MOVIDO pro contexto certo, nao apagado — destino padrao foi o satelite do tema; MESTRE/claude.md so com o teste "vale em TODA sessao?"
 - [ ] Conferencia item a item mostrada ANTES de excluir o topico da memoria
 - [ ] Nada removido sem registro do que saiu
-- [ ] Resultado no formato de saida oficial, com antes/depois de linhas e o custo fixo dos 5 arquivos
+- [ ] O "ha o que otimizar?" (PASSO 1.5) rodou ANTES de montar o plano
+- [ ] Usuario viu UMA tabela numerada e deu UMA aprovacao; nada de nome de arquivo ou numero de linha na tabela
+- [ ] Nada foi levado para o `aprendizados_do_dia.md`
+- [ ] Fecho no cartao fixo (Feito, Peso, Previsao, Proxima), em leve/pesado e previsao de tokens — nenhum valor em dinheiro
+- [ ] `ULTIMA_EXECUCAO=` com a data de hoje no `.last-otimizar-custo` da raiz do OS (linha `LAST_SUGGESTED=` preservada)
 
 Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.

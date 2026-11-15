@@ -4,10 +4,11 @@ description: |
   Rotina de encerramento do dia de trabalho. Executa quando o usuario diz
   "revisao diaria", "fechar o dia", "encerrar", "fim do dia", "vamos fechar",
   "pode fechar", "encerra ai", "wrap-up", "encerrar sessao".
-  Guia 3 perguntas rapidas, AVALIA os arquivos antes de escrever (gate anti-duplicacao
-  e anti-verborragia), salva aprendizados no lugar certo, migra tarefas concluidas
-  e atualiza pendencias no documento mestre do contexto ativo.
-version: 5.2
+  O agente SINTETIZA a sessao e o usuario so confirma (uma tabela numerada; no maximo 2 aprovacoes).
+  AVALIA os arquivos antes de escrever (gate anti-duplicacao e anti-verborragia), salva
+  aprendizados no lugar certo, migra tarefas concluidas e atualiza pendencias no documento
+  mestre do contexto ativo.
+version: 5.3
 context: meuos
 user-invocable: true
 author: Fernando Lúcio · Aion Group
@@ -15,11 +16,28 @@ homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
 ---
 
-# Revisao Diaria — Encerramento do Dia
+# Fim do Dia — Encerramento da Sessao
 
 ## O que esta skill faz
 
-Esta skill guia voce por uma rotina rapida de fechamento do dia de trabalho — menos de 10 minutos. Ela faz tres perguntas simples sobre o que aconteceu hoje, salva os aprendizados no lugar certo, move tarefas concluidas para o historico e deixa suas pendencias atualizadas para o proximo dia. Ao final, avisa se algum arquivo esta crescendo demais e precisa de organizacao.
+Esta skill fecha a sessao de trabalho em menos de 10 minutos. O agente resume o que aconteceu (o que fizemos, o que aprendemos, o que fica pendente), voce confirma numa tabela, e cada coisa vai para o arquivo certo: aprendizados, changelog e documento mestre. Ao final, avisa se algum arquivo esta ficando pesado.
+
+---
+
+## 🖥️ COMO FALAR COM O USUARIO (padrao visual, vale para a execucao inteira)
+
+1. **Cabecalho de 1 linha** em cada etapa: `**Fim do dia · [contexto] · etapa N de T**`. T = 2 (o que registrar → fecho) ou 3 quando houver a tabela de manutencao (o que registrar → manutencao → fecho).
+2. **Uma frase de resumo em negrito ANTES de qualquer tabela** (ex.: "Sessao com 2 entregas, 1 aprendizado e 1 pendencia nova.").
+3. **Uma tabela numerada so** para aprovar, com as colunas `# | O que vou registrar | Onde fica`. "Onde fica" usa o nome que o usuario conhece (Documento mestre, Aprendizados, Changelog, Satelite, Index), nunca caminho de arquivo.
+4. **Aprovacao:** se o agente tiver caixa de opcoes clicaveis (no Claude Code, a ferramenta de pergunta ao usuario), abrir com 3 opcoes: "Aprovar tudo", "Escolher itens", "Nao mexer em nada". Em "Escolher itens", ou onde nao houver a caixa, o usuario responde "tudo" ou os numeros (ex.: 1, 2 e 4).
+5. **No maximo 2 aprovacoes por execucao:** (1) o que registrar; (2) so se houver, a manutencao (migracoes por limite, extracao para satelite, index fora do formato), tudo junto numa segunda tabela.
+6. **Tamanho em leve, atencao e pesado** (🟢 🟡 🔴), com barra de 10 blocos: `▰▰▰▰▰▰▱▱▱▱ 9 KB de 15`. A barra mede o tamanho contra o limite de "pesado". Tokens so como previsao. Nunca valor em dinheiro.
+7. **So os termos do treinamento:** documento mestre, satelite, aprendizados, changelog, index, ponteiro, contexto. Nao usar com o usuario: frontmatter, drift, gate, custo fixo, read-on-demand.
+8. **Fecho fixo** (PASSO 7): cartao de 4 linhas: Feito, Nao feito, Saude, Sugestao.
+
+## 📏 ONDE ESTAO OS LIMITES DE TAMANHO
+
+Os limites (linhas e KB de cada arquivo, alvo ao enxugar, tamanho da entrada de aprendizado) moram em UM lugar: a secao **"Limites de tamanho"** do `guia_do_os.md` da raiz do OS. Ler a tabela de la ao iniciar. Se o guia nao tiver essa secao (guia anterior a versao 4): avisar em 1 linha que o guia esta desatualizado, sugerir a skill `otimizar-os` (ela atualiza o guia) e, nesta execucao, ler a tabela direto do catalogo (so leitura): `https://raw.githubusercontent.com/ferjrbh/meuos-skills/main/skills/meuos-do-zero/templates/guia_do_os.md`. Sem guia atualizado e sem internet: pular o PASSO 5 e dizer isso no fecho.
 
 ---
 
@@ -28,7 +46,7 @@ Esta skill guia voce por uma rotina rapida de fechamento do dia de trabalho — 
 | Arquivo | O que entra | O que NUNCA entra |
 |---|---|---|
 | `claude.md` (contexto) | SO regra **RIGIDA de operacao** do contexto (config, limites inviolaveis). Mexer aqui = **excecao da excecao** | Caso do dia, status, decisao de negocio, historico |
-| `aprendizados_do_dia.md` | **Caixa de entrada** de regra/padrao/anti-pattern reutilizavel que AINDA NAO tem satelite do tema — objetivo, pouco texto (max 6 linhas/~700 caracteres por entrada). Tema que ja tem satelite: a regra (1 linha) entra direto em "Regras vigentes" dele e a entrada completa, sem reescrever, em "Historico" com a data (aplicando o modelo no satelite, se ainda nao tiver) | Narrativa, historia da investigacao, evento pontual, regra de tema que ja tem satelite |
+| `aprendizados_do_dia.md` | **Caixa de entrada** de regra/padrao/anti-pattern reutilizavel que AINDA NAO tem satelite do tema — objetivo, pouco texto (tamanho maximo da entrada: tabela "Limites de tamanho" do guia). Tema que ja tem satelite: a regra (1 linha) entra direto em "Regras vigentes" dele e a entrada completa, sem reescrever, em "Historico" com a data (aplicando o modelo no satelite, se ainda nao tiver) | Narrativa, historia da investigacao, evento pontual, regra de tema que ja tem satelite |
 | `changelog.md` | **O LAR do caso pontual**: o que foi feito, incidentes, narrativas com data (append-only) | Regra viva (essa mora nos arquivos acima) |
 | `*MESTRE.md` | O documento **VIVO** — mexe quase toda sessao: descricao do contexto, objetivos, **decisoes estrategicas/taticas, planos**, status, pendencias, ponteiros pros satelites | Spec densa (→ satelite), medicao/inventario (→ satelite), historico (→ changelog), caso do dia |
 | **SATELITE** (`CONTEXTO_tema.md`, modelo `satelite.md`) | Detalhe DURAVEL de UM tema: spec, inventario, medicao com data, evidencia, historico analitico. Criado sob demanda (nunca vazio "pra constar"), pelo modelo: frontmatter com `abrir_quando` · `> Documento pai` · Regras vigentes no topo · Detalhe · Historico no fim. Lido quando o "abrir quando" bate | Status atual e "com quem esta a bola" (isso e do MESTRE; o satelite nunca reconta status) |
@@ -102,32 +120,29 @@ O contexto ativo pode ser qualquer nivel. Identificar exatamente qual pasta esta
 
 ### PASSO 1 — Sintetizar e Confirmar (informar antes de gravar)
 
-**Principio:** o agente faz o trabalho de sintese, o usuario apenas valida ou ajusta. Nunca perguntar perguntas abertas — apresentar uma sintese da sessao e pedir confirmacao/ajuste.
+**Principio:** o agente faz o trabalho de sintese, o usuario apenas valida ou ajusta. Nunca fazer pergunta aberta ("o que voce fez hoje?"): apresentar a sintese pronta e pedir confirmacao.
 
 **Fluxo:**
 
-1. **Sintetizar a sessao** lendo o historico da conversa atual + o `aprendizados_do_dia.md` recente do contexto. Estruturar em 3 blocos (qualquer um pode estar vazio):
+1. **Sintetizar a sessao** lendo o historico da conversa atual + o `aprendizados_do_dia.md` recente do contexto + os itens `[x]` do documento mestre (PASSO 3). Sao 3 blocos (o que fizemos, o que aprendemos, o que fica pendente), e qualquer um pode estar vazio. Passar cada item pelo GATE (PASSO 1.5) ANTES de montar a tabela, para ela ja mostrar o destino certo.
+
+2. **Apresentar ao usuario** no padrao visual, numa tabela so:
 
 ```
-Sintese da sessao de hoje no contexto [CONTEXTO]:
+**Fim do dia · [contexto] · etapa 1 de 2**
 
-📌 O QUE FIZEMOS:
-- [item 1 — entrega/decisao/correcao]
-- [item 2]
-(ou "Sessao de discussao/analise — sem entregas concretas")
+**Sessao com 2 entregas, 1 aprendizado e 1 pendencia nova.**
 
-💡 O QUE APRENDEMOS:
-- [aprendizado 1 — formato Insight/Solucao/Nao fazer]
-- [aprendizado 2]
-(ou "Sem aprendizados novos relevantes nesta sessao")
-
-🔜 O QUE FICA PRA AMANHA:
-- [pendencia nova ou antiga que continua aberta]
-(ou "Nenhuma pendencia nova — pendencias antigas seguem em aberto no MESTRE")
+| # | O que vou registrar | Onde fica |
+|---|---|---|
+| 1 | Proposta do cliente revisada | Changelog |
+| 2 | Planilha de custos atualizada | Changelog |
+| 3 | Aprendizado: confirmar o prazo antes de enviar proposta | Aprendizados |
+| 4 | Pendencia: enviar a proposta revisada | Documento mestre |
+| 5 | 3 tarefas concluidas saem do documento mestre e vao para o changelog | Changelog |
 ```
 
-2. **Apresentar ao usuario** e pedir:
-   > `"Confere essa sintese? Pode confirmar, ajustar, adicionar ou remover qualquer item."`
+   Em seguida, a aprovacao (caixa de opcoes: "Aprovar tudo", "Escolher itens", "Nao mexer em nada"; sem caixa: `Responda "tudo", os numeros que valem ou o que ajustar.`). Sessao sem nada a registrar: dizer isso em 1 frase e ir direto ao PASSO 5.
 
 3. **Aguardar resposta** — o usuario pode:
    - "Confirmado, pode salvar"
@@ -136,7 +151,7 @@ Sintese da sessao de hoje no contexto [CONTEXTO]:
    - "Nao teve aprendizado novo hoje, segue so com o que fizemos"
    - "Sessao foi de leitura/discussao, nao tem nada pra registrar — pula"
 
-4. **Aplicar a decisao** (⚠️ TODO item confirmado passa ANTES pelo GATE DE ESCRITA — PASSO 1.5):
+4. **Aplicar a decisao** (⚠️ TODO item confirmado ja passou pelo GATE DE ESCRITA — PASSO 1.5; item que o usuario acrescentou na resposta passa agora):
    - Se houver "o que fizemos" confirmado → vai pro changelog (PASSO 3)
    - Se houver "o que aprendemos" confirmado → vai pro `aprendizados_do_dia.md` SE sobreviver ao gate; caso pontual vira changelog
    - Se houver "o que fica pra amanha" confirmado → atualiza pendencias no `*MESTRE.md` (PASSO 4)
@@ -170,15 +185,14 @@ eu trabalho neste contexto?"*
 - **SIM** → extrair SO a regra generalizavel; a narrativa do caso vai pro changelog, nunca dentro da entrada.
 
 **4 — Orcamento de escrita (anti-verborragia).**
-- Entrada nova: **max 6 linhas e ~700 caracteres**. Insight = a regra. Solucao = o procedimento. Nao fazer = 1 frase.
+- Entrada nova: dentro do **tamanho maximo de entrada da tabela do guia**. Insight = a regra. Solucao = o procedimento. Nao fazer = 1 frase.
 - Proibido na entrada: historia da investigacao, "caso real: ...", justificativa da regra.
 - **Max 3 entradas novas por sessao** — o excedente e quase sempre caso pontual → changelog.
 
-**5 — Teto duro (entra um, sai um; a saida mira a folga).** Arquivo-alvo JA estourado (aprendizados com mais de 250
-linhas OU 15KB · claude.md mais de 300 linhas · MESTRE mais de 500) → escrita nova SO entra se
-sair volume equivalente na MESMA rodada (condensar/migrar antes, com aprovacao). Ao migrar, levar
-o arquivo para ~60% do limite (aprendizados ~9KB/120 linhas · MESTRE ~15KB/180 linhas · claude.md
-~120 linhas), nao para 1 byte abaixo do corte: tirar so o equivalente ao que entra deixa o arquivo
+**5 — Teto duro (entra um, sai um; a saida mira a folga).** Arquivo-alvo JA 🔴 pesado pela tabela
+"Limites de tamanho" do guia → escrita nova SO entra se sair volume equivalente na MESMA rodada
+(condensar/migrar antes, com aprovacao). Ao migrar, levar o arquivo para o "alvo ao enxugar" da
+tabela, nao para 1 byte abaixo do corte: tirar so o equivalente ao que entra deixa o arquivo
 grudado no teto e o alerta volta na sessao seguinte. Destino: satelite do tema (protocolo de mudanca
 de casa do PASSO 5.5, passo 4).
 
@@ -186,11 +200,16 @@ de casa do PASSO 5.5, passo 4).
 escrita se for regra RIGIDA de operacao — quase nunca acontece. Decisao de negocio/estrategia/
 tatica/plano → **MESTRE** (documento vivo, mexe quase toda sessao).
 
+**7 — Fato conferivel leva fonte e data.** Numero, data, preco, prazo, nome ou status que vai ser
+gravado: registrar de onde veio e quando foi conferido (ex.: `fonte: planilha de clientes, conferido
+em DD/MM/AAAA`). O usuario disse na conversa → `fonte: informado pelo dono em DD/MM/AAAA`. Sem fonte
+→ gravar com a marca `nao verificado`. Nunca completar numero de cabeca.
+
 ---
 
 ### PASSO 2 — Salvar aprendizados
 
-Com base na resposta da Pergunta 2, escrever no arquivo `aprendizados_do_dia.md` do contexto ativo.
+Com os aprendizados confirmados no PASSO 1 (e que sobreviveram ao gate), escrever no arquivo `aprendizados_do_dia.md` do contexto ativo. Nenhum aprendizado confirmado → pular este passo; o arquivo fica intocado.
 
 **Localizar o arquivo correto:** buscar `aprendizados_do_dia.md` na pasta exata do contexto que esta sendo fechado. Com 3 niveis, cada pasta tem o seu proprio — usar o da pasta correta. Exemplos:
 - Fechando contexto raiz: `aprendizados_do_dia.md` na raiz
@@ -213,30 +232,27 @@ Com base na resposta da Pergunta 2, escrever no arquivo `aprendizados_do_dia.md`
 2. Estrategicos (decisoes de produto, posicionamento, modelo)
 3. Tecnicos (ferramentas, bugs, integracoes)
 
-**Regra de compactacao:** se o arquivo `aprendizados_do_dia.md` ja tiver mais de 25 entradas, agrupar entradas antigas sobre o mesmo tema em uma entrada unica antes de adicionar as novas.
+**Higiene (os numeros vem da tabela "Limites de tamanho" do guia; medir linhas E KB, vale o pior):**
+arquivo 🔴 pesado, mais entradas que o maximo do guia ou entrada acima do tamanho maximo → propor a manutencao:
+evento pontual → `changelog.md` · regra de UM tema → satelite do tema · entradas antigas do mesmo
+tema → agrupar numa so. Itens `[x]` no documento mestre → sempre migram (PASSO 3).
 
-**Limites de higiene (apresentar candidatos a migracao para o changelog quando qualquer um for ultrapassado):**
-
-| Metrica | Limite | Acao se exceder |
-|---------|--------|-----------------|
-| Linhas do `aprendizados_do_dia.md` | mais de 250 | Propor migracao de entradas antigas para `changelog.md` |
-| Tamanho do arquivo | mais de 15KB | Propor migracao (medir linhas E KB — linha longa passa no check de linhas e estoura o de KB) |
-| Numero de entradas `## ` | mais de 25 | Propor migracao/agrupamento |
-| Por entrada | mais de 8 linhas OU ~700 caracteres | Condensar (regra sem narrativa) |
-| Items `[x]` no `*MESTRE.md` | mais de 0 | Migrar para `changelog.md` (ver PASSO 3) |
-
-Se algum limite for ultrapassado, apresentar tabela numerada ao usuario com os candidatos a migracao:
+Os candidatos entram na **segunda tabela** (a de manutencao, a unica outra aprovacao da execucao):
 
 ```
-| # | Entrada | Sugestao | Destino |
-|---|---------|----------|---------|
-| 1 | Erro de cadastro duplicado (DD/MM) | Migrar | changelog.md |
-| 2 | API de pagamento = so leitura (regra permanente de UM tema) | Promover | satelite `CLIENTEA_pagamentos.md`, secao Regras vigentes (o mestre recebe so o ponteiro de 1 linha) |
-| 3 | Falha no envio de e-mail (DD/MM) | Migrar | changelog.md |
-| 4 | Padrao de prompt OpenAI (ativo) | Manter | aprendizados_do_dia.md |
+**Fim do dia · [contexto] · etapa 2 de 3 · manutencao**
+
+**Seus aprendizados estao pesados; 3 entradas podem sair de la.**
+
+| # | O que vou registrar | Onde fica |
+|---|---|---|
+| 1 | Mover "Erro de cadastro duplicado" (evento ja resolvido) | Changelog |
+| 2 | Mover a regra "API de pagamento so leitura" | Satelite de pagamentos |
+| 3 | Mover "Falha no envio de e-mail" (evento ja resolvido) | Changelog |
 ```
 
-O usuario responde quais aprovar (ex: "1 e 3 sim") e so o aprovado e movido. **NUNCA migrar sem aprovacao.**
+Mesma aprovacao da primeira tabela (caixa de opcoes ou numeros). O que fica como esta nao entra na
+tabela. So o aprovado e movido. **NUNCA migrar sem aprovacao.**
 Promover entrada para satelite = a regra (1 linha, o "Solucao"/"Nao fazer") entra em "Regras vigentes"; a entrada
 completa, sem reescrever, entra em "Historico" com a data; conferir que os dois estao la e so entao remover do aprendizados.
 
@@ -244,7 +260,7 @@ completa, sem reescrever, entra em "Historico" com a data; conferir que os dois 
 
 ### PASSO 3 — Migrar tarefas concluidas
 
-Ler o arquivo `*MESTRE.md` do contexto ativo. O documento mestre pode ter qualquer nome terminando em `MESTRE.md` — exemplos: `CLIENTEA_DOCUMENTO_MESTRE.md`, `CLIENTEB_DOCUMENTO_MESTRE.md`, `CLIENTEC_DOCUMENTO_MESTRE.md`. Buscar pelo pattern `*MESTRE.md` na pasta do contexto.
+Ler o documento mestre do contexto ativo. Ele pode se chamar `documento_mestre.md` (padrao do MeuOS) ou qualquer nome terminando em "mestre.md" (ex.: `CLIENTEA_DOCUMENTO_MESTRE.md`). **Buscar SEM diferenciar maiusculas de minusculas** (em Mac e Linux, `*MESTRE.md` nao encontra `documento_mestre.md`). Nesta skill, `*MESTRE.md` significa esse arquivo, com qualquer caixa.
 
 Identificar todos os itens marcados como concluidos (formato `[x]`).
 
@@ -276,14 +292,30 @@ Identificar todos os itens marcados como concluidos (formato `[x]`).
    - O mestre expressa o estado ATUAL; a historia da mudanca mora no changelog. Nunca manter linha
      riscada como "correcao historica" dentro do mestre.
 
-**IMPORTANTE:** Nunca remover conteudo do documento mestre sem mostrar ao usuario o que sera migrado e pedir confirmacao. Mostrar lista resumida e perguntar:
-> `"Encontrei X itens concluidos. Posso migrá-los para o changelog (eles saem do mestre)?"`
+**IMPORTANTE:** Nunca remover conteudo do documento mestre sem aprovacao. Os itens concluidos ja aparecem como UMA linha da tabela do PASSO 1 ("N tarefas concluidas saem do documento mestre e vao para o changelog"); se o usuario pedir, listar quais sao. Nao abrir pergunta separada para isso.
+
+---
+
+### PASSO 3.5 — Instrucao morta (checagem rapida, so no que a sessao mexeu)
+
+Uma tarefa concluida ou uma decisao nova pode deixar para tras uma frase que ja nao vale (ex.: o
+documento mestre ainda diz "aguardando aprovacao do cliente" e o cliente aprovou hoje). Agente que
+ler isso amanha obedece a instrucao morta.
+
+1. Para cada item confirmado no PASSO 1, extrair 1-2 palavras-chave e buscar SO nos arquivos que
+   carregam em toda sessao do contexto: documento mestre, `claude.md` do contexto e
+   `aprendizados_do_dia.md`. Nao varrer satelites nem outros contextos (isso e do `otimizar-os`).
+2. Achou frase que o item de hoje contradiz → incluir como linha na tabela de manutencao:
+   `| N | Atualizar "aguardando aprovacao do cliente" para "aprovado em DD/MM" | Documento mestre |`.
+3. **Sempre conferir antes de propor:** ler o trecho inteiro em volta; na duvida se ainda vale,
+   perguntar em vez de mudar. Nada muda sem aprovacao. A transicao (antes → depois) vai no changelog.
+4. Nao achou nada → seguir em silencio.
 
 ---
 
 ### PASSO 4 — Atualizar pendencias
 
-Com base na resposta da Pergunta 3, atualizar a lista de pendencias no `*MESTRE.md` do contexto ativo:
+Com as pendencias confirmadas no PASSO 1, atualizar a lista de pendencias no documento mestre do contexto ativo:
 
 - Adicionar novas pendencias informadas pelo usuario (formato `[ ] [descricao]`) — **ANTES, buscar
   nas pendencias existentes E no `CONTEXTO_backlog.md`, se existir**: se o tema ja esta la, atualizar a linha existente
@@ -293,29 +325,23 @@ Com base na resposta da Pergunta 3, atualizar a lista de pendencias no `*MESTRE.
   isso NAO entra no mestre: vai pro satelite do tema (com data), e o mestre recebe so o ponteiro de
   1 linha. Vale mesmo com o mestre pequeno (ver os 2 gatilhos no CONTRATO POR ARQUIVO).
 - Manter as pendencias antigas que continuam abertas
-- Atualizar a data de "Ultima atualizacao" no cabecalho do documento mestre
+- Atualizar a data de "Ultima atualizacao" no cabecalho do documento mestre (se ele tiver frontmatter, a data e o campo `updated`; nao criar a linha de texto)
 
 ---
 
 ### PASSO 5 — Verificar saude dos arquivos
 
-Verificar o tamanho dos arquivos do contexto ativo e apresentar um relatorio rapido. Cobrir todos os arquivos da pasta do contexto sendo fechado (nao escanear outros contextos neste passo — apenas o ativo).
+Medir linhas E KB do documento mestre, do `aprendizados_do_dia.md` e do `changelog.md` do contexto
+ativo (so o ativo) e classificar em 🟢 leve, 🟡 atencao ou 🔴 pesado pela tabela "Limites de tamanho"
+do guia. **Vale o PIOR entre linhas e KB**: um documento mestre de 199 "linhas" que sao paragrafos
+inteiros pode pesar 60 KB e passar batido no check de linhas.
 
-| Arquivo | Status |
-|---------|--------|
-| `*MESTRE.md` | 🟢 OK / 🟡 Atencao / 🔴 Grande |
-| `aprendizados_do_dia.md` | 🟢 OK / 🟡 Atencao / 🔴 Grande |
-| `changelog.md` | 🟢 OK / 🟡 Atencao / 🔴 Grande |
+O resultado NAO vira tabela propria: entra na linha "Saude" do fecho (PASSO 7). Tudo 🟢 → 1 linha.
+So detalhar com barra quando houver 🟡 ou 🔴:
 
-**Regras de semaforo:**
-| Arquivo | 🟢 OK | 🟡 Atencao | 🔴 Grande |
-|---------|-------|-----------|---------|
-| `*MESTRE.md` | menos de 300 linhas E menos de 25KB | 300-500 linhas ou 25-40KB | mais de 500 linhas OU mais de 40KB |
-| `aprendizados_do_dia.md` | menos de 200 linhas | 200 a 250 | mais de 250 |
-| `changelog.md` | menos de 30KB | 30 a 50KB | mais de 50KB |
-
-> O `*MESTRE.md` mede **linhas E KB, e vale o PIOR dos dois**. Linha e metrica fraca sozinha: um mestre
-> de 199 "linhas" que sao paragrafos inteiros pode pesar 60KB e passar batido no check de linhas.
+```
+Saude  🟢 aprendizados · 🟢 changelog · 🟡 documento mestre ▰▰▰▰▰▰▰▱▱▱ 27 KB de 40
+```
 
 **Sugerir o Otimizar OS no MAXIMO 1x por semana, e so se houver volume.** Antes de sugerir, ler
 `{contexto}/historico/.last-otimizar-os` (guarda `ULTIMA_EXECUCAO`, `LAST_SUGGESTED`, `CONTAGENS`, `FRESCOR`).
@@ -329,7 +355,7 @@ So sugerir se as DUAS condicoes forem verdade:
 2. **Teto de cadencia**: `hoje - max(ULTIMA_EXECUCAO, LAST_SUGGESTED)` for de **7 dias ou mais**.
 
 Ao sugerir, gravar `LAST_SUGGESTED=<hoje>` no `.last-otimizar-os` (segura o lembrete na semana, mesmo se voce recusar).
-- Sugestao geral: `"Identifiquei [numeros defasados / arquivos compactaveis]. Recomendo rodar o Otimizar OS. Quer agora? (ultima vez: [data])"`
+- Sugestao geral: `"Identifiquei [informacao desatualizada / arquivo pesado]. Recomendo rodar o Otimizar OS. Quer agora? (ultima vez: [data])"`
 - Se for o `aprendizados_do_dia.md` inchado de regra perene: `"Seu aprendizados virou deposito de regras. O Otimizar OS extrai pra satelite e deixa o log curto. Quer rodar?"`
 - Conteudo perene ja curado (piso) e sem drift → **NAO sugerir nada**. Repetir alerta sem acao possivel e ruido.
 
@@ -337,13 +363,13 @@ Ao sugerir, gravar `LAST_SUGGESTED=<hoje>` no `.last-otimizar-os` (segura o lemb
 
 ### PASSO 5.5 — Descompressao do documento mestre (condicional)
 
-**Executar SOMENTE se o `*MESTRE.md` do contexto ativo estiver 🟡 ou 🔴 (300+ linhas OU 25KB+, vale o pior dos dois) OU tiver uma secao com 30+ linhas sobre UM tema**, OU se houve entregas significativas na sessao (modulo inteiro, integracao completa, decisao arquitetural grande). Em sessoes curtas ou de manutencao, pular.
+**Executar SOMENTE se o documento mestre do contexto ativo estiver 🟡 ou 🔴 (pela tabela do guia) OU tiver uma secao com 30+ linhas sobre UM tema**, OU se houve entregas significativas na sessao (modulo inteiro, integracao completa, decisao arquitetural grande). Em sessoes curtas ou de manutencao, pular.
 
 **Objetivo:** manter o documento mestre legivel em menos de 5 minutos. Escopo, status, pendencias e ponteiros ficam la. Detalhes densos saem para arquivos separados.
 
-**Fluxo (com aprovacao do usuario em cada passo):**
+**Fluxo (as propostas entram na tabela de manutencao; uma aprovacao so):**
 
-1. **Medir linhas E KB do mestre.** Abaixo de 300 linhas E de 25KB, sem secao de 30+ linhas de um tema: pular.
+1. **Medir linhas E KB do documento mestre.** 🟢 leve e sem secao de 30+ linhas de um tema: pular.
 2. **Identificar secoes densas** — qualquer secao com mais de 30 linhas de conteudo detalhado sobre UM tema especifico (decisoes por data, especificacoes de modulo, mapeamentos, etc.).
 3. **Propor extracao ao usuario** listando as secoes candidatas. Para cada uma, procurar no `index.md` um satelite do mesmo tema: existe → propor ACRESCENTAR nele (satelite existente mantem o nome; ao acrescentar, aplicar o modelo NELE — frontmatter com `abrir_quando` + secao "Regras vigentes" no topo — sem reorganizar o que ja estava dentro); nao existe → propor satelite novo pelo modelo `satelite.md` (frontmatter `updated/context/type: satelite/status: vivo/abrir_quando` · `> Documento pai:` · `## Regras vigentes` · `## Detalhe` · `## Historico`), nome `CONTEXTO_tema.md` (mesmo que os satelites vizinhos usem outro padrao de nome), com o "abrir quando" preenchido.
 4. **Se aprovado:** seguir o protocolo de mudanca de casa: copiar SEM reescrever (resumir e outro passo, com aprovacao propria) → conferir item a item que toda regra, numero, data, nome e link da origem esta no destino, e mostrar a lista → so entao remover do mestre → 1 linha no changelog ("movido X de A para B"). Dentro do satelite, a secao extraida vai para "Detalhe" (spec, inventario, processo) ou "Historico" (bloco datado); em "Regras vigentes" entra so regra de 1 linha.
@@ -367,8 +393,8 @@ Este passo so se aplica a quem usa **Claude Code** como agente. Se o usuario usa
 
 | Metrica | Alerta se |
 |---------|-----------|
-| `MEMORY.md` linhas | mais de 100 |
-| Arquivos de topico | mais de 15 |
+| `MEMORY.md` | 🟡 ou 🔴 pela tabela do guia |
+| Arquivos de topico | 🟡 ou 🔴 pela tabela do guia |
 | Algum topico sem modificacao ha mais de 90 dias | 1 ou mais |
 
 5. **Apenas OBSERVAR — NAO sugerir o Otimizar Custo aqui.** Se a memoria estiver acima do limiar com item
@@ -411,18 +437,18 @@ Se houve mudanca em qualquer arquivo da raiz do OS (novo arquivo, rename), atual
 
 ### PASSO 7 — Resumo final
 
-Apresentar ao usuario um resumo do que foi feito:
+Fechar com o cartao fixo de 4 linhas (sem caminho de arquivo, sem termo tecnico):
 
 ```
-Revisao Diaria concluida ✓
+**Fim do dia · [contexto] · etapa 2 de 2**   (ou 3 de 3, se houve manutencao)
 
-Contexto fechado: [path do contexto — ex: Consultoria/ClienteA]
-Aprendizados salvos: [X novas entradas em aprendizados_do_dia.md]
-Tarefas migradas: [X itens movidos para changelog]
-Pendencias atualizadas: [X novas + X antigas mantidas]
-Saude dos arquivos: [tudo ok / X arquivos precisam de atencao]
-Index.md: [atualizado / criado / nao existia]
+**Feito**      2 entregas, 1 aprendizado e 1 pendencia registrados · index atualizado
+**Nao feito**  nada ficou de fora  (ou: o que o usuario recusou / o que nao foi possivel)
+**Saude**      🟢 aprendizados · 🟢 changelog · 🟡 documento mestre (ficando pesado)
+**Sugestao**   rodar o Otimizar OS neste contexto esta semana  (ou: nenhuma)
 ```
+
+No maximo UMA sugestao, e so se as regras do PASSO 5 permitirem.
 
 Se houve uma analise longa, comparacao detalhada ou deep dive durante a sessao, oferecer:
 > `"Essa analise vale ser salva como arquivo separado? Posso gravar como CONTEXTO_analise_titulo.md"`
@@ -431,7 +457,7 @@ Se houve uma analise longa, comparacao detalhada ou deep dive durante a sessao, 
 
 ## Formato de saida
 
-**aprendizados_do_dia.md** — novas entradas adicionadas no topo, antes das entradas anteriores:
+**aprendizados_do_dia.md** — novas entradas adicionadas no topo da sua categoria (Regras de Negocio, Estrategicos ou Tecnicos), antes das anteriores:
 ```markdown
 ## [Titulo] (DD/MM)
 **Insight:** ...
@@ -461,10 +487,11 @@ Se houve uma analise longa, comparacao detalhada ou deep dive durante a sessao, 
 - **Nunca apagar conteudo que nao foi preservado**: item concluido so sai do mestre DEPOIS de
   registrado no changelog, e com aprovacao. Remover sem registrar antes e perda de historico
 - **Nunca migrar itens concluidos sem confirmacao** do usuario
-- **Nunca inventar aprendizados** — registrar apenas o que o usuario informou
+- **Nunca inventar aprendizados** — registrar apenas o que saiu da sessao e o usuario confirmou na tabela
 - **Nunca acessar arquivos de outro contexto** sem permissao explicita
-- **Nunca declarar concluido** sem ter atualizado pelo menos o aprendizados_do_dia.md e o *MESTRE.md
-- **Se o usuario nao responder uma das 3 perguntas**, prosseguir com o que foi respondido e deixar a secao em branco com nota "(nao registrado nesta sessao)"
+- **Nunca declarar concluido** sem ter AVALIADO o `aprendizados_do_dia.md` e o documento mestre. Avaliar nao e escrever: sessao sem material deixa o arquivo intocado
+- **Se o usuario aprovar so parte da tabela**, gravar so o aprovado e listar o resto em "Nao feito" no fecho
+- **Fato conferivel sem fonte** entra marcado `nao verificado`; nunca completar numero, data ou nome de cabeca
 - **Nunca assumir que o OS e flat** — sempre verificar a estrutura real antes de agir
 - **🔒 NUNCA mexer no `soul.md` nem promover regras para ele.** O soul trata SO de carater, comportamento e perfil do agente — deve ser leve e objetivo. Regrinhas operacionais (taxas, fluxos, "sempre fazer X no produto") NAO sao comportamento: vao para claude.md / mestre / satelite. Se algo parecer de soul, perguntar ao usuario antes — nunca escrever no soul por conta propria.
 
@@ -478,10 +505,14 @@ Se houve uma analise longa, comparacao detalhada ou deep dive durante a sessao, 
 - [ ] Nenhuma medicao/inventario denso entrou no mestre (foi pro satelite, com ponteiro de 1 linha)
 - [ ] Toda mudanca de casa (mestre → satelite) seguiu o protocolo: copiar, conferir item a item com a lista mostrada, so entao remover
 - [ ] Satelite novo nasceu pelo modelo (`abrir_quando` + Regras vigentes no topo) e tem a linha unica no mestre e no index
-- [ ] Pendencias atualizadas sem duplicar tema existente (nem no backlog) + data de "Ultima atualizacao" no cabecalho
+- [ ] Pendencias atualizadas sem duplicar tema existente (nem no backlog) + data de "Ultima atualizacao" no cabecalho (ou `updated` do frontmatter)
 - [ ] index.md do contexto cobre 100% dos .md (satelites criados hoje incluidos), toda entrada no formato unico ("abrir quando" com ate 80 caracteres)
 - [ ] Nada foi migrado ou removido sem aprovacao do usuario
-- [ ] Resumo final apresentado (PASSO 7)
+- [ ] No maximo 2 aprovacoes pedidas (o que registrar + manutencao), cada uma em UMA tabela numerada
+- [ ] Nenhuma frase que os itens de hoje contradizem ficou no documento mestre, no claude.md do contexto ou nos aprendizados (PASSO 3.5)
+- [ ] Numero, data, preco, prazo, nome e status gravados hoje tem fonte e data, ou a marca `nao verificado`
+- [ ] Falas ao usuario so com os termos do treinamento, sem caminho de arquivo e sem valor em dinheiro
+- [ ] Fecho no cartao fixo de 4 linhas (PASSO 7)
 
 Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.
 
@@ -490,4 +521,4 @@ Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feit
 > Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
 
 ## Regra dual-agent (obrigatória)
-Este OS tem DOIS arquivos de entrada equivalentes: `claude.md` (Claude) e `AGENTS.md` (ChatGPT/Codex) — na raiz e em cada contexto. **Se esta skill editar um arquivo de entrada, espelhe a mesma mudança na entrada irmã da mesma pasta** (se ela existir). Nunca deixe as duas divergirem. Conteúdo-regra vivo pertence ao `soul.md`/`documento_mestre.md` — as entradas são finas.
+Este OS tem DOIS arquivos de entrada equivalentes: `claude.md` (Claude) e `AGENTS.md` (ChatGPT/Codex) — na raiz e em cada contexto. **Se esta skill editar um arquivo de entrada, espelhe a mesma mudança na entrada irmã da mesma pasta** (se ela existir). Nunca deixe as duas divergirem. Cada regra mora em um lugar só (regra 3 do `guia_do_os.md`); regra operacional nunca vai para o `soul.md`.
