@@ -1,5 +1,5 @@
 # guia_do_os.md · O Manual de Operação deste OS
-> Guia do OS · versão 5 · gerado pelo MeuOS em {{DATA}} · www.meuos.com.br
+> Guia do OS · versão 6 · gerado pelo MeuOS em {{DATA}} · www.meuos.com.br
 
 ## Para você, humano, em 30 segundos
 
@@ -111,8 +111,8 @@ Satélite e este guia não entram na leitura inicial: abra quando o "abrir quand
 
 - A primeira linha responde.
 - Decisão do dono vira tabela numerada, com a coluna "o que muda para você" em frase simples.
-  Onde o agente tiver caixa de opções clicáveis, use: "Aprovar tudo", "Escolher itens",
-  "Não mexer em nada". Onde não tiver, o dono responde "tudo" ou os números.
+  O dono responde por texto, na própria conversa: "tudo" ou os números que valem. Não usar caixa
+  de opções clicáveis: ela pode abrir sem mostrar o que está sendo aprovado.
 - Use os nomes que o dono conhece: contexto, documento mestre, satélite, aprendizados, changelog,
   index, ponteiro. Sem termo técnico que ele não usou.
 - Tamanho se fala em leve, atenção e pesado (🟢 🟡 🔴). Tokens, só como previsão. Nunca em dinheiro.

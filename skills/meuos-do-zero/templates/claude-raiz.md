@@ -42,6 +42,6 @@
 
 ## Forma da resposta
 - A primeira linha responde.
-- Decisão do dono vira tabela numerada, com "o que muda para você" em frase simples. O dono aprova pela caixa de opções, quando houver, ou pelos números.
+- Decisão do dono vira tabela numerada, com "o que muda para você" em frase simples. O dono responde por texto, pelos números.
 - Linguagem de gestor, sem termo técnico que o dono não usou.
 - Feche com: feito, pendente e próximo passo.
