@@ -8,7 +8,7 @@ description: |
   AVALIA os arquivos antes de escrever (gate anti-duplicacao e anti-verborragia), salva
   aprendizados no lugar certo, migra tarefas concluidas e atualiza pendencias no documento
   mestre do contexto ativo.
-version: 5.4
+version: 5.5
 context: meuos
 user-invocable: true
 author: Fernando Lúcio · Aion Group
@@ -46,7 +46,7 @@ Os limites (linhas e KB de cada arquivo, alvo ao enxugar, tamanho da entrada de 
 | Arquivo | O que entra | O que NUNCA entra |
 |---|---|---|
 | `claude.md` (contexto) | SO regra **RIGIDA de operacao** do contexto (config, limites inviolaveis). Mexer aqui = **excecao da excecao** | Caso do dia, status, decisao de negocio, historico |
-| `aprendizados_do_dia.md` | **Caixa de entrada** de regra/padrao/anti-pattern reutilizavel que AINDA NAO tem satelite do tema — objetivo, pouco texto (tamanho maximo da entrada: tabela "Limites de tamanho" do guia). Tema que ja tem satelite: a regra (1 linha) entra direto em "Regras vigentes" dele e a entrada completa, sem reescrever, em "Historico" com a data (aplicando o modelo no satelite, se ainda nao tiver) | Narrativa, historia da investigacao, evento pontual, regra de tema que ja tem satelite |
+| `aprendizados_do_dia.md` | **Caixa de entrada** de regra/padrao/anti-pattern reutilizavel que AINDA NAO tem satelite do tema — objetivo, pouco texto (tamanho maximo da entrada: tabela "Limites de tamanho" do guia). Tema que ja tem satelite: a regra (1 linha) entra direto em "Regras vigentes" dele e a entrada completa, sem reescrever, em "Historico" com a data (aplicando o modelo no satelite, se ainda nao tiver). **Excecao: satelite ja 🔴 pesado nao recebe nada; a regra fica aqui nos aprendizados desta vez** | Narrativa, historia da investigacao, evento pontual, regra de tema que ja tem satelite |
 | `changelog.md` | **O LAR do caso pontual**: o que foi feito, incidentes, narrativas com data (append-only) | Regra viva (essa mora nos arquivos acima) |
 | `*MESTRE.md` | O documento **VIVO** — mexe quase toda sessao: descricao do contexto, objetivos, **decisoes estrategicas/taticas, planos**, status, pendencias, ponteiros pros satelites | Spec densa (→ satelite), medicao/inventario (→ satelite), historico (→ changelog), caso do dia |
 | **SATELITE** (`CONTEXTO_tema.md`, modelo `satelite.md`) | Detalhe DURAVEL de UM tema: spec, inventario, medicao com data, evidencia, historico analitico. Criado sob demanda (nunca vazio "pra constar"), pelo modelo: frontmatter com `abrir_quando` · `> Documento pai` · Regras vigentes no topo · Detalhe · Historico no fim. Lido quando o "abrir quando" bate | Status atual e "com quem esta a bola" (isso e do MESTRE; o satelite nunca reconta status) |
@@ -124,7 +124,7 @@ O contexto ativo pode ser qualquer nivel. Identificar exatamente qual pasta esta
 
 **Fluxo:**
 
-1. **Sintetizar a sessao** lendo o historico da conversa atual + o `aprendizados_do_dia.md` recente do contexto + os itens `[x]` do documento mestre (PASSO 3). Sao 3 blocos (o que fizemos, o que aprendemos, o que fica pendente), e qualquer um pode estar vazio. Passar cada item pelo GATE (PASSO 1.5) ANTES de montar a tabela, para ela ja mostrar o destino certo.
+1. **Sintetizar a sessao** lendo o historico da conversa atual + o `aprendizados_do_dia.md` recente do contexto + os itens concluidos do documento mestre (PASSO 3: `[x]` ou a marca de concluido que o contexto usa, como ✅). Sao 3 blocos (o que fizemos, o que aprendemos, o que fica pendente), e qualquer um pode estar vazio. Passar cada item pelo GATE (PASSO 1.5) ANTES de montar a tabela, para ela ja mostrar o destino certo.
 
 2. **Apresentar ao usuario** no padrao visual, numa tabela so:
 
@@ -234,8 +234,10 @@ Com os aprendizados confirmados no PASSO 1 (e que sobreviveram ao gate), escreve
 
 **Higiene (os numeros vem da tabela "Limites de tamanho" do guia; medir linhas E KB, vale o pior):**
 arquivo 🔴 pesado, mais entradas que o maximo do guia ou entrada acima do tamanho maximo → propor a manutencao:
-evento pontual → `changelog.md` · regra de UM tema → satelite do tema · entradas antigas do mesmo
-tema → agrupar numa so. Itens `[x]` no documento mestre → sempre migram (PASSO 3).
+entrada longa → CONDENSAR (tirar a narrativa; o trecho cortado vai em 1-2 linhas para o changelog, se ainda nao
+estiver la) · evento pontual → `changelog.md` · regra de UM tema → satelite do tema, so se ele existe e esta
+leve · entradas antigas do mesmo tema → agrupar numa so. Itens concluidos no documento mestre → sempre migram
+(PASSO 3). A higiene roda mesmo quando nenhum aprendizado novo foi gravado.
 
 Os candidatos NAO sao mostrados agora: entram na lista de manutencao, apresentada UMA vez no PASSO 6.5
 (a unica outra aprovacao da execucao). **NUNCA migrar sem aprovacao.**
@@ -290,11 +292,13 @@ ler isso amanha obedece a instrucao morta.
 
 1. Para cada item confirmado no PASSO 1, extrair 1-2 palavras-chave e buscar SO nos arquivos que
    carregam em toda sessao do contexto: documento mestre, `claude.md` do contexto e
-   `aprendizados_do_dia.md`. Nao varrer satelites nem outros contextos (isso e do `otimizar-os`).
+   `aprendizados_do_dia.md`, mais o satelite de pendencias e os satelites em que voce escreveu hoje. Nao varrer os
+   demais satelites nem outros contextos (isso e do `otimizar-os`). Corrigir uma frase desatualizada num satelite
+   pesado e permitido: nao aumenta o arquivo.
 2. Achou frase que o item de hoje contradiz → guardar como candidato da tabela de manutencao (PASSO 6.5):
    `| N | Atualizar "aguardando aprovacao do cliente" para "aprovado em DD/MM" | Documento mestre |`.
 3. **Sempre conferir antes de propor:** ler o trecho inteiro em volta; na duvida se ainda vale,
-   perguntar em vez de mudar. Nada muda sem aprovacao. A transicao (antes → depois) vai no changelog.
+   a linha entra na tabela de manutencao com a marca `(decisao sua)` e so muda se o usuario responder. Nada muda sem aprovacao. A transicao (antes → depois) vai no changelog.
 4. Nao achou nada → seguir em silencio.
 
 ---
@@ -341,8 +345,8 @@ So sugerir se as DUAS condicoes forem verdade:
 2. **Teto de cadencia**: `hoje - max(ULTIMA_EXECUCAO, LAST_SUGGESTED)` for de **7 dias ou mais**.
 
 Ao sugerir, gravar `LAST_SUGGESTED=<hoje>` no `.last-otimizar-os` (segura o lembrete na semana, mesmo se voce recusar).
-- Sugestao geral: `"Identifiquei [informacao desatualizada / arquivo pesado]. Recomendo rodar o Otimizar OS. Quer agora? (ultima vez: [data])"`
-- Se for o `aprendizados_do_dia.md` inchado de regra perene: `"Seu aprendizados virou deposito de regras. O Otimizar OS extrai pra satelite e deixa o log curto. Quer rodar?"`
+- Texto da linha "Sugestao" do fecho (nao e pergunta; o usuario roda se quiser): `rodar o Otimizar OS neste contexto: [informacao desatualizada / arquivo pesado] (ultima vez: [data])`
+- Se for o `aprendizados_do_dia.md` inchado de regra perene: `rodar o Otimizar OS: os aprendizados viraram deposito de regras; ele leva cada uma para o satelite do tema`
 - Conteudo perene ja curado (piso) e sem drift → **NAO sugerir nada**. Repetir alerta sem acao possivel e ruido.
 
 ---
@@ -359,7 +363,7 @@ Ao sugerir, gravar `LAST_SUGGESTED=<hoje>` no `.last-otimizar-os` (segura o lemb
 2. **Identificar secoes densas** — qualquer secao com mais de 30 linhas de conteudo detalhado sobre UM tema especifico (decisoes por data, especificacoes de modulo, mapeamentos, etc.).
 3. **Propor extracao ao usuario** listando as secoes candidatas. Para cada uma, procurar no `index.md` um satelite do mesmo tema: existe → propor ACRESCENTAR nele (satelite existente mantem o nome; ao acrescentar, aplicar o modelo NELE — frontmatter com `abrir_quando` + secao "Regras vigentes" no topo — sem reorganizar o que ja estava dentro); nao existe → propor satelite novo pelo modelo `satelite.md` (frontmatter `updated/context/type: satelite/status: vivo/abrir_quando` · `> Documento pai:` · `## Regras vigentes` · `## Detalhe` · `## Historico`), nome `CONTEXTO_tema.md` (mesmo que os satelites vizinhos usem outro padrao de nome), com o "abrir quando" preenchido.
 4. **Se aprovado:** seguir o protocolo de mudanca de casa: copiar SEM reescrever (resumir e outro passo, com aprovacao propria) → conferir item a item que toda regra, numero, data, nome e link da origem esta no destino, e mostrar a lista → so entao remover do mestre → 1 linha no changelog ("movido X de A para B"). Dentro do satelite, a secao extraida vai para "Detalhe" (spec, inventario, processo) ou "Historico" (bloco datado); em "Regras vigentes" entra so regra de 1 linha.
-5. **Substituir no mestre** por UMA linha no formato unico: `- [CONTEXTO_tema.md](CONTEXTO_tema.md) — abrir quando: tema A, tema B` (o trecho depois de "abrir quando:" tem ate 80 caracteres). Essa linha vive em UM lugar do mestre, a secao "Satelites deste contexto" (criar a secao no primeiro ponteiro, se o mestre nao tiver); no lugar da secao extraida nao fica nada. A mesma linha entra no `index.md`.
+5. **Substituir no mestre** por UMA linha no formato unico: `- [CONTEXTO_tema.md](CONTEXTO_tema.md) — abrir quando: tema A, tema B` (o trecho depois de "abrir quando:" tem ate 80 caracteres). A linha entra SEMPRE no `index.md`. No mestre ela vive em UM lugar, a secao "Satelites deste contexto" (criar a secao no primeiro ponteiro, se o mestre nao tiver), e so entra se a secao tiver menos de 15 linhas (regra do guia: o documento mestre lista os satelites do dia a dia; a lista completa e o index). No lugar da secao extraida nao fica nada.
 6. **Limite:** maximo 3 arquivos separados novos por execucao (evita fragmentacao).
 
 **Convencao de nomes:** `CONTEXTO_tema.md` — prefixo do contexto em maiusculas, tema em minusculas com `_`. Uma convencao so, a mesma do modelo `satelite.md` e do `otimizar-os`. Satelite antigo com outro nome NAO e renomeado (renomear quebra link em silencio).
@@ -404,7 +408,7 @@ invisivel que vira duplicata no futuro. A correcao e imediata (index e catalogo,
 **Index do contexto ativo:**
 Se o arquivo `index.md` existir na pasta do contexto que esta sendo fechado:
 1. Listar todos os arquivos `.md` nessa pasta
-2. Comparar com o `index.md` atual — **cross-check: TODO satelite da pasta tem entrada no index?** Faltando → adicionar na hora
+2. Comparar com o `index.md` atual (e com os sub-indices que ele listar) — **cross-check: TODO satelite da pasta tem entrada no index ou num sub-indice?** Faltando → adicionar na hora, mesmo com o index pesado (e catalogo: o teto de arquivo pesado nao vale para ele), e dizer no fecho quantos entraram
 3. Para arquivos novos (satelites criados durante o dia): adicionar entrada no formato unico: `- [arquivo](arquivo) — abrir quando: tema A, tema B` (1 linha; o trecho depois de "abrir quando:" tem ate 80 caracteres)
 3b. Entrada existente fora do formato unico (sem "abrir quando" ou com o trecho acima de 80 caracteres): o fim-do-dia so corrige as entradas dos arquivos criados ou alterados HOJE (candidatos da tabela de manutencao, PASSO 6.5). **Nunca reescrever o index em massa aqui**: mais de 5 entradas antigas fora do formato → nao mexer e por na linha "Sugestao" do fecho "rodar o Otimizar OS (ele arruma o index inteiro numa passada)".
 4. Para arquivos removidos ou renomeados: atualizar
@@ -461,8 +465,8 @@ Fechar com o cartao fixo de 4 linhas (sem caminho de arquivo, sem termo tecnico)
 
 No maximo UMA sugestao, e so se as regras do PASSO 5 permitirem.
 
-Se houve uma analise longa, comparacao detalhada ou deep dive durante a sessao, oferecer:
-> `"Essa analise vale ser salva como arquivo separado? Posso gravar como CONTEXTO_analise_titulo.md"`
+Se houve uma analise longa na sessao que ainda NAO esta salva em arquivo, usar a linha "Sugestao" para isso
+(`salvar a analise de hoje como arquivo do contexto`), sem abrir pergunta.
 
 ---
 
@@ -515,7 +519,7 @@ Se houve uma analise longa, comparacao detalhada ou deep dive durante a sessao, 
 - [ ] Conclusao que reverteu regra: mestre atualizado em linguagem afirmativa + transicao no changelog
 - [ ] Nenhuma medicao/inventario denso entrou no mestre (foi pro satelite, com ponteiro de 1 linha)
 - [ ] Toda mudanca de casa (mestre → satelite) seguiu o protocolo: copiar, conferir item a item com a lista mostrada, so entao remover
-- [ ] Satelite novo nasceu pelo modelo (`abrir_quando` + Regras vigentes no topo) e tem a linha unica no mestre e no index
+- [ ] Satelite novo nasceu pelo modelo (`abrir_quando` + Regras vigentes no topo) e tem a linha unica no index (e no mestre, se a secao de satelites tiver menos de 15 linhas)
 - [ ] Pendencias atualizadas sem duplicar tema existente (nem no backlog) + data de "Ultima atualizacao" no cabecalho (ou `updated` do frontmatter)
 - [ ] index.md do contexto cobre 100% dos .md (satelites criados hoje incluidos), toda entrada no formato unico ("abrir quando" com ate 80 caracteres)
 - [ ] Nada foi migrado ou removido sem aprovacao do usuario
@@ -531,17 +535,19 @@ Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feit
 
 ## Casos de borda (regras que valem sobre os passos acima)
 
-1. **Satelite de destino ja 🔴 pesado.** Nunca gravar regra nova num satelite pesado. A regra fica no `aprendizados_do_dia.md` desta vez (ele e a caixa de entrada) e a linha "Sugestao" do fecho pede o Otimizar OS. Isso vale tambem para a manutencao: nao mover entrada para satelite pesado.
-2. **Onde uma entrada de aprendizado comeca e termina:** do titulo `## ` ate o proximo `## `, `# ` ou `---`. Nota solta depois da entrada nao conta. A linha de fonte (`fonte: ...`) nao conta para o tamanho maximo.
-3. **Entrada acima do tamanho maximo:** a acao e CONDENSAR (regra sem narrativa), como manda o guia. So vira "mover para satelite" quando e regra de UM tema e o satelite do tema existe e esta leve.
-4. **Formato do contexto vence o modelo.** Changelog, pendencias e nomes de arquivo ja tem um formato neste contexto (ex.: `## 15-NOV-2026 · titulo`, bolinhas no lugar de `[ ]`, arquivo de pendencias com outro nome)? Seguir o formato que ja existe. Os modelos desta skill valem so para arquivo vazio. O "backlog" e o satelite de pendencias paradas que o index listar, com qualquer nome.
-5. **Nota "Tarefas concluidas nao ficam listadas aqui":** criar so quando houver item `[x]` a migrar. Documento mestre sem item concluido fica como esta.
-6. **Fatos da sessao que ja estao no changelog:** nao repetir. Dizer isso na frase de resumo ("o resto do dia ja estava no changelog").
-7. **Mesma linha pede duas coisas** (ex.: a pendencia do tema que tambem tem um numero desatualizado): fazer tudo na tabela de registro, numa linha so. Nao guardar metade para a manutencao.
-8. **Instrucao morta (PASSO 3.5) em satelite:** conferir tambem o satelite de pendencias e os satelites em que voce escreveu hoje. Os demais sao do Otimizar OS.
-9. **Conferencia da mudanca de casa:** mostrar em ate 5 linhas, logo antes do fecho (ex.: `"Erro de cadastro" → changelog: 4 de 4 linhas presentes`).
-10. **Linha "Saude" do fecho:** alem dos 3 arquivos do PASSO 5, citar satelite tocado hoje que esteja 🔴 e, se for o caso, "memoria do agente pesada" (PASSO 5.7). E o unico lugar dessas notas.
-11. **Aplicar o modelo num satelite antigo** (frontmatter + "Regras vigentes") ao escrever nele: e mudanca de estrutura, entra como linha da tabela em que a escrita foi aprovada ("...e por o satelite no modelo padrao").
+1. **Satelite de destino ja 🔴 pesado.** Nunca gravar regra nova nem mover entrada para um satelite pesado. A regra fica no `aprendizados_do_dia.md` desta vez (ele e a caixa de entrada). Medir o satelite ANTES de escrever nele.
+2. **O que e uma entrada de aprendizado:** comeca num titulo `## Titulo (DD/MM)` e vai ate o proximo titulo `## `, `# ` ou `---`. Titulo de categoria (`# REGRAS DE NEGOCIO`, indice) nao e entrada. Linha em branco e linha de fonte (`fonte: ...`) nao contam para o tamanho.
+3. **Maximo de 3 entradas novas por sessao:** regra gravada direto em satelite tambem conta.
+4. **Formato do contexto vence o modelo.** Changelog, pendencias, marca de concluido e nomes dos arquivos que JA existem seguem o formato do contexto (ex.: `## 15-NOV-2026 · titulo`, bolinhas no lugar de `[ ]`). Os modelos desta skill valem para arquivo vazio. Satelite NOVO nasce sempre como `CONTEXTO_tema.md`, com o mesmo prefixo dos vizinhos. O "backlog" e o satelite de pendencias paradas que o index listar, com qualquer nome; se o contexto guarda a mesma pendencia no mestre e no backlog, manter assim.
+5. **Nota "Tarefas concluidas nao ficam listadas aqui":** criar so quando houver item concluido a migrar.
+6. **Fatos da sessao que ja estao no changelog:** nao repetir; gravar so o que falta e dizer isso na frase de resumo. Se a sessao e o changelog divergem num numero, vale o registro mais recente, com a fonte anotada.
+7. **Ao montar a tabela de registro, a mesma linha pede duas coisas** (a pendencia do tema que tambem tem um numero desatualizado): resolver as duas nessa linha.
+8. **Conferencia da mudanca de casa:** mostrar em ate 5 linhas, logo antes do fecho.
+9. **Linha "Saude" do fecho:** os 3 arquivos do PASSO 5, mais o que estiver 🔴 entre index, satelite tocado hoje e memoria do agente (PASSO 5.7). E o unico lugar dessas notas.
+10. **Linha "Sugestao" e o teto semanal:** a sugestao de rodar o Otimizar OS sempre obedece ao teto do PASSO 5. Dentro da semana, o problema aparece em "Saude" e a sugestao fica em branco.
+11. **`.last-otimizar-os` ausente:** se o changelog registra uma execucao do Otimizar OS, usar essa data; se nao, tratar como nunca rodou. Ao sugerir, criar o arquivo so com a linha `LAST_SUGGESTED=AAAA-MM-DD`.
+12. **Aplicar o modelo num satelite antigo** ao escrever nele (etiqueta do arquivo + "Regras vigentes"): entra na linha da tabela em que a escrita foi aprovada ("...e por o satelite no modelo padrao").
+13. **Tamanho:** KB e o tamanho do arquivo em disco.
 
 ---
 

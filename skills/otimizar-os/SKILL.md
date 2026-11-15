@@ -11,7 +11,7 @@ description: |
   "confere mds", "confere docs", "auditar documentacao", "docs batem com a realidade?",
   "verificar documentacao", "docs drift", "sincronizar docs com codigo", "doc desatualizada".
   Default (sem flag) = confere primeiro (corrige conteudo), depois otimiza (estrutura).
-version: 5.8
+version: 5.9
 context: meuos
 user-invocable: true
 argument-hint: "[contexto] [--so-confere | --so-otimiza] (sem args = pergunta o contexto e roda as 2 fases)"
@@ -56,7 +56,7 @@ Uma execucao so termina quando as 5 foram verificadas (mesmo que a resposta seja
 5. **UMA aprovacao:** se o agente tiver caixa de opcoes clicaveis (no Claude Code, a ferramenta de pergunta ao usuario), abrir com "Aprovar tudo", "Escolher itens", "Nao mexer em nada". Em "Escolher itens", ou sem a caixa, o usuario responde "tudo" ou os numeros. **Linha que e pergunta** ("qual vale?", "juntar?") leva a marca `(decisao sua)` na coluna "O que faco": "tudo" aprova so as linhas de acao; pergunta sem resposta fica como esta e aparece no fecho como pendente. Nunca decidir por ele. Trecho antes/depois completo de um item: mostrar quando o usuario pedir ou escolher item a item.
 6. **Tamanho em leve, atencao e pesado.** Tokens so como previsao ("de 14 mil para 9 mil tokens"). Nunca valor em dinheiro.
 7. **So os termos do treinamento:** documento mestre, satelite, aprendizados, changelog, index, ponteiro, contexto. Nao usar com o usuario: drift, frontmatter, split, orfao, custo fixo, fonte-da-verdade, read-on-demand. (Esses termos aparecem nesta skill como instrucao para o agente; na fala, traduzir: "informacao desatualizada", "etiqueta do arquivo", "dividir", "arquivo sem ponteiro", "peso da sessao", "de onde a informacao vem".)
-8. **Fecho fixo:** cartao de 4 linhas: Feito, Peso, Arvore, Fontes (ver "Verificacao").
+8. **Fecho fixo:** cartao com Feito, Peso, Arvore, Fontes e, so se houver, Sugestao (ver "Verificacao"). A conferencia item a item das mudancas de casa aparece em ate 5 linhas logo acima do cartao.
 
 ## 📏 ONDE ESTAO OS LIMITES DE TAMANHO
 
@@ -207,7 +207,7 @@ Proposta padrao: corrigir o link (se o alvo foi renomeado, apontar para o nome n
 ponteiro (no `index.md`, e no MESTRE se for relevante) · OU arquivar em `historico/` se estiver obsoleto.
 E se ESTA skill renomear ou mover um arquivo (split, arquivamento), re-checar os links de entrada dele
 antes de encerrar — o conserto nao acontece sozinho.
-**NUNCA decidir sozinho** se um arquivo e relevante ou lixo — cada um vira UMA linha do plano unico (ex.: "Listar X no index" ou "Guardar X no historico"), e quem decide e o usuario na aprovacao.
+**NUNCA decidir sozinho** se um arquivo e relevante ou lixo — eles entram no plano unico, agrupados quando a acao e a mesma (ex.: "Listar 12 arquivos no index"), e quem decide e o usuario na aprovacao. Guardar no historico ou tirar do index e sempre linha `(decisao sua)`.
 
 ## N3.2 — Um tema, um satelite (duplicados) + ponteiro dos dois lados ⭐
 
@@ -408,7 +408,7 @@ arquivo vive:
 ## A6 — Reunir os achados em 3 grupos (classificacao INTERNA; ao usuario vai UMA tabela)
 
 Os tres grupos abaixo organizam o trabalho do agente. **Ao usuario eles NAO aparecem como tres tabelas
-nem com codigos A/S/P:** todos os itens entram, um por linha, na tabela unica do plano (etapa 2 de 3),
+nem com codigos A/S/P:** todos os itens entram na tabela unica do plano (etapa 2 de 3), agrupados como manda a regra de ouro abaixo,
 junto com os itens da Fase B, no formato `# | O que faco | O que muda para voce`. Os exemplos mostram o
 que o agente precisa saber de cada item para escrever essa linha.
 
@@ -439,8 +439,8 @@ que o agente precisa saber de cada item para escrever essa linha.
 **Regra de ouro**: TODO achado esta coberto por uma linha do plano — nada fica de fora por "importancia";
 quem decide o que importa e o usuario. **Achados iguais (mesma acao em varios arquivos) viram UMA linha, com a
 contagem e ate 3 exemplos** ("Encurtar 165 entradas do index", "Ligar 91 satelites ao documento pai"). Correcao de
-conteudo e sempre uma linha por fato. O plano deve caber em cerca de 15 linhas; a lista completa de cada grupo e
-mostrada se o usuario pedir.
+conteudo e sempre uma linha por fato. Mirar um plano de cerca de 15 linhas agrupando; se nao couber, o plano fica maior — nunca cortar achado para caber. A lista
+completa de cada grupo e mostrada se o usuario pedir.
 
 **A Fase A NAO pede aprovacao e NAO executa nada: ela so reune os achados.** A aprovacao e a execucao
 acontecem UMA vez, na secao "Plano + Execucao + Verificacao" (comum as duas fases). La, os ajustes de
@@ -518,8 +518,8 @@ Antes de olhar quantos dias tem o conteudo, classificar cada bloco pelo seu TIPO
   `CONTEXTO_backlog.md` (modelo `satelite.md`; `abrir_quando: planejar, priorizar, "o que ficou para depois"`),
   com a data em que parou. Idade: pela data na propria linha ou pela ultima mencao no changelog; sem
   nenhuma das duas, a tabela do plano pergunta. Pendencia com prazo marcado ("vence em", "ate DD/MM") fica no
-  MESTRE mesmo parada. O MESTRE fica com as pendencias ativas; a linha do backlog entra na secao "Satelites deste
-  contexto", como qualquer satelite. Backlog e arquivo de espera, nao lixeira: nunca apagar pendencia; a que volta a andar sai do backlog
+  MESTRE mesmo parada. O MESTRE fica com as pendencias ativas; a linha do backlog entra no index e, se couber no teto de 15 (N3.2), na secao "Satelites deste
+  contexto". Backlog e arquivo de espera, nao lixeira: nunca apagar pendencia; a que volta a andar sai do backlog
   e volta ao MESTRE (o fim-do-dia busca la antes de criar pendencia nova). O `CONTEXTO_backlog.md` NAO conta
   no limite de 3 satelites novos por execucao.
 
@@ -605,7 +605,7 @@ esta em versao antiga: sugerir ao usuario atualizar a skill pela pagina Skills d
      inteiro; dentro do satelite, regra de 1 linha em "Regras vigentes", spec/inventario em "Detalhe", o datado em
      "Historico"; resumir e outro item do plano, com aprovacao propria; (4) conferir item a item que toda regra,
      numero, data, nome e link da origem esta no destino, e mostrar a lista; (5) so entao remover da origem, gravar
-     1 linha no changelog ("movido X de A para B") e a linha unica nos dois lados — no MESTRE ela vive em UM lugar,
+     1 linha no changelog ("movido X de A para B") e a linha unica no index e, respeitado o teto de 15 da N3.2, no MESTRE — no MESTRE ela vive em UM lugar,
      a secao "Satelites deste contexto" (criada no primeiro ponteiro se nao existir; no lugar da secao extraida nao
      fica nada), e no `index.md`: `- [CONTEXTO_tema.md](CONTEXTO_tema.md) — abrir quando: tema A, tema B` (o trecho
      depois de "abrir quando:" tem ate 80 caracteres).
@@ -621,6 +621,7 @@ esta em versao antiga: sugerir ao usuario atualizar a skill pela pagina Skills d
    **Peso**    documento mestre 🔴 → 🟢 · sessao 35% mais leve (previsao: de 14 mil para 9 mil tokens)
    **Arvore**  1 documento mestre · 6 satelites, todos no index e com ponteiro dos dois lados
    **Fontes**  11 fatos conferidos · 1 nao verificado
+   **Sugestao**  (so se houver) rodar o Otimizar Custo: a memoria do agente nao e enxugada ha 40 dias
    ```
 
    Se o peso da sessao nao caiu, a linha "Peso" diz com todas as letras: "arrumei a estrutura, mas a
@@ -732,17 +733,23 @@ Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feit
 ## Casos de borda (regras que valem sobre os passos acima)
 
 1. **Contexto grande (dezenas de satelites).** Fase A: ler inteiros a entrada do contexto, o documento mestre e os aprendizados; nos satelites, varrer por padrao (numero, data, preco, prazo, nome, status) e ler o trecho em volta. Dizer a cobertura na linha "Fontes" do fecho ("3 arquivos lidos inteiros, 97 varridos").
-2. **Leve, mas acima do alvo.** Arquivo 🟢 que esta acima do "alvo ao enxugar" e sera mexido: escrever "acima do alvo" na coluna Situacao do diagnostico, para o usuario nao ler "leve" e ver o plano mexer no arquivo.
-3. **Nome na tabela quando ha muitos satelites:** usar o nome do arquivo sem a extensao; e o unico que distingue.
-4. **Link para arquivo que nao existe** (e nao foi renomeado): linha de duvida no plano (`(decisao sua)`): tirar o link ou apontar para outro arquivo. Texto de exemplo (`CONTEXTO_tema.md`) nao e link quebrado.
-5. **O que conta no index:** os `.md` da pasta do contexto e das subpastas vivas. Entrada que aponta para `historico/`, para arquivo arquivado ou para outro contexto pode sair, como UMA linha do plano. Index 🔴 por ter muitos arquivos: propor dividir por tema (sub-indices), nao cortar entradas.
-6. **Pendencia parada (B3):** se o index ja lista um satelite de pendencias ou backlog (com qualquer nome), usar esse; so criar `CONTEXTO_backlog.md` se nao houver nenhum.
-7. **Etiqueta do arquivo (frontmatter, N5):** nao vira linha do plano. Entra junto com a alteracao aprovada daquele arquivo; arquivo que o plano nao toca nao ganha etiqueta.
-8. **Fonte e data sem engordar:** nos arquivos que carregam em toda sessao, uma linha de fonte por bloco; detalhe de conferencia vai no satelite.
-9. **Execucao parcial** (usuario aprovou so parte, item falhou, limite de tempo): o fecho diz "N de M itens" e lista o que ficou, sem declarar as 5 garantias cumpridas.
-10. **Changelog:** ao terminar, UMA entrada no changelog do contexto resumindo o que foi feito (correcoes, movimentos, index), no formato que o changelog ja usa.
-11. **Carimbo `.last-otimizar-os`:** em `CONTAGENS` gravar so numero conferido em fonte viva; sem fonte viva, deixar `CONTAGENS=` vazio.
-12. **Formato do contexto vence o modelo:** nomes de arquivo, formato de changelog e de pendencia que o contexto ja usa sao mantidos.
+2. **Diagnostico com muitos satelites:** os pesados ganham linha propria, com barra; os demais vao numa linha so, com a contagem por cor. Onde precisar distinguir, usar o nome do arquivo sem a extensao.
+3. **Leve, mas acima do alvo.** Arquivo 🟢 acima do "alvo ao enxugar" que sera mexido: escrever "acima do alvo" na coluna Situacao. Lista de pendencias de 1 linha cada e status: fica no documento mestre mesmo que ele esteja acima do alvo.
+4. **Nunca mover conteudo para satelite 🔴 pesado** (pendencia parada, regra promovida, secao extraida). Primeiro dividir o satelite (linha do plano) ou deixar o conteudo onde esta e dizer isso no fecho.
+5. **Link para arquivo que nao existe** (e nao foi renomeado): linha `(decisao sua)`. Texto de exemplo (`CONTEXTO_tema.md`) nao e link quebrado.
+6. **Index.** "100% listado" quer dizer: todo `.md` vivo do contexto esta no `index.md` ou num sub-indice que ele lista. Sub-indice e um arquivo `INDEX_tema.md` na mesma pasta, com as mesmas linhas de formato unico, e ganha UMA linha no index principal. Index 🔴 por ter muitos arquivos: propor a divisao por tema como linha `(decisao sua)`; nunca cortar entrada para caber. Tirar do index o que aponta para `historico/` ou outro contexto tambem e `(decisao sua)`: ha contexto que usa o index como catalogo do arquivado.
+7. **Arquivo 🔴 que nao e entrada, documento mestre, satelite, changelog, aprendizados nem index** (ex.: documento em subpasta): linha `(decisao sua)`.
+8. **Documento pai:** pode ser o documento mestre ou outro satelite (cadeia); os dois valem.
+9. **Duplicados:** comparar pelo nome e pelo `abrir_quando`; sem `abrir_quando`, so pelo nome. Listar no maximo 5 grupos, os mais evidentes, sempre como `(decisao sua)`.
+10. **Pendencia parada (B3):** se o index ja lista um satelite de pendencias ou backlog (com qualquer nome), usar esse, respeitando o caso 4.
+11. **Etiqueta do arquivo (frontmatter, N5):** nao vira linha do plano e so entra em arquivo que recebe CONTEUDO novo nesta execucao. Arquivo que so ganha a linha do documento pai nao ganha etiqueta; os arquivos que carregam em toda sessao tambem nao. "Regras vigentes" so e criada onde ha regra para por.
+12. **Fonte e data sem engordar:** uma linha de fonte por bloco. Se a linha de fonte faria o arquivo mudar de faixa (de 🟢 para 🟡), registrar a fonte na entrada do changelog desta execucao.
+13. **Execucao parcial** (usuario aprovou so parte, item falhou, limite de tempo): o fecho diz "N de M itens" e lista o que ficou, sem declarar as 5 garantias cumpridas.
+14. **Changelog:** ao terminar, UMA entrada no changelog do contexto, no formato que ele ja usa, com os movimentos dentro (ela substitui a "1 linha por movimento" dos passos acima).
+15. **Carimbos:** em `CONTAGENS` gravar so numero conferido em fonte viva (senao, vazio); `FRESCOR` e a data do "Verificado ao vivo" mais recente; o carimbo "Verificado ao vivo" leva a data em que a conferencia ao vivo aconteceu, nao a de hoje.
+16. **Lembrete do Otimizar Custo sem registro anterior:** escrever "nao ha registro de quando a memoria do agente foi enxugada".
+17. **Guia na mesma versao, mas com `{{DATA}}` cru na 2a linha:** trocar pela data de hoje, como parte de qualquer item aprovado.
+18. **Formato do contexto vence o modelo:** nomes de arquivo, formato de changelog e de pendencia que o contexto ja usa sao mantidos.
 
 ---
 

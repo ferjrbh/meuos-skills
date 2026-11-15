@@ -17,7 +17,7 @@ description: |
 context: meuos
 user-invocable: true
 argument-hint: "(sem argumentos — roda na pasta do seu Claude Code atual)"
-version: 2.7
+version: 2.8
 author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
@@ -136,7 +136,7 @@ resumo e a tabela do plano). Classificar:
   🟡 60 a 90 dias · 🔴 mais de 90 dias.
 - **Arquivo de topico bem maior que os outros**: merece olhar (provavel conteudo que pertence ao OS).
 
-> **Medir os DOIS (linhas E chars).** Uma memoria de poucas linhas em que cada linha virou paragrafo passa no teste de linhas e nao passa no de KB — pesa do mesmo jeito. O que ocupa contexto e o texto (token ≈ caractere), nao a linha.
+> **Medir os DOIS (linhas E chars).** Uma memoria de poucas linhas em que cada linha virou paragrafo passa no teste de linhas e nao passa no de KB — pesa do mesmo jeito. O que ocupa contexto e o texto (4 caracteres ≈ 1 token), nao a linha.
 
 ### Verificacao extra: CLAUDE.md tambem entra no custo
 
@@ -150,7 +150,7 @@ incluir 1 linha no fecho:
 
 ---
 
-### PASSO 1.5 — Ha mesmo o que otimizar? (rodar ANTES de classificar e de montar plano)
+### PASSO 1.5 — Ha mesmo o que otimizar? (rodar ANTES de classificar; repetir a pergunta ao fim do PASSO 2)
 
 **Antes de propor qualquer plano**, verificar se o estado atual realmente justifica higiene:
 
@@ -158,7 +158,6 @@ incluir 1 linha no fecho:
 |---|---|
 | MEMORY.md 🟢 leve (pela tabela do guia) + zero arquivos >90d sem mod + zero duplicatas | **Avisar que nao ha higiene a fazer** e encerrar (sem propor plano vazio) |
 | Ultima execucao foi ha menos de 30 dias (linha `ULTIMA_EXECUCAO=` do arquivo `.last-otimizar-custo` da raiz do OS; arquivo antigo com so uma data solta: essa data e a `ULTIMA_EXECUCAO`; na falta das duas, o cabecalho do `MEMORY.md`) E a memoria nao esta 🔴 pesada | Avisar que ainda e cedo (rodar de novo so forca compactacao artificial). A linha `LAST_SUGGESTED=` do mesmo arquivo e so o registro do lembrete: NAO conta como execucao |
-| Depois do PASSO 2, nao sobrou nenhum item a arquivar, levar para o OS ou repetido | Avisar que a memoria esta saudavel e encerrar (sem tabela vazia) |
 
 **Mensagem padrao quando nao ha nada a otimizar:**
 
@@ -200,8 +199,13 @@ entrada — promover para la e adiar a arrumacao). Outros agentes que voce usar
 no futuro tambem vao precisar dessa info.
 
 **Credencial:** senha, token, chave de API, CPF. Nunca vai para o OS nem para o
-plano em texto (mostrar so o nome do arquivo e "contem credencial"). Na duvida
-se e segredo, tratar como segredo.
+plano em texto: a linha do plano diz so quantas anotacoes tem senha (o nome do arquivo e mostrado se o
+usuario pedir, nunca o valor). **Segredo e o que da acesso**: senha, token, chave. Telefone, numero de
+identificacao de sistema e documento ficticio de teste nao sao segredo e ficam como estao.
+
+---
+
+**Fim do PASSO 2:** classificou tudo e nao sobrou nada a arquivar, levar para o OS, encurtar ou repetido → avisar que a memoria esta saudavel e encerrar (sem tabela vazia).
 
 ---
 
@@ -249,7 +253,7 @@ Para cada acao aprovada:
    - Procurar no `index.md` do contexto um satelite do tema: existe → entra nele (a regra em 1 linha em "Regras
      vigentes"; o corpo do topico, sem reescrever, em "Historico" com a data; satelite existente mantem o nome e
      ganha o modelo ao ser tocado — frontmatter com `abrir_quando` + Regras vigentes no topo — sem reorganizar o
-     resto; se ainda nao tem linha no `*MESTRE.md`, ganha a linha tambem); nao existe → satelite novo pelo modelo
+     resto; ganha a linha na secao "Satelites deste contexto" do documento mestre so se ela tiver menos de 15 linhas — regra do guia; senao, so no index); nao existe → satelite novo pelo modelo
      `satelite.md` (frontmatter `updated/context/type: satelite/status: vivo/abrir_quando` · `> Documento pai:` ·
      `## Regras vigentes` · `## Detalhe` · `## Historico`), nome `CONTEXTO_tema.md` (prefixo em maiusculas, tema em
      minusculas; ex: `CLIENTEA_honorario.md`), mesmo que os satelites vizinhos usem outro padrao de nome, + linha
@@ -267,10 +271,13 @@ Para cada acao aprovada:
 **4c. Limpar e enxugar o MEMORY.md**
 1. Ler o `MEMORY.md` inteiro antes de alterar (nao perder nada)
 2. Remover as linhas aprovadas, mantendo a estrutura do indice
-3. **Reescrever cada item do indice para UMA linha** (gancho curto + link). Se um item virou paragrafo ou linha longa (mais de ~150 caracteres), condensar para um gancho de uma linha — o detalhe mora no arquivo de topico, nao no indice. (Esta e a maior fonte de chars inflados.)
-4. **Fundir arquivos de topico irmaos** sobre o mesmo assunto, quando for item aprovado do plano (ex: varios `feedback_*` do mesmo tema viram um so) — reduz o numero de arquivos e o tamanho do indice
-5. Atualizar o cabecalho: "> Ultima otimizacao: DD/MM (skill Otimizar Custo)"
+3. **Encurtar linha longa do indice — so se for item aprovado do plano** ("Encurtar N linhas do indice"). Vale para linha com mais de ~150 caracteres que APONTA para um arquivo de topico: antes de cortar, conferir no topico que o trecho a sair esta la (se nao estiver, copiar para o topico primeiro, sem reescrever). Linha longa SEM topico proprio nao e encurtada: o texto so existe ali. Regra em uso nunca perde conteudo.
+4. **Fundir arquivos de topico irmaos** sobre o mesmo assunto, quando for item aprovado do plano: o mais completo fica, o conteudo do outro entra nele sem reescrever, o outro vai para `memory/historico/` e os ponteiros passam a apontar para o que ficou.
+5. Atualizar o cabecalho: "> Ultima otimizacao: DD/MM (skill Otimizar Custo)" (e registro da execucao, nao precisa de linha no plano)
 6. Salvar
+
+**4d. Credencial (so se for item aprovado do plano)**
+Apagar SO o segredo de dentro da anotacao e por no lugar `(removido da memoria em DD/MM)`. O resto do texto fica. Nao criar copia do segredo em lugar nenhum.
 
 **Nada e salvo fora do que foi aprovado na tabela do plano.** O antes/depois de um item e mostrado
 quando o usuario pedir ou escolher item a item; nao pedir nova confirmacao durante a execucao.
@@ -280,7 +287,7 @@ quando o usuario pedir ou escolher item a item; nao pedir nova confirmacao duran
 ### PASSO 5 — Fecho (leve/pesado e previsao de tokens; nunca em dinheiro)
 
 **Previsao de tokens (unico calculo):** `caracteres reduzidos ÷ 4` = tokens a menos por mensagem
-(medir pelo tamanho do texto; contar linhas engana quando a linha e longa). E previsao, dizer "cerca de". **Nao converter em R$, US$ nem em
+(medir pelo tamanho do texto; contar linhas engana quando a linha e longa). Contar SO o `MEMORY.md`, que e o que carrega em toda mensagem; linha nova criada no documento mestre entra na conta como acrescimo. E previsao, dizer "cerca de". **Nao converter em R$, US$ nem em
 economia por mes:** depende do plano e do uso de cada pessoa, e quem tem plano mensal nao paga
 por token.
 
@@ -354,30 +361,32 @@ e barato de operar.
 
 ## Casos de borda (regras que valem sobre os passos acima)
 
-1. **Sub-indices.** Se o `MEMORY.md` aponta para outros indices (ex.: `INDICE-*.md`), eles fazem parte do indice: topico citado so num sub-indice esta "no indice", e ao arquivar um topico o ponteiro e ajustado onde ele estiver.
-2. **A barra da frase de resumo mede o PIOR** entre linhas e KB (ex.: `17 KB de 10`), com o outro numero entre parenteses.
-3. **O plano nao alcanca 🟢.** Se, mesmo com tudo aprovado, a memoria continuar 🟡 ou 🔴, dizer isso abaixo da tabela, com o motivo (ex.: "quase tudo que sobra e preferencia sua em uso"). Nunca forcar corte de regra em uso para bater o alvo.
-4. **Destino no OS que nao existe ou fica em outra pasta/contexto:** nao criar nem escrever fora do contexto; o topico fica na memoria e entra em "nao feito" no fecho.
-5. **Modelo do satelite novo:** `https://raw.githubusercontent.com/ferjrbh/meuos-skills/main/skills/meuos-do-zero/templates/satelite.md` (so leitura).
-6. **Conferencia item a item** do que foi para o OS: mostrar em ate 5 linhas, logo antes do cartao de fecho.
-7. **Levou algo para o OS:** 1 linha no changelog do contexto ("trazido da memoria do agente: X, para o satelite Y"), se o contexto tiver changelog.
-8. **Item feito em parte ou aprovado e nao executado:** o cartao diz "N de M itens" e lista o que ficou; nao escrever "voce preferiu nao mexer" quando o motivo foi outro.
+1. **Sub-indices.** Se o `MEMORY.md` aponta para outros indices (ex.: `INDICE-*.md`), eles fazem parte do indice, e ao arquivar um topico o ponteiro e ajustado onde ele estiver (apontando para `historico/`, com a data).
+2. **"Regra em uso" (categoria Manter)** = topico citado no `MEMORY.md` ou num sub-indice de leitura obrigatoria. Aparecer so num catalogo geral que lista tudo NAO torna o topico "em uso". Topico que e regra em uso E regra de negocio: Manter vence.
+3. **A barra da frase de resumo mede o PIOR** entre linhas e KB (ex.: `17 KB de 10`), com o outro numero entre parenteses. O numero de anotacoes vai na linha abaixo da tabela.
+4. **O plano nao alcanca 🟢.** Se, mesmo com tudo aprovado, a memoria continuar 🟡 ou 🔴, dizer isso abaixo da tabela, com o motivo (ex.: "quase tudo que sobra e preferencia sua em uso"). Nunca forcar corte de regra em uso para bater o alvo.
+5. **Destino no OS.** Satelite novo DENTRO de um contexto que existe na pasta do OS: pode nascer (PASSO 4b). Contexto que nao existe na pasta, ou satelite que o index lista mas nao esta no disco: nao criar; o topico fica na memoria e entra em "nao feito". Na tabela, o destino e descrito em palavras (contexto e tema); o nome do arquivo aparece no fecho.
+6. **Satelite novo:** modelo em `https://raw.githubusercontent.com/ferjrbh/meuos-skills/main/skills/meuos-do-zero/templates/satelite.md` (so leitura). O prefixo do nome e o mesmo que os satelites vizinhos e o documento mestre do contexto usam. O corpo do topico vai inteiro em "Historico"; em "Regras vigentes" entram so as frases de regra que ja existem no texto.
+7. **Conferencia item a item** do que foi para o OS: mostrar em ate 5 linhas, logo antes do cartao de fecho.
+8. **Levou algo para o OS:** 1 linha no changelog do contexto ("trazido da memoria do agente: X, para o satelite Y"), se o contexto tiver changelog.
+9. **Item feito em parte ou aprovado e nao executado:** o cartao diz "N de M itens" e lista o que ficou; nao escrever "voce preferiu nao mexer" quando o motivo foi outro.
+10. **Idade em pasta copiada, sincronizada ou restaurada** (todos os arquivos com a data de hoje): usar a data que o topico declara; topico sem data declarada conta como recente (Manter).
 
 ---
 
 > Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
 
 ## Regra dual-agent (obrigatória)
-Esta skill é EXCLUSIVA do Claude Code (depende do `MEMORY.md`, que não existe no ChatGPT/Codex) — se o agente atual não for Claude Code, avise e pare. Exceção espelhável: se a skill enxugar o `claude.md` do OS, **espelhe a mesma mudança no `AGENTS.md` da mesma pasta** (se existir).
+Esta skill é EXCLUSIVA do Claude Code (depende do `MEMORY.md`, que não existe no ChatGPT/Codex) — se o agente atual não for Claude Code, avise e pare. Exceção espelhável: se a skill gravar regra rígida no `claude.md` do OS (PASSO 4b), **espelhe a mesma mudança no `AGENTS.md` da mesma pasta** (se existir).
 
 ---
 
 ## Checklist final: a execucao foi bem feita? (conferir ANTES de declarar concluido)
 
-- [ ] MEMORY.md + arquivos de topico escaneados e cada entrada classificada (OK / velha / duplicada / pertence ao OS)
+- [ ] MEMORY.md + arquivos de topico escaneados e cada entrada classificada (Manter / Arquivar / Promover / Credencial)
 - [ ] Plano apresentado e SO o aprovado foi aplicado
 - [ ] O que pertence ao OS foi MOVIDO pro contexto certo, nao apagado — destino padrao foi o satelite do tema; MESTRE/claude.md so com o teste "vale em TODA sessao?"
-- [ ] Conferencia item a item mostrada ANTES de excluir o topico da memoria
+- [ ] Conferencia item a item mostrada ANTES de mover o topico para `memory/historico/`
 - [ ] Nada removido sem registro do que saiu
 - [ ] O "ha o que otimizar?" (PASSO 1.5) rodou ANTES de montar o plano
 - [ ] Usuario viu UMA tabela numerada e deu UMA aprovacao; nada de nome de arquivo ou numero de linha na tabela
