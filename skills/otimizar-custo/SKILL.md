@@ -5,7 +5,7 @@ description: |
   O MEMORY.md e carregado em toda conversa — cada linha ocupa espaco de contexto. Uma memoria
   de 263 linhas pode virar 95 (64% mais leve) depois da higiene. Escaneia o MEMORY.md e os
   arquivos de topico, classifica entradas em manter, arquivar, levar para o OS ou credencial,
-  alerta se o claude.md tambem esta pesado (ele tambem entra em toda sessao) e propoe UM plano
+  alerta se o claude.md tambem esta pesado (ele tambem entra em toda sessao) e propoe um plano
   numerado — sempre com aprovacao antes de executar. O resultado sai em leve/pesado, com
   previsao de tokens; nunca em dinheiro.
   ESPECIFICA DO CLAUDE CODE: o mecanismo otimizado (MEMORY.md cobrado em toda mensagem) so
@@ -17,7 +17,7 @@ description: |
 context: meuos
 user-invocable: true
 argument-hint: "(sem argumentos — roda na pasta do seu Claude Code atual)"
-version: 2.8
+version: 2.9
 author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
@@ -54,15 +54,13 @@ Exemplo: um `MEMORY.md` de 263 linhas vira ~95 linhas apos a higiene — **64% m
 
 ---
 
-## 🖥️ COMO FALAR COM O USUARIO (padrao visual, vale para a execucao inteira)
+## 🖥️ COMO APRESENTAR AO USUARIO (vale para a execucao inteira)
 
-1. **Duas etapas, cada uma com cabecalho de 1 linha:** `**Otimizar custo · memoria do agente · etapa 1 de 2**`.
-2. **Uma frase de resumo em negrito ANTES da tabela**, com o peso e a barra: `**A memoria do seu agente esta pesada: 🔴 ▰▰▰▰▰▰▰▰▰▰ 263 linhas de 150.**` A barra tem 10 blocos e mede o tamanho contra o limite de "pesado" do guia (os numeros dos exemplos desta skill sao ilustrativos; o limite vem sempre do guia).
-3. **UMA tabela numerada** para aprovar: `# | O que faco | O que muda para voce`. Sem nome de arquivo nem numero de linha na tabela (mostrar se o usuario pedir).
-4. **UMA aprovacao:** se o agente tiver caixa de opcoes clicaveis (no Claude Code, a ferramenta de pergunta ao usuario), abrir com "Aprovar tudo", "Escolher itens", "Nao mexer em nada". Em "Escolher itens", ou sem a caixa, o usuario responde "tudo" ou os numeros. **A caixa precisa se bastar:** quando ela abre, o usuario pode nao ver o texto que veio antes. Por isso os itens vao DENTRO da caixa: o texto da pergunta lista os itens numerados, 1 linha cada (ex.: `1. Proposta revisada → changelog`), ou a opcao "Aprovar tudo" traz a tabela inteira na previa. Nunca perguntar "quais itens eu gravo?" sem mostrar os itens na propria caixa. Mais de 8 itens: NAO abrir a caixa; mostrar a tabela na mensagem e pedir a resposta por texto ("tudo" ou os numeros).
-5. **Leve, atencao e pesado** (🟢 🟡 🔴). Tokens so como previsao. **Nunca valor em dinheiro** (nem R$, nem US$).
-6. **So os termos do treinamento:** documento mestre, satelite, aprendizados, changelog, index, ponteiro, contexto, memoria do agente. Nao usar com o usuario: auto-memory, custo fixo, encoded, frontmatter.
-7. **Fecho fixo:** cartao de 4 linhas: Feito, Peso, Previsao, Proxima (PASSO 5).
+1. **Tabela da memoria** `| Arquivo | Linhas | Tamanho | Modificado | Status |`, com semaforo 🟢 ok, 🟡 atencao, 🔴 acao. Memoria com muitos arquivos: listar o `MEMORY.md` e os que estao 🟡 ou 🔴 (ate 15 linhas); os demais vao numa linha so, com a contagem.
+2. **Plano numerado, agrupado por categoria:** ARQUIVAR, LEVAR PARA O SEU OS, LIMPAR MEMORY.md, CREDENCIAL, MANTER (sem acao), com a reducao esperada no fim.
+3. **UMA pergunta, por texto, depois do plano:** `"Posso executar o plano completo, ou prefere aprovar item por item?"` Aceitar "tudo", os numeros ("so 1, 3 e 5") ou "nenhum". **Nao usar caixa de opcoes clicaveis.** Tabela e plano saem na MESMA mensagem; nao pedir outra confirmacao durante a execucao.
+4. **Relatorio final** em tabela `| Metrica | Antes | Depois | Reducao |`, com a previsao de tokens.
+5. Tokens so como previsao. **Nunca valor em dinheiro** (nem R$, nem US$). Valor de senha nunca aparece: so o nome do arquivo e "contem credencial".
 
 ## 📏 ONDE ESTAO OS LIMITES DE TAMANHO
 
@@ -127,8 +125,22 @@ Para cada arquivo coletar:
 - Tamanho em KB
 - Data da ultima modificacao
 
-Este levantamento e do agente (nao mostrar a lista de arquivos ao usuario; ele ve so a frase de
-resumo e a tabela do plano). Classificar:
+Apresentar a tabela com o semaforo:
+
+```
+Memoria do Claude Code — [pasta]
+
+| Arquivo | Linhas | Tamanho | Modificado | Status |
+|---------|--------|---------|------------|--------|
+| MEMORY.md | 263 | 26 KB | hoje | 🔴 muito grande |
+| anotacao de padrao de e-mail | 45 | 2 KB | ha 70 dias | 🟡 velho |
+| anotacao de projeto encerrado | 120 | 5 KB | ha 130 dias | 🔴 muito velho |
+| Outras 5 anotacoes | | | | 🟢 ok |
+
+Total: 8 arquivos, 54 KB, ultima otimizacao: nunca
+```
+
+Como classificar:
 
 - **Tamanho** do `MEMORY.md` (linhas E KB) e **numero de arquivos de topico**: 🟢 🟡 🔴 pela tabela
   "Limites de tamanho" do guia.
@@ -136,7 +148,7 @@ resumo e a tabela do plano). Classificar:
   🟡 60 a 90 dias · 🔴 mais de 90 dias.
 - **Arquivo de topico bem maior que os outros**: merece olhar (provavel conteudo que pertence ao OS).
 
-> **Medir os DOIS (linhas E chars).** Uma memoria de poucas linhas em que cada linha virou paragrafo passa no teste de linhas e nao passa no de KB — pesa do mesmo jeito. O que ocupa contexto e o texto (4 caracteres ≈ 1 token), nao a linha.
+> **Medir os DOIS (linhas E KB).** Uma memoria de poucas linhas em que cada linha virou paragrafo passa no teste de linhas e nao passa no de KB — pesa do mesmo jeito. O que ocupa contexto e o texto (4 caracteres ≈ 1 token), nao a linha.
 
 ### Verificacao extra: CLAUDE.md tambem entra no custo
 
@@ -199,8 +211,7 @@ entrada — promover para la e adiar a arrumacao). Outros agentes que voce usar
 no futuro tambem vao precisar dessa info.
 
 **Credencial:** senha, token, chave de API, CPF. Nunca vai para o OS nem para o
-plano em texto: a linha do plano diz so quantas anotacoes tem senha (o nome do arquivo e mostrado se o
-usuario pedir, nunca o valor). **Segredo e o que da acesso**: senha, token, chave. Telefone, numero de
+plano em texto: o plano mostra so o nome do arquivo e "contem credencial", nunca o valor. **Segredo e o que da acesso**: senha, token, chave. Telefone, numero de
 identificacao de sistema e documento ficticio de teste nao sao segredo e ficam como estao.
 
 ---
@@ -211,27 +222,34 @@ identificacao de sistema e documento ficticio de teste nao sao segredo e ficam c
 
 ### PASSO 3 — Plano de acao (sempre mostrar antes de executar)
 
-Apresentar no padrao visual: frase de resumo com o peso + UMA tabela numerada. Juntar itens
-parecidos numa linha so (ex.: os 2 arquivos a arquivar viram 1 linha). O que fica como esta
-nao entra na tabela.
+Apresentar ao usuario uma lista NUMERADA agrupada por categoria. Juntar itens parecidos numa linha so:
 
 ```
-**Otimizar custo · memoria do agente · etapa 1 de 2**
+Plano de Higiene — Memoria do Claude Code
 
-**A memoria do seu agente esta pesada: 🔴 ▰▰▰▰▰▰▰▰▰▰ 263 linhas de 150.**
+ARQUIVAR (mover para o historico da memoria)
+1. 2 anotacoes de projetos encerrados, paradas ha mais de 90 dias
 
-| # | O que faco | O que muda para voce |
-|---|---|---|
-| 1 | Guardar 2 anotacoes de projetos encerrados | Saem da memoria do dia a dia; ficam arquivadas |
-| 2 | Levar "configuracao do sistema" para o seu OS, no satelite do tema | Passa a valer para qualquer agente, nao so este |
-| 3 | Tirar 2 linhas repetidas | Nada; a informacao ja esta no seu OS |
-| 4 | Apagar a senha de dentro de 1 anotacao (o resto do texto fica) | Guarde a senha num gerenciador de senhas ANTES de aprovar; ela nao vai para o OS |
+LEVAR PARA O SEU OS
+2. "configuracao do sistema" → satelite do tema, no contexto X (passa a valer para qualquer agente)
 
-Depois do plano: 🟢 cerca de 95 linhas (64% mais leve).
+LIMPAR MEMORY.md
+3. Tirar 2 linhas repetidas (a informacao ja esta no seu OS)
+4. Encurtar 6 linhas longas do indice (o detalhe ja esta na anotacao de cada uma)
+
+CREDENCIAL
+5. Apagar a senha de dentro de 1 anotacao (o resto do texto fica). Guarde a senha num gerenciador de senhas ANTES de aprovar
+
+MANTER (sem acao)
+- preferencias suas em uso
+
+Reducao esperada:
+- MEMORY.md: 263 → cerca de 95 linhas (64% mais leve)
+- Arquivos de topico: 8 → 5 ativos + 2 arquivados
 ```
 
-Aprovacao unica: caixa de opcoes ("Aprovar tudo", "Escolher itens", "Nao mexer em nada") ou, sem
-a caixa, `Responda "tudo" ou os numeros que valem.`
+Perguntar, por texto:
+> `"Posso executar o plano completo, ou prefere aprovar item por item?"`
 
 **NUNCA executar sem resposta do usuario.** Aceitar respostas como "tudo",
 "so 1 e 3", "nao quero levar nada para o OS, so arquivar".
@@ -291,15 +309,20 @@ quando o usuario pedir ou escolher item a item; nao pedir nova confirmacao duran
 economia por mes:** depende do plano e do uso de cada pessoa, e quem tem plano mensal nao paga
 por token.
 
-**Cartao fixo:**
+**Formato do relatorio:**
 
 ```
-**Otimizar custo · memoria do agente · etapa 2 de 2**
+Higiene da memoria concluida ✓
 
-**Feito**     4 de 4 itens · nada apagado alem da senha aprovada; o resto foi arquivado
-**Peso**      🔴 → 🟢 · memoria 64% mais leve (de 263 para 94 linhas)
-**Previsao**  cerca de 2.500 tokens a menos por mensagem
-**Proxima**   quando o Otimizar OS lembrar (no maximo 1 vez por mes)
+| Metrica | Antes | Depois | Reducao |
+|---------|-------|--------|---------|
+| MEMORY.md | 263 linhas / 26 KB | 94 linhas / 9 KB | -64% |
+| Arquivos de topico | 8 | 5 ativos + 2 arquivados | -38% |
+
+Previsao: cerca de 2.500 tokens a menos por mensagem
+Itens: 5 de 5 executados · nada apagado alem da senha aprovada; o resto foi arquivado
+Arquivados: 2 · Levados para o OS: 1 (satelite do tema, contexto X)
+Proxima: quando o Otimizar OS lembrar (no maximo 1 vez por mes)
 ```
 
 Se o `claude.md` da raiz ou do contexto estiver 🟡 ou 🔴, acrescentar a linha de alerta do PASSO 1.
@@ -363,13 +386,13 @@ e barato de operar.
 
 1. **Sub-indices.** Se o `MEMORY.md` aponta para outros indices (ex.: `INDICE-*.md`), eles fazem parte do indice, e ao arquivar um topico o ponteiro e ajustado onde ele estiver (apontando para `historico/`, com a data).
 2. **"Regra em uso" (categoria Manter)** = topico citado no `MEMORY.md` ou num sub-indice de leitura obrigatoria. Aparecer so num catalogo geral que lista tudo NAO torna o topico "em uso". Topico que e regra em uso E regra de negocio: Manter vence.
-3. **A barra da frase de resumo mede o PIOR** entre linhas e KB (ex.: `17 KB de 10`), com o outro numero entre parenteses. O numero de anotacoes vai na linha abaixo da tabela.
-4. **O plano nao alcanca 🟢.** Se, mesmo com tudo aprovado, a memoria continuar 🟡 ou 🔴, dizer isso abaixo da tabela, com o motivo (ex.: "quase tudo que sobra e preferencia sua em uso"). Nunca forcar corte de regra em uso para bater o alvo.
-5. **Destino no OS.** Satelite novo DENTRO de um contexto que existe na pasta do OS: pode nascer (PASSO 4b). Contexto que nao existe na pasta, ou satelite que o index lista mas nao esta no disco: nao criar; o topico fica na memoria e entra em "nao feito". Na tabela, o destino e descrito em palavras (contexto e tema); o nome do arquivo aparece no fecho.
+3. **O status do `MEMORY.md` vale pelo PIOR** entre linhas e KB.
+4. **O plano nao alcanca 🟢.** Se, mesmo com tudo aprovado, a memoria continuar 🟡 ou 🔴, dizer isso no fim do plano, com o motivo (ex.: "quase tudo que sobra e preferencia sua em uso"). Nunca forcar corte de regra em uso para bater o alvo.
+5. **Destino no OS.** Satelite novo DENTRO de um contexto que existe na pasta do OS: pode nascer (PASSO 4b). Contexto que nao existe na pasta, ou satelite que o index lista mas nao esta no disco: nao criar; o topico fica na memoria e entra em "nao feito". No plano, o destino aparece com o nome do satelite.
 6. **Satelite novo:** modelo em `https://raw.githubusercontent.com/ferjrbh/meuos-skills/main/skills/meuos-do-zero/templates/satelite.md` (so leitura). O prefixo do nome e o mesmo que os satelites vizinhos e o documento mestre do contexto usam. O corpo do topico vai inteiro em "Historico"; em "Regras vigentes" entram so as frases de regra que ja existem no texto.
-7. **Conferencia item a item** do que foi para o OS: mostrar em ate 5 linhas, logo antes do cartao de fecho.
+7. **Conferencia item a item** do que foi para o OS: mostrar em ate 5 linhas, logo antes do relatorio final.
 8. **Levou algo para o OS:** 1 linha no changelog do contexto ("trazido da memoria do agente: X, para o satelite Y"), se o contexto tiver changelog.
-9. **Item feito em parte ou aprovado e nao executado:** o cartao diz "N de M itens" e lista o que ficou; nao escrever "voce preferiu nao mexer" quando o motivo foi outro.
+9. **Item feito em parte ou aprovado e nao executado:** o relatorio final diz "N de M itens" e lista o que ficou; nao escrever "voce preferiu nao mexer" quando o motivo foi outro.
 10. **Idade em pasta copiada, sincronizada ou restaurada** (todos os arquivos com a data de hoje): usar a data que o topico declara; topico sem data declarada conta como recente (Manter).
 
 ---
@@ -389,9 +412,9 @@ Esta skill é EXCLUSIVA do Claude Code (depende do `MEMORY.md`, que não existe 
 - [ ] Conferencia item a item mostrada ANTES de mover o topico para `memory/historico/`
 - [ ] Nada removido sem registro do que saiu
 - [ ] O "ha o que otimizar?" (PASSO 1.5) rodou ANTES de montar o plano
-- [ ] Usuario viu UMA tabela numerada e deu UMA aprovacao; nada de nome de arquivo ou numero de linha na tabela
+- [ ] Usuario viu a tabela da memoria e o plano numa mensagem e respondeu UMA pergunta, por texto
 - [ ] Nada foi levado para o `aprendizados_do_dia.md`
-- [ ] Fecho no cartao fixo (Feito, Peso, Previsao, Proxima), em leve/pesado e previsao de tokens — nenhum valor em dinheiro
+- [ ] Relatorio final com a tabela antes/depois e a previsao de tokens — nenhum valor em dinheiro
 - [ ] `ULTIMA_EXECUCAO=` com a data de hoje no `.last-otimizar-custo` da raiz do OS (linha `LAST_SUGGESTED=` preservada)
 
 Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.
