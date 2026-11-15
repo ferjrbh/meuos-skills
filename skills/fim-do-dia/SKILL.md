@@ -8,7 +8,7 @@ description: |
   AVALIA os arquivos antes de escrever (gate anti-duplicacao e anti-verborragia), salva
   aprendizados no lugar certo, migra tarefas concluidas e atualiza pendencias no documento
   mestre do contexto ativo.
-version: 5.3
+version: 5.4
 context: meuos
 user-invocable: true
 author: Fernando Lúcio · Aion Group
@@ -20,18 +20,18 @@ instagram: https://instagram.com/fernandolucio.ia
 
 ## O que esta skill faz
 
-Esta skill fecha a sessao de trabalho em menos de 10 minutos. O agente resume o que aconteceu (o que fizemos, o que aprendemos, o que fica pendente), voce confirma numa tabela, e cada coisa vai para o arquivo certo: aprendizados, changelog e documento mestre. Ao final, avisa se algum arquivo esta ficando pesado.
+Esta skill fecha a sessao de trabalho em poucos minutos. O agente resume o que aconteceu (o que fizemos, o que aprendemos, o que fica pendente), voce confirma numa tabela, e cada coisa vai para o arquivo certo: aprendizados, changelog e documento mestre. Ao final, avisa se algum arquivo esta ficando pesado.
 
 ---
 
 ## 🖥️ COMO FALAR COM O USUARIO (padrao visual, vale para a execucao inteira)
 
-1. **Cabecalho de 1 linha** em cada etapa: `**Fim do dia · [contexto] · etapa N de T**`. T = 2 (o que registrar → fecho) ou 3 quando houver a tabela de manutencao (o que registrar → manutencao → fecho).
+1. **Cabecalho de 1 linha** em cada mensagem: `**Fim do dia · [contexto] · registro**`, depois (so se houver) `**Fim do dia · [contexto] · manutencao**` e, por ultimo, `**Fim do dia · [contexto] · fecho**`. Sem numero de etapa: so se sabe se havera manutencao depois dos passos 2 a 6.
 2. **Uma frase de resumo em negrito ANTES de qualquer tabela** (ex.: "Sessao com 2 entregas, 1 aprendizado e 1 pendencia nova.").
 3. **Uma tabela numerada so** para aprovar, com as colunas `# | O que vou registrar | Onde fica`. "Onde fica" usa o nome que o usuario conhece (Documento mestre, Aprendizados, Changelog, Satelite, Index), nunca caminho de arquivo.
 4. **Aprovacao:** se o agente tiver caixa de opcoes clicaveis (no Claude Code, a ferramenta de pergunta ao usuario), abrir com 3 opcoes: "Aprovar tudo", "Escolher itens", "Nao mexer em nada". Em "Escolher itens", ou onde nao houver a caixa, o usuario responde "tudo" ou os numeros (ex.: 1, 2 e 4).
-5. **No maximo 2 aprovacoes por execucao:** (1) o que registrar; (2) so se houver, a manutencao (migracoes por limite, extracao para satelite, index fora do formato), tudo junto numa segunda tabela.
-6. **Tamanho em leve, atencao e pesado** (🟢 🟡 🔴), com barra de 10 blocos: `▰▰▰▰▰▰▱▱▱▱ 9 KB de 15`. A barra mede o tamanho contra o limite de "pesado". Tokens so como previsao. Nunca valor em dinheiro.
+5. **No maximo 2 aprovacoes por execucao:** (1) o que registrar (PASSO 1); (2) so se houver, a manutencao (migracoes por limite, instrucao morta, extracao para satelite, index fora do formato ou ausente), tudo junto numa segunda tabela, mostrada UMA vez, no PASSO 6.5. Os passos 2 a 6 so JUNTAM candidatos; nenhum deles abre pergunta propria.
+6. **Tamanho em leve, atencao e pesado** (🟢 🟡 🔴), com barra de 10 blocos so no que estiver 🟡 ou 🔴: `🟡 ▰▰▰▰▰▰▰▰▱▱ 13 KB de 15`. A barra mede o tamanho contra o limite de "pesado" do guia (os numeros dos exemplos desta skill sao ilustrativos; o limite vem sempre do guia). Tokens so como previsao. Nunca valor em dinheiro.
 7. **So os termos do treinamento:** documento mestre, satelite, aprendizados, changelog, index, ponteiro, contexto. Nao usar com o usuario: frontmatter, drift, gate, custo fixo, read-on-demand.
 8. **Fecho fixo** (PASSO 7): cartao de 4 linhas: Feito, Nao feito, Saude, Sugestao.
 
@@ -129,7 +129,7 @@ O contexto ativo pode ser qualquer nivel. Identificar exatamente qual pasta esta
 2. **Apresentar ao usuario** no padrao visual, numa tabela so:
 
 ```
-**Fim do dia · [contexto] · etapa 1 de 2**
+**Fim do dia · [contexto] · registro**
 
 **Sessao com 2 entregas, 1 aprendizado e 1 pendencia nova.**
 
@@ -237,22 +237,8 @@ arquivo 🔴 pesado, mais entradas que o maximo do guia ou entrada acima do tama
 evento pontual → `changelog.md` · regra de UM tema → satelite do tema · entradas antigas do mesmo
 tema → agrupar numa so. Itens `[x]` no documento mestre → sempre migram (PASSO 3).
 
-Os candidatos entram na **segunda tabela** (a de manutencao, a unica outra aprovacao da execucao):
-
-```
-**Fim do dia · [contexto] · etapa 2 de 3 · manutencao**
-
-**Seus aprendizados estao pesados; 3 entradas podem sair de la.**
-
-| # | O que vou registrar | Onde fica |
-|---|---|---|
-| 1 | Mover "Erro de cadastro duplicado" (evento ja resolvido) | Changelog |
-| 2 | Mover a regra "API de pagamento so leitura" | Satelite de pagamentos |
-| 3 | Mover "Falha no envio de e-mail" (evento ja resolvido) | Changelog |
-```
-
-Mesma aprovacao da primeira tabela (caixa de opcoes ou numeros). O que fica como esta nao entra na
-tabela. So o aprovado e movido. **NUNCA migrar sem aprovacao.**
+Os candidatos NAO sao mostrados agora: entram na lista de manutencao, apresentada UMA vez no PASSO 6.5
+(a unica outra aprovacao da execucao). **NUNCA migrar sem aprovacao.**
 Promover entrada para satelite = a regra (1 linha, o "Solucao"/"Nao fazer") entra em "Regras vigentes"; a entrada
 completa, sem reescrever, entra em "Historico" com a data; conferir que os dois estao la e so entao remover do aprendizados.
 
@@ -305,7 +291,7 @@ ler isso amanha obedece a instrucao morta.
 1. Para cada item confirmado no PASSO 1, extrair 1-2 palavras-chave e buscar SO nos arquivos que
    carregam em toda sessao do contexto: documento mestre, `claude.md` do contexto e
    `aprendizados_do_dia.md`. Nao varrer satelites nem outros contextos (isso e do `otimizar-os`).
-2. Achou frase que o item de hoje contradiz → incluir como linha na tabela de manutencao:
+2. Achou frase que o item de hoje contradiz → guardar como candidato da tabela de manutencao (PASSO 6.5):
    `| N | Atualizar "aguardando aprovacao do cliente" para "aprovado em DD/MM" | Documento mestre |`.
 3. **Sempre conferir antes de propor:** ler o trecho inteiro em volta; na duvida se ainda vale,
    perguntar em vez de mudar. Nada muda sem aprovacao. A transicao (antes → depois) vai no changelog.
@@ -343,7 +329,7 @@ So detalhar com barra quando houver 🟡 ou 🔴:
 Saude  🟢 aprendizados · 🟢 changelog · 🟡 documento mestre ▰▰▰▰▰▰▰▱▱▱ 27 KB de 40
 ```
 
-**Sugerir o Otimizar OS no MAXIMO 1x por semana, e so se houver volume.** Antes de sugerir, ler
+**Sugerir o Otimizar OS no MAXIMO 1x por semana, e so se houver volume.** Antes de sugerir, ler (arquivo ausente = o Otimizar OS nunca rodou neste contexto: o teto de cadencia esta cumprido, vale so a porta de volume)
 `{contexto}/historico/.last-otimizar-os` (guarda `ULTIMA_EXECUCAO`, `LAST_SUGGESTED`, `CONTAGENS`, `FRESCOR`).
 So sugerir se as DUAS condicoes forem verdade:
 
@@ -363,11 +349,11 @@ Ao sugerir, gravar `LAST_SUGGESTED=<hoje>` no `.last-otimizar-os` (segura o lemb
 
 ### PASSO 5.5 — Descompressao do documento mestre (condicional)
 
-**Executar SOMENTE se o documento mestre do contexto ativo estiver 🟡 ou 🔴 (pela tabela do guia) OU tiver uma secao com 30+ linhas sobre UM tema**, OU se houve entregas significativas na sessao (modulo inteiro, integracao completa, decisao arquitetural grande). Em sessoes curtas ou de manutencao, pular.
+**Executar SOMENTE se o documento mestre do contexto ativo estiver 🟡 ou 🔴 (pela tabela do guia) OU tiver uma secao com 30+ linhas sobre UM tema**. Documento mestre 🟢 leve e sem secao longa: pular, mesmo que a sessao tenha tido entrega grande.
 
 **Objetivo:** manter o documento mestre legivel em menos de 5 minutos. Escopo, status, pendencias e ponteiros ficam la. Detalhes densos saem para arquivos separados.
 
-**Fluxo (as propostas entram na tabela de manutencao; uma aprovacao so):**
+**Fluxo (as propostas viram candidatos da tabela de manutencao do PASSO 6.5; nenhuma pergunta aqui):**
 
 1. **Medir linhas E KB do documento mestre.** 🟢 leve e sem secao de 30+ linhas de um tema: pular.
 2. **Identificar secoes densas** — qualquer secao com mais de 30 linhas de conteudo detalhado sobre UM tema especifico (decisoes por data, especificacoes de modulo, mapeamentos, etc.).
@@ -420,13 +406,13 @@ Se o arquivo `index.md` existir na pasta do contexto que esta sendo fechado:
 1. Listar todos os arquivos `.md` nessa pasta
 2. Comparar com o `index.md` atual — **cross-check: TODO satelite da pasta tem entrada no index?** Faltando → adicionar na hora
 3. Para arquivos novos (satelites criados durante o dia): adicionar entrada no formato unico: `- [arquivo](arquivo) — abrir quando: tema A, tema B` (1 linha; o trecho depois de "abrir quando:" tem ate 80 caracteres)
-3b. Entrada existente fora do formato unico (sem "abrir quando" ou com o trecho acima de 80 caracteres): propor encurtar (com aprovacao). Descricao longa no index e custo fixo que nao diz ao agente QUANDO abrir o arquivo.
+3b. Entrada existente fora do formato unico (sem "abrir quando" ou com o trecho acima de 80 caracteres): o fim-do-dia so corrige as entradas dos arquivos criados ou alterados HOJE (candidatos da tabela de manutencao, PASSO 6.5). **Nunca reescrever o index em massa aqui**: mais de 5 entradas antigas fora do formato → nao mexer e por na linha "Sugestao" do fecho "rodar o Otimizar OS (ele arruma o index inteiro numa passada)".
 4. Para arquivos removidos ou renomeados: atualizar
 5. Atualizar a data no cabecalho
 
 Se o `index.md` NAO existir no contexto:
-- Sugerir ao usuario: `"Este contexto nao tem um index.md (catalogo de arquivos). Quer que eu crie?"`
-- Se sim: listar todos os arquivos da pasta com links
+- Candidato da tabela de manutencao (PASSO 6.5): `| N | Criar o index deste contexto, com todos os arquivos listados | Index |`
+- Aprovado: listar todos os arquivos da pasta com links, no formato unico
 
 **Index da raiz:**
 Se houve mudanca em qualquer arquivo da raiz do OS (novo arquivo, rename), atualizar tambem o `index.md` da raiz.
@@ -435,12 +421,37 @@ Se houve mudanca em qualquer arquivo da raiz do OS (novo arquivo, rename), atual
 
 ---
 
+### PASSO 6.5 — Tabela de manutencao (so se houver candidatos; UMA vez)
+
+Juntar os candidatos reunidos nos passos 2 (aprendizados pesados), 3.5 (instrucao morta), 5.5 (secao densa
+do documento mestre) e 6 (index fora do formato ou ausente). Nenhum candidato → pular este passo.
+Havendo, mostrar UMA tabela, no mesmo formato da primeira:
+
+```
+**Fim do dia · [contexto] · manutencao**
+
+**Seus aprendizados estao pesados e ha 1 frase desatualizada no documento mestre.**
+
+| # | O que vou registrar | Onde fica |
+|---|---|---|
+| 1 | Mover "Erro de cadastro duplicado" (evento ja resolvido) | Changelog |
+| 2 | Mover a regra "API de pagamento so leitura" | Satelite de pagamentos |
+| 3 | Atualizar "aguardando aprovacao do cliente" para "aprovado em DD/MM" | Documento mestre |
+| 4 | Encurtar 2 entradas do index para o formato padrao | Index |
+```
+
+Mesma aprovacao da primeira tabela (caixa de opcoes ou numeros). O que fica como esta nao entra na
+tabela. So o aprovado e executado, seguindo o protocolo de cada passo (mudanca de casa: copiar, conferir
+item a item, so entao remover). Recusado ou sem resposta → nada muda e isso vai em "Nao feito" no fecho.
+
+---
+
 ### PASSO 7 — Resumo final
 
 Fechar com o cartao fixo de 4 linhas (sem caminho de arquivo, sem termo tecnico):
 
 ```
-**Fim do dia · [contexto] · etapa 2 de 2**   (ou 3 de 3, se houve manutencao)
+**Fim do dia · [contexto] · fecho**
 
 **Feito**      2 entregas, 1 aprendizado e 1 pendencia registrados · index atualizado
 **Nao feito**  nada ficou de fora  (ou: o que o usuario recusou / o que nao foi possivel)
@@ -515,6 +526,22 @@ Se houve uma analise longa, comparacao detalhada ou deep dive durante a sessao, 
 - [ ] Fecho no cartao fixo de 4 linhas (PASSO 7)
 
 Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.
+
+---
+
+## Casos de borda (regras que valem sobre os passos acima)
+
+1. **Satelite de destino ja 🔴 pesado.** Nunca gravar regra nova num satelite pesado. A regra fica no `aprendizados_do_dia.md` desta vez (ele e a caixa de entrada) e a linha "Sugestao" do fecho pede o Otimizar OS. Isso vale tambem para a manutencao: nao mover entrada para satelite pesado.
+2. **Onde uma entrada de aprendizado comeca e termina:** do titulo `## ` ate o proximo `## `, `# ` ou `---`. Nota solta depois da entrada nao conta. A linha de fonte (`fonte: ...`) nao conta para o tamanho maximo.
+3. **Entrada acima do tamanho maximo:** a acao e CONDENSAR (regra sem narrativa), como manda o guia. So vira "mover para satelite" quando e regra de UM tema e o satelite do tema existe e esta leve.
+4. **Formato do contexto vence o modelo.** Changelog, pendencias e nomes de arquivo ja tem um formato neste contexto (ex.: `## 15-NOV-2026 · titulo`, bolinhas no lugar de `[ ]`, arquivo de pendencias com outro nome)? Seguir o formato que ja existe. Os modelos desta skill valem so para arquivo vazio. O "backlog" e o satelite de pendencias paradas que o index listar, com qualquer nome.
+5. **Nota "Tarefas concluidas nao ficam listadas aqui":** criar so quando houver item `[x]` a migrar. Documento mestre sem item concluido fica como esta.
+6. **Fatos da sessao que ja estao no changelog:** nao repetir. Dizer isso na frase de resumo ("o resto do dia ja estava no changelog").
+7. **Mesma linha pede duas coisas** (ex.: a pendencia do tema que tambem tem um numero desatualizado): fazer tudo na tabela de registro, numa linha so. Nao guardar metade para a manutencao.
+8. **Instrucao morta (PASSO 3.5) em satelite:** conferir tambem o satelite de pendencias e os satelites em que voce escreveu hoje. Os demais sao do Otimizar OS.
+9. **Conferencia da mudanca de casa:** mostrar em ate 5 linhas, logo antes do fecho (ex.: `"Erro de cadastro" → changelog: 4 de 4 linhas presentes`).
+10. **Linha "Saude" do fecho:** alem dos 3 arquivos do PASSO 5, citar satelite tocado hoje que esteja 🔴 e, se for o caso, "memoria do agente pesada" (PASSO 5.7). E o unico lugar dessas notas.
+11. **Aplicar o modelo num satelite antigo** (frontmatter + "Regras vigentes") ao escrever nele: e mudanca de estrutura, entra como linha da tabela em que a escrita foi aprovada ("...e por o satelite no modelo padrao").
 
 ---
 

@@ -17,7 +17,7 @@ description: |
 context: meuos
 user-invocable: true
 argument-hint: "(sem argumentos — roda na pasta do seu Claude Code atual)"
-version: 2.6
+version: 2.7
 author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
@@ -35,7 +35,7 @@ o agente mais lento ou confuso. Esta skill foca em **reduzir esse custo** higien
 a memoria + alertando quando o CLAUDE.md tambem esta crescendo demais.
 
 Esta skill escaneia essa memoria, mostra o que pode ser limpo e executa a higiene
-com sua aprovacao. Reducao tipica: 60% a 80% do tamanho.
+com sua aprovacao. Em memoria com muita coisa antiga, a reducao costuma passar de 60%; em memoria feita quase so de preferencias em uso, o ganho e pequeno e a skill diz isso.
 
 > **Importante:** Esta skill so faz sentido se voce usa **Claude Code**. Se voce usa
 > Cursor, Claude CoWork ou outra ferramenta, a "memoria" dela fica em outro lugar
@@ -132,7 +132,7 @@ resumo e a tabela do plano). Classificar:
 
 - **Tamanho** do `MEMORY.md` (linhas E KB) e **numero de arquivos de topico**: 🟢 🟡 🔴 pela tabela
   "Limites de tamanho" do guia.
-- **Idade** de cada arquivo de topico (regra desta skill): 🟢 menos de 60 dias sem modificar ·
+- **Idade** de cada arquivo de topico (regra desta skill; usar a data mais recente entre a do arquivo e a que o proprio topico declara no cabecalho, se houver): 🟢 menos de 60 dias sem modificar ·
   🟡 60 a 90 dias · 🔴 mais de 90 dias.
 - **Arquivo de topico bem maior que os outros**: merece olhar (provavel conteudo que pertence ao OS).
 
@@ -157,7 +157,7 @@ incluir 1 linha no fecho:
 | Sinal | O que fazer |
 |---|---|
 | MEMORY.md 🟢 leve (pela tabela do guia) + zero arquivos >90d sem mod + zero duplicatas | **Avisar que nao ha higiene a fazer** e encerrar (sem propor plano vazio) |
-| Ultima execucao foi ha menos de 30 dias (linha `ULTIMA_EXECUCAO=` do arquivo `.last-otimizar-custo` da raiz do OS; na falta dela, o cabecalho do `MEMORY.md`) E a memoria nao esta 🔴 pesada | Avisar que ainda e cedo (rodar de novo so forca compactacao artificial). A linha `LAST_SUGGESTED=` do mesmo arquivo e so o registro do lembrete: NAO conta como execucao |
+| Ultima execucao foi ha menos de 30 dias (linha `ULTIMA_EXECUCAO=` do arquivo `.last-otimizar-custo` da raiz do OS; arquivo antigo com so uma data solta: essa data e a `ULTIMA_EXECUCAO`; na falta das duas, o cabecalho do `MEMORY.md`) E a memoria nao esta 🔴 pesada | Avisar que ainda e cedo (rodar de novo so forca compactacao artificial). A linha `LAST_SUGGESTED=` do mesmo arquivo e so o registro do lembrete: NAO conta como execucao |
 | Depois do PASSO 2, nao sobrou nenhum item a arquivar, levar para o OS ou repetido | Avisar que a memoria esta saudavel e encerrar (sem tabela vazia) |
 
 **Mensagem padrao quando nao ha nada a otimizar:**
@@ -177,10 +177,10 @@ classificar em 4 categorias:
 
 | Categoria | Criterio | O que fazer |
 |-----------|----------|-------------|
-| **Manter** | Preferencia pessoal ativa, regra de estilo, convencao do agente — usada nas ultimas semanas | Deixar como esta |
-| **Arquivar** | Mais de 90 dias sem modificacao, conteudo sobre projeto/decisao que ja passou | Mover para `memory/historico/` |
+| **Manter** | Preferencia pessoal ativa, regra de estilo, convencao do agente. **Todo topico que o `MEMORY.md` (ou um sub-indice ligado a ele) cita como regra em uso e Manter, qualquer que seja a idade** | Deixar como esta |
+| **Arquivar** | Mais de 90 dias sem modificacao E nao citado como regra em uso; conteudo sobre projeto/decisao que ja passou | Mover para `memory/historico/` e ajustar o ponteiro no indice (ou sub-indice) que o citava |
 | **Promover** | Informacao que deveria estar no seu OS (regra de negocio, decisao de produto, stack ativa) | Copiar para o OS — destino padrao e o SATELITE do tema — e remover daqui |
-| **Credencial** | Senha, token, chave de API, CPF ou qualquer segredo | NUNCA copiar para o OS (ele sincroniza na nuvem e entra em todo backup). Avisar o usuario, sugerir guardar num gerenciador de senhas e remover daqui so com o OK dele |
+| **Credencial** | Senha, token, chave de API, CPF ou qualquer segredo | NUNCA copiar para o OS (ele sincroniza na nuvem e entra em todo backup) e NUNCA arquivar (a copia arquivada continuaria com o segredo). A linha do plano propoe **apagar so o segredo de dentro da anotacao**, trocando-o por "guardado no gerenciador de senhas", e manter o resto do texto. E a unica coisa que esta skill apaga, e so com a aprovacao do plano |
 
 **Como identificar:**
 
@@ -221,7 +221,7 @@ nao entra na tabela.
 | 1 | Guardar 2 anotacoes de projetos encerrados | Saem da memoria do dia a dia; ficam arquivadas |
 | 2 | Levar "configuracao do sistema" para o seu OS, no satelite do tema | Passa a valer para qualquer agente, nao so este |
 | 3 | Tirar 2 linhas repetidas | Nada; a informacao ja esta no seu OS |
-| 4 | 1 anotacao contem senha | Nao vai para o OS; recomendo um gerenciador de senhas |
+| 4 | Apagar a senha de dentro de 1 anotacao (o resto do texto fica) | Guarde a senha num gerenciador de senhas ANTES de aprovar; ela nao vai para o OS |
 
 Depois do plano: 🟢 cerca de 95 linhas (64% mais leve).
 ```
@@ -245,7 +245,7 @@ Para cada acao aprovada:
 
 **4b. Promover para o OS**
 1. Ler o arquivo de topico original
-2. Identificar o destino certo no OS (perguntar ao usuario se nao for obvio):
+2. Usar o destino que ja foi mostrado na linha do plano (ele e decidido ANTES, ao montar o plano; se nao era obvio, a linha propos um destino e o usuario ajustou na aprovacao — nao perguntar de novo na execucao). Como escolher o destino:
    - Procurar no `index.md` do contexto um satelite do tema: existe → entra nele (a regra em 1 linha em "Regras
      vigentes"; o corpo do topico, sem reescrever, em "Historico" com a data; satelite existente mantem o nome e
      ganha o modelo ao ser tocado — frontmatter com `abrir_quando` + Regras vigentes no topo — sem reorganizar o
@@ -261,13 +261,13 @@ Para cada acao aprovada:
 3. Copiar o conteudo para o destino SEM reescrever (adaptar so o formato); conferir item a item — regra,
    numero, data, nome, link — e mostrar a lista
 4. Adicionar uma nota no destino: "Promovido da memoria em DD/MM pelo usuario"
-5. So entao excluir o arquivo original da memoria do Claude Code
+5. So entao mover o arquivo original para `memory/historico/` (nada e apagado)
 6. Remover a linha correspondente no `MEMORY.md`
 
 **4c. Limpar e enxugar o MEMORY.md**
 1. Ler o `MEMORY.md` inteiro antes de alterar (nao perder nada)
 2. Remover as linhas aprovadas, mantendo a estrutura do indice
-3. **Reescrever cada item do indice para UMA linha** (gancho curto + link). Se um item virou paragrafo, condensar para um gancho de uma linha — o detalhe mora no arquivo de topico, nao no indice. (Esta e a maior fonte de chars inflados.)
+3. **Reescrever cada item do indice para UMA linha** (gancho curto + link). Se um item virou paragrafo ou linha longa (mais de ~150 caracteres), condensar para um gancho de uma linha — o detalhe mora no arquivo de topico, nao no indice. (Esta e a maior fonte de chars inflados.)
 4. **Fundir arquivos de topico irmaos** sobre o mesmo assunto, quando for item aprovado do plano (ex: varios `feedback_*` do mesmo tema viram um so) — reduz o numero de arquivos e o tamanho do indice
 5. Atualizar o cabecalho: "> Ultima otimizacao: DD/MM (skill Otimizar Custo)"
 6. Salvar
@@ -279,8 +279,8 @@ quando o usuario pedir ou escolher item a item; nao pedir nova confirmacao duran
 
 ### PASSO 5 — Fecho (leve/pesado e previsao de tokens; nunca em dinheiro)
 
-**Previsao de tokens (unico calculo):** `linhas reduzidas × 15` = tokens a menos por mensagem
-(1 linha ≈ 15 tokens em media). E previsao, dizer "cerca de". **Nao converter em R$, US$ nem em
+**Previsao de tokens (unico calculo):** `caracteres reduzidos ÷ 4` = tokens a menos por mensagem
+(medir pelo tamanho do texto; contar linhas engana quando a linha e longa). E previsao, dizer "cerca de". **Nao converter em R$, US$ nem em
 economia por mes:** depende do plano e do uso de cada pessoa, e quem tem plano mensal nao paga
 por token.
 
@@ -289,7 +289,7 @@ por token.
 ```
 **Otimizar custo · memoria do agente · etapa 2 de 2**
 
-**Feito**     4 de 4 itens · nada apagado, so arquivado
+**Feito**     4 de 4 itens · nada apagado alem da senha aprovada; o resto foi arquivado
 **Peso**      🔴 → 🟢 · memoria 64% mais leve (de 263 para 94 linhas)
 **Previsao**  cerca de 2.500 tokens a menos por mensagem
 **Proxima**   quando o Otimizar OS lembrar (no maximo 1 vez por mes)
@@ -300,7 +300,7 @@ Algo foi levado para um arquivo que tambem carrega em toda sessao (documento mes
 Dizer na linha "Peso": "X linhas so mudaram de lugar, nao contam como reducao".
 
 **Gravar a trava do lembrete mensal:** no arquivo `.last-otimizar-custo` da raiz do OS (criar se nao
-existir), gravar ou atualizar a linha `ULTIMA_EXECUCAO=AAAA-MM-DD` com a data de hoje, sem apagar a
+existir), gravar ou atualizar a linha `ULTIMA_EXECUCAO=AAAA-MM-DD` com a data de hoje (arquivo antigo com so uma data solta: substituir essa data pela linha `ULTIMA_EXECUCAO=`), sem apagar a
 linha `LAST_SUGGESTED=` (ela e do `otimizar-os`). E esse arquivo que o `otimizar-os` le para so
 lembrar desta skill 1 vez por mes. Rodar de novo antes disso so faz sentido se a memoria cresceu de
 repente; caso contrario, tira contexto que o agente precisa.
@@ -315,7 +315,7 @@ Se houver arquivos ou linhas nao aprovados nesta rodada, listar como pendencia:
 - **Sempre conferir o diretorio** antes de escanear, e perguntar se houver duvida — evita mexer na memoria errada
 - **Nunca executar sem aprovacao explicita** — plano primeiro, acao depois
 - **Nunca deletar arquivo sem arquivar antes** (arquivar em `memory/historico/`, nao apagar definitivo)
-- **Nunca promover para o OS sem identificar o destino exato** — se houver duvida, perguntar
+- **Nunca promover para o OS sem identificar o destino exato** — o destino aparece na linha do plano; na duvida, a linha propoe um e o usuario ajusta na aprovacao
 - **Nunca modificar arquivos do OS** sem deixar uma nota de onde veio (rastreabilidade)
 - **Nunca rodar em loop** — uma execucao por chamada
 - **Se a pasta memory/ nao existir**, nao cria — apenas informa que nao ha o que higienizar
@@ -349,6 +349,19 @@ uma nota curta indicando a origem: "Promovido da memoria em DD/MM"
 As tres juntas cobrem: encerramento do dia, organizacao dos docs do OS e higiene
 da memoria do agente. Rodar cada uma no momento certo mantem seu sistema enxuto
 e barato de operar.
+
+---
+
+## Casos de borda (regras que valem sobre os passos acima)
+
+1. **Sub-indices.** Se o `MEMORY.md` aponta para outros indices (ex.: `INDICE-*.md`), eles fazem parte do indice: topico citado so num sub-indice esta "no indice", e ao arquivar um topico o ponteiro e ajustado onde ele estiver.
+2. **A barra da frase de resumo mede o PIOR** entre linhas e KB (ex.: `17 KB de 10`), com o outro numero entre parenteses.
+3. **O plano nao alcanca 🟢.** Se, mesmo com tudo aprovado, a memoria continuar 🟡 ou 🔴, dizer isso abaixo da tabela, com o motivo (ex.: "quase tudo que sobra e preferencia sua em uso"). Nunca forcar corte de regra em uso para bater o alvo.
+4. **Destino no OS que nao existe ou fica em outra pasta/contexto:** nao criar nem escrever fora do contexto; o topico fica na memoria e entra em "nao feito" no fecho.
+5. **Modelo do satelite novo:** `https://raw.githubusercontent.com/ferjrbh/meuos-skills/main/skills/meuos-do-zero/templates/satelite.md` (so leitura).
+6. **Conferencia item a item** do que foi para o OS: mostrar em ate 5 linhas, logo antes do cartao de fecho.
+7. **Levou algo para o OS:** 1 linha no changelog do contexto ("trazido da memoria do agente: X, para o satelite Y"), se o contexto tiver changelog.
+8. **Item feito em parte ou aprovado e nao executado:** o cartao diz "N de M itens" e lista o que ficou; nao escrever "voce preferiu nao mexer" quando o motivo foi outro.
 
 ---
 

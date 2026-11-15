@@ -11,7 +11,7 @@ description: |
   "confere mds", "confere docs", "auditar documentacao", "docs batem com a realidade?",
   "verificar documentacao", "docs drift", "sincronizar docs com codigo", "doc desatualizada".
   Default (sem flag) = confere primeiro (corrige conteudo), depois otimiza (estrutura).
-version: 5.7
+version: 5.8
 context: meuos
 user-invocable: true
 argument-hint: "[contexto] [--so-confere | --so-otimiza] (sem args = pergunta o contexto e roda as 2 fases)"
@@ -41,7 +41,7 @@ instagram: https://instagram.com/fernandolucio.ia
 |---|---|---|
 | 1 | **Informacao verdadeira e com fonte** | Fase A: confere numero, data, preco, prazo, nome e status contra a fonte; o que nao tem fonte fica marcado `nao verificado` |
 | 2 | **Arquivos dentro do limite de tamanho** | N1 + Fase B: mede cada arquivo pela tabela unica do guia e leva o que esta pesado para o alvo, preservando o contexto da sessao |
-| 3 | **Todo satelite com ponteiro dos dois lados** | N3: satelite aponta para o documento mestre e o documento mestre aponta para o satelite, sempre |
+| 3 | **Todo satelite com ponteiro dos dois lados** | N3.2: o satelite aponta para o documento pai e esta no index; o documento mestre lista so os que usa no dia a dia (ate 15), como manda o guia |
 | 4 | **Um tema, um satelite** | N3.2: satelites duplicados sao unificados (nada se perde, o que sobra vai para `historico/`) |
 | 5 | **Arvore completa no index** | N3 + passada unica do index: 100% dos .md do contexto listados, no formato unico |
 
@@ -49,11 +49,11 @@ Uma execucao so termina quando as 5 foram verificadas (mesmo que a resposta seja
 
 ## 🖥️ COMO FALAR COM O USUARIO (padrao visual, vale para a execucao inteira)
 
-1. **Tres etapas, cada uma com cabecalho de 1 linha:** `**Otimizar OS · [contexto] · etapa 1 de 3 · diagnostico**`, `etapa 2 de 3 · plano`, `etapa 3 de 3`.
+1. **Tres etapas, cada uma com cabecalho de 1 linha:** `**Otimizar OS · [contexto] · etapa 1 de 3 · diagnostico**`, `etapa 2 de 3 · plano`, `etapa 3 de 3`. **Diagnostico e plano saem na MESMA mensagem**; so o plano pede resposta.
 2. **Uma frase de resumo em negrito ANTES de qualquer tabela** (ex.: "Seu documento mestre esta pesado e ha 2 informacoes desatualizadas.").
-3. **Diagnostico = UMA tabela:** `# | Arquivo | Peso | Situacao`, com nome que o usuario conhece (Documento mestre, Aprendizados, Changelog, Satelites (N), Index), nunca caminho. Peso em 🟢 leve, 🟡 atencao, 🔴 pesado, com barra de 10 blocos nos que nao estao 🟢: `🟡 ▰▰▰▰▰▰▰▱▱▱ 27 KB de 40` (a barra mede o tamanho contra o limite de "pesado" do guia; passou do limite, barra cheia e 🔴).
+3. **Diagnostico = UMA tabela:** `# | Arquivo | Peso | Situacao`, com nome que o usuario conhece (Documento mestre, Aprendizados, Changelog, Satelites (N), Index), nunca caminho. Peso em 🟢 leve, 🟡 atencao, 🔴 pesado, com barra de 10 blocos nos que nao estao 🟢: `🟡 ▰▰▰▰▰▰▰▱▱▱ 27 KB de 40` (a barra mede o tamanho contra o limite de "pesado" do guia; passou do limite, barra cheia e 🔴). Os numeros dos exemplos desta skill sao ilustrativos: o limite vem sempre do guia.
 4. **Plano = UMA tabela numerada:** `# | O que faco | O que muda para voce`. Todos os itens das duas fases entram nela, na ordem das 5 garantias. As classificacoes internas (ajuste de conteudo, estrutura, pendencia solta, resumir, mover, arquivar) NAO viram tabelas separadas nem codigos (A1, S2, P1). Em correcao de conteudo, o antes e o depois vao na propria linha: `Corrigir "23 clientes ativos" para 24`.
-5. **UMA aprovacao:** se o agente tiver caixa de opcoes clicaveis (no Claude Code, a ferramenta de pergunta ao usuario), abrir com "Aprovar tudo", "Escolher itens", "Nao mexer em nada". Em "Escolher itens", ou sem a caixa, o usuario responde "tudo" ou os numeros. Trecho antes/depois completo de um item: mostrar quando o usuario pedir ou escolher item a item.
+5. **UMA aprovacao:** se o agente tiver caixa de opcoes clicaveis (no Claude Code, a ferramenta de pergunta ao usuario), abrir com "Aprovar tudo", "Escolher itens", "Nao mexer em nada". Em "Escolher itens", ou sem a caixa, o usuario responde "tudo" ou os numeros. **Linha que e pergunta** ("qual vale?", "juntar?") leva a marca `(decisao sua)` na coluna "O que faco": "tudo" aprova so as linhas de acao; pergunta sem resposta fica como esta e aparece no fecho como pendente. Nunca decidir por ele. Trecho antes/depois completo de um item: mostrar quando o usuario pedir ou escolher item a item.
 6. **Tamanho em leve, atencao e pesado.** Tokens so como previsao ("de 14 mil para 9 mil tokens"). Nunca valor em dinheiro.
 7. **So os termos do treinamento:** documento mestre, satelite, aprendizados, changelog, index, ponteiro, contexto. Nao usar com o usuario: drift, frontmatter, split, orfao, custo fixo, fonte-da-verdade, read-on-demand. (Esses termos aparecem nesta skill como instrucao para o agente; na fala, traduzir: "informacao desatualizada", "etiqueta do arquivo", "dividir", "arquivo sem ponteiro", "peso da sessao", "de onde a informacao vem".)
 8. **Fecho fixo:** cartao de 4 linhas: Feito, Peso, Arvore, Fontes (ver "Verificacao").
@@ -148,7 +148,7 @@ Alem do tamanho de cada arquivo, somar os arquivos que carregam em TODA sessao d
 `claude.md` raiz + `claude.md` do contexto + `*MESTRE.md` + `aprendizados_do_dia.md` + (se houver)
 o `MEMORY.md` do agente (quando existir — e mecanismo do Claude Code; no Codex nao ha). O alvo de cada
 arquivo e o alvo total estao na tabela do guia ("Alvo ao enxugar" e "Peso da sessao"). Previsao em
-tokens: ~1 linha ≈ 15 tokens. Ao usuario, falar em leve/pesado e, no maximo, a previsao:
+tokens: 4 caracteres ≈ 1 token (medir pelo tamanho, nao pela contagem de linhas). Ao usuario, falar em leve/pesado e, no maximo, a previsao:
 
 > `Peso da sessao hoje: 🔴 pesado (previsao de 14 mil tokens por conversa; o alvo e 9 mil). Depois do plano: cerca de X mil.`
 
@@ -207,7 +207,7 @@ Proposta padrao: corrigir o link (se o alvo foi renomeado, apontar para o nome n
 ponteiro (no `index.md`, e no MESTRE se for relevante) · OU arquivar em `historico/` se estiver obsoleto.
 E se ESTA skill renomear ou mover um arquivo (split, arquivamento), re-checar os links de entrada dele
 antes de encerrar — o conserto nao acontece sozinho.
-**NUNCA decidir sozinho** se um arquivo e relevante ou lixo — apresentar a tabela e perguntar.
+**NUNCA decidir sozinho** se um arquivo e relevante ou lixo — cada um vira UMA linha do plano unico (ex.: "Listar X no index" ou "Guardar X no historico"), e quem decide e o usuario na aprovacao.
 
 ## N3.2 — Um tema, um satelite (duplicados) + ponteiro dos dois lados ⭐
 
@@ -215,16 +215,20 @@ Para cada satelite do contexto (todo `.md` que nao e entrada, documento mestre, 
 changelog nem index):
 
 - **Ponteiro dos dois lados:** o satelite tem `> Documento pai:` apontando para o documento mestre?
-  O documento mestre tem a linha dele na secao "Satelites deste contexto"? O `index.md` lista? Faltou
-  qualquer um dos tres → item do plano ("Ligar o satelite X ao documento mestre e ao index").
+  O `index.md` lista? Faltou um dos dois → item do plano. A secao "Satelites deste contexto" do documento
+  mestre lista so os satelites do dia a dia, **ate 15 linhas**, e fecha com `Lista completa: index.md`
+  (regra do guia): contexto com muitos satelites NAO ganha uma linha por satelite no documento mestre,
+  porque isso o deixaria pesado. Satelites com o mesmo problema viram UMA linha do plano
+  ("Ligar 91 satelites ao documento pai e ao index").
 - **Duplicados:** comparar os satelites dois a dois pelo tema (nome, `abrir_quando`, titulos de secao).
   Dois falando do MESMO tema (ex.: `CLIENTEA_precos.md` e `CLIENTEA_tabela_de_precos.md`) → propor
   unificar: o mais completo e mais recente FICA (mantem o nome); o conteudo do outro entra nele pelo
   protocolo de mudanca de casa (copiar sem reescrever → conferir item a item → so entao tirar da
   origem); o arquivo que sobrou vai para `historico/`; os ponteiros que apontavam para ele passam a
   apontar para o que ficou. Se os dois dizem coisas DIFERENTES sobre o mesmo fato, nao escolher:
-  mostrar os dois valores e perguntar qual vale (isso e Fase A).
-- **Duvida se e o mesmo tema** (ex.: "precos" e "custos") → perguntar, nunca unificar por conta propria.
+  a linha do plano mostra os dois valores ("Preco aparece como 1.200 e como 1.350: qual vale?") e o usuario
+  responde na propria aprovacao (isso e Fase A).
+- **Duvida se e o mesmo tema** (ex.: "precos" e "custos") → entra no plano como linha com a duvida ("Juntar 'precos' e 'custos'? Parecem o mesmo assunto"); nunca unificar por conta propria.
 - Unificacao nao conta no limite de 3 satelites novos por execucao (ela reduz, nao cria).
 
 ## N3.5 — Guia do OS desatualizado (check de versao — SEMPRE, custa 1 leitura)
@@ -295,9 +299,11 @@ Como a skill usa:
   continua separado — ele atesta que os NUMEROS foram conferidos na fonte, coisa diferente de "editei o
   arquivo". Documento com frontmatter: a data de edicao e o `updated` (nao criar linha "Ultima atualizacao" nele). Documento sem frontmatter: a linha "Ultima atualizacao" do cabecalho continua valendo.
 
-## Gate "no piso, sem acao"
+## Gate "no piso, sem acao" (avaliar DEPOIS da Fase A, ANTES de montar o plano)
 
-Antes de montar qualquer plano, verificar se ha mesmo o que fazer. Se depois do scan as 5 garantias ja estao
+Este gate depende do resultado da Fase A (numeros conferidos, fatos sem fonte): avaliar quando ela terminar
+(com `--so-otimiza`, logo depois do scan, so com os criterios de tamanho, ponteiro, duplicado e index).
+Antes de montar qualquer plano, verificar se ha mesmo o que fazer. Se as 5 garantias ja estao
 cumpridas — todo arquivo FIXO esta 🟢 E o peso da sessao esta dentro do alvo (ou o que passa do limite e
 majoritariamente **conteudo perene ja curado**: sem numeros errados, sem temporal velho de mais de 60 dias,
 sem bloco de 15+ linhas sobre UM tema que caiba em satelite), nenhum satelite sem ponteiro, nenhum duplicado,
@@ -361,7 +367,7 @@ checar a mesma coisa 5 vezes.
 |---|---|
 | Preco, valor, meta, percentual | Abrir a planilha/proposta/contrato citado (ou a linha `fonte:`) e conferir o numero |
 | Prazo, vencimento, data | Conferir no documento de origem e contra a data de HOJE (prazo vencido e status que ja deveria ter mudado sao informacao desatualizada) |
-| Nome, cargo, responsavel, cliente ativo | Cruzar com os outros documentos do contexto e o changelog; divergiu ou nao ha fonte → perguntar ao dono |
+| Nome, cargo, responsavel, cliente ativo | Cruzar com os outros documentos do contexto e o changelog; divergiu ou nao ha fonte → entra no plano como `nao verificado` (o dono corrige na aprovacao) |
 | Status ("aguardando X") | Cruzar com changelog e aprendizados: X ja aconteceu? |
 | "N tabelas" | Listar tabelas no Supabase e contar |
 | "N edge functions" | Listar functions + conferir a pasta no repo |
@@ -430,11 +436,16 @@ que o agente precisa saber de cada item para escrever essa linha.
 | P1 | Migrar modulo X | CLIENTEA_TECH_NOTAS.md | Promover ao MESTRE, secao Pendencias (parada ha 60+ dias: satelite de backlog, ver B3) |
 ```
 
-**Regra de ouro**: TODOS os achados viram linha na tabela do plano, mesmo se ela ficar longa. Nao filtrar
-por "importancia" — quem decide o que importa e o usuario.
+**Regra de ouro**: TODO achado esta coberto por uma linha do plano — nada fica de fora por "importancia";
+quem decide o que importa e o usuario. **Achados iguais (mesma acao em varios arquivos) viram UMA linha, com a
+contagem e ate 3 exemplos** ("Encurtar 165 entradas do index", "Ligar 91 satelites ao documento pai"). Correcao de
+conteudo e sempre uma linha por fato. O plano deve caber em cerca de 15 linhas; a lista completa de cada grupo e
+mostrada se o usuario pedir.
 
-Aprovados os ajustes, executar com **edicao cirurgica** (mexer so no trecho aprovado, nada ao redor). Se um
-ajuste falhar, reportar e seguir com os demais — nao abortar o lote.
+**A Fase A NAO pede aprovacao e NAO executa nada: ela so reune os achados.** A aprovacao e a execucao
+acontecem UMA vez, na secao "Plano + Execucao + Verificacao" (comum as duas fases). La, os ajustes de
+conteudo sao feitos com **edicao cirurgica** (mexer so no trecho aprovado, nada ao redor); se um ajuste
+falhar, reportar e seguir com os demais — nao abortar o lote.
 
 ## A6.5 — Fonte de cada fato conferivel (a garantia 1) ⭐
 
@@ -454,19 +465,20 @@ Regra do guia: **fato conferivel leva fonte e data; sem fonte, `nao verificado`.
 ## A7 — Carimbo de frescor (orcamento de validade) ⭐
 
 Todo documento que tem numeros ganha, no topo, um carimbo `> Verificado ao vivo: DD-MMM-AAAA` depois da
-checagem. A skill sempre re-carimba ao validar. E — importante — ela **sinaliza qualquer documento de numeros
+checagem. A skill re-carimba na execucao do plano (o carimbo acompanha os ajustes aprovados daquele documento) — **so quando os numeros foram conferidos numa fonte viva** (sistema, banco, planilha aberta). Conferencia so entre documentos nao ganha esse carimbo: ganha a linha de fonte da A6.5. E — importante — ela **sinaliza qualquer documento de numeros
 cujo carimbo esteja com mais de 45 dias**, mesmo sem outro gatilho. Esse carimbo velho e o sinal mais barato
 de que uma doc pode ter silenciosamente defasado enquanto ninguem olhava.
 
-Terminada a Fase A (ajustes aplicados e re-carimbados), seguir para a Fase B — a menos que voce tenha rodado
-com `--so-confere`.
+Terminada a Fase A (achados reunidos, nada alterado ainda), avaliar o gate "no piso" e seguir para a Fase B.
+Com `--so-confere`, pular a Fase B e ir direto para "Plano + Execucao + Verificacao": o plano tera so os
+itens da Fase A.
 
 ---
 
 # FASE B — OTIMIZAR (estrutura / tamanho / promocao)
 
 > Objetivo: reduzir o peso da sessao e organizar. Classificar o conteudo por TIPO ANTES de olhar a idade.
-> (Pule esta fase inteira se rodou com `--so-confere`.)
+> (Com `--so-confere`, pule esta fase e va direto para "Plano + Execucao + Verificacao".)
 
 ## B1 — Classificar o conteudo por TIPO (criterio primario, antes da idade)
 
@@ -560,7 +572,7 @@ toda acao da Fase B:
 **Detector de drift:** se depois de uma limpeza aparecerem linhas riscadas NOVAS, o fim-do-dia em uso
 esta em versao antiga: sugerir ao usuario atualizar a skill pela pagina Skills do app.meuos.com.br.
 
-## Plano + Execucao + Verificacao (Fase B)
+## Plano + Execucao + Verificacao (comum as duas fases; roda UMA vez)
 
 1. **Plano (etapa 2 de 3)**: UMA tabela numerada com TODOS os itens das duas fases, na ordem das 5
    garantias (veracidade e fonte → tamanho → ponteiros → duplicados → index):
@@ -654,14 +666,14 @@ Assim voce so paga o custo de rodar a skill inteira quando ha mesmo o que corrig
 
 ## Ao terminar — lembrete do Otimizar Custo (no maximo 1x por mes) ⭐
 
-Ao concluir uma execucao, considerar lembrar a skill **Otimizar Custo** (higiene da memoria GLOBAL do agente,
+**O lembrete NAO e uma pergunta:** e uma linha a mais no cartao de fecho (`**Sugestao**  rodar o Otimizar Custo: a memoria do agente nao e enxugada ha N dias`). O usuario roda se quiser. Ao concluir uma execucao, considerar lembrar a skill **Otimizar Custo** (higiene da memoria GLOBAL do agente,
 que reduz o custo de tokens de TODA sessao). Detalhe importante: essa memoria e **global — uma so para o OS
 inteiro**, nao e por contexto. Entao a "trava do 1x/mes" mora em **um arquivo unico na raiz do seu OS**
 (`.last-otimizar-custo`, com duas linhas: `ULTIMA_EXECUCAO=AAAA-MM-DD`, gravada pelo Otimizar Custo quando ele roda, e `LAST_SUGGESTED=AAAA-MM-DD`, gravada aqui), **nunca** dentro do `historico/` de um contexto — senao rodar o otimizar-os em
 varios contextos na mesma semana dispararia varios lembretes de custo.
 
 - Sugerir SO se `hoje - max(ULTIMA_EXECUCAO, LAST_SUGGESTED)` for de 30 dias ou mais. Ao sugerir, gravar SO a linha `LAST_SUGGESTED=<hoje>` (nunca mexer em `ULTIMA_EXECUCAO`: ela e do Otimizar Custo). Arquivo antigo com uma data solta: tratar a data como `ULTIMA_EXECUCAO`. Sem o arquivo, tratar como "nunca rodou" e sugerir. No Codex (sem `MEMORY.md`), pular este lembrete.
-- Frase: `"Ja faz uns [N] dias desde a ultima limpeza de memoria. Quer rodar o Otimizar Custo pra manter as sessoes leves?"`
+- Texto da linha: `**Sugestao**  rodar o Otimizar Custo: a memoria do agente nao e enxugada ha [N] dias`. Gravar o `LAST_SUGGESTED` sem perguntar (e registro do lembrete, nao mudanca no OS).
 - Se faz menos de 30 dias, ficar quieto. Esse e o UNICO canal do lembrete de custo — o fim-do-dia nao lembra disso direto.
 
 ---
@@ -714,6 +726,23 @@ varios contextos na mesma semana dispararia varios lembretes de custo.
 - [ ] Fecho no cartao fixo (Feito, Peso, Arvore, Fontes)
 
 Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.
+
+---
+
+## Casos de borda (regras que valem sobre os passos acima)
+
+1. **Contexto grande (dezenas de satelites).** Fase A: ler inteiros a entrada do contexto, o documento mestre e os aprendizados; nos satelites, varrer por padrao (numero, data, preco, prazo, nome, status) e ler o trecho em volta. Dizer a cobertura na linha "Fontes" do fecho ("3 arquivos lidos inteiros, 97 varridos").
+2. **Leve, mas acima do alvo.** Arquivo 🟢 que esta acima do "alvo ao enxugar" e sera mexido: escrever "acima do alvo" na coluna Situacao do diagnostico, para o usuario nao ler "leve" e ver o plano mexer no arquivo.
+3. **Nome na tabela quando ha muitos satelites:** usar o nome do arquivo sem a extensao; e o unico que distingue.
+4. **Link para arquivo que nao existe** (e nao foi renomeado): linha de duvida no plano (`(decisao sua)`): tirar o link ou apontar para outro arquivo. Texto de exemplo (`CONTEXTO_tema.md`) nao e link quebrado.
+5. **O que conta no index:** os `.md` da pasta do contexto e das subpastas vivas. Entrada que aponta para `historico/`, para arquivo arquivado ou para outro contexto pode sair, como UMA linha do plano. Index 🔴 por ter muitos arquivos: propor dividir por tema (sub-indices), nao cortar entradas.
+6. **Pendencia parada (B3):** se o index ja lista um satelite de pendencias ou backlog (com qualquer nome), usar esse; so criar `CONTEXTO_backlog.md` se nao houver nenhum.
+7. **Etiqueta do arquivo (frontmatter, N5):** nao vira linha do plano. Entra junto com a alteracao aprovada daquele arquivo; arquivo que o plano nao toca nao ganha etiqueta.
+8. **Fonte e data sem engordar:** nos arquivos que carregam em toda sessao, uma linha de fonte por bloco; detalhe de conferencia vai no satelite.
+9. **Execucao parcial** (usuario aprovou so parte, item falhou, limite de tempo): o fecho diz "N de M itens" e lista o que ficou, sem declarar as 5 garantias cumpridas.
+10. **Changelog:** ao terminar, UMA entrada no changelog do contexto resumindo o que foi feito (correcoes, movimentos, index), no formato que o changelog ja usa.
+11. **Carimbo `.last-otimizar-os`:** em `CONTAGENS` gravar so numero conferido em fonte viva; sem fonte viva, deixar `CONTAGENS=` vazio.
+12. **Formato do contexto vence o modelo:** nomes de arquivo, formato de changelog e de pendencia que o contexto ja usa sao mantidos.
 
 ---
 

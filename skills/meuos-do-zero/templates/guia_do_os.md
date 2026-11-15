@@ -1,5 +1,5 @@
 # guia_do_os.md · O Manual de Operação deste OS
-> Guia do OS · versão 4 · gerado pelo MeuOS em {{DATA}} · www.meuos.com.br
+> Guia do OS · versão 5 · gerado pelo MeuOS em {{DATA}} · www.meuos.com.br
 
 ## Para você, humano, em 30 segundos
 
@@ -75,7 +75,11 @@ Satélite e este guia não entram na leitura inicial: abra quando o "abrir quand
    topo, Detalhe, Histórico no fim). O ponteiro é UMA linha, igual no documento mestre e no `index.md`:
    `- [CONTEXTO_tema.md](CONTEXTO_tema.md) — abrir quando: tema A, tema B` (o trecho depois de
    "abrir quando:" tem até 80 caracteres); no documento mestre ela vive em um lugar só, a seção
-   "Satélites deste contexto". Mover conteúdo de um arquivo para outro segue 5 passos: (1) procurar
+   "Satélites deste contexto". **O `index.md` lista TODOS os satélites; o documento mestre lista só os
+   que ele usa no dia a dia (até 15 linhas)** e fecha a seção com `Lista completa: index.md`. Contexto
+   com muitos satélites não enche o documento mestre de ponteiros: ponteiro dos dois lados quer dizer
+   que o satélite aponta para o documento pai e que ele está no index (e no documento mestre, se for
+   um dos 15). Mover conteúdo de um arquivo para outro segue 5 passos: (1) procurar
    satélite do mesmo tema no index: existe, o conteúdo entra nele; (2) copiar SEM reescrever (regra
    de 1 linha em Regras vigentes; especificação e inventário em Detalhe; o datado em Histórico;
    resumir é outro passo, com aprovação própria); (3) conferir item a item que toda regra, número,
@@ -128,14 +132,15 @@ Vale o PIOR entre linhas e KB. "Alvo" é para onde levar o arquivo quando for en
 | Entrada de aprendizado | até 6 linhas e 700 caracteres | | acima disso: condensar | no máximo 25 entradas no arquivo |
 | `changelog.md` | menos de 30 KB | 30 a 50 KB | mais de 50 KB | antigos vão para `historico/` por trimestre |
 | Satélite | menos de 25 KB | 25 a 40 KB | mais de 40 KB | dividir por tema |
-| `index.md` | menos de 100 linhas | 100 a 150 | mais de 150 | 1 linha por arquivo |
+| `index.md` | menos de 100 linhas | 100 a 150 | mais de 150 | 1 linha por arquivo; contexto com mais de 100 arquivos divide o index por tema |
 | Outros `.md` | menos de 20 KB | 20 a 35 KB | mais de 35 KB | |
 | Memória do Claude Code (`MEMORY.md`) | menos de 100 linhas e de 6 KB | 100 a 150 linhas ou 6 a 10 KB | mais de 150 linhas ou de 10 KB | 60 linhas |
 | Arquivos de tópico da memória | menos de 15 | 15 a 20 | mais de 20 | |
 
 Peso da sessão = o que carrega em toda conversa do contexto: `claude.md` da raiz + `claude.md` do
 contexto + `documento_mestre.md` + `aprendizados_do_dia.md` (+ `MEMORY.md`, se existir). Previsão:
-1 linha ≈ 15 tokens. Alvo: cerca de 600 linhas (uns 9 mil tokens).
+4 caracteres ≈ 1 token (medir pelo tamanho do texto, não pela contagem de linhas: linha longa engana).
+Alvo: cerca de 36 KB no total (uns 9 mil tokens).
 
 ### 7. Suas skills
 
