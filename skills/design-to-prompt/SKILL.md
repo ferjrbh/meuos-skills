@@ -7,7 +7,7 @@ description: |
   DESAMBIGUACAO: Se voce disser apenas "design" sem contexto, PERGUNTAR:
   "Qual tipo de design? 1) Converter referencia visual em prompt Lovable (design-to-prompt) 2) Interface/tela (interface-design) 3) Visual estatico/poster/certificado (canvas-design)"
 version: 1.1
-author: Fernando Lúcio — Aion Group
+author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
 ---
@@ -32,7 +32,7 @@ Gero DOIS entregáveis:
 
 ---
 
-> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
 
 ---
 

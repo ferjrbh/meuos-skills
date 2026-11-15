@@ -2,7 +2,7 @@
 name: market-launch
 description: "Gera playbook completo de lançamento de produto. Timeline, canais, copy e métricas — do pre-launch ao pós-lançamento."
 version: 1.1
-author: Fernando Lúcio — Aion Group
+author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
 ---
@@ -466,7 +466,7 @@ Generate a file called `LAUNCH-PLAYBOOK.md` with:
 
 ---
 
-> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
 
 ---
 

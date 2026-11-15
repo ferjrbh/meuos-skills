@@ -10,7 +10,7 @@ description: |
   "Qual formato? 1) Word .docx (docx) 2) PDF (pdf) 3) Planilha Excel (xlsx)"
 version: 1.3
 requisitos: "python-docx, pandoc (na VPS do OpenClaw, Ubuntu 24.04: sudo apt install -y --no-install-recommends python3-docx pandoc; o pip direto e bloqueado)"
-author: Fernando Lúcio — Aion Group
+author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
 ---
@@ -214,7 +214,7 @@ pdftoppm -png document.pdf output_prefix
 
 ---
 
-> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
 
 ---
 

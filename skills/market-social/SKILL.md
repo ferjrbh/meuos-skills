@@ -2,7 +2,7 @@
 name: market-social
 description: "Gera calendário completo de conteúdo para redes sociais. Posts, carrosséis e reels formatados por plataforma."
 version: 1.1
-author: Fernando Lúcio — Aion Group
+author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
 ---
@@ -437,7 +437,7 @@ Full calendar saved to: SOCIAL-CALENDAR.md
 
 ---
 
-> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
 
 ---
 

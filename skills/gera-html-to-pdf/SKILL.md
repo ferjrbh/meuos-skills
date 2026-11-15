@@ -1,5 +1,5 @@
 ---
-name: Gera HTML to PDF
+name: gera-html-to-pdf
 description: |
   Cria documentos longos em HTML que viram PDFs A4 perfeitos — propostas, lâminas,
   dossiês, relatórios, currículos, white papers. Resolve o problema clássico do PDF
@@ -15,7 +15,7 @@ version: 1.0
 context: meuos
 user-invocable: true
 argument-hint: "(sem argumentos — a skill entrevista o tipo de documento e gera)"
-author: Fernando Lúcio — Aion Group
+author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
 ---
@@ -357,4 +357,4 @@ Adapte detalhes (paleta, fonte, número de páginas) ao seu contexto.
 
 ---
 
-> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

@@ -1,5 +1,5 @@
 ---
-name: Criar Modelo de Apresentacao
+name: criar-modelo-apresentacao
 description: |
   Cria o modelo visual de apresentacao do usuario — um pacote completo com 35 layouts
   de slide (capa, indice, conteudo, fotos, graficos, chat, timeline, comparacao, pricing,
@@ -12,14 +12,14 @@ version: 1.6
 context: meuos
 user-invocable: true
 argument-hint: "(sem argumentos — a skill faz entrevista completa)"
-author: Fernando Lúcio — Aion Group
+author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
 ---
 
 ---
 
-## 🥇 REGRA DE OURO — HTML que vira PDF certo (novidade · 13-MAI-2026)
+## 🥇 REGRA DE OURO — HTML que vira PDF certo
 
 Se você (ou o agente) está gerando HTML que será impresso em PDF (Ctrl+P → Salvar como PDF), a regra abaixo é INQUEBRÁVEL:
 
@@ -1926,7 +1926,7 @@ LTDA" — voce NUNCA deve deixar esses textos no HTML final.
 
 ---
 
-> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
 
 ---
 

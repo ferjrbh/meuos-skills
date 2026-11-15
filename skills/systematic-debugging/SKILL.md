@@ -6,7 +6,7 @@ description: |
   voce disser "nao ta funcionando", "deu erro", "quebrou", "parou de funcionar".
   Tambem ativar quando uma correcao falhar — nunca tentar a mesma coisa duas vezes.
 version: 1.1
-author: Fernando Lúcio — Aion Group
+author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
 ---
@@ -82,7 +82,7 @@ TESTE: [como validar a hipotese sem alterar nada]
 
 ---
 
-> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
 
 ---
 

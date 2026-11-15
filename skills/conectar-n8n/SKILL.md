@@ -1,5 +1,5 @@
 ---
-name: Conectar n8n
+name: conectar-n8n
 description: |
   Permite ao seu agente (Claude ou ChatGPT) criar, editar, ativar e debugar workflows direto na sua
   instancia n8n via API REST. Sem MCP, sem npx — so curl. Funciona em qualquer ambiente com terminal
@@ -9,7 +9,7 @@ description: |
 version: 2.2
 context: meuos
 user-invocable: true
-author: Fernando Lúcio — Aion Group
+author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
 ---
@@ -245,7 +245,7 @@ Para detalhes profundos de patterns, configuracao de nodes, code nodes JS/Python
 
 ---
 
-> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
 
 ---
 

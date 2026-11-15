@@ -1,5 +1,5 @@
 ---
-name: Criar Apresentacao
+name: criar-apresentacao
 description: |
   Cria uma apresentacao completa (HTML navegavel ou arquivo PPTX) a partir de um modelo
   visual previamente criado pela skill "Criar Modelo de Apresentacao" + o conteudo que
@@ -11,14 +11,14 @@ version: 1.3
 context: meuos
 user-invocable: true
 argument-hint: "<tema ou briefing da apresentacao — opcional>"
-author: Fernando Lúcio — Aion Group
+author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
 ---
 
 ---
 
-## 🥇 REGRA DE OURO — HTML que vira PDF certo (novidade · 13-MAI-2026)
+## 🥇 REGRA DE OURO — HTML que vira PDF certo
 
 Se você (ou o agente) está gerando HTML que será impresso em PDF (Ctrl+P → Salvar como PDF), a regra abaixo é INQUEBRÁVEL:
 
@@ -538,4 +538,4 @@ slide especifico. Se o usuario pedir mudanca em 5+ slides, ai sim recomendar reg
 
 ---
 
-> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

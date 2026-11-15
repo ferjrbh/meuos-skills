@@ -6,7 +6,7 @@ description: |
   quando houver decisao arquitetural, ou quando existir mais de um caminho possivel.
   NAO invoque para tarefas simples como consultas, ajustes pontuais ou perguntas diretas.
 version: 1.1
-author: Fernando Lúcio — Aion Group
+author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
 ---
@@ -67,7 +67,7 @@ Se voce disser "vai com a recomendada" ou "manda ver", executar sem mais pergunt
 
 ---
 
-> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
 
 ---
 

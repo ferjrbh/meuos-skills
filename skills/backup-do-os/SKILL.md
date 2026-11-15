@@ -12,7 +12,7 @@ version: 1.2
 context: meuos
 user-invocable: true
 argument-hint: "(sem args — roda na pasta do OS aberta no agente)"
-author: Fernando Lúcio — Aion Group
+author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
 ---
@@ -98,3 +98,7 @@ registrar no painel — gere uma chave nova no app (Tools → Backup do OS)."
 - [ ] Reporte pro painel enviado, ou pulado em silencio se nao ha `.meuos/agent-key`
 
 Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feito" com item pendente.
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

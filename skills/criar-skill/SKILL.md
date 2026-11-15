@@ -1,5 +1,5 @@
 ---
-name: Criar Skill
+name: criar-skill
 description: |
   Cria uma skill nova para o seu agente a partir de uma tarefa que voce ja faz e quer padronizar —
   transforma o SEU jeito de fazer em um procedimento reutilizavel (SKILL.md) que o agente executa
@@ -15,7 +15,7 @@ version: 1.1
 context: meuos
 user-invocable: true
 argument-hint: "[tarefa ou nome da skill] (sem args = entrevista do zero)"
-author: Fernando Lúcio — Aion Group
+author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
 ---
@@ -100,7 +100,7 @@ Escreva (ou peca pro agente escrever) usando este esqueleto:
 
 ```markdown
 ---
-name: Nome da Skill
+name: nome-da-skill
 description: |
   O que ela faz + resultado final. Executa quando o usuario diz
   "frase real 1", "frase real 2", "frase real 3", "frase real 4", "frase real 5".
@@ -230,7 +230,7 @@ Toda vez que a skill errar ou o seu processo mudar:
 
 ---
 
-> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
 
 ---
 

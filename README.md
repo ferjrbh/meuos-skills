@@ -205,7 +205,7 @@ Uma skill é um único `SKILL.md` com frontmatter (metadados) + instruções em 
 
 ```markdown
 ---
-name: Minha Skill
+name: minha-skill
 description: O que ela faz e quando deve ser ativada — o Claude usa isto para decidir sozinho.
 ---
 

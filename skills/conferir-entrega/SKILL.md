@@ -1,5 +1,5 @@
 ---
-name: Conferir Entrega
+name: conferir-entrega
 description: |
   Verificacao rapida antes de declarar qualquer tarefa concluida. O agente ativa automaticamente
   ao perceber que algo foi concluido. Tambem roda quando o usuario diz "conferir entrega",
@@ -9,7 +9,7 @@ version: 1.3
 context: meuos
 user-invocable: true
 argument-hint: "[tipo da entrega] (opcional)"
-author: Fernando Lúcio — Aion Group
+author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
 ---
@@ -114,7 +114,7 @@ Proximo passo sugerido: [se houver]
 
 ---
 
-> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
 
 ---
 

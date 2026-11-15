@@ -1,5 +1,5 @@
 ---
-name: Importar dados do GPT
+name: importar-dados-gpt
 description: |
   Migra o CONHECIMENTO das suas conversas antigas do ChatGPT (e tambem Gemini e outros) para o
   seu OS no padrao MeuOS — destilando, nao despejando. Orienta a exportacao oficial dos dados
@@ -17,7 +17,7 @@ description: |
 version: 1.2
 context: meuos
 user-invocable: true
-author: Fernando Lúcio — Aion Group
+author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
 ---
@@ -193,7 +193,7 @@ Regras da destilação:
 
 ---
 
-> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
 
 ---
 

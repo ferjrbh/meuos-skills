@@ -1,11 +1,11 @@
 ---
-name: n8n Skills (Patterns, Code, Expressões)
+name: n8n-skills
 description: Compendio profundo pra desenhar workflows n8n. 8 patterns canonicos (incluindo sub-workflow, error workflow, batch+retry), node configuration, Code JS/Python, expressoes, respondToWebhook 3 modos.
 version: 3.1
 context: meuos
 category: n8n
 user-invocable: true
-author: Fernando Lúcio — Aion Group
+author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
 ---
@@ -325,7 +325,7 @@ Responde com JSON literal customizado (use expressoes pra montar).
 
 ---
 
-> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
 
 ---
 

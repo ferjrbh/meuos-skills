@@ -10,7 +10,7 @@ version: 1.0
 context: meuos
 user-invocable: true
 argument-hint: "[a pergunta de negócio]"
-author: Antonio Santos — Aion Group
+author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
 ---
@@ -81,4 +81,4 @@ Se algum item falhou: corrigir ANTES de declarar concluído. Nunca reportar "fei
 
 ---
 
-_Biblioteca oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)_
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

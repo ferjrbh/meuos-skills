@@ -11,7 +11,7 @@ description: >-
   marca pelo ponteiro no claude.md/index.md do OS (`{contexto}/marketing.md`; fallback `.agents/`). Orquestra
   growth-seo-audit, growth-site-arch, growth-schema, growth-ai-seo e valida com market-brand.
 version: 1.0
-author: Fernando Lúcio — Aion Group
+author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
 ---
@@ -343,4 +343,4 @@ provou valor na mão.
 
 ---
 
-_Biblioteca oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)_
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

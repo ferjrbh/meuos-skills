@@ -1,5 +1,5 @@
 ---
-name: Revisao Diaria
+name: fim-do-dia
 description: |
   Rotina de encerramento do dia de trabalho. Executa quando o usuario diz
   "revisao diaria", "fechar o dia", "encerrar", "fim do dia", "vamos fechar",
@@ -10,7 +10,7 @@ description: |
 version: 5.2
 context: meuos
 user-invocable: true
-author: Fernando Lúcio — Aion Group
+author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
 ---
@@ -230,9 +230,9 @@ Se algum limite for ultrapassado, apresentar tabela numerada ao usuario com os c
 ```
 | # | Entrada | Sugestao | Destino |
 |---|---------|----------|---------|
-| 1 | Incidente Fraude CNPJ (03/04) | Migrar | changelog.md |
-| 2 | API Asaas = so GET (regra permanente de UM tema) | Promover | satelite `CLIENTEA_asaas.md`, secao Regras vigentes (o mestre recebe so o ponteiro de 1 linha) |
-| 3 | Bug no envio de email (31/03) | Migrar | changelog.md |
+| 1 | Erro de cadastro duplicado (DD/MM) | Migrar | changelog.md |
+| 2 | API de pagamento = so leitura (regra permanente de UM tema) | Promover | satelite `CLIENTEA_pagamentos.md`, secao Regras vigentes (o mestre recebe so o ponteiro de 1 linha) |
+| 3 | Falha no envio de e-mail (DD/MM) | Migrar | changelog.md |
 | 4 | Padrao de prompt OpenAI (ativo) | Manter | aprendizados_do_dia.md |
 ```
 
@@ -487,7 +487,7 @@ Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feit
 
 ---
 
-> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
 
 ## Regra dual-agent (obrigatória)
 Este OS tem DOIS arquivos de entrada equivalentes: `claude.md` (Claude) e `AGENTS.md` (ChatGPT/Codex) — na raiz e em cada contexto. **Se esta skill editar um arquivo de entrada, espelhe a mesma mudança na entrada irmã da mesma pasta** (se ela existir). Nunca deixe as duas divergirem. Conteúdo-regra vivo pertence ao `soul.md`/`documento_mestre.md` — as entradas são finas.

@@ -1,8 +1,8 @@
 ---
-name: Lovable Prompt Master
+name: lovable-prompt-master
 description: Cria prompts otimizados para o Lovable baseados nas melhores práticas oficiais. Invoque ela sempre que eu pedir para "criar prompt pro Lovable", "como pedir pro Lovable fazer X", ou quando for construir/modificar qualquer feature nos projetos via lovable
 version: 1.1
-author: Fernando Lúcio — Aion Group
+author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
 ---
@@ -53,7 +53,7 @@ Use Tailwind CSS. Exporte como componente React reutilizável."
 
 ---
 
-> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
 
 ---
 

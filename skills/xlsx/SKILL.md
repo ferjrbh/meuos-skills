@@ -10,7 +10,7 @@ description: |
   NAO ativar com 'DRE' sozinho (DRE pode ser uma tela de dashboard no seu app, nao necessariamente uma planilha).
 version: 1.4
 requisitos: "pandas, openpyxl (na VPS do OpenClaw, Ubuntu 24.04: sudo apt install -y --no-install-recommends python3-pandas python3-openpyxl; o scripts/recalc.py citado abaixo nao vem no catalogo)"
-author: Fernando Lúcio — Aion Group
+author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
 ---
@@ -162,7 +162,7 @@ wb.save('modified.xlsx')
 
 ---
 
-> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
 
 ---
 

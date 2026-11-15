@@ -1,5 +1,5 @@
 ---
-name: n8n AI Agents & RAG
+name: n8n-ai-rag
 description: Skill especializada pra construir agentes IA e workflows RAG no n8n.
 version: 1.2
 context: meuos
@@ -15,7 +15,7 @@ triggers:
   - memory multi-turno
   - output parser n8n
   - mcp client n8n
-author: Fernando Lúcio — Aion Group
+author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
 ---
@@ -233,7 +233,7 @@ Todos no repo `enescingoz/awesome-n8n-templates` (CC-BY 4.0):
 
 ---
 
-> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
 
 ---
 

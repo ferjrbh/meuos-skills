@@ -1,5 +1,5 @@
 ---
-name: Avaliar Skill
+name: avaliar-skill
 description: |
   Avalia a qualidade e os riscos de uma skill pronta (sua, de um colega ou baixada da internet)
   ANTES de instalar ou publicar: conduz uma auditoria de leitura em 3 blocos (qualidade em
@@ -15,7 +15,7 @@ version: 1.1
 context: meuos
 user-invocable: true
 argument-hint: "[caminho da pasta da skill, ou cole o SKILL.md na conversa]"
-author: Fernando Lúcio — Aion Group
+author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
 ---
@@ -211,7 +211,7 @@ do placar, da lista de consertos e do detalhe por criterio.
 
 ---
 
-> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
 
 ---
 

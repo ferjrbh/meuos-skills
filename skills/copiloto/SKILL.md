@@ -12,7 +12,7 @@ context: fork
 agent: general-purpose
 user-invocable: true
 argument-hint: "[pergunta] | revisar [arquivo] [pasta das bases]"
-author: Antonio Santos — Aion Group
+author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
 ---
@@ -130,4 +130,4 @@ Se algum item falhou: corrigir ANTES de entregar. Nunca entregar laudo com item 
 
 ---
 
-_Biblioteca oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)_
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

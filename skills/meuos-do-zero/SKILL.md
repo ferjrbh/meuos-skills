@@ -1,5 +1,5 @@
 ---
-name: MeuOS do Zero
+name: meuos-do-zero
 description: |
   Monta, conserta e organiza o seu OS pessoal do ZERO — pra quem esta chegando ao modelo MeuOS,
   reconectou uma pasta fora do padrao, ou instalou as skills/arquivos errado. Roda na pasta atual
@@ -17,7 +17,7 @@ description: |
 version: 1.2
 context: meuos
 user-invocable: true
-author: Fernando Lúcio — Aion Group
+author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
 ---
@@ -48,7 +48,7 @@ templates oficiais do MeuOS.
 
 ---
 
-## Modelo canonico do MeuOS (o alvo) — DUAL desde 18-JUL-2026
+## Modelo canonico do MeuOS (o alvo)
 
 O MeuOS fala **dois cerebros**: Claude e ChatGPT. Cada agente le uma porta de entrada diferente,
 mas as REGRAS moram num lugar so — as entradas sao finas e nunca divergem.
@@ -315,4 +315,4 @@ Se algum item falhou: corrigir ANTES de declarar concluido. Nunca reportar "feit
 
 ---
 
-> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

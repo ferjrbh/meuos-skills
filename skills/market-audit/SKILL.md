@@ -390,3 +390,7 @@ Full report saved to: MARKETING-AUDIT.md
 - [ ] Nothing was published or changed on live properties; the deliverable is the report/copy only
 
 If any item failed: fix it BEFORE declaring done. Never report "done" while an item is pending.
+
+---
+
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)

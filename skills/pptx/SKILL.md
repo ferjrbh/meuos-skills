@@ -6,7 +6,7 @@ description: |
   DESAMBIGUACAO: Se voce disser 'slides', 'apresentacao', 'PPT', 'montar slides' sem especificar formato, PERGUNTAR:
   "Qual formato? 1) HTML navegavel (apresentacao interativa via navegador) 2) Arquivo .pptx real para download/envio (pptx)"
 version: 1.3
-author: Fernando Lúcio — Aion Group
+author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
 ---
@@ -223,7 +223,7 @@ pdftoppm -png presentation.pdf slide
 
 ---
 
-> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
 
 ---
 

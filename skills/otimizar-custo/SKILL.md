@@ -18,7 +18,7 @@ context: meuos
 user-invocable: true
 argument-hint: "(sem argumentos — roda na pasta do seu Claude Code atual)"
 version: 2.5
-author: Fernando Lúcio — Aion Group
+author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
 ---
@@ -388,7 +388,7 @@ e barato de operar.
 
 ---
 
-> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio — Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
 
 ## Regra dual-agent (obrigatória)
 Esta skill é EXCLUSIVA do Claude Code (depende do `MEMORY.md`, que não existe no ChatGPT/Codex) — se o agente atual não for Claude Code, avise e pare. Exceção espelhável: se a skill enxugar o `claude.md` do OS, **espelhe a mesma mudança no `AGENTS.md` da mesma pasta** (se existir).
