@@ -3,7 +3,7 @@
 > Skills oficiais do **MeuOS** para o seu Claude Code: organize seu OS pessoal, crie conteúdo,
 > faça growth, automação e produtividade — cada uma pronta para instalar em segundos.
 
-[![skills](https://img.shields.io/badge/skills-72-D95C1A?style=flat-square)](https://www.meuos.com.br)
+[![skills](https://img.shields.io/badge/skills-75-D95C1A?style=flat-square)](https://www.meuos.com.br)
 [![feito para](https://img.shields.io/badge/feito_para-Claude_Code-1A2B4A?style=flat-square)](https://claude.com/claude-code)
 [![MeuOS](https://img.shields.io/badge/MeuOS-meuos.com.br-D95C1A?style=flat-square)](https://www.meuos.com.br)
 
@@ -175,6 +175,14 @@ Os ritos essenciais do MeuOS. Comece pela **MeuOS do Zero**.
 | **[Painel de Indicadores](skills/painel-de-indicadores/SKILL.md)** | Planilha vira painel visual com a sua marca, cada número com a conta mostrada | *"monta um painel"*, *"dashboard da planilha"* |
 
 > O **Copiloto** tem 6 arquivos (instruções, catálogo, modelo de laudo e 3 scripts). Se você instalar só o `SKILL.md`, ele baixa o resto sozinho na primeira vez que rodar. Funciona sem Python: no Windows, faz as contas no PowerShell.
+
+### 🧹 AI Slop: sobreviver à porcaria bem escrita (3)
+
+| Skill | O que faz | Gatilhos |
+|---|---|---|
+| **[Filtro AI Slop](skills/filtro-ai-slop/SKILL.md)** | Antes de enviar: 7 perguntas e 4 testes, frases que você não sustentaria e semáforo verde, amarelo ou vermelho | *"passa no filtro"*, *"isso está pronto para mandar?"* |
+| **[Triagem do que Chega](skills/triagem-do-que-chega/SKILL.md)** | Para quem recebe: o que pedem de você, fatos com fonte, o que falta e a devolução educada ao autor, sem reescrever o documento dele | *"triagem disso"*, *"o que esse documento quer de mim?"* |
+| **[Política de Escrita com IA](skills/politica-de-escrita-com-ia/SKILL.md)** | Entrevista de 6 perguntas que monta a política da sua empresa em 1 página, com mensagem de lançamento e plano de 30 dias | *"criar política de IA da empresa"*, *"como evitar workslop no meu time"* |
 
 ### 🔌 n8n (3)
 
