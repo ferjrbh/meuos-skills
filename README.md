@@ -3,7 +3,7 @@
 > Skills oficiais do **MeuOS** para o seu Claude Code: organize seu OS pessoal, crie conteúdo,
 > faça growth, automação e produtividade — cada uma pronta para instalar em segundos.
 
-[![skills](https://img.shields.io/badge/skills-75-D95C1A?style=flat-square)](https://www.meuos.com.br)
+[![skills](https://img.shields.io/badge/skills-87-D95C1A?style=flat-square)](https://www.meuos.com.br)
 [![feito para](https://img.shields.io/badge/feito_para-Claude_Code-1A2B4A?style=flat-square)](https://claude.com/claude-code)
 [![MeuOS](https://img.shields.io/badge/MeuOS-meuos.com.br-D95C1A?style=flat-square)](https://www.meuos.com.br)
 
@@ -183,6 +183,24 @@ Os ritos essenciais do MeuOS. Comece pela **MeuOS do Zero**.
 | **[Filtro AI Slop](skills/filtro-ai-slop/SKILL.md)** | Antes de enviar: 7 perguntas e 4 testes, frases que você não sustentaria e semáforo verde, amarelo ou vermelho | *"passa no filtro"*, *"isso está pronto para mandar?"* |
 | **[Triagem do que Chega](skills/triagem-do-que-chega/SKILL.md)** | Para quem recebe: o que pedem de você, fatos com fonte, o que falta e a devolução educada ao autor, sem reescrever o documento dele | *"triagem disso"*, *"o que esse documento quer de mim?"* |
 | **[Política de Escrita com IA](skills/politica-de-escrita-com-ia/SKILL.md)** | Entrevista de 6 perguntas que monta a política da sua empresa em 1 página, com mensagem de lançamento e plano de 30 dias | *"criar política de IA da empresa"*, *"como evitar workslop no meu time"* |
+
+### 🧭 Consultivo: do operacional ao consultivo (12)
+Para o negócio que quer deixar de vender só execução e passar a vender orientação. As 3 marcadas com 🧾 deixam a decisão final com o contador ou o advogado.
+
+| Skill | O que faz | Gatilhos |
+|---|---|---|
+| **[Diagnóstico e Proposta Consultiva](skills/diagnostico-e-proposta-consultiva/SKILL.md)** | Lê os números do cliente, aponta as 3 oportunidades que mais pesam e monta a proposta de assessoria | *"faz o diagnóstico desse cliente"*, *"monta uma proposta consultiva"* |
+| **[Precificação e Reajuste](skills/precificacao-e-reajuste/SKILL.md)** | Margem por cliente, quem dá prejuízo, preço sugerido e a carta de reajuste | *"quais clientes dão prejuízo"*, *"escreve a carta de reajuste"* |
+| **[Roteiro da Reunião com o Cliente](skills/roteiro-da-reuniao-com-o-cliente/SKILL.md)** | Pauta, os 5 números do período, 3 perguntas e o resumo com combinados | *"prepara a reunião com o cliente"*, *"pauta da reunião mensal"* |
+| **[Conteúdo de Autoridade](skills/conteudo-de-autoridade/SKILL.md)** | Uma mudança do mercado vira artigo, post e comunicado à carteira, com fonte oficial | *"transforma isso em conteúdo"*, *"comunicado para os clientes"* |
+| **[Onboarding do Cliente Premium](skills/onboarding-do-cliente-premium/SKILL.md)** | Checklist de entrada, diagnóstico inicial, plano de 90 dias e boas-vindas | *"fechei um cliente novo"*, *"plano dos primeiros 90 dias"* |
+| **[Relatório Gerencial Comentado](skills/relatorio-gerencial-comentado/SKILL.md)** | Dois períodos de resultado viram uma página em linguagem de dono | *"me explica esse DRE"*, *"relatório do mês para o dono"* |
+| **[Relatório de Achados](skills/relatorio-de-achados/SKILL.md)** | Achados de qualquer revisão com evidência, risco, recomendação e plano de ação | *"organiza esses achados"*, *"relatório da auditoria"* |
+| **[Proposta de Projeto](skills/proposta-de-projeto/SKILL.md)** | Escopo com o que fica de fora, cronograma e preço pelas horas, com a conta aberta | *"monta uma proposta de projeto"*, *"quanto cobro por esse projeto"* |
+| **[Due Diligence Simplificada](skills/due-diligence-simplificada/SKILL.md)** 🧾 | Checagem antes de comprar, vender ou receber sócio: documentos, semáforo por área e o que negociar | *"vou comprar uma empresa"*, *"vai entrar um sócio"* |
+| **[Impacto da Reforma Tributária](skills/impacto-da-reforma-tributaria/SKILL.md)** 🧾 | Ficha do impacto do IBS e da CBS na empresa, com fonte oficial e perguntas para o contador | *"como a reforma afeta minha empresa"* |
+| **[Planejamento Tributário Comparativo](skills/planejamento-tributario-comparativo/SKILL.md)** 🧾 | Quadro dos regimes possíveis com os números da empresa, para a decisão com o contador | *"qual o melhor regime para minha empresa"* |
+| **[Proposta de BPO Financeiro](skills/proposta-de-bpo-financeiro/SKILL.md)** | Para escritório contábil: pacote, horas, preço e responsabilidades do BPO financeiro | *"proposta de BPO financeiro"* |
 
 ### 🔌 n8n (3)
 
