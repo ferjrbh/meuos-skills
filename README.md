@@ -3,7 +3,7 @@
 > Skills oficiais do **MeuOS** para o seu Claude Code: organize seu OS pessoal, crie conteúdo,
 > faça growth, automação e produtividade — cada uma pronta para instalar em segundos.
 
-[![skills](https://img.shields.io/badge/skills-87-D95C1A?style=flat-square)](https://www.meuos.com.br)
+[![skills](https://img.shields.io/badge/skills-90-D95C1A?style=flat-square)](https://www.meuos.com.br)
 [![feito para](https://img.shields.io/badge/feito_para-Claude_Code-1A2B4A?style=flat-square)](https://claude.com/claude-code)
 [![MeuOS](https://img.shields.io/badge/MeuOS-meuos.com.br-D95C1A?style=flat-square)](https://www.meuos.com.br)
 
@@ -201,6 +201,15 @@ Para o negócio que quer deixar de vender só execução e passar a vender orien
 | **[Impacto da Reforma Tributária](skills/impacto-da-reforma-tributaria/SKILL.md)** 🧾 | Ficha do impacto do IBS e da CBS na empresa, com fonte oficial e perguntas para o contador | *"como a reforma afeta minha empresa"* |
 | **[Planejamento Tributário Comparativo](skills/planejamento-tributario-comparativo/SKILL.md)** 🧾 | Quadro dos regimes possíveis com os números da empresa, para a decisão com o contador | *"qual o melhor regime para minha empresa"* |
 | **[Proposta de BPO Financeiro](skills/proposta-de-bpo-financeiro/SKILL.md)** | Para escritório contábil: pacote, horas, preço e responsabilidades do BPO financeiro | *"proposta de BPO financeiro"* |
+
+### 🥾 Método TRILHA: tarefas longas com IA (3)
+Para o trabalho que não cabe num prompt só. A primeira serve para qualquer projeto; as duas seguintes usam o método para criar e publicar um site.
+
+| Skill | O que faz | Gatilhos |
+|---|---|---|
+| **[MeuOS TRILHA](skills/meuos-trilha/SKILL.md)** | Conduz qualquer tarefa longa pelos 6 marcos: critérios de pronto, regras, etapas, livro de bordo, prova e aprovação nos pontos de risco | *"método trilha"*, *"me guia nesse projeto"*, *"retomar de onde paramos"* |
+| **[Site TRILHA: preparar](skills/trilha-site-preparar/SKILL.md)** | Entrevista uma pergunta por vez, pede o material e cataloga tudo até o briefing aprovado | *"quero criar meu site pelo Método TRILHA"*, *"me entrevista para o site"* |
+| **[Site TRILHA: construir e publicar](skills/trilha-site-publicar/SKILL.md)** | Constrói por blocos testados e guia pelo GitHub (privado) e pela Vercel até o site no ar | *"constrói o site"*, *"publica o site"* |
 
 ### 🔌 n8n (3)
 
