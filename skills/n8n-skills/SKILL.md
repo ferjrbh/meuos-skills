@@ -1,7 +1,7 @@
 ---
 name: n8n-skills
 description: Compendio profundo pra desenhar workflows n8n. 8 patterns canonicos (incluindo sub-workflow, error workflow, batch+retry), node configuration, Code JS/Python, expressoes, respondToWebhook 3 modos.
-version: 3.1
+version: 3.2
 context: meuos
 category: n8n
 user-invocable: true
@@ -28,6 +28,7 @@ Compendio profundo de design pra n8n. Use junto com `Conectar n8n` (operacional 
 ### A. Webhook processing
 Trigger: webhook recebe HTTP. Fluxo: Webhook -> Validate -> Transform -> Respond ou Notify async.
 **Gotcha critico**: dados em `$json.body`, nao no root.
+**Seguranca**: webhook em producao sempre com senha. No node Webhook, Authentication = **Header Auth** (credencial com nome e valor do cabecalho); quem chama manda o cabecalho. Webhook aberto e porta de entrada para robo de varredura.
 
 ### B. HTTP API integration
 Trigger: schedule ou manual. Fluxo: HTTP Request -> Transform -> Action -> Error Handler. Auth SEMPRE em "Credentials". Paginacao precisa de plano (cursor ou pagination automatica).
@@ -190,39 +191,42 @@ return [{ json: state }]
 
 ---
 
-## 4) Code node — Python
+## 4) Code node — Python (nativo, n8n 2.x)
 
-### Sintaxe (prefixo `_` em vez de `$`)
+Desde o n8n 2.0 o Python do Code node roda **nativo** (task runner). O Python antigo (Pyodide, "Python (Beta)") foi removido, e com ele `_input`, `_json`, `_node`, `_now`, `_today` e `_jmespath`: codigo antigo copiado de template ou forum da `NameError`.
+
+### So duas variaveis
 ```python
-_input.all()                          # todos
-_input.first()                        # primeiro
-_input.item                           # Each Item mode
-_node["NodeName"].first()["json"]     # outro node
-_json.get("body", {})                 # webhook
+# modo "Run Once for All Items" (padrao): _items = lista de {"json": {...}}
+return [
+    {"json": {"nome": it["json"].get("nome", ""), "valor": it["json"].get("valor", 0)}}
+    for it in _items
+    if it["json"].get("ativo")
+]
 ```
-
-### Standard library disponivel
-`json`, `datetime`, `re`, `base64`, `hashlib`, `urllib.parse`, `math`, `random`, `statistics`. Helpers: `_now`, `_today`, `_jmespath()`.
-
-### NAO disponivel
-- Pacotes externos (requests, pandas, numpy, bs4)
-- `_helpers.httpRequest()` — use HTTP Request node
-- Luxon — use datetime standard
-
-### Formato de retorno
 ```python
-return [{"json": {"field": value}}]   # list de dicts com wrapper json
+# modo "Run Once for Each Item": _item = um {"json": {...}}
+row = _item["json"]
+email = row.get("body", {}).get("email", "")   # webhook: dados em "body"
+return {"json": {**row, "email": email}}
 ```
+- `_items` so existe no modo todos-os-itens; `_item` so no modo um-por-vez. Trocar da `NameError`.
+- **So colchetes**: `it["json"]["nome"]` ou `.get("nome")`. `it.json.nome` da erro.
+- **Nao ha acesso a outro node** (nada de `_node`): traga o dado com um Merge antes, ou use JavaScript.
+
+### Imports
+- Por padrao **nenhum import** funciona (nem `json`, `datetime` ou `re`). No n8n Cloud nao ha como liberar; no self-hosted, so com a lista de modulos liberados na configuracao do task runner.
+- Sem helpers do n8n: nada de HTTP, Luxon ou `$jmespath` no Python.
 
 ### Quando usar Python
-Regex/string/matematica simples — Python e tao bom. HTTP request / lib externa / integracao mais profunda — JavaScript e melhor.
+So quando o usuario pedir. JavaScript e o padrao do Code node e tem todos os helpers. Antes de escrever codigo, veja se uma expressao, o Edit Fields ou um node nativo (Date & Time, Crypto, HTML) resolve.
 
 ### Gotcha critico
 ```python
 # seguro
-email = _json.get("body", {}).get("email", "")
+email = _item["json"].get("body", {}).get("email", "")
 # quebra se faltar
-email = _json["body"]["email"]
+email = _item["json"]["body"]["email"]
 ```
 
 ---

@@ -6,7 +6,7 @@ description: |
   (Claude Code CLI/Desktop, VSCode, Cursor, app ChatGPT em modo Codex).
   Ativa quando o usuario diz "conectar n8n", "liste meus workflows n8n", "crie um workflow no n8n",
   "ative o workflow X", "leia os logs do workflow X", "debug do meu workflow", "paginar execucoes n8n".
-version: 2.2
+version: 2.3
 context: meuos
 user-invocable: true
 author: Fernando Lúcio · Aion Group
@@ -73,6 +73,13 @@ curl -s -X POST "$URL/api/v1/workflows" \
 ```
 
 ### Atualizar workflow (PUT, nao PATCH)
+
+Antes de TODO PUT, salve o estado atual em arquivo. E o seu jeito de voltar atras se a alteracao estragar o fluxo:
+
+```bash
+curl -s "$URL/api/v1/workflows/$WF_ID" -H "X-N8N-API-KEY: $KEY" > backup-$WF_ID-$(date +%Y%m%d-%H%M).json
+# voltar atras = PUT com name, nodes, connections e settings desse arquivo
+```
 
 ```bash
 curl -s -X PUT "$URL/api/v1/workflows/$WF_ID" \
