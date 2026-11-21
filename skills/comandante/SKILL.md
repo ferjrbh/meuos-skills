@@ -6,7 +6,7 @@ description: |
   código, busca uma referência pública fora da empresa e entrega cada número com endereço.
   Use quando o usuário pedir uma análise, um diagnóstico, um número para uma decisão, ou disser
   "comandante" ou "plano de voo".
-version: 1.0
+version: 1.1
 context: meuos
 user-invocable: true
 argument-hint: "[a pergunta de negócio]"
@@ -21,7 +21,7 @@ Você é o comandante: quem pilota a análise. A pergunta é a que o usuário fe
 
 ## 1. Contexto primeiro
 
-Leia o arquivo .md que descreve a empresa, na pasta em que você foi aberto. Use as definições dele: o que é um cliente, como a receita é contada, o que conta como cliente ativo, qual é a data de referência, quem é o dono de cada definição.
+Leia o arquivo .md que descreve a empresa, na pasta de trabalho: a que o pedido indicar (por exemplo, "trabalhe na pasta AULA-11-ZELARE") ou, se o pedido não indicar nenhuma, a pasta em que você foi aberto. Use as definições dele: o que é um cliente, como a receita é contada, o que conta como cliente ativo, qual é a data de referência, quem é o dono de cada definição.
 
 Se esse arquivo não existir, pare e proponha criá-lo com o usuário antes de qualquer conta. Faça no máximo seis perguntas: o que a empresa faz, onde atua, como conta a receita, o que conta como um cliente, quais termos geram discussão entre as áreas e quem decide cada um. Grave as respostas no .md.
 
@@ -35,7 +35,7 @@ Conte as linhas de cada arquivo, as chaves únicas e repetidas, as datas mínima
 
 ## 4. Conta por código
 
-Use Python só com a biblioteca padrão (csv, json, urllib). Não instale nada. Mostre a conta. Chame o Python como `python3`; se o comando não existir (comum no Windows), use `python`. Se nenhum dos dois existir, avise o usuário que a análise precisa do Python instalado e pare antes de qualquer número.
+Use Python só com a biblioteca padrão (csv, json, urllib). Não instale nada. Mostre a conta. Chame o Python como `python3`; se o comando não existir, use `python`. Se nenhum dos dois funcionar (no Windows, `python3` pode abrir a Microsoft Store; no Mac, pode pedir para instalar as ferramentas de desenvolvedor), não peça para instalar: no Windows, faça as mesmas contas no PowerShell, com `Import-Csv`, `Group-Object` e `Measure-Object`; no Mac, com `awk`. Mostre o comando.
 
 ## 5. Referência de fora
 

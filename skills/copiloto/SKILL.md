@@ -7,7 +7,7 @@ description: |
   página) antes de ela sair e dá o laudo: não sai, sai com correção ou pode sair. Use quando o usuário disser
   "copiloto", "cross check", "confere esse número", "revisa os números", "acha os erros", "audita essa análise",
   "posso mandar isso?", ou antes de uma peça com números ir para diretoria, conselho ou cliente.
-version: 1.2
+version: 1.3
 context: fork
 agent: general-purpose
 user-invocable: true
@@ -40,7 +40,7 @@ Se o pedido começa com "revisar", é o **modo peça**: o resto do pedido é o a
 ## Regras de cabine, nos dois modos
 
 1. **Todo número tem endereço:** arquivo, coluna, filtro e conta, ou fonte pública e data em que foi baixada. Sem endereço, o número fica fora do laudo.
-2. **Conta por código**, em Python. Prefira a biblioteca padrão; o `perfil_base.py` já lê Excel. Não instale nada. Se o Python não estiver no computador (no Windows, `python3` pode abrir a Microsoft Store ou responder que não foi encontrado), não peça para instalar: faça as mesmas contas no PowerShell, com `Import-Csv`, `Group-Object` e `Measure-Object`, e mostre o comando. Sem Python, os scripts desta skill ficam de fora: faça à mão o que eles fazem (contar linhas, procurar chave repetida, conferir se as parcelas fecham o total).
+2. **Conta por código**, em Python. Prefira a biblioteca padrão; o `perfil_base.py` já lê Excel. Não instale nada. Se o Python não estiver no computador (no Windows, `python3` pode abrir a Microsoft Store ou responder que não foi encontrado; no Mac, pode pedir para instalar as ferramentas de desenvolvedor), não peça para instalar: no Windows, faça as mesmas contas no PowerShell, com `Import-Csv`, `Group-Object` e `Measure-Object`; no Mac, com `awk`. Mostre o comando. Sem Python, os scripts desta skill ficam de fora: faça à mão o que eles fazem (contar linhas, procurar chave repetida, conferir se as parcelas fecham o total).
 3. **Defina antes de olhar.** Escreva a definição do que vai medir, a partir do contexto, antes de ver o número da peça ou do comandante.
 4. **Só é erro o que você reproduz.** Mostre a conta que gera o número da peça e a que gera o número certo. O que você não consegue reproduzir entra como dúvida.
 5. **Diferença é diferença.** Números que diferem na primeira casa decimal de uma porcentagem são números diferentes: mostre a ponte.
