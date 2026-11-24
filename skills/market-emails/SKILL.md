@@ -1,10 +1,9 @@
 ---
 name: market-emails
 description: "Gera sequência de emails (nurturing, lançamento, venda). Assunto, preview e corpo com frameworks de copywriting validados."
-version: 1.1
-author: Fernando Lúcio · Aion Group
-homepage: https://www.meuos.com.br
-instagram: https://instagram.com/fernandolucio.ia
+version: 1.2
+author: Zubair Trabzada (ai-marketing-claude, MIT)
+homepage: https://github.com/zubair-trabzada/ai-marketing-claude
 ---
 
 # Email Sequence Generation
@@ -424,7 +423,7 @@ Full sequences saved to: EMAIL-SEQUENCES.md
 
 ---
 
-> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)
+> Baseada em [ai-marketing-claude](https://github.com/zubair-trabzada/ai-marketing-claude) · Copyright (c) 2026 Zubair Trabzada · Licença MIT · adaptada e distribuída pelo **MeuOS** ([www.meuos.com.br](https://www.meuos.com.br))
 
 ---
 

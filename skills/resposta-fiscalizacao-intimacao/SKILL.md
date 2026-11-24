@@ -1,7 +1,7 @@
 ---
 name: resposta-fiscalizacao-intimacao
 description: "Prepara a resposta a fiscalizações e cobranças federais (e, no que couber, estaduais e municipais) — termo de intimação fiscal (prazo fixado no termo, em geral 20 dias), auto de infração (impugnação em 30 dias à DRJ — art. 15 do Decreto nº 70.235/1972), despacho decisório de PER/DCOMP (manifestação de inconformidade em 30 dias — art. 74 da Lei nº 9.430/1996), recurso voluntário ao CARF (30 dias). Levanta decadência (arts. 150, § 4º, e 173 do CTN), prescrição (art. 174 do CTN), denúncia espontânea (art. 138 do CTN, Súmula 360 do STJ) e a multa qualificada atual (100%, ou 150% na reincidência — Lei nº 14.689/2023). Acionar quando o usuário disser \"intimação\", \"termo de intimação\", \"TIF\", \"auto de infração\", \"impugnação\", \"despacho decisório\", \"manifestação de inconformidade\", \"fiscalização\", \"CARF\", \"prorrogar prazo\"."
-version: 1.0
+version: 1.1
 author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
@@ -30,7 +30,7 @@ Decifra o documento recebido do fisco (tipo, tributo, período, valor, fundament
 - Não transmitir, enviar nem pagar nada: a skill prepara, e o contador confere e transmite.
 - Não executar scripts baixados sem que o usuário veja o que fazem.
 - Entregar ao fisco só o que foi pedido (escopo do termo); documentos com dados de terceiros (empregados, clientes) vão com o mínimo necessário.
-- Defesa na esfera administrativa pode ser assinada pelo contribuinte ou procurador. Ação judicial (mandado de segurança, anulatória, embargos) exige advogado: Marcia não tem inscrição na OAB, então encaminhar a advogado parceiro.
+- Defesa na esfera administrativa pode ser assinada pelo contribuinte ou procurador. Ação judicial (mandado de segurança, anulatória, embargos) exige advogado: encaminhar a um advogado.
 
 ## Passo a passo (instruções para o agente de IA)
 

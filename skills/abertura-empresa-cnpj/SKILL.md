@@ -1,7 +1,7 @@
 ---
 name: abertura-empresa-cnpj
 description: "Conduz a abertura de empresa pela REDESIM (Lei nº 11.598/2007, com as simplificações da Lei nº 14.195/2021) — consulta de viabilidade (nome e endereço × CNAE), DBE, contrato social com as cláusulas do art. 997 do Código Civil, registro na Junta Comercial ou no Cartório, inscrições estadual e municipal, licenças e opção de regime tributário (Simples Nacional na abertura: pedido feito junto com a inscrição no CNPJ, pelo Portal Redesim, com efeito desde a inscrição — Resolução CGSN nº 183/2025; Presumido ou Real com o primeiro pagamento). Acionar quando o usuário disser \"abrir empresa\", \"abrir CNPJ\", \"nova empresa\", \"segunda empresa\", \"REDESIM\", \"NIRE\", \"DBE\", \"contrato social\", \"SLU\", \"LTDA\", \"MEI, ME ou EPP\". Entrega: checklist completo, cronograma de 5 a 15 dias, roteiro da minuta de contrato social e encaminhamento do plano de contas."
-version: 1.0
+version: 1.1
 author: Fernando Lúcio · Aion Group
 homepage: https://www.meuos.com.br
 instagram: https://instagram.com/fernandolucio.ia
@@ -109,7 +109,7 @@ VIII Se os sócios respondem, ou não, subsidiariamente pelas obrigações socia
 ```
 Na LTDA, incluir também: cláusula de administração (sócio ou não sócio), regras de cessão de quotas (art. 1.057 do CC), deliberações e quórum (arts. 1.071 a 1.076 do CC) e, se houver, regência supletiva pela Lei nº 6.404/1976 (art. 1.053, parágrafo único, do CC).
 
-**Visto de advogado:** exigido nos atos constitutivos de pessoas jurídicas em geral (art. 1º, § 2º, da Lei nº 8.906/1994 — Estatuto da OAB), mas **dispensado para ME e EPP**: o art. 9º, § 2º, da Lei Complementar nº 123/2006 afasta expressamente o § 2º do art. 1º da Lei nº 8.906/1994 para essas empresas. **Regra de uso:** antes de montar o checklist, PERGUNTAR ao contador "A empresa será ME ou EPP e posso dispensar o visto de advogado? (sim/não)"; sem a confirmação, manter o visto no checklist. Marcia não tem inscrição na OAB: quando o visto for exigido, encaminhar a advogado parceiro.
+**Visto de advogado:** exigido nos atos constitutivos de pessoas jurídicas em geral (art. 1º, § 2º, da Lei nº 8.906/1994 — Estatuto da OAB), mas **dispensado para ME e EPP**: o art. 9º, § 2º, da Lei Complementar nº 123/2006 afasta expressamente o § 2º do art. 1º da Lei nº 8.906/1994 para essas empresas. **Regra de uso:** antes de montar o checklist, PERGUNTAR ao contador "A empresa será ME ou EPP e posso dispensar o visto de advogado? (sim/não)"; sem a confirmação, manter o visto no checklist. Quando o visto for exigido, encaminhar a um advogado.
 
 ### 6. Opção tributária — prazos
 ```

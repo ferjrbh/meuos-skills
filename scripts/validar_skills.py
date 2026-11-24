@@ -8,6 +8,11 @@ RAIZ = pathlib.Path(__file__).resolve().parent.parent
 AUTOR = "Fernando Lúcio · Aion Group"
 RODAPE = ("> Skill oficial do **MeuOS** · [www.meuos.com.br](https://www.meuos.com.br) · "
           "Fernando Lúcio · Aion Group · [@fernandolucio.ia](https://instagram.com/fernandolucio.ia)")
+# Skills de terceiros: autor e rodape da origem (licenca em THIRD_PARTY_NOTICES.md).
+TERCEIROS = {
+    "Zubair Trabzada (ai-marketing-claude, MIT)": ("> Baseada em [ai-marketing-claude](https://github.com/zubair-trabzada/ai-marketing-claude) · "
+        "Copyright (c) 2026 Zubair Trabzada · Licença MIT · adaptada e distribuída pelo **MeuOS** ([www.meuos.com.br](https://www.meuos.com.br))"),
+}
 NOME_OK = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 
 erros = []
@@ -35,10 +40,12 @@ for pasta in pastas:
         erros.append(f"{pasta.name}: description vazia")
     if fm.get("version") in (None, ""):
         erros.append(f"{pasta.name}: falta version")
-    if fm.get("author") != AUTOR:
-        erros.append(f"{pasta.name}: author fora do padrao ('{fm.get('author')}')")
-    if texto.count(RODAPE) != 1:
-        erros.append(f"{pasta.name}: rodape oficial aparece {texto.count(RODAPE)}x (esperado 1)")
+    autor = fm.get("author")
+    if autor != AUTOR and autor not in TERCEIROS:
+        erros.append(f"{pasta.name}: author fora do padrao ('{autor}')")
+    rodape = TERCEIROS.get(autor, RODAPE)
+    if texto.count(rodape) != 1:
+        erros.append(f"{pasta.name}: rodape esperado aparece {texto.count(rodape)}x (esperado 1)")
     if texto.count("```") % 2:
         erros.append(f"{pasta.name}: bloco de codigo aberto e nao fechado")
 

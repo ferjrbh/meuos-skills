@@ -15,6 +15,9 @@ disponibilizado publicamente para uso pessoal por alunos e usuários do MeuOS.
 - Revender ou comercializar as Skills, ou material derivado delas, como produto.
 - Remover os créditos de autoria do MeuOS / Aion Group.
 
+## Conteúdo de terceiros
+As skills `market` e `market-*` são adaptações de [ai-marketing-claude](https://github.com/zubair-trabzada/ai-marketing-claude), de Zubair Trabzada, e seguem a licença MIT original, não esta. Detalhe e texto da licença: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
 O conteúdo é fornecido "como está", sem garantias de qualquer tipo. O uso é por sua conta e risco.
 
 Dúvidas, autorizações e acesso ao curso: **[www.meuos.com.br](https://www.meuos.com.br)**
