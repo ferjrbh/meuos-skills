@@ -218,94 +218,94 @@ Para o contador e o escritório contábil, criadas pela contadora **Márcia Alme
 
 | Skill | O que faz |
 |---|---|
-| **[Analisar Notas Fiscais (Área Fiscal)](skills/analisar-notas-fiscais/SKILL.md)** | Lê XMLs de NF-e (entrada e saída) e NFS-e, confere o lançamento contábil esperado por CFOP e aponta inconsistências fiscais, com foco em empresas do Simples Nacional |
-| **[Apuração do Lucro Presumido (IRPJ, CSLL, PIS e COFINS)](skills/apuracao-lucro-presumido/SKILL.md)** | Apura o IRPJ e a CSLL trimestrais e o PIS/COFINS cumulativos mensais de empresa no Lucro Presumido, já com a majoração da presunção da LC 224/2025 para receita acima… |
-| **[Apuração do Lucro Real (IRPJ e CSLL)](skills/apuracao-lucro-real/SKILL.md)** | Apura IRPJ e CSLL no Lucro Real, trimestral ou anual com estimativa mensal, partindo do lucro contábil antes dos tributos (LAIR), fazendo adições e exclusões na Parte… |
-| **[Apuração e controle do MEI](skills/apuracao-mei/SKILL.md)** | Cuida do MEI (Microempreendedor Individual) |
-| **[Calcular o DAS do Simples Nacional](skills/calcular-das-simples-nacional/SKILL.md)** | Calcula o DAS mensal do Simples Nacional a partir do faturamento |
-| **[Cálculo de ICMS e ICMS-ST](skills/calculo-icms-icms-st/SKILL.md)** | Calcula o ICMS próprio e o ICMS-ST em operações internas e interestaduais, com MVA ajustada, DIFAL (LC 190/2022) e FCP, alíquota de 4% de importados, antecipação e… |
-| **[Cálculo do INSS da empresa (contribuição patronal)](skills/calculo-inss-empresa/SKILL.md)** | Calcula o INSS patronal mensal |
-| **[Cálculo e apuração mensal de IPI](skills/calculo-ipi/SKILL.md)** | Apuração mensal de IPI para indústria e estabelecimentos equiparados a industrial (importador, filial atacadista de indústria), com TIPI vigente (Decreto nº… |
-| **[Cálculo do IRRF na folha e em pagamentos a pessoa física](skills/calculo-irrf-folha/SKILL.md)** | Cálculo do IRRF sobre salário CLT, pró-labore, 13º salário, RPA de autônomo e outros rendimentos pagos por empresa a pessoa física (aluguel, juros, royalties), com a… |
-| **[Cálculo e apuração mensal de ISS](skills/calculo-iss/SKILL.md)** | Apuração mensal de ISS (ISSQN): enquadramento do serviço na lista da LC nº 116/2003, definição do município competente (regra do estabelecimento prestador × exceções… |
-| **[Apuração de PIS/COFINS cumulativo](skills/calculo-pis-cofins-cumulativo/SKILL.md)** | Apuração mensal de PIS (0,65%) e COFINS (3%) no regime cumulativo (Lucro Presumido e atividades do art. 10 da Lei nº 10.833/2003 no Lucro Real), com exclusão do ICMS… |
-| **[Apuração de PIS/COFINS não cumulativo](skills/calculo-pis-cofins-nao-cumulativo/SKILL.md)** | Apuração mensal de PIS (1,65%) e COFINS (7,6%) no regime não cumulativo (Lucro Real), com débitos × créditos, conceito de insumo do STJ (REsp 1.221.170, Temas 779 e… |
-| **[Conferir apuração do Simples Nacional](skills/conferir-apuracao-simples-nacional/SKILL.md)** | Confere a apuração mensal do Simples Nacional (PGDAS-D) cruzando com as notas fiscais de saída e de entrada. Verifica a receita bruta do mês e a RBT12, o Anexo… |
-| **[Reforma Tributária do Consumo — transição 2026–2033](skills/reforma-tributaria-transicao/SKILL.md)** | Orienta a transição da Reforma Tributária do Consumo (Emenda Constitucional nº 132/2023, LC nº 214/2025 e LC nº 227/2026, que instituiu o Comitê Gestor do IBS):… |
-| **[Retenções tributárias do tomador de serviços](skills/retencoes-tributarias-tomador/SKILL.md)** | Calcula as retenções que a empresa TOMADORA deve fazer ao pagar serviços de pessoa jurídica: IRRF 1,5% ou 1% (código 1708), CSRF 4,65% (PIS+COFINS+CSLL, código 5952,… |
+| **[Analisar Notas Fiscais (Área Fiscal)](skills/analisar-notas-fiscais/SKILL.md)** | Lê os XMLs de NF-e e NFS-e, sugere o lançamento pelo CFOP, confere tributos e retenções e aponta inconsistências, com foco no Simples. |
+| **[Apuração do Lucro Presumido (IRPJ, CSLL, PIS e COFINS)](skills/apuracao-lucro-presumido/SKILL.md)** | Apura IRPJ e CSLL trimestrais e PIS/COFINS mensais no Lucro Presumido, já com o aumento da presunção da LC 224/2025 acima de R$ 5 milhões. |
+| **[Apuração do Lucro Real (IRPJ e CSLL)](skills/apuracao-lucro-real/SKILL.md)** | Apura IRPJ e CSLL no Lucro Real, trimestral ou anual com estimativa, com adições, exclusões e compensação de prejuízo no LALUR/LACS. |
+| **[Apuração e controle do MEI](skills/apuracao-mei/SKILL.md)** | Calcula o DAS-MEI, controla o faturamento do ano, avisa antes de estourar o limite e lembra a declaração anual (DASN-SIMEI). |
+| **[Calcular o DAS do Simples Nacional](skills/calcular-das-simples-nacional/SKILL.md)** | Calcula o DAS do mês pela alíquota efetiva e a RBT12, separa receitas especiais e decide entre Anexo III e V pelo fator R. |
+| **[Cálculo de ICMS e ICMS-ST](skills/calculo-icms-icms-st/SKILL.md)** | Calcula ICMS próprio, ICMS-ST, DIFAL e FCP em operações internas e interestaduais, com MVA ajustada e alíquota de 4% de importados. |
+| **[Cálculo do INSS da empresa (contribuição patronal)](skills/calculo-inss-empresa/SKILL.md)** | Calcula o INSS patronal da empresa: cota de 20%, RAT ajustado pelo FAP, Terceiros (Sistema S) e a desoneração da folha (CPRB). |
+| **[Cálculo e apuração mensal de IPI](skills/calculo-ipi/SKILL.md)** | Apura o IPI do mês para indústria e equiparados: débitos, créditos, saldo credor, NCM, alíquota da TIPI e suspensões. |
+| **[Cálculo do IRRF na folha e em pagamentos a pessoa física](skills/calculo-irrf-folha/SKILL.md)** | Calcula o IRRF de empregado, pró-labore, autônomo e outros pagamentos a pessoa física, com a tabela de 2026, deduções e redutor. |
+| **[Cálculo e apuração mensal de ISS](skills/calculo-iss/SKILL.md)** | Identifica o item da lista de serviços e o município onde o ISS é devido, calcula o imposto, verifica a retenção e orienta a guia. |
+| **[Apuração de PIS/COFINS cumulativo](skills/calculo-pis-cofins-cumulativo/SKILL.md)** | Calcula PIS (0,65%) e COFINS (3%) no regime cumulativo, com a exclusão do ICMS da base e as demais exclusões permitidas. |
+| **[Apuração de PIS/COFINS não cumulativo](skills/calculo-pis-cofins-nao-cumulativo/SKILL.md)** | Apura PIS (1,65%) e COFINS (7,6%) no Lucro Real: débitos, créditos de insumos, energia, aluguéis e depreciação, e saldo credor. |
+| **[Conferir apuração do Simples Nacional](skills/conferir-apuracao-simples-nacional/SKILL.md)** | Revisa o PGDAS-D contra as notas de entrada e saída: receita do mês, RBT12, Anexo, fator R, alíquota, segregação e retenções. |
+| **[Reforma Tributária do Consumo: transição 2026 a 2033](skills/reforma-tributaria-transicao/SKILL.md)** | Traduz a transição da Reforma Tributária do Consumo (2026 a 2033) em ações práticas para o escritório e para cada cliente. |
+| **[Retenções tributárias do tomador de serviços](skills/retencoes-tributarias-tomador/SKILL.md)** | Calcula as retenções que o tomador faz ao pagar serviços de PJ (IRRF, CSRF, INSS e ISS), com dispensas, líquido a pagar e prazos. |
 
 #### Obrigações Acessórias (8)
 
 | Skill | O que faz |
 |---|---|
-| **[DCTFWeb mensal e anual](skills/dctfweb/SKILL.md)** | Prepara e confere a DCTFWeb mensal (e a anual de 13º salário): débitos federais que vêm do eSocial e da EFD-Reinf (INSS patronal CPP, RAT×FAP, Terceiros, INSS retido,… |
-| **[DIMOB anual](skills/dimob/SKILL.md)** | Prepara e confere a DIMOB (Declaração de Informações sobre Atividades Imobiliárias) anual de construtoras, incorporadoras, loteadoras, imobiliárias e administradoras… |
-| **[DMED anual](skills/dmed/SKILL.md)** | Prepara e confere a DMED (Declaração de Serviços Médicos e de Saúde) anual de PJ prestadoras de serviços de saúde (hospitais, clínicas, laboratórios, médicos e… |
-| **[ECD — Escrituração Contábil Digital](skills/ecd-escrituracao-contabil-digital/SKILL.md)** | Prepara, diagnostica e valida a ECD anual (SPED Contábil |
-| **[ECF — Escrituração Contábil Fiscal](skills/ecf-escrituracao-contabil-fiscal/SKILL.md)** | Prepara e confere a ECF anual (IN RFB nº 2.004/2021): recuperação da ECD, mapeamento referencial, e-Lalur/e-Lacs (Parte A com adições, exclusões e compensações; Parte… |
-| **[EFD-Contribuições mensal](skills/efd-contribuicoes/SKILL.md)** | Prepara e confere a EFD-Contribuições mensal (PIS/COFINS e CPRB): escrituração por CST, créditos do não cumulativo, Bloco M (apuração), F500/F550 (regime de caixa ou… |
-| **[EFD ICMS/IPI mensal](skills/efd-icms-ipi/SKILL.md)** | Prepara e confere a EFD ICMS/IPI mensal (SPED Fiscal |
-| **[EFD-Reinf mensal](skills/efd-reinf/SKILL.md)** | Organiza a EFD-Reinf mensal: R-1000 (cadastro), R-1070 (processos), R-2010/R-2020 (retenção de 11% de INSS na cessão de mão de obra, tomador e prestador),… |
+| **[DCTFWeb mensal e anual](skills/dctfweb/SKILL.md)** | Prepara e confere a DCTFWeb mensal e a de 13º: débitos que vêm do eSocial e da EFD-Reinf e os informados no MIT. |
+| **[DIMOB anual](skills/dimob/SKILL.md)** | Prepara e confere a DIMOB anual de construtoras, incorporadoras, imobiliárias e administradoras de imóveis. |
+| **[DMED anual](skills/dmed/SKILL.md)** | Prepara e confere a DMED anual de clínicas, hospitais, laboratórios, profissionais de saúde em PJ e operadoras de plano de saúde. |
+| **[ECD: Escrituração Contábil Digital](skills/ecd-escrituracao-contabil-digital/SKILL.md)** | Gera, confere e corrige a ECD (SPED Contábil) antes da transmissão: blocos, plano referencial, saldos e demonstrações. |
+| **[ECF: Escrituração Contábil Fiscal](skills/ecf-escrituracao-contabil-fiscal/SKILL.md)** | Organiza a ECF depois da ECD: mapeamento referencial, e-Lalur e e-Lacs com a Parte B e o cálculo de IRPJ e CSLL. |
+| **[EFD-Contribuições mensal](skills/efd-contribuicoes/SKILL.md)** | Confere a EFD-Contribuições mensal (PIS/COFINS e CPRB): CST de cada item, créditos, apuração no Bloco M e retenções. |
+| **[EFD ICMS/IPI mensal](skills/efd-icms-ipi/SKILL.md)** | Confere a EFD ICMS/IPI (SPED Fiscal) do mês: notas contra os XMLs, CFOP, CST, apuração, ajustes, CIAP, inventário e Bloco K. |
+| **[EFD-Reinf mensal](skills/efd-reinf/SKILL.md)** | Organiza a EFD-Reinf da competência, confere cada retenção no evento certo e garante os fechamentos R-2099 e R-4099. |
 
 #### DP e eSocial (9)
 
 | Skill | O que faz |
 |---|---|
-| **[Analisar Folha de Pagamento e Pró-labore](skills/analisar-folha-pagamento/SKILL.md)** | Lê PDFs de folha de pagamento e pró-labore, confere retenções (INSS, IRRF, vale-transporte), encargos (INSS patronal, RAT, Terceiros, FGTS), lançamentos contábeis… |
-| **[eSocial — Admissão (S-2190 / S-2200)](skills/esocial-admissao/SKILL.md)** | Especialista em admissão no eSocial |
-| **[eSocial — Afastamentos (S-2230) e CAT (S-2210)](skills/esocial-afastamentos/SKILL.md)** | Especialista em afastamentos no eSocial |
-| **[eSocial — Eventos Periódicos e Fechamento](skills/esocial-eventos-periodicos/SKILL.md)** | Especialista em eventos periódicos do eSocial |
-| **[eSocial — Desligamento (S-2299)](skills/esocial-rescisao/SKILL.md)** | Especialista no desligamento CLT no eSocial |
-| **[Férias e 13º Salário](skills/ferias-13-salario/SKILL.md)** | Especialista em férias e 13º salário com os parâmetros de 2026 |
-| **[FGTS — Recolhimento Mensal e Rescisório (FGTS Digital)](skills/fgts-guia-recolhimento/SKILL.md)** | Especialista em FGTS mensal e rescisório pelo FGTS Digital |
-| **[Folha de Pagamento Mensal (CLT)](skills/folha-pagamento-mensal/SKILL.md)** | Especialista em folha CLT mensal com parâmetros de 2026 |
-| **[Rescisão CLT — Cálculo das Verbas](skills/rescisao-clt-calculo/SKILL.md)** | Especialista no cálculo financeiro da rescisão CLT |
+| **[Analisar Folha de Pagamento e Pró-labore](skills/analisar-folha-pagamento/SKILL.md)** | Confere a folha e o pró-labore já calculados: INSS, IRRF, FGTS, vale-transporte, encargos, lançamentos contábeis e provisões de férias e 13º. |
+| **[eSocial: Admissão (S-2190 / S-2200)](skills/esocial-admissao/SKILL.md)** | Organiza a admissão no eSocial: cadastros prévios, documentos, ASO, categoria do trabalhador e a sequência de eventos com prazo. |
+| **[eSocial: Afastamentos (S-2230) e CAT (S-2210)](skills/esocial-afastamentos/SKILL.md)** | Classifica o afastamento (doença, acidente, maternidade, licenças), escolhe o código, calcula os dias pagos pela empresa e organiza o S-2230 e a CAT. |
+| **[eSocial: Eventos Periódicos e Fechamento](skills/esocial-eventos-periodicos/SKILL.md)** | Monta a sequência mensal dos eventos periódicos do eSocial depois da folha e confere os totalizadores contra o cálculo interno. |
+| **[eSocial: Desligamento (S-2299)](skills/esocial-rescisao/SKILL.md)** | Conduz o desligamento no eSocial: motivo, prazos do pagamento, S-2299 e FGTS Digital, seguro-desemprego e alertas de estabilidade. |
+| **[Férias e 13º Salário](skills/ferias-13-salario/SKILL.md)** | Calcula férias (com ou sem abono) e 13º salário com as tabelas de 2026, monta recibo e holerite e lista prazos e eventos do eSocial. |
+| **[FGTS: Recolhimento Mensal e Rescisório (FGTS Digital)](skills/fgts-guia-recolhimento/SKILL.md)** | Calcula o FGTS do mês e o rescisório, indica a guia certa no FGTS Digital e o vencimento e orienta sobre atraso, parcelamento e CRF. |
+| **[Folha de Pagamento Mensal (CLT)](skills/folha-pagamento-mensal/SKILL.md)** | Calcula a folha mensal de cada empregado com as tabelas de 2026 e entrega holerite, resumo do mês, memória de cálculo e checklist. |
+| **[Rescisão CLT: Cálculo das Verbas](skills/rescisao-clt-calculo/SKILL.md)** | Calcula as verbas rescisórias de cada modalidade de desligamento, com aviso projetado, INSS, IRRF e FGTS, e entrega o TRCT com memória de cálculo. |
 
 #### Fechamento Contábil (14)
 
 | Skill | O que faz |
 |---|---|
-| **[Analisar Extrato Bancário e de Caixa](skills/analisar-extrato-bancario/SKILL.md)** | Lê extratos bancários (PDF ou OFX) e relatórios de caixa, classifica cada transação contabilmente, concilia o saldo do extrato com o saldo do razão item a item e… |
-| **[Analisar Lançamento Contábil (unitário)](skills/analisar-lancamento-contabil/SKILL.md)** | Analisa um lançamento contábil individual antes do registro definitivo |
-| **[Analisar Relatório Contábil](skills/analisar-relatorio-contabil/SKILL.md)** | Analisa relatórios contábeis com muitos lançamentos (razão, diário, balancete, livro contábil ou planilha de lançamentos) à luz da ITG 2000 (R1) e da NBC TG 1000 (R1)… |
-| **[Ativo Imobilizado e Depreciação](skills/ativo-imobilizado-depreciacao/SKILL.md)** | Cuida do ativo imobilizado (CPC 27) do cadastro à baixa |
-| **[Análise de Balancete](skills/balancete-analise/SKILL.md)** | Lê e analisa o balancete mensal antes da entrega ao cliente |
-| **[Conciliação de Cartões e Credenciadoras](skills/conciliacao-cartoes-credenciadora/SKILL.md)** | Concilia as vendas no cartão e no PIX por maquininha (Cielo, Stone, Rede, GetNet, PagSeguro, SafraPay, Mercado Pago e outras) com os repasses da credenciadora |
-| **[Conciliação de Clientes (Contas a Receber)](skills/conciliacao-clientes/SKILL.md)** | Concilia o razão de clientes (contas a receber) título a título |
-| **[Conciliação de Fornecedores (Contas a Pagar)](skills/conciliacao-fornecedores/SKILL.md)** | Concilia o razão de fornecedores (contas a pagar) nota a nota |
-| **[Conciliar extrato bancário × razão contábil](skills/conciliar-extrato-razao/SKILL.md)** | Faz o casamento item a item entre o extrato bancário (OFX, CSV ou PDF) e o razão contábil da conta banco. Aponta lançamentos sem par, tarifas, IOF, juros e… |
-| **[DRE gerencial](skills/dre-gerencial/SKILL.md)** | Monta a DRE gerencial do cliente separando custos variáveis e fixos, calcula margem de contribuição (MC), ponto de equilíbrio (PE) em reais e em unidades, compara… |
-| **[Fechamento contábil mensal](skills/fechamento-mensal/SKILL.md)** | Roteiro completo do fechamento contábil mensal em até 5 dias úteis (D+1 a D+5) |
-| **[Fluxo de caixa projetado](skills/fluxo-caixa-projetado/SKILL.md)** | Monta o fluxo de caixa pelo método direto, realizado e projetado |
-| **[Lançamentos contábeis padrão](skills/lancamentos-contabeis-padrao/SKILL.md)** | Catálogo de lançamentos contábeis (débito e crédito) para as operações do dia a dia |
-| **[Plano de contas aderente aos CPCs](skills/plano-contas-cpc/SKILL.md)** | Estrutura o plano de contas do cliente com todas as contas analíticas mapeadas para o plano referencial da ECD, aderente aos CPCs (26 apresentação, 27 imobilizado, 04… |
+| **[Analisar Extrato Bancário e de Caixa](skills/analisar-extrato-bancario/SKILL.md)** | Lê o extrato do banco ou o relatório de caixa, sugere o lançamento de cada movimento e mostra o que falta lançar para o saldo bater. |
+| **[Analisar Lançamento Contábil (unitário)](skills/analisar-lancamento-contabil/SKILL.md)** | Confere um lançamento contábil por vez: elementos exigidos, débito e crédito, histórico, competência e contas, com a correção quando houver erro. |
+| **[Analisar Relatório Contábil](skills/analisar-relatorio-contabil/SKILL.md)** | Revisa um conjunto de lançamentos (razão, diário ou planilha) e aponta, um a um, o que está certo, com ressalva ou errado, com a norma. |
+| **[Ativo Imobilizado e Depreciação](skills/ativo-imobilizado-depreciacao/SKILL.md)** | Cuida do imobilizado do cadastro à baixa: custo, depreciação contábil e fiscal, perda de valor, crédito de ICMS (CIAP) e arrendamentos. |
+| **[Análise de Balancete](skills/balancete-analise/SKILL.md)** | Prova que o balancete pode ser entregue ao cliente, mede o efeito de cada achado no resultado e no patrimônio e calcula os indicadores. |
+| **[Conciliação de Cartões e Credenciadoras](skills/conciliacao-cartoes-credenciadora/SKILL.md)** | Concilia as vendas no cartão e no PIX de maquininha com os relatórios da credenciadora e os repasses no banco, separando taxas e antecipações. |
+| **[Conciliação de Clientes (Contas a Receber)](skills/conciliacao-clientes/SKILL.md)** | Prova, título a título, o saldo de clientes no balancete, organiza a carteira por atraso e calcula a perda esperada. |
+| **[Conciliação de Fornecedores (Contas a Pagar)](skills/conciliacao-fornecedores/SKILL.md)** | Prova, nota a nota, o saldo de fornecedores e aponta pagamento em dobro, nota duplicada, adiantamento perdido e retenção que sumiu. |
+| **[Conciliar extrato bancário × razão contábil](skills/conciliar-extrato-razao/SKILL.md)** | Casa linha a linha o extrato do banco com o razão da conta banco, dá um motivo para cada diferença e chega ao espelho com diferença zero. |
+| **[DRE gerencial](skills/dre-gerencial/SKILL.md)** | Reorganiza a DRE em visão de gestão: custos variáveis e fixos, margem de contribuição, ponto de equilíbrio e comparação com o orçado. |
+| **[Fechamento contábil mensal](skills/fechamento-mensal/SKILL.md)** | Conduz o fechamento do mês em ordem, de D+1 a D+5, com uma trava em cada etapa, até o pacote entregue ao cliente. |
+| **[Fluxo de caixa projetado](skills/fluxo-caixa-projetado/SKILL.md)** | Monta o fluxo de caixa realizado e projetado, semana a semana, e antecipa os buracos de caixa para o cliente decidir com tempo. |
+| **[Lançamentos contábeis padrão](skills/lancamentos-contabeis-padrao/SKILL.md)** | Entrega o lançamento correto (débito, crédito, valor e histórico) para as operações do dia a dia, cruzado com o documento de origem. |
+| **[Plano de contas aderente aos CPCs](skills/plano-contas-cpc/SKILL.md)** | Monta ou revisa o plano de contas do cliente aderente aos CPCs, com o código referencial da ECD em todas as contas analíticas. |
 
 #### IRPF e Societário (10)
 
 | Skill | O que faz |
 |---|---|
-| **[Abertura de empresa (CNPJ) pela REDESIM](skills/abertura-empresa-cnpj/SKILL.md)** | Conduz a abertura de empresa pela REDESIM (Lei nº 11.598/2007, com as simplificações da Lei nº 14.195/2021) |
-| **[Alteração contratual](skills/alteracao-contratual/SKILL.md)** | Prepara alterações contratuais pela REDESIM |
-| **[Análise de IRPF (revisão da pré-preenchida)](skills/analisar-irpf/SKILL.md)** | Analisa a declaração de IRPF pré-preenchida (Receita Federal) cruzando com os documentos do cliente |
-| **[Elaboração da declaração de IRPF (completa × simplificada)](skills/elaborar-irpf-completa/SKILL.md)** | ELABORA a declaração de IRPF do zero para contribuintes com várias fontes |
-| **[Encerramento de empresa (baixa)](skills/encerramento-empresa-baixa/SKILL.md)** | Conduz a baixa de empresa pela REDESIM |
-| **[Carnê-leão (aluguel e demais rendimentos de PF e do exterior)](skills/irpf-aluguel-carne-leao/SKILL.md)** | Calcula o carnê-leão (recolhimento mensal obrigatório |
-| **[Ganho de capital da pessoa física](skills/irpf-ganho-capital/SKILL.md)** | Apura o ganho de capital de pessoa física na venda de imóveis, participações societárias fora da bolsa, criptoativos e outros bens |
-| **[IR sobre investimentos em bolsa (renda variável)](skills/irpf-investimentos-bolsa/SKILL.md)** | Apura o IR mensal da pessoa física em renda variável na B3 |
-| **[Parcelamento e transação de débitos federais](skills/parcelamento-receita-federal/SKILL.md)** | Compara as saídas para débitos federais |
-| **[Resposta a fiscalização e intimação](skills/resposta-fiscalizacao-intimacao/SKILL.md)** | Prepara a resposta a fiscalizações e cobranças federais (e, no que couber, estaduais e municipais) |
+| **[Abertura de empresa (CNPJ) pela REDESIM](skills/abertura-empresa-cnpj/SKILL.md)** | Organiza a abertura de empresa pela REDESIM: tipo societário, CNAE, endereço, cláusulas do contrato social e escolha do regime. |
+| **[Alteração contratual](skills/alteracao-contratual/SKILL.md)** | Roteiriza a alteração do contrato social: tipo de alteração, quórum, redação da cláusula, tributos envolvidos e registros. |
+| **[Análise de IRPF (revisão da pré-preenchida)](skills/analisar-irpf/SKILL.md)** | Revisa a declaração pré-preenchida do IRPF contra os documentos do cliente e aponta omissões, deduções e bens com saldo divergente. |
+| **[Elaboração da declaração de IRPF (completa × simplificada)](skills/elaborar-irpf-completa/SKILL.md)** | Monta a declaração do IRPF 2026 a partir dos documentos do cliente, compara completa e simplificada e prepara o plano de pagamento. |
+| **[Encerramento de empresa (baixa)](skills/encerramento-empresa-baixa/SKILL.md)** | Planeja o encerramento da empresa: escolhe o caminho da baixa, roteiriza distrato e liquidação e lista as declarações de situação especial. |
+| **[Carnê-leão (aluguel e demais rendimentos de PF e do exterior)](skills/irpf-aluguel-carne-leao/SKILL.md)** | Calcula o carnê-leão de quem recebe de pessoa física ou do exterior (aluguel e outros), com o DARF 0190 e a orientação no Carnê-Leão Web. |
+| **[Ganho de capital da pessoa física](skills/irpf-ganho-capital/SKILL.md)** | Calcula o ganho de capital da pessoa física na venda de imóvel, quotas ou cripto, com isenções, reduções, GCAP e DARF 4600. |
+| **[IR sobre investimentos em bolsa (renda variável)](skills/irpf-investimentos-bolsa/SKILL.md)** | Apura o imposto mensal da pessoa física na bolsa pelas notas de corretagem: operações comuns e day trade, prejuízos e DARF 6015. |
+| **[Parcelamento e transação de débitos federais](skills/parcelamento-receita-federal/SKILL.md)** | Simula as saídas para débitos na Receita e na PGFN (parcelamento e transação) e recomenda a de menor custo que cabe no caixa. |
+| **[Resposta a fiscalização e intimação](skills/resposta-fiscalizacao-intimacao/SKILL.md)** | Decifra a intimação ou o auto de infração, define a estratégia (atender, retificar, impugnar, pagar ou parcelar) e redige a minuta da resposta. |
 
 #### Consultoria Avançada (7)
 
 | Skill | O que faz |
 |---|---|
-| **[Análise comparativa de regime tributário](skills/analise-tributaria-regime/SKILL.md)** | Compara Simples Nacional, Lucro Presumido e Lucro Real para um cliente, com projeção de 12 meses e todos os tributos (IRPJ, CSLL, PIS/COFINS ou CBS, ICMS, ISS, INSS… |
-| **[Diagnóstico de malha fina do IRPF](skills/diagnosticar-malha-fina-pf/SKILL.md)** | Diagnostica declaração de IRPF JÁ ENTREGUE que caiu na malha fina. Lê o extrato do processamento no e-CAC (Meu Imposto de Renda), identifica a causa da retenção… |
-| **[Due diligence contábil, fiscal e trabalhista](skills/due-diligence-contabil/SKILL.md)** | Conduz due diligence (auditoria de compra) contábil, fiscal, trabalhista e societária antes de compra, venda, fusão ou aporte de investidor. Identifica passivos… |
-| **[Diagnóstico de malha e intimações de pessoa jurídica](skills/malha-fina-pj-diagnostico/SKILL.md)** | Diagnostica comunicações do fisco a empresas |
-| **[Recuperação retroativa de créditos de PIS/COFINS](skills/recuperacao-creditos-pis-cofins/SKILL.md)** | Levanta e calcula PIS/COFINS pagos a maior nos últimos 5 anos (retroativo), com atualização pela Selic, e prepara a retificação da EFD-Contribuições e o PER/DCOMP.… |
-| **[Revisão fiscal por cruzamento de SPEDs](skills/revisao-fiscal-cruzamento-sped/SKILL.md)** | Cruza as escriturações e declarações da empresa |
-| **[Valuation de PME](skills/valuation-pme/SKILL.md)** | Estima o valor de uma pequena ou média empresa por fluxo de caixa descontado (DCF |
+| **[Análise comparativa de regime tributário](skills/analise-tributaria-regime/SKILL.md)** | Compara Simples, Lucro Presumido e Lucro Real para um cliente, com projeção de 12 meses, o ponto de virada entre os regimes e os riscos de cada um. |
+| **[Diagnóstico de malha fina do IRPF](skills/diagnosticar-malha-fina-pf/SKILL.md)** | Descobre por que o IRPF do cliente caiu na malha, decide entre retificar ou comprovar e prepara o cálculo, o DARF e a minuta de resposta. |
+| **[Due diligence contábil, fiscal e trabalhista](skills/due-diligence-contabil/SKILL.md)** | Organiza a due diligence de uma empresa antes de compra, venda ou investimento: documentos, riscos classificados, passivos ocultos e EBITDA ajustado. |
+| **[Diagnóstico de malha e intimações de pessoa jurídica](skills/malha-fina-pj-diagnostico/SKILL.md)** | Lê a intimação ou o auto recebido pela empresa, acha a causa da divergência, propõe a estratégia e prepara a minuta de resposta. |
+| **[Recuperação retroativa de créditos de PIS/COFINS](skills/recuperacao-creditos-pis-cofins/SKILL.md)** | Levanta o PIS/COFINS pago a maior nos últimos 5 anos, atualiza pela Selic e organiza a retificação da EFD-Contribuições e o pedido de restituição. |
+| **[Revisão fiscal por cruzamento de SPEDs](skills/revisao-fiscal-cruzamento-sped/SKILL.md)** | Cruza ECD, ECF, EFDs, DCTFWeb e eSocial do período, mede cada diferença, explica a causa e indica a ordem certa de correção. |
+| **[Valuation de PME](skills/valuation-pme/SKILL.md)** | Avalia uma pequena ou média empresa por fluxo de caixa descontado, múltiplos e patrimônio, e entrega uma faixa de valor defensável. |
 
 ### 🔌 n8n (3)
 
