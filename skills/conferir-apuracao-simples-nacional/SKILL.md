@@ -100,7 +100,7 @@ Conferir: faixa da RBT12 (total da empresa, todas as atividades), alíquota efet
 - **ISS retido pelo tomador**: a receita é informada como "com retenção" e a parcela de ISS sai do DAS. A retenção deve ter sido feita pela alíquota efetiva de ISS informada na nota (a do mês anterior ao da prestação); no mês de início de atividade, 2%; sem informação na nota, 5% (art. 21, § 4º, I, II e V, da LC nº 123/2006). ISS em valor fixo não sofre retenção (art. 21, § 4º, IV).
 
 ### Etapa 6 — Retenções nas notas de serviços tomados
-Regras completas em o Anexo C no fim deste arquivo.
+Regras completas no Anexo C, no fim deste arquivo.
 
 | Tributo | Alíquota | Prestador do Simples | Observação |
 |---|---|---|---|
