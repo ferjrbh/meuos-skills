@@ -7,7 +7,7 @@ description: |
   página) antes de ela sair e dá o laudo: não sai, sai com correção ou pode sair. Use quando o usuário disser
   "copiloto", "cross check", "confere esse número", "revisa os números", "acha os erros", "audita essa análise",
   "posso mandar isso?", ou antes de uma peça com números ir para diretoria, conselho ou cliente.
-version: 1.3
+version: 1.4
 context: fork
 agent: general-purpose
 user-invocable: true

@@ -14,6 +14,7 @@ Uso:
   python3 extrai_numeros.py <arquivo> [--csv saida.csv] [--sem-notas]
 """
 import csv, html, os, re, shutil, subprocess, sys, zipfile
+from decimal import Decimal
 for _s in (sys.stdout, sys.stderr):  # Windows grava em cp1252 quando a saida nao e terminal: forca UTF-8
     try:
         _s.reconfigure(encoding="utf-8")
@@ -25,7 +26,7 @@ from xml.etree import ElementTree as ET
 UNID = r"(?:mi|milh(?:ão|ões|oes)|bi|bilh(?:ão|ões|oes)|mil|k|mm|MM)\b"
 RX = re.compile(
     r"(?P<moeda>R\$|US\$|\$|€)?\s?"
-    r"(?P<num>-?\d{1,3}(?:\.\d{3})+(?:,\d+)?|-?\d+(?:,\d+)?|-?\d+(?:\.\d+)?)"
+    r"(?P<num>-?\d{1,3}(?:\.\d{3})+(?!\d)(?:,\d+)?|-?\d+\.\d+|-?\d+(?:,\d+)?)"
     r"\s?(?P<suf>%|p\.?p\.?|pp\b|x\b|×|" + UNID + r")?",
     re.I)
 MULT = {"mil": 1e3, "k": 1e3, "mi": 1e6, "milhão": 1e6, "milhões": 1e6, "milhoes": 1e6, "mm": 1e6,
@@ -108,7 +109,10 @@ def blocos_xlsx(caminho):
                 if isinstance(c.value, str) and not re.search(r"\d", c.value):
                     rot = c.value
                     continue
-                yield f"{ws.title}!{c.coordinate}", f"{rot} {c.value}".strip()
+                val = c.value
+                if isinstance(val, float):  # célula numérica: vírgula decimal, sem notação científica
+                    val = format(Decimal(repr(val)), "f").replace(".", ",")
+                yield f"{ws.title}!{c.coordinate}", f"{rot} {val}".strip()
 
 
 def blocos_texto(caminho):
@@ -188,7 +192,14 @@ def main():
         sys.exit(1)
     caminho = args[0]
     saida = args[args.index("--csv") + 1] if "--csv" in args else None
-    itens = extrair(caminho, notas="--sem-notas" not in args)
+    if not os.path.isfile(caminho):
+        print(f"⚠️ Arquivo não encontrado: {caminho}", file=sys.stderr)
+        sys.exit(1)
+    try:
+        itens = extrair(caminho, notas="--sem-notas" not in args)
+    except Exception as e:  # arquivo corrompido ou formato inesperado
+        print(f"⚠️ Não consegui ler {os.path.basename(caminho)}: {e}", file=sys.stderr)
+        sys.exit(1)
     print(f"# Números de {os.path.basename(caminho)}\n")
     print(f"{len(itens)} números encontrados em {len(set(i['local'] for i in itens))} lugares.\n")
     print("| lugar | como está escrito | valor | unidade | rótulo provável | contexto |\n|---|---|---|---|---|---|")
