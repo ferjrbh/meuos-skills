@@ -14,7 +14,7 @@ description: |
   Executa quando o usuario diz "meuos do zero", "configurar meu os", "comecar meu os", "montar meu os",
   "instalei errado", "meu os ta baguncado", "nao tenho os ainda", "organizar meu os do zero",
   "consertar minha instalacao", "setup do os", "arrumar meu os", "organizar esta pasta no padrao".
-version: 1.2
+version: 1.3
 context: meuos
 user-invocable: true
 author: Fernando Lúcio · Aion Group

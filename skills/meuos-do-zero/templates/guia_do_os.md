@@ -130,7 +130,7 @@ Vale o PIOR entre linhas e KB. "Alvo" é para onde levar o arquivo quando for en
 | `documento_mestre.md` | menos de 300 linhas e de 25 KB | 300 a 500 linhas ou 25 a 40 KB | mais de 500 linhas ou de 40 KB | 180 linhas ou 15 KB |
 | `aprendizados_do_dia.md` | menos de 200 linhas e de 12 KB | 200 a 250 linhas ou 12 a 15 KB | mais de 250 linhas ou de 15 KB | 120 linhas ou 9 KB |
 | Entrada de aprendizado | até 6 linhas e 700 caracteres | | acima disso: condensar | no máximo 25 entradas no arquivo |
-| `changelog.md` | menos de 30 KB | 30 a 50 KB | mais de 50 KB | antigos vão para `historico/` por trimestre |
+| `changelog.md` | menos de 30 KB | 30 a 50 KB | mais de 50 KB | antigos vão para `historico/` por mês (`CHANGELOG_AAAA_MMM.md`); mês grande demais, por semana (`CHANGELOG_AAAA_MMM_DDaDD.md`) |
 | Satélite | menos de 25 KB | 25 a 40 KB | mais de 40 KB | dividir por tema |
 | `index.md` | menos de 100 linhas | 100 a 150 | mais de 150 | 1 linha por arquivo; contexto com mais de 100 arquivos divide o index por tema |
 | Outros `.md` | menos de 20 KB | 20 a 35 KB | mais de 35 KB | |

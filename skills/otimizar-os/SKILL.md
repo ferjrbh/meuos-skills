@@ -11,7 +11,7 @@ description: |
   "confere mds", "confere docs", "auditar documentacao", "docs batem com a realidade?",
   "verificar documentacao", "docs drift", "sincronizar docs com codigo", "doc desatualizada".
   Default (sem flag) = confere primeiro (corrige conteudo), depois otimiza (estrutura).
-version: 6.0
+version: 6.1
 context: meuos
 user-invocable: true
 argument-hint: "[contexto] [--so-confere | --so-otimiza] (sem args = pergunta o contexto e roda as 2 fases)"
@@ -512,7 +512,9 @@ Antes de olhar quantos dias tem o conteudo, classificar cada bloco pelo seu TIPO
 - **Secao densa**: quando um `*MESTRE.md` tem uma secao com 30+ linhas sobre UM unico tema (ou 15+ se o arquivo esta acima do alvo, ver B4), ela e
   candidata a virar um arquivo separado (satelite) na mesma pasta, com um ponteiro no MESTRE.
 - **Changelog grande**: quando fica 🔴 pesado (tabela do guia), **quebrar por data** — mover as entradas antigas para arquivos
-  datados em `historico/` (ex: `historico/CHANGELOG_2026_Q1.md` por trimestre), mantendo no changelog vivo
+  datados em `historico/`, **sempre por mês** (ex: `historico/CHANGELOG_2026_NOV.md`); se o mês sozinho passar
+  de 30 KB, **por semana** (ex: `historico/CHANGELOG_2026_NOV_16A22.md`). No topo do changelog vivo, 1 linha
+  apontando os arquivos do `historico/`. Mantendo no changelog vivo
   so as entradas recentes + o cabecalho.
 - **Obsoletos**: pesquisa/analise pontual ja concluida, status vencido -> mover para `historico/`.
 - **Pendencias paradas**: pendencia do MESTRE sem movimento ha 60+ dias vai para o satelite
@@ -708,7 +710,7 @@ varios contextos na mesma semana dispararia varios lembretes de custo.
 - Satelite: `CONTEXTO_tema.md` (prefixo do contexto em maiusculas, tema em minusculas com `_`; ex: `CLIENTEA_asaas.md`).
   Uma convencao so — a mesma do modelo `satelite.md`, do `guia_do_os.md` e do `fim-do-dia`. Satelite antigo com
   outro nome NAO e renomeado (renomear quebra link em silencio).
-- Arquivo do changelog: `historico/CHANGELOG_AAAA_Q[1-4].md`. Obsoleto: `historico/NOME_ORIGINAL.md`.
+- Arquivo do changelog: `historico/CHANGELOG_AAAA_MMM.md` (por mês) ou `historico/CHANGELOG_AAAA_MMM_DDaDD.md` (por semana, mês grande). Obsoleto: `historico/NOME_ORIGINAL.md`.
 
 ## O que esta skill NAO faz
 
