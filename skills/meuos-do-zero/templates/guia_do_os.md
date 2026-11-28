@@ -1,5 +1,5 @@
 # guia_do_os.md · O Manual de Operação deste OS
-> Guia do OS · versão 7 · gerado pelo MeuOS em {{DATA}} · www.meuos.com.br
+> Guia do OS · versão 8 · gerado pelo MeuOS em {{DATA}} · www.meuos.com.br
 
 ## Para você, humano, em 30 segundos
 
